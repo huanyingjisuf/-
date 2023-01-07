@@ -1,0 +1,141 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F13X ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"41 C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_IIC\test_61f13x_IIC.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"62
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"76
+[v _IIC_Start IIC_Start `(v  1 e 1 0 ]
+"93
+[v _IIC_Stop IIC_Stop `(v  1 e 1 0 ]
+"111
+[v _IIC_Wait_Ack IIC_Wait_Ack `(uc  1 e 1 0 ]
+"153
+[v _IIC_NAck IIC_NAck `(v  1 e 1 0 ]
+"169
+[v _IIC_Send_Byte IIC_Send_Byte `(v  1 e 1 0 ]
+"194
+[v _IIC_Read_Byte IIC_Read_Byte `(uc  1 e 1 0 ]
+"217
+[v _IIC_READ IIC_READ `(uc  1 e 1 0 ]
+"239
+[v _IIC_WRITE IIC_WRITE `(v  1 e 1 0 ]
+"261
+[v _main main `(v  1 e 1 0 ]
+"78 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\include\FT61F13X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"91
+[v _PA2 PA2 `VEb  1 e 0 @42 ]
+"93
+[v _PA4 PA4 `VEb  1 e 0 @44 ]
+"179
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"247
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"568
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"597
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"601
+[v _TRISA2 TRISA2 `VEb  1 e 0 @1066 ]
+"655
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"774
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"838
+[v _WPUC WPUC `VEuc  1 e 1 @147 ]
+"876
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"34 C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_IIC\test_61f13x_IIC.C
+[v _IICReadData IICReadData `VEuc  1 e 1 0 ]
+"261
+[v _main main `(v  1 e 1 0 ]
+{
+"278
+} 0
+"41
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"55
+} 0
+"239
+[v _IIC_WRITE IIC_WRITE `(v  1 e 1 0 ]
+{
+[v IIC_WRITE@address address `uc  1 a 1 wreg ]
+[v IIC_WRITE@address address `uc  1 a 1 wreg ]
+[v IIC_WRITE@data data `uc  1 p 1 4 ]
+[v IIC_WRITE@address address `uc  1 a 1 5 ]
+"253
+} 0
+"217
+[v _IIC_READ IIC_READ `(uc  1 e 1 0 ]
+{
+[v IIC_READ@address address `uc  1 a 1 wreg ]
+"219
+[v IIC_READ@iicdata iicdata `uc  1 a 1 5 ]
+"217
+[v IIC_READ@address address `uc  1 a 1 wreg ]
+[v IIC_READ@address address `uc  1 a 1 4 ]
+"232
+} 0
+"111
+[v _IIC_Wait_Ack IIC_Wait_Ack `(uc  1 e 1 0 ]
+{
+"113
+[v IIC_Wait_Ack@ucErrTime ucErrTime `uc  1 a 1 2 ]
+"130
+} 0
+"93
+[v _IIC_Stop IIC_Stop `(v  1 e 1 0 ]
+{
+"103
+} 0
+"76
+[v _IIC_Start IIC_Start `(v  1 e 1 0 ]
+{
+"86
+} 0
+"169
+[v _IIC_Send_Byte IIC_Send_Byte `(v  1 e 1 0 ]
+{
+[v IIC_Send_Byte@txd txd `uc  1 a 1 wreg ]
+"171
+[v IIC_Send_Byte@t t `uc  1 a 1 3 ]
+"169
+[v IIC_Send_Byte@txd txd `uc  1 a 1 wreg ]
+"172
+[v IIC_Send_Byte@txd txd `uc  1 a 1 2 ]
+"187
+} 0
+"194
+[v _IIC_Read_Byte IIC_Read_Byte `(uc  1 e 1 0 ]
+{
+"196
+[v IIC_Read_Byte@i i `uc  1 a 1 3 ]
+[v IIC_Read_Byte@receive receive `uc  1 a 1 2 ]
+"210
+} 0
+"153
+[v _IIC_NAck IIC_NAck `(v  1 e 1 0 ]
+{
+"162
+} 0
+"62
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"64
+[v DelayUs@a a `uc  1 a 1 1 ]
+"62
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"65
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"69
+} 0

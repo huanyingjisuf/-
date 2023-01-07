@@ -1,0 +1,383 @@
+GNU Tool Chain  
+
+Linker command line:
+
+--edf=D:\IDE3.0.3_6C03\data\dat\en_msgs.txt -cs -h+test_61f02x_timer0.sym \
+  --cmf=test_61f02x_timer0.cmf -z -QFT61F02X \
+  -oC:\Users\ALEXAN~1.WAN\AppData\Local\Temp\s420.2 \
+  -Mtest_61f02x_timer0.map -E1 -ver=XC8 -ASTACK=020h-06fh -pstack=STACK \
+  -ACODE=00h-07FFh -ASTRCODE=00h-07FFh -ASTRING=00h-0FFhx8 \
+  -ACONST=00h-0FFhx8 -AENTRY=00h-0FFhx8 -ACOMMON=070h-07Fh \
+  -ABANK0=020h-06Fh -ABANK1=0A0h-0BFh -ARAM=020h-06Fh,0A0h-0BFh \
+  -AABS1=020h-07Fh,0A0h-0BFh -ASFR0=00h-01Fh -ASFR1=080h-09Fh \
+  -ASFR2=0100h-016Fh -preset_vec=00h,intentry=04h,init,end_init \
+  -ppowerup=CODE -pcinit=CODE -pfunctab=ENTRY -ACONFIG=02007h-02007h \
+  -pconfig=CONFIG -DCONFIG=2 -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 \
+  -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
+  -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
+  C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\s420.obj test_61f02x_timer0.obj 
+
+Object code version is 3.11
+
+Machine type is FT61F02X
+
+
+
+                Name                               Link     Load   Length Selector   Space Scale
+C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\s420.obj
+                end_init                              A        A        1        8       0
+                reset_vec                             0        0        1        0       0
+test_61f02x_timer0.obj
+                cinit                                 B        B        2        8       0
+                intentry                              4        4        6        8       0
+                text3                                22       22        F        8       0
+                text2                                 D        D       15        8       0
+                text1                                37       37        5        8       0
+                maintext                             31       31        6        8       0
+                cstackCOMMON                         70       70        2       70       1
+
+TOTAL           Name                               Link     Load   Length     Space
+        CLASS   STACK          
+
+        CLASS   CODE           
+                end_init                              A        A        1         0
+                cinit                                 B        B        2         0
+                intentry                              4        4        6         0
+                reset_vec                             0        0        1         0
+                text3                                22       22        F         0
+                text2                                 D        D       15         0
+                text1                                37       37        5         0
+                maintext                             31       31        6         0
+
+        CLASS   STRCODE        
+
+        CLASS   STRING         
+
+        CLASS   CONST          
+
+        CLASS   ENTRY          
+
+        CLASS   COMMON         
+                cstackCOMMON                         70       70        2         1
+
+        CLASS   BANK0          
+
+        CLASS   BANK1          
+
+        CLASS   RAM            
+
+        CLASS   ABS1           
+                abs_s1                               7E       7E        2         1
+
+        CLASS   SFR0           
+
+        CLASS   SFR1           
+
+        CLASS   SFR2           
+
+        CLASS   CONFIG         
+
+        CLASS   IDLOC          
+
+        CLASS   EEDATA         
+
+        CLASS   BANK2          
+
+
+
+SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
+
+                reset_vec                      000000  000001  000001         0       0  CODE        2
+                intentry                       000004  000038  00003C         8       0  CODE        2
+                cstackCOMMON                   000070  000002  000072        70       1  COMMON      1
+
+
+UNUSED ADDRESS RANGES
+
+        Name                Unused          Largest block    Delta
+        BANK0            20-6F           50           1
+        BANK1            A0-BF           20           1
+        CODE             01-03            3           2
+                         3C-7FF          7C4
+        COMMON           72-7D            C           1
+        CONFIG           2007-2007            1           2
+        CONST            01-03            3           2
+                         3C-7FF          100
+        EEDATA           2100-21FF          100           2
+        ENTRY            01-03            3           2
+                         3C-7FF          100
+        IDLOC            2000-2003            4           2
+        RAM              20-6F           50           1
+                         A0-BF           20
+        SFR0             00-1F           20           1
+        SFR1             80-9F           20           1
+        SFR2             100-16F           70           1
+        STACK            20-6F           50           1
+        STRCODE          01-03            3           2
+                         3C-7FF          7C4
+        STRING           01-03            3           2
+                         3C-7FF          100
+
+                                  Symbol Table
+
+_CMCON0                  (abs)        19
+_GIE                     (abs)        5F
+_INTCON                  (abs)        0B
+_ISR                     text3        22
+_MSCKCON                 (abs)        1B
+_OPTION                  (abs)        81
+_OSCCON                  (abs)        8F
+_PA3                     (abs)        2B
+_PORTA                   (abs)        05
+_PORTC                   (abs)        07
+_POWER_INITIAL           text2        0D
+_T0IE                    (abs)        5D
+_T0IF                    (abs)        5A
+_TIMER0_INITIAL          text1        37
+_TRISA                   (abs)        85
+_TRISC                   (abs)        87
+_WPUA                    (abs)        95
+_WPUC                    (abs)        88
+__Habs1                  abs1         00
+__Hbank0                 bank0        00
+__Hbank1                 bank1        00
+__Hbank2                 bank2        00
+__Hcinit                 cinit        0D
+__Hclrtext               clrtext      00
+__Hcode                  code         00
+__Hcommon                common       00
+__Hconfig                config       00
+__HcstackCOMMON          cstackCOMMON 00
+__Heeprom_data           eeprom_data  00
+__Hend_init              end_init     0B
+__Hfunctab               functab      00
+__Hidloc                 idloc        00
+__Hinit                  init         0A
+__Hintentry              intentry     0A
+__Hmaintext              maintext     00
+__Hpa_nodes0             pa_nodes0    00
+__Hpowerup               powerup      00
+__Hram                   ram          00
+__Hreset_vec             reset_vec    01
+__Hsfr0                  sfr0         00
+__Hsfr1                  sfr1         00
+__Hsfr2                  sfr2         00
+__Hspace_0               (abs)        3C
+__Hspace_1               (abs)        72
+__Hspace_2               (abs)        00
+__Hspace_3               (abs)        00
+__Hstack                 stack        00
+__Hstrings               strings      00
+__Htext                  text         00
+__Labs1                  abs1         00
+__Lbank0                 bank0        00
+__Lbank1                 bank1        00
+__Lbank2                 bank2        00
+__Lcinit                 cinit        0B
+__Lclrtext               clrtext      00
+__Lcode                  code         00
+__Lcommon                common       00
+__Lconfig                config       00
+__LcstackCOMMON          cstackCOMMON 00
+__Leeprom_data           eeprom_data  00
+__Lend_init              end_init     0A
+__Lfunctab               functab      00
+__Lidloc                 idloc        00
+__Linit                  init         0A
+__Lintentry              intentry     04
+__Lmaintext              maintext     00
+__Lpa_nodes0             pa_nodes0    00
+__Lpowerup               powerup      00
+__Lram                   ram          00
+__Lreset_vec             reset_vec    00
+__Lsfr0                  sfr0         00
+__Lsfr1                  sfr1         00
+__Lsfr2                  sfr2         00
+__Lspace_0               (abs)        00
+__Lspace_1               (abs)        00
+__Lspace_2               (abs)        00
+__Lspace_3               (abs)        00
+__Lstack                 stack        00
+__Lstrings               strings      00
+__Ltext                  text         00
+__S0                     (abs)        3C
+__S1                     (abs)        72
+__S2                     (abs)        00
+__S3                     (abs)        00
+___int_sp                stack        00
+___latbits               (abs)        00
+___sp                    stack        00
+__end_of_ISR             text3        31
+__end_of_POWER_INITIAL   text2        22
+__end_of_TIMER0_INITIAL  text1        3C
+__end_of__initialization cinit        0B
+__end_of_main            maintext     37
+__initialization         cinit        0B
+__pcstackCOMMON          cstackCOMMON 70
+__pintentry              intentry     04
+__pmaintext              maintext     31
+__ptext0                 text0        00
+__ptext1                 text1        37
+__ptext2                 text2        0D
+__ptext3                 text3        22
+__size_of_ISR            (abs)        00
+__size_of_POWER_INITIAL  (abs)        00
+__size_of_TIMER0_INITIAL (abs)        00
+__size_of_main           (abs)        00
+_main                    maintext     31
+btemp                    (abs)        7E
+end_of_initialization    cinit        0B
+interrupt_function       intentry     04
+intlevel0                functab      00
+intlevel1                functab      00
+intlevel2                functab      00
+intlevel3                functab      00
+intlevel4                functab      00
+intlevel5                functab      00
+reset_vec                reset_vec    00
+saved_w                  (abs)        7E
+stackhi                  (abs)        00
+stacklo                  (abs)        00
+start                    init         0A
+start_initialization     cinit        0B
+wtemp0                   (abs)        7E
+
+
+FUNCTION INFORMATION:
+
+ *************** function _main *****************
+ Defined at:
+		line 86 in file "TEST_61F02x_Timer0.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2, status,0, pclath, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1
+      Params:         0       0       0
+      Locals:         0       0       0
+      Temps:          0       0       0
+      Totals:         0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels required when called:    2
+ This function calls:
+		_POWER_INITIAL
+		_TIMER0_INITIAL
+ This function is called by:
+		Startup code after reset
+ This function uses a non-reentrant model
+
+
+ *************** function _TIMER0_INITIAL *****************
+ Defined at:
+		line 69 in file "TEST_61F02x_Timer0.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1
+      Params:         0       0       0
+      Locals:         0       0       0
+      Temps:          0       0       0
+      Totals:         0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _POWER_INITIAL *****************
+ Defined at:
+		line 44 in file "TEST_61F02x_Timer0.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1
+      Params:         0       0       0
+      Locals:         0       0       0
+      Temps:          0       0       0
+      Totals:         0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _ISR *****************
+ Defined at:
+		line 30 in file "TEST_61F02x_Timer0.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      void 
+ Registers used:
+		wreg
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMMON   BANK0   BANK1
+      Params:         0       0       0
+      Locals:         0       0       0
+      Temps:          2       0       0
+      Totals:         2       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		Interrupt level 1
+ This function uses a non-reentrant model
+
+
+
+MODULE INFORMATION
+
+Module		Function		Class		Link	Load	Size
+TEST_61F02x_Timer0.c
+		_ISR           		CODE           	0022	0000	16
+		_main          		CODE           	0031	0000	7
+		_POWER_INITIAL 		CODE           	000D	0000	22
+		_TIMER0_INITIAL		CODE           	0037	0000	6
+
+TEST_61F02x_Timer0.c estimated size: 51
+
+shared
+		__initialization		CODE           	000B	0000	1
+
+shared estimated size: 1
+

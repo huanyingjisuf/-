@@ -1,0 +1,95 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F13X ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"37 C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_MSCK\test_61f13x_MSCK.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"65
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"79
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"98
+[v _SlowTimeTest SlowTimeTest `(ui  1 e 2 0 ]
+"118
+[v _main main `(v  1 e 1 0 ]
+"78 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\include\FT61F13X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"179
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"247
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"281
+[v _CKMIF CKMIF `VEb  1 e 0 @102 ]
+"321
+[v _TMR2ON TMR2ON `VEb  1 e 0 @146 ]
+"488
+[v _MSCON0 MSCON0 `VEuc  1 e 1 @27 ]
+"491
+[v _CKCNTI CKCNTI `VEb  1 e 0 @217 ]
+"492
+[v _CKMAVG CKMAVG `VEb  1 e 0 @218 ]
+"515
+[v _SOSCPRL SOSCPRL `VEuc  1 e 1 @28 ]
+"519
+[v _SOSCPRH SOSCPRH `VEuc  1 e 1 @29 ]
+"568
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"597
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"655
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"774
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"838
+[v _WPUC WPUC `VEuc  1 e 1 @147 ]
+"876
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"30 C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_MSCK\test_61f13x_MSCK.C
+[v _TestBuff TestBuff `VEui  1 e 2 0 ]
+"118
+[v _main main `(v  1 e 1 0 ]
+{
+"131
+} 0
+"98
+[v _SlowTimeTest SlowTimeTest `(ui  1 e 2 0 ]
+{
+"100
+[v SlowTimeTest@TestTime TestTime `ui  1 a 2 2 ]
+"111
+} 0
+"37
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"58
+} 0
+"79
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"81
+[v DelayMs@b b `uc  1 a 1 4 ]
+[v DelayMs@a a `uc  1 a 1 3 ]
+"79
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"82
+[v DelayMs@Time Time `uc  1 a 1 2 ]
+"89
+} 0
+"65
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"67
+[v DelayUs@a a `uc  1 a 1 1 ]
+"65
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"68
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"72
+} 0

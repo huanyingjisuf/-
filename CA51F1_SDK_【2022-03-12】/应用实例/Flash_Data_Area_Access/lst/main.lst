@@ -1,0 +1,208 @@
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:20:06 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 OPTIMIZE(9,SPEED) BROWSE DEBUG PRINT(.\lst\main.lst) OBJ
+                    -ECT(.\output\main.obj)
+
+line level    source
+
+   1          #ifndef _MAIN_C_
+   2          #define _MAIN_C_
+   3          /*********************************************************************************************************
+             -************/
+   4          #include "include/ca51f1_config.h"              
+   5          #include "include/ca51f1sfr.h"
+   6          #include "include/ca51f1xsfr.h"
+   7          #include "include/gpiodef_f1.h"
+   8          #include "include/system_clock.h"
+   9          #include "include/uart.h"
+  10          #include "include/delay.h"
+  11          #include "include/flash.h"
+  12          #include "include/adc.h"
+  13          #include <intrins.h>
+  14          /*********************************************************************************************************
+             -***********/
+  15          
+  16          /*********************************************************************************************************
+             -*********
+  17                  Flash´æ´¢Æ÷×éÖ¯½á¹¹:
+  18                  (1)Flash ÓÉÈô¸É¸öÒ³×é³É£¬Ò³ÊÇ½øÐÐ²Á³ýºÍÐ´²Ù×÷µÄ×îÐ¡µ¥Î»£¬Ã¿¸öÒ³Îª64×Ö½Ú¡£
+  19                  (2)Flash Ð´²Ù×÷ÒÔÒ³Îªµ¥Î»½øÐÐ£¬±ØÐëÒ»´ÎÐÔÐ´Èë64×Ö½Ú£¬²»Ö§³Öµ¥×Ö½ÚÐ´Èë¡£
+  20                  (2)Flash ¿ÉÒÔ°´¹¦ÄÜ»®·ÖÎª³ÌÐòÇøºÍÊý¾ÝÇø£¬»®·Öµ¥Î»Îª128×Ö½Ú£¬³ÌÐòÇøÓÃÓÚ´æ´¢ÓÃ»§µÄ³ÌÐò£¬Êý¾ÝÇøÊÇÓÃÓÚ´æ´¢Ò»Ð
+             -©µôµçÐèÒª±£´æµÄÊý¾Ý¡£
+  21          
+  22                  ±¾Àý³Ì»®·Ö128×Ö½ÚÎªÊý¾Ý¿Õ¼ä£¬ÊµÏÖ10¸ö×Ö½ÚÊý¾Ýµôµç´æ´¢¹¦ÄÜ£¬³õ´ÎÉÏµç·Ö±ðÉèÖÃ³õÖµÎª0~9£¬ºóÃæÃ¿´ÎÉÏµçÊý¾ÝÀÛ¼
+             -Ó¡£
+  23                  ÎªÁË·ÀÖ¹ÔÚ²Á³ý»òÐ´ÈëFLASH½×¶Î·¢ÉúÐ¾Æ¬µôµç»ò¸´Î»£¬´Ó¶øµ¼ÖÂ³öÏÖÊý¾Ý¶ªÊ§µÄÇé¿ö£¬±¾Àý³Ì²ÉÓÃË«Ò³´æ´¢µÄÄ£Ê½£¬¿É
+             -±£Ö¤Êý¾Ý´æ´¢µÄ°²È«ÐÔ¡£
+  24          
+  25          
+  26                  ËµÃ÷£º
+  27                  ÔÚµ÷ÊÔFLASH¹ý³ÌÖÐÖ»ÄÜÍ¨¹ý´®¿ÚÖúÊÖ¹¤¾ßÀ´´òÓ¡Êý¾Ý£¬²»ÄÜÊ¹ÓÃ·ÂÕæ¹¦ÄÜ£¬ÒòÎªÔÚ½øÐÐ·ÂÕæÊ±£¬FLASHµÄ×ÊÔ´»á±»Õ¼ÓÃ¡
+             -£
+  28                  #define PRINT_EN                        //Ê¹ÓÃuart_printfº¯Êý´òÓ¡Ê¹ÄÜ
+  29          **********************************************************************************************************
+             -********/
+  30          unsigned char idata UserDataBuff[10];
+  31          unsigned char idata BuffTemp[64];
+  32          
+  33          void main(void)
+  34          {       
+  35   1              unsigned char i;
+  36   1      
+  37   1      #ifdef LVD_RST_ENABLE
+  38   1              LVDCON = 0xE0;                                  //ÉèÖÃLVD¸´Î»µçÑ¹Îª2.2V
+  39   1      #endif
+  40   1      
+  41   1      #ifdef SYSCLK_16MHZ                                     //ÏµÍ³Ê±ÖÓÎª16MHz,ÉèÖÃCKDIVÎª0
+                      CKDIV = 0;
+              #endif
+  44   1      
+  45   1      #ifdef UART_EN
+                      Uart_Initial(UART_BAUTRATE);                                            //³õÊ¼»¯UART
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:20:06 PAGE 2   
+
+              #endif
+  48   1              
+  49   1              EA = 1;                                                                                         //¿ªÈ«¾ÖÖÐ¶Ï
+  50   1      
+  51   1      
+  52   1              PADRD = 128-1;                                                                          //»®·ÖFLASH×îºó128×Ö½ÚÎªÊý¾Ý¿Õ¼ä
+  53   1              
+  54   1              Data_Area_Mass_Read(0,BuffTemp,2);                                      //¶ÁÒ³0 16Î»ID£¬16Î»IDÓÃÒÔÊ¶±ðÊÇ·ñ³õ´ÎÉÏµç
+  55   1              if(BuffTemp[0] != 0xAA || BuffTemp[1] != 0x55)          //ÈôID²»Ïà·û£¬
+  56   1              {
+  57   2                      Data_Area_Mass_Read(64,BuffTemp,2);                             //¶ÁÈ¡16Î»ID£¬16Î»IDÓÃÒÔÊ¶±ðÊÇ·ñ³õ´ÎÉÏµç
+  58   2                      if(BuffTemp[0] == 0xAA && BuffTemp[1] == 0x55)  //ÈôÒ³0 ID²»Ïà·û£¬ÔòÅÐ¶ÏÒ³1 ID
+  59   2                      {
+  60   3                              goto READ_SECOND_SECTOR_PARA;                           //ÈôÏà·û£¬Ìø×ª¶ÁÈ¡Ò³1Êý¾Ý
+  61   3                      }
+  62   2                      
+  63   2                      //ÈôÒ³0¡¢1 ID¶¼²»Ïà·û£¬ ±íÊ¾ÊÇ³õ´ÎÉÏµç
+  64   2      FIRST_POWER_ON:
+  65   2                      //³õ´ÎÉÏµç£¬³õÊ¼»¯ÓÃ»§Êý¾ÝÎª 0 ~ 9
+  66   2                      UserDataBuff[0] = 0x00;                 
+  67   2                      UserDataBuff[1] = 0x01;
+  68   2                      UserDataBuff[2] = 0x02;
+  69   2                      UserDataBuff[3] = 0x03;
+  70   2                      UserDataBuff[4] = 0x04;
+  71   2                      UserDataBuff[5] = 0x05;
+  72   2                      UserDataBuff[6] = 0x06;
+  73   2                      UserDataBuff[7] = 0x07;
+  74   2                      UserDataBuff[8] = 0x08;
+  75   2                      UserDataBuff[9] = 0x09;         
+  76   2                      
+  77   2                      BuffTemp[0] = 0xAA;                                                             //ÉèÖÃIDÎª0xAA55
+  78   2                      BuffTemp[1] = 0x55;
+  79   2                      BuffTemp[12] = 0;
+  80   2                      
+  81   2                      for(i = 0; i < 10; i++)
+  82   2                      {
+  83   3                              BuffTemp[i+2] = UserDataBuff[i];
+  84   3                              BuffTemp[12] += UserDataBuff[i];                        //¼ÆËãÐ£ÑéÂë
+  85   3                      }
+  86   2                      
+  87   2                      //ÔÚ²Á³ýÒ³»òÐ´ÈëÊý¾ÝÊ±£¬Èç¹û³öÏÖÐ¾Æ¬µôµç»ò¸´Î»£¬»áµ¼ÖÂÓÃ»§Êý¾Ý¶ªÊ§£¬ÒÔÏÂ²ÉÓÃË«Ò³´æ´¢µÄ·½Ê½£¬¿É±ÜÃâÊý¾Ý¶ª
+             -Ê§¡£
+  88   2                      Data_Area_Erase_Page(0);                                                //²Á³ýÊý¾ÝÒ³0
+  89   2                      Data_Area_Write_Page(0,BuffTemp);                               //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä,×¢£ºÐ´²Ù×÷ÒÔÒ³Îªµ¥Î»½øÐÐ£¬±ØÐëÒ»
+             -´ÎÐÔÐ´Èë64×Ö½Ú£¬²»Ö§³Öµ¥×Ö½ÚÐ´Èë
+  90   2              
+  91   2                      Data_Area_Erase_Page(1);                                                //²Á³ýÊý¾ÝÒ³1
+  92   2                      Data_Area_Write_Page(1,BuffTemp);                               //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä,×¢£ºÐ´²Ù×÷ÒÔÒ³Îªµ¥Î»½øÐÐ£¬±ØÐëÒ»
+             -´ÎÐÔÐ´Èë64×Ö½Ú£¬²»Ö§³Öµ¥×Ö½ÚÐ´Èë
+  93   2              }
+  94   1              else
+  95   1              {
+  96   2                      unsigned char CheckSum;
+  97   2                      Data_Area_Mass_Read(0,BuffTemp,13);                             //¶ÁÈ¡ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂë
+  98   2                      CheckSum = 0;
+  99   2                      for(i = 0; i < 10; i++)
+ 100   2                      {
+ 101   3                              CheckSum += BuffTemp[2+i];                                      //¼ÆËãÐ£ÑéÂë
+ 102   3                      }
+ 103   2                      if(CheckSum != BuffTemp[12])                                    //ÅÐ¶Ï¼ìÑéÂëÊÇ·ñÏà·û
+ 104   2                      {       
+ 105   3      READ_SECOND_SECTOR_PARA:
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:20:06 PAGE 3   
+
+ 106   3                              //Èç¹ûÐ£ÑéÂë²»Ïà·û£¬Ôò¶ÁÈ¡µÚ¶þÒ³Êý¾Ý¡£
+ 107   3                              Data_Area_Mass_Read(64,BuffTemp,13);            //¶ÁÈ¡ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂë
+ 108   3                              CheckSum = 0;
+ 109   3                              for(i = 0; i < 10; i++)
+ 110   3                              {
+ 111   4                                      CheckSum += BuffTemp[2+i];                              //¼ÆËãÐ£ÑéÂë
+ 112   4                              }
+ 113   3                              if(CheckSum != BuffTemp[12])                            //ÅÐ¶Ï¼ìÑéÂëÊÇ·ñÏà·û
+ 114   3                              {
+ 115   4                                      goto FIRST_POWER_ON;
+ 116   4                              }
+ 117   3                      }
+ 118   2                      
+ 119   2                      for(i = 0; i < 10; i++)
+ 120   2                      {
+ 121   3                              UserDataBuff[i] = BuffTemp[i+2];                        //¶Á³öµÄÊý¾Ý×°ÔØµ½ÓÃ»§Êý¾ÝÊý×é
+ 122   3                      }
+ 123   2                      
+ 124   2                      for(i = 0; i < 10; i++)
+ 125   2                      {
+ 126   3                              UserDataBuff[i]++;                                                      //ÓÃ»§Êý¾ÝÀÛ¼Ó
+ 127   3                      }
+ 128   2                      
+ 129   2                      BuffTemp[0] = 0xAA;                                                                     
+ 130   2                      BuffTemp[1] = 0x55;
+ 131   2                      BuffTemp[12] = 0;
+ 132   2                      for(i = 0; i < 10; i++)
+ 133   2                      {
+ 134   3                              BuffTemp[i+2] = UserDataBuff[i];
+ 135   3                              BuffTemp[12] += UserDataBuff[i];
+ 136   3                      }
+ 137   2      
+ 138   2                      Data_Area_Erase_Page(0);                                                //²Á³ýÊý¾ÝÒ³0
+ 139   2                      Data_Area_Write_Page(0,BuffTemp);                               //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä,×¢£ºÐ´²Ù×÷ÒÔÒ³Îªµ¥Î»½øÐÐ£¬±ØÐëÒ»
+             -´ÎÐÔÐ´Èë64×Ö½Ú£¬²»Ö§³Öµ¥×Ö½ÚÐ´Èë
+ 140   2      
+ 141   2                      Data_Area_Erase_Page(1);                                                //²Á³ýÊý¾ÝÒ³1
+ 142   2                      Data_Area_Write_Page(1,BuffTemp);                               //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä,×¢£ºÐ´²Ù×÷ÒÔÒ³Îªµ¥Î»½øÐÐ£¬±ØÐëÒ»
+             -´ÎÐÔÐ´Èë64×Ö½Ú£¬²»Ö§³Öµ¥×Ö½ÚÐ´Èë
+ 143   2              }
+ 144   1              //ÓÃ»§Êý¾Ý´òÓ¡£¬Ã¿´ÎÉÏµç»ò¸´Î»£¬ÓÃ»§Êý¾Ý¼Ó1
+ 145   1      #ifdef PRINT_EN
+                      uart_printf("UserDataBuff[0] = 0x%x\n", (unsigned int)(UserDataBuff[0]));
+                      uart_printf("UserDataBuff[1] = 0x%x\n", (unsigned int)(UserDataBuff[1]));
+                      uart_printf("UserDataBuff[2] = 0x%x\n", (unsigned int)(UserDataBuff[2]));
+                      uart_printf("UserDataBuff[3] = 0x%x\n", (unsigned int)(UserDataBuff[3]));
+                      uart_printf("UserDataBuff[4] = 0x%x\n", (unsigned int)(UserDataBuff[4]));
+                      uart_printf("UserDataBuff[5] = 0x%x\n", (unsigned int)(UserDataBuff[5]));
+                      uart_printf("UserDataBuff[6] = 0x%x\n", (unsigned int)(UserDataBuff[6]));
+                      uart_printf("UserDataBuff[7] = 0x%x\n", (unsigned int)(UserDataBuff[7]));
+                      uart_printf("UserDataBuff[8] = 0x%x\n", (unsigned int)(UserDataBuff[8]));
+                      uart_printf("UserDataBuff[9] = 0x%x\n", (unsigned int)(UserDataBuff[9]));
+              #endif
+ 157   1              while(1)
+ 158   1              {
+ 159   2              }
+ 160   1      }
+ 161          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    317    ----
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:20:06 PAGE 4   
+
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =     74    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

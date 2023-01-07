@@ -1,0 +1,111 @@
+C51 COMPILER V9.54   WATCH_DOG                                                             05/22/2019 10:18:09 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE WATCH_DOG
+OBJECT MODULE PLACED IN .\output\watch_dog.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE watch_dog.c OMF2 OPTIMIZE(8,SPEED) BROWSE DEBUG PRINT(.\lst\watch_dog.ls
+                    -t) OBJECT(.\output\watch_dog.obj)
+
+line level    source
+
+   1          #ifndef _WATCH_DOG_C_
+   2          #define _WATCH_DOG_C_
+   3          
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "include/ca51f_config.h"               
+   6          #include "include/ca51f3sfr.h"
+   7          #include "include/ca51f3xsfr.h"
+   8          #include "include/gpiodef_f3.h"
+   9          #include "include/system_clock.h"
+  10          
+  11          #include "include/uart.h"
+  12          #include "include/wdt.h"
+  13          #include "include/delay.h"
+  14          #include <intrins.h>
+  15          #include "include/watch_dog.h"
+  16          /*********************************************************************************************************
+             -************/
+  17          #if (WDT_MODE == WDT_INTERRUPT)
+              bit WdtIntEvFlag;
+              void WDT_ISR (void) interrupt 12 
+              {
+                      if(WDFLG & WDIF)
+                      {
+                              WDT_FeedDog();
+                              WdtIntEvFlag = 1;
+                      }       
+              }
+              #endif                                                                                          
+  28          void WatchDog_MainLoop(void)
+  29          {
+  30   1      #if (WDT_MODE == WDT_RESET)     
+  31   1      #ifdef PRINT_EN 
+  32   1              if(WDFLG & WDRF)
+  33   1              {
+  34   2                      uart_printf("Watch dog reset event happen!\n"); 
+  35   2              }
+  36   1      #endif  
+  37   1      #endif  
+  38   1      
+  39   1      #if (WDT_MODE == WDT_INTERRUPT) 
+                      #if (WDT_CLK_SOURCE == IRCH)
+                              WDT_init(WDTS_IRCH,WDRE_int,0x708);
+                      #elif (WDT_CLK_SOURCE == XOSCL)
+                              CKCON |= XLCKE;
+                              while(!(CKCON & XLSTA));
+                              WDT_init(WDTS_XOSCL,WDRE_int,0x0F);
+                      #elif (WDT_CLK_SOURCE == IRCL)
+                              CKCON |= ILCKE;
+                              WDT_init(WDTS_IRCL,WDRE_int,0x0F);
+                      #endif
+                      
+                      INT7EN = 1; 
+              #elif (WDT_MODE == WDT_RESET)   
+C51 COMPILER V9.54   WATCH_DOG                                                             05/22/2019 10:18:09 PAGE 2   
+
+  53   1              #if (WDT_CLK_SOURCE == IRCH)
+  54   1      //              WDT_init(WDTS_IRCH,WDRE_reset,0x708);//1s
+  55   1              WDT_init(WDTS_IRCH,WDRE_reset,0xE10);//2s
+  56   1              #elif (WDT_CLK_SOURCE == XOSCL)
+                              CKCON |= XLCKE;
+                              while(!(CKCON & XLSTA));
+                              WDT_init(WDTS_XOSCL,WDRE_reset,0x0F);
+                      #elif (WDT_CLK_SOURCE == IRCL)
+                              CKCON |= ILCKE;
+                              WDT_init(WDTS_IRCL,WDRE_reset,0x0F);
+                      #endif  
+  64   1      #endif
+  65   1              WDT_FeedDog();
+  66   1      
+  67   1              while(1)
+  68   1              {
+  69   2      //              WDT_FeedDog();
+  70   2      #if (WDT_MODE == WDT_INTERRUPT) 
+                              if(WdtIntEvFlag)
+                              {
+                                      WdtIntEvFlag = 0;
+                                      uart_printf("Watch dog interrupt event happen!\n");     
+                              }
+              #endif
+  77   2              }
+  78   1      }
+  79          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     30    ----
+   CONSTANT SIZE    =     31    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

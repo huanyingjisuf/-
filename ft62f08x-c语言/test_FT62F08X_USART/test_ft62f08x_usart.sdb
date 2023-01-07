@@ -1,0 +1,152 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT62F08X ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\Èí¼þ\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\Èí¼þ\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"31 C:\Users\Administrator\Desktop\FMD demo\C\FT62F08x\test_FT62F08X_USART\test_FT62F08X_USART.C
+[v _ISR ISR `II(v  1 e 1 0 ]
+"65
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"105
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"120
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"137
+[v _UART_INITIAL UART_INITIAL `(v  1 e 1 0 ]
+"156
+[v _main main `(v  1 e 1 0 ]
+"99 c:\users\administrator\desktop\Èí¼þ\ide3.0.3_6c03\data\include\FT62F08X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"125
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"176
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"227
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"278
+[v _PORTD PORTD `VEuc  1 e 1 @15 ]
+"495
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"525
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"555
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"584
+[v _TRISD TRISD `VEuc  1 e 1 @143 ]
+"752
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"783
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"1141
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"1146
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"1196
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"1225
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"1254
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"1283
+[v _WPUD WPUD `VEuc  1 e 1 @399 ]
+"1399
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1443
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1447
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1450
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1455
+[v _PSINK3 PSINK3 `VEuc  1 e 1 @413 ]
+"1501
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1531
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1560
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1590
+[v _WPDD WPDD `VEuc  1 e 1 @527 ]
+"3392
+[v _URDATAL URDATAL `VEuc  1 e 1 @1164 ]
+"3411
+[v _URIER URIER `VEuc  1 e 1 @1166 ]
+"3413
+[v _URRXNE URRXNE `VEb  1 e 0 @9328 ]
+"3417
+[v _TCEN TCEN `VEb  1 e 0 @9333 ]
+"3433
+[v _URLCR URLCR `VEuc  1 e 1 @1167 ]
+"3471
+[v _URMCR URMCR `VEuc  1 e 1 @1169 ]
+"3496
+[v _RXNEF RXNEF `VEb  1 e 0 @9360 ]
+"3501
+[v _TXEF TXEF `VEb  1 e 0 @9365 ]
+"3544
+[v _URDLL URDLL `VEuc  1 e 1 @1172 ]
+"3549
+[v _URDLH URDLH `VEuc  1 e 1 @1173 ]
+"3696
+[v _TCF TCF `VEb  1 e 0 @9440 ]
+"3928
+[v _ad3nop ad3nop `DCuc  1 e 1 @3 ]
+"19 C:\Users\Administrator\Desktop\FMD demo\C\FT62F08x\test_FT62F08X_USART\test_FT62F08X_USART.C
+[v _receivedata receivedata `VE[10]uc  1 e 10 0 ]
+"20
+[v _senddata senddata `VEuc  1 e 1 0 ]
+"22
+[v _toSend toSend `VE[11]uc  1 e 11 0 ]
+"23
+[v _i i `uc  1 e 1 0 ]
+"24
+[v _mmm mmm `uc  1 e 1 0 ]
+"156
+[v _main main `(v  1 e 1 0 ]
+{
+"171
+} 0
+"137
+[v _UART_INITIAL UART_INITIAL `(v  1 e 1 0 ]
+{
+"149
+} 0
+"65
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"98
+} 0
+"120
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"122
+[v DelayMs@b b `uc  1 a 1 4 ]
+[v DelayMs@a a `uc  1 a 1 3 ]
+"120
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"123
+[v DelayMs@Time Time `uc  1 a 1 2 ]
+"130
+} 0
+"105
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"107
+[v DelayUs@a a `uc  1 a 1 1 ]
+"105
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"108
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"112
+} 0
+"31
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"58
+} 0

@@ -1,0 +1,1 @@
+ test_60f01x_MSCK.d  test_60f01x_MSCK.obj:  test_60f01x_MSCK.C

@@ -1,0 +1,135 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT62F08X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"19 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä10-08\FT62F08x\test_FT62F08X_TIM2_PWM\test_FT62F08X_TIM2_PWM.C
+[v _ISR ISR `II(v  1 e 1 0 ]
+"28
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"68
+[v _Time2Initial Time2Initial `(v  1 e 1 0 ]
+"278
+[v _main main `(v  1 e 1 0 ]
+"99 d:\ide3.0.3_6c03\data\include\FT62F08X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"125
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"176
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"227
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"278
+[v _PORTD PORTD `VEuc  1 e 1 @15 ]
+"495
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"525
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"555
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"584
+[v _TRISD TRISD `VEuc  1 e 1 @143 ]
+"632
+[v _CKOCON CKOCON `VEuc  1 e 1 @149 ]
+"752
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"783
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"1141
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"1146
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"1196
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"1225
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"1254
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"1283
+[v _WPUD WPUD `VEuc  1 e 1 @399 ]
+"1399
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1443
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1447
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1450
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1455
+[v _PSINK3 PSINK3 `VEuc  1 e 1 @413 ]
+"1501
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1531
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1560
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1590
+[v _WPDD WPDD `VEuc  1 e 1 @527 ]
+"2177
+[v _TIM2CCR3H TIM2CCR3H `VEuc  1 e 1 @670 ]
+"2181
+[v _TIM2CCR3L TIM2CCR3L `VEuc  1 e 1 @671 ]
+"2188
+[v _TIM2CR1 TIM2CR1 `VEuc  1 e 1 @780 ]
+"2211
+[v _TIM2IER TIM2IER `VEuc  1 e 1 @781 ]
+"2230
+[v _TIM2SR1 TIM2SR1 `VEuc  1 e 1 @782 ]
+"2249
+[v _TIM2SR2 TIM2SR2 `VEuc  1 e 1 @783 ]
+"2267
+[v _TIM2EGR TIM2EGR `VEuc  1 e 1 @784 ]
+"2287
+[v _TIM2CCMR1 TIM2CCMR1 `VEuc  1 e 1 @785 ]
+"2339
+[v _TIM2CCMR2 TIM2CCMR2 `VEuc  1 e 1 @786 ]
+"2390
+[v _TIM2CCMR3 TIM2CCMR3 `VEuc  1 e 1 @787 ]
+"2441
+[v _TIM2CCER1 TIM2CCER1 `VEuc  1 e 1 @788 ]
+"2460
+[v _TIM2CCER2 TIM2CCER2 `VEuc  1 e 1 @789 ]
+"2474
+[v _TIM2CNTRH TIM2CNTRH `VEuc  1 e 1 @790 ]
+"2478
+[v _TIM2CNTRL TIM2CNTRL `VEuc  1 e 1 @791 ]
+"2503
+[v _TIM2ARRH TIM2ARRH `VEuc  1 e 1 @793 ]
+"2507
+[v _TIM2ARRL TIM2ARRL `VEuc  1 e 1 @794 ]
+"2511
+[v _TIM2CCR1H TIM2CCR1H `VEuc  1 e 1 @795 ]
+"2515
+[v _TIM2CCR1L TIM2CCR1L `VEuc  1 e 1 @796 ]
+"2519
+[v _TIM2CCR2H TIM2CCR2H `VEuc  1 e 1 @797 ]
+"2523
+[v _TIM2CCR2L TIM2CCR2L `VEuc  1 e 1 @798 ]
+"2527
+[v _TCKSRC TCKSRC `VEuc  1 e 1 @799 ]
+"3928
+[v _ad3nop ad3nop `DCuc  1 e 1 @3 ]
+"278 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä10-08\FT62F08x\test_FT62F08X_TIM2_PWM\test_FT62F08X_TIM2_PWM.C
+[v _main main `(v  1 e 1 0 ]
+{
+"287
+} 0
+"68
+[v _Time2Initial Time2Initial `(v  1 e 1 0 ]
+{
+"271
+} 0
+"28
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"61
+} 0
+"19
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"21
+} 0

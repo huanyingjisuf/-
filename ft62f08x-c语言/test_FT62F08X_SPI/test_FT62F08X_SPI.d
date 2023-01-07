@@ -1,0 +1,1 @@
+ test_FT62F08X_SPI.d  test_FT62F08X_SPI.obj:  test_FT62F08X_SPI.C

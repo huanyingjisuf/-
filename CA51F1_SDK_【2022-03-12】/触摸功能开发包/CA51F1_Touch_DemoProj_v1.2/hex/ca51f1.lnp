@@ -1,0 +1,14 @@
+".\hex\main.obj",
+".\hex\delay.obj",
+".\hex\system_clock.obj",
+".\hex\uart.obj",
+".\hex\interrupt.obj",
+".\hex\debug.obj",
+".\hex\ts_api.obj",
+".\TS_Lib\Sources\ts_sevice.LIB",
+".\hex\STARTUP.obj" 
+TO ".\hex\ca51f1" 
+
+PRINT(".\lst\ca51f1.map") REMOVEUNUSED 
+CLASSES (CODE (C:0x0-C:0x3FFF), CONST (C:0x0-C:0x3FFF), 
+ECODE (C:0x0-C:0x3FFF), HCONST (C:0x0-C:0x3FFF)) 

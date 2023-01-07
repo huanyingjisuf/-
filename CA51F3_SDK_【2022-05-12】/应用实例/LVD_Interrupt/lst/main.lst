@@ -1,0 +1,120 @@
+C51 COMPILER V9.02   MAIN                                                                  11/21/2021 20:24:00 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 BROWSE DEBUG PRINT(.\lst\main.lst) OBJECT(.\output\main.
+                    -obj)
+
+line level    source
+
+   1          
+   2          #ifndef _MAIN_C_
+   3          #define _MAIN_C_
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "include/ca51f_config.h"               
+   6          #include "include/ca51f3sfr.h"
+   7          #include "include/ca51f3xsfr.h"
+   8          #include "include/gpiodef_f3.h"
+   9          #include "include/system_clock.h"
+  10          
+  11          #include "include/uart.h"
+  12          #include "include/delay.h"
+  13          #include <intrins.h>
+  14          /*********************************************************************************************************
+             -************/
+  15          
+  16          #define LVDE(N)         (N<<7)
+  17          #define LVDS_reset      (1<<6)
+  18          #define LVDS_int        (0<<6)
+  19          #define LVDF            (1<<5)
+  20          
+  21          #define LVDTH_1p8V              0
+  22          #define LVDTH_2p0V              1
+  23          #define LVDTH_2p2V              2
+  24          #define LVDTH_2p4V              3
+  25          #define LVDTH_2p6V              4
+  26          #define LVDTH_2p8V              5
+  27          #define LVDTH_3p0V              6
+  28          #define LVDTH_3p2V              7
+  29          #define LVDTH_3p4V              8
+  30          #define LVDTH_3p6V              9
+  31          #define LVDTH_3p8V              10
+  32          #define LVDTH_4p0V              11
+  33          #define LVDTH_4p2V              12
+  34          #define LVDTH_4p4V              13
+  35          #define LVDTH_4p6V              14
+  36          #define LVDTH_4p8V              15
+  37          
+  38          void INT4_ISR (void) interrupt 9        //LVD中断服务程序
+  39          {
+  40   1              if(LVDCON & LVDF)
+  41   1              {
+  42   2                      LVDCON |= LVDF;                     //清除LVD中断标志
+  43   2              
+  44   2              }               
+  45   1      }
+  46          
+  47          void main(void)
+  48          {       
+  49   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //设置系统时钟为PLL，PLL_Multiple为倍频倍数
+              #endif
+  52   1              
+C51 COMPILER V9.02   MAIN                                                                  11/21/2021 20:24:00 PAGE 2   
+
+  53   1      #ifdef UART0_EN
+                      Uart0_Initial(UART0_BAUTRATE);  //初始化UART0
+              #endif
+  56   1              
+  57   1      #ifdef UART1_EN
+                      Uart1_Initial(UART1_BAUTRATE);  //初始化UART1
+              #endif
+  60   1      
+  61   1              EA = 1;                                                 //开全局中断
+  62   1      
+  63   1      #ifdef PRINT_EN
+                      uart_printf("LVD Interrupt Demo Code\n");
+              #endif
+  66   1      
+  67   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_1p8V;       //设置LVD使能,设置LVD为中断模式,检测电压为1.8V
+  68   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_2p0V;       //设置LVD使能,设置LVD为中断模式,检测电压为2.0V
+  69   1              LVDCON = LVDE(1) | LVDS_int | LVDTH_2p2V;       //设置LVD使能,设置LVD为中断模式,检测电压为2.2V
+  70   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_2p4V;       //设置LVD使能,设置LVD为中断模式,检测电压为2.4V
+  71   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_2p6V;       //设置LVD使能,设置LVD为中断模式,检测电压为2.6V
+  72   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_2p8V;       //设置LVD使能,设置LVD为中断模式,检测电压为2.8V
+  73   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_3p0V;       //设置LVD使能,设置LVD为中断模式,检测电压为3.0V  
+  74   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_3p2V;       //设置LVD使能,设置LVD为中断模式,检测电压为3.2V
+  75   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_3p4V;       //设置LVD使能,设置LVD为中断模式,检测电压为3.4V
+  76   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_3p6V;       //设置LVD使能,设置LVD为中断模式,检测电压为3.6V
+  77   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_3p8V;       //设置LVD使能,设置LVD为中断模式,检测电压为3.8V
+  78   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_4p0V;       //设置LVD使能,设置LVD为中断模式,检测电压为4.0V
+  79   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_4p2V;       //设置LVD使能,设置LVD为中断模式,检测电压为4.2V
+  80   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_4p4V;       //设置LVD使能,设置LVD为中断模式,检测电压为4.4V
+  81   1      //      LVDCON = LVDE(1) | LVDS_int | LVDTH_4p8V;       //设置LVD使能,设置LVD为中断模式,检测电压为4.8V
+  82   1              INT4EN = 1;                                                             //INT4 中断使能
+  83   1      
+  84   1              while(1)
+  85   1              {
+  86   2              }
+  87   1      }
+  88          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

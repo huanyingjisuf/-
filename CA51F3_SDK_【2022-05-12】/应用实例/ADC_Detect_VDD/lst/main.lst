@@ -1,0 +1,112 @@
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:18:48 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 BROWSE DEBUG PRINT(.\lst\main.lst) OBJECT(.\output\main.
+                    -obj)
+
+line level    source
+
+   1          
+   2          #ifndef _MAIN_C_
+   3          #define _MAIN_C_
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "include/ca51f_config.h"               
+   6          #include "include/ca51f3sfr.h"
+   7          #include "include/ca51f3xsfr.h"
+   8          #include "include/gpiodef_f3.h"
+   9          #include "include/system_clock.h"
+  10          
+  11          #include "include/uart.h"
+  12          #include "include/adc.h"
+  13          #include "include/delay.h"
+  14          #include <intrins.h>
+  15          /*********************************************************************************************************
+             -************/
+  16          unsigned char read_inner_trim(void)                             
+  17          {
+  18   1              unsigned char value;
+  19   1              FSCMD = 0x80;   
+  20   1              PTSH  = 0x00;                           
+  21   1              PTSL  = 0x24;      
+  22   1              FSCMD = 0x81;                                           
+  23   1              value = FSDAT;
+  24   1              FSCMD = 0;
+  25   1              return (value&0x3F);
+  26   1      }
+  27          void main(void)
+  28          {
+  29   1      #ifdef LVD_RST_ENABLE
+  30   1              LVDCON = 0xE1;                                  //设置LVD复位电压为2V
+  31   1      #endif
+  32   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //设置系统时钟为PLL，PLL_Multiple为倍频倍数
+              #endif
+  35   1              
+  36   1      #ifdef UART0_EN
+                      Uart0_Initial(UART0_BAUTRATE);  //初始化UART0
+              #endif
+  39   1              
+  40   1      #ifdef UART1_EN
+                      Uart1_Initial(UART1_BAUTRATE);  //初始化UART1
+              #endif
+  43   1      
+  44   1              EA = 1;                                                                                                 //开全局中断
+  45   1      
+  46   1      #ifdef PRINT_EN
+                      uart_printf("ADC Detect VDD Demo Code\n");
+              #endif
+  49   1      
+  50   1      
+  51   1      /**********初始化ADC寄存器（设置ADC时钟、选择ADC参考电压、设置ADC运放、加载内部1.5V校准值）***********/
+  52   1              ADCON = AST(0) | ADIE(0) | HTME(7) | VSEL(ADC_REF_INNER);               //设置ADC参考电压为内部1.5V
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:18:48 PAGE 2   
+
+  53   1              ADCFGH = AOPS(NO_AMP) | VTRIM(read_inner_trim());                               //加载内部1.5V校准值
+  54   1      /**************************************************************************************************/
+  55   1      
+  56   1      
+  57   1      /**********设置ADC通道和时钟分频*********************************************************************/
+  58   1              ADCFGL = ACKD(7) | ADCHS(ADC_VDD);      //选择ADC通道为1/4VDD
+  59   1      /**************************************************************************************************/
+  60   1      
+  61   1      
+  62   1              while(1)
+  63   1              {
+  64   2                      unsigned int AD_Value;
+  65   2                      double VDD_Voltage;
+  66   2                      ADCON |= AST(1);                                                                        //启动ADC转换
+  67   2                      while(!(ADCON & ADIF));                                                         //等待ADC转换完成
+  68   2                      ADCON |= ADIF;                                                                          //清除ADC中断标志
+  69   2                      AD_Value = ADCDH*256 + ADCDL;                                           //读取AD值
+  70   2                      AD_Value >>= 4;         
+  71   2                      
+  72   2                      VDD_Voltage = ((double)AD_Value*1.5*4)/4095;            //根据ADC值换算为电压值，注意：由于ADC检测的是1/4VDD，所以
+             -换算为VDD电压时ADC值要乘以4
+  73   2      #ifdef PRINT_EN
+                              uart_printf ("VDD Voltage = %e\n",VDD_Voltage);         //打印VDD电压值 
+              #endif          
+  76   2                      Delay_ms(100);
+  77   2              }
+  78   1      }
+  79          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    140    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

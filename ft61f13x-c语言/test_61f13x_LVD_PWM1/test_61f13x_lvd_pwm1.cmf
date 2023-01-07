@@ -1,0 +1,287 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$test_61f13x_lvd_pwm1.obj
+cinit CODE 0 7FD 7FD 3 2
+text1 CODE 0 7C7 7C7 36 2
+text2 CODE 0 7B5 7B5 12 2
+maintext CODE 0 7AB 7AB A 2
+$C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+end_init CODE 0 0 0 2 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 20-6F 1
+RAM A0-EF 1
+RAM 120-16F 1
+BANK0 20-6F 1
+BANK1 A0-EF 1
+BANK2 120-16F 1
+CONST 2-7AA 2
+CONST 800-BFF 2
+ENTRY 2-7AA 2
+ENTRY 800-BFF 2
+IDLOC 2000-2003 2
+STACK 20-6F 1
+CODE 2-7AA 2
+CODE 800-BFF 2
+SFR0 0-1F 1
+SFR1 80-9F 1
+SFR2 100-11F 1
+SFR3 180-1EF 1
+COMMON 70-7D 1
+CONFIG 2007-2007 2
+EEDATA 2100-217F 2
+STRCODE 2-7AA 2
+STRCODE 800-BFF 2
+STRING 2-7AA 2
+STRING 800-BFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$test_61f13x_lvd_pwm1.obj
+7FD cinit CODE >98:C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.
+7FD cinit CODE >101:C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.
+7FD cinit CODE >107:C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.
+7FD cinit CODE >109:C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.
+7FE cinit CODE >110:C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.
+7B5 text2 CODE >36:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7B5 text2 CODE >38:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7B8 text2 CODE >39:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7BA text2 CODE >40:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7BB text2 CODE >42:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7BD text2 CODE >43:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C0 text2 CODE >45:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C2 text2 CODE >46:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C4 text2 CODE >48:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C5 text2 CODE >50:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C6 text2 CODE >51:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C7 text1 CODE >58:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C7 text1 CODE >60:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7C9 text1 CODE >64:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7CC text1 CODE >66:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7CD text1 CODE >67:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7CF text1 CODE >69:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7D3 text1 CODE >75:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7D5 text1 CODE >76:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7D6 text1 CODE >78:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7D9 text1 CODE >87:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7DC text1 CODE >90:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7DE text1 CODE >99:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7E2 text1 CODE >105:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7E4 text1 CODE >106:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7E6 text1 CODE >108:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7E7 text1 CODE >109:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7E9 text1 CODE >111:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7EA text1 CODE >112:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7EC text1 CODE >114:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7ED text1 CODE >115:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7EF text1 CODE >117:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7F2 text1 CODE >119:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7F5 text1 CODE >126:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7F9 text1 CODE >131:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7FC text1 CODE >138:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7AB maintext CODE >145:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7AB maintext CODE >147:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7AE maintext CODE >148:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7B1 maintext CODE >149:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+7B3 maintext CODE >152:C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_LVD_PWM1\test_61f13x_LVD_PWM1.C
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 1 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__Hspace_0 800 0 ABS 0 - -
+__Hspace_1 0 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+_POWER_INITIAL F6A 0 CODE 0 text2 test_61f13x_lvd_pwm1.obj
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+__Hstrings 0 0 ABS 0 strings -
+_P1OE 90 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_PCON 8E 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_PR2H 92 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_PR2L 91 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_WPUA 95 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_WPUC 93 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+___sp 0 0 STACK 2 stack C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+_main F56 0 CODE 0 maintext test_61f13x_lvd_pwm1.obj
+btemp 7E 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+start 0 0 CODE 0 init C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+__size_of_main 0 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__Hpowerup 0 0 CODE 0 powerup -
+intlevel0 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+intlevel1 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+intlevel2 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+intlevel3 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+intlevel4 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+intlevel5 0 0 ENTRY 0 functab C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+wtemp0 7E 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__Hfunctab 0 0 ENTRY 0 functab -
+__Hclrtext 0 0 ABS 0 clrtext -
+__Hpa_nodes0 0 0 ABS 0 pa_nodes0 -
+__size_of_POWER_INITIAL 0 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__Lmaintext 0 0 ABS 0 maintext -
+_INTCON B 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__Lpa_nodes0 0 0 ABS 0 pa_nodes0 -
+_LVDCON 110 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__end_of_POWER_INITIAL F8E 0 CODE 0 text2 test_61f13x_lvd_pwm1.obj
+start_initialization FFA 0 CODE 0 cinit test_61f13x_lvd_pwm1.obj
+_OPTION 81 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1ADTH 14 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1ADTL E 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1BDTH 15 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1BDTL F 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1CDTH 1A 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1CDTL 10 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1DDTH 9 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1DDTL 8 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1POL2 109 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_OSCCON 8F 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_T2CON0 12 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_T2CON1 9E 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_PWM1_INITIAL F8E 0 CODE 0 text1 test_61f13x_lvd_pwm1.obj
+___int_sp 0 0 STACK 2 stack C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 ABS 0 bank1 -
+__Hbank2 0 0 ABS 0 bank2 -
+__Hbank3 0 0 BANK3 1 bank3 -
+__Hcinit 1000 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hstack 0 0 STACK 2 stack -
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 0 0 CONFIG 0 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 ABS 0 bank1 -
+__Lbank2 0 0 ABS 0 bank2 -
+__Lbank3 0 0 BANK3 1 bank3 -
+__Lcinit FFA 0 CODE 0 cinit -
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lstack 0 0 STACK 2 stack -
+__size_of_PWM1_INITIAL 0 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 0 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Hsfr2 0 0 ABS 0 sfr2 -
+__Hsfr3 0 0 ABS 0 sfr3 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 0 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Lsfr2 0 0 ABS 0 sfr2 -
+__Lsfr3 0 0 ABS 0 sfr3 -
+__Ltext 0 0 ABS 0 text -
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+__S0 800 0 ABS 0 - -
+__S1 0 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+__end_of_PWM1_INITIAL FFA 0 CODE 0 text1 test_61f13x_lvd_pwm1.obj
+__Lintentry 0 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+__pmaintext F56 0 CODE 0 maintext test_61f13x_lvd_pwm1.obj
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 0 0 CONFIG 0 config -
+stackhi 0 0 ABS 0 - C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+stacklo 0 0 ABS 0 - C:\Users\ADMINI~1\AppData\Local\Temp\sdi4.obj
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__Lend_init 0 0 CODE 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization FFA 0 CODE 0 cinit test_61f13x_lvd_pwm1.obj
+__Hintentry 0 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__Hreset_vec 0 0 CODE 0 reset_vec -
+__ptext0 0 0 CODE 0 text0 test_61f13x_lvd_pwm1.obj
+__ptext1 F8E 0 CODE 0 text1 test_61f13x_lvd_pwm1.obj
+__ptext2 F6A 0 CODE 0 text2 test_61f13x_lvd_pwm1.obj
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+__end_of__initialization FFA 0 CODE 0 cinit test_61f13x_lvd_pwm1.obj
+__Lfunctab 0 0 ENTRY 0 functab -
+__Lclrtext 0 0 ABS 0 clrtext -
+__pcstackCOMMON 0 0 COMMON 1 cstackCOMMON test_61f13x_lvd_pwm1.obj
+__Hend_init 4 0 CODE 0 end_init -
+__end_of_main F6A 0 CODE 0 maintext test_61f13x_lvd_pwm1.obj
+_P1BR0 17 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1CON 16 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1OE2 11B 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_P1POL 99 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_PORTA 5 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_PORTC 7 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_TMR2H 13 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_TMR2L 11 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_TRISA 85 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+_TRISC 87 0 ABS 0 - test_61f13x_lvd_pwm1.obj
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+__initialization FFA 0 CODE 0 cinit test_61f13x_lvd_pwm1.obj
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cinit 0 7FD FFA 3 2
+text1 0 7C7 F8E 36 2
+text2 0 7B5 F6A 12 2
+maintext 0 7AB F56 A 2
+reset_vec 0 0 0 2 2

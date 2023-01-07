@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "touch.h": "c",
-        "string.h": "c",
-        "syscfg.h": "c"
-    }
-}

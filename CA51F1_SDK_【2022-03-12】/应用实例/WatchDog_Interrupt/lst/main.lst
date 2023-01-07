@@ -1,0 +1,112 @@
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:46:58 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 OPTIMIZE(9,SPEED) BROWSE DEBUG PRINT(.\lst\main.lst) OBJ
+                    -ECT(.\output\main.obj)
+
+line level    source
+
+   1          #ifndef _MAIN_C_
+   2          #define _MAIN_C_
+   3          /*********************************************************************************************************
+             -************/
+   4          #include "include/ca51f1_config.h"              
+   5          #include "include/ca51f1sfr.h"
+   6          #include "include/ca51f1xsfr.h"
+   7          #include "include/gpiodef_f1.h"
+   8          #include "include/system_clock.h"
+   9          #include "include/uart.h"
+  10          #include "include/delay.h"
+  11          #include <intrins.h>
+  12          /*********************************************************************************************************
+             -************/
+  13          
+  14          //WDFLG定义
+  15          #define WDIF                    (1<<1)
+  16          #define WDRF                    (1<<0)
+  17          
+  18          #define WDTS_DISABLE    (0<<6)
+  19          #define WDTS_IRCH               (1<<6)
+  20          #define WDTS_IRCL               (2<<6)
+  21          
+  22          #define WDRE_reset              (1<<0)
+  23          #define WDRE_int                (0<<0)
+  24          
+  25          bit WdtIntEvFlag;
+  26          void WDT_ISR (void) interrupt 6 
+  27          {
+  28   1              if(WDFLG & WDIF)
+  29   1              {
+  30   2                      WDFLG = 0xA5;
+  31   2                      WdtIntEvFlag = 1;
+  32   2              }       
+  33   1      }
+  34          void main(void)
+  35          {       
+  36   1      #ifdef SYSCLK_16MHZ                                     //系统时钟为16MHz,设置CKDIV为0
+                      CKDIV = 0;
+              #endif
+  39   1      
+  40   1      #ifdef UART_EN
+                      Uart_Initial(UART_BAUTRATE);    //初始化UART
+              #endif
+  43   1              
+  44   1              EA = 1;                                                 //开全局中断
+  45   1      
+  46   1      #ifdef PRINT_EN
+                      uart_printf("Watch dog interrupt demo\n");
+              #endif
+  49   1              
+  50   1      
+  51   1              /***************************看门狗阈值设置计算公式如下****************************
+  52   1      看门狗触发时间 = (WDVTH * 800H+7FFH) * clock cycle
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:46:58 PAGE 2   
+
+  53   1      *********************************************************************************/
+  54   1      
+  55   1      //看门狗时钟源为IRCH(内部高速时钟)      
+  56   1              WDCON = WDTS_IRCH | WDRE_int;           //设置看门狗时钟源为IRCH，模式为中断模式
+  57   1              WDVTHH = 0x1e;                                          //看门狗中断阈值高八位设置 当前值为1s
+  58   1              WDVTHL = 0x84;                                          //看门狗中断阈值低八位设置
+  59   1      
+  60   1      
+  61   1      //看门狗时钟源为IRCL
+  62   1      //      CKCON |= ILCKE;                                         //使能IRCL
+  63   1      //      WDCON = WDTS_IRCL | WDRE_int;           //设置看门狗时钟源为ILCKE，模式为中断模式
+  64   1      //      WDVTHH = 0;                                                     //看门狗中断阈值高八位设置 当前值为1s   
+  65   1      //      WDVTHL = 0x0f;                                          //看门狗中断阈值低八位设置
+  66   1              
+  67   1              INT4EN = 1;                                             //开启看门狗中断
+  68   1              WDFLG = 0xA5;                                           //喂狗
+  69   1              while(1)
+  70   1              {
+  71   2                      if(WdtIntEvFlag)                                //看门狗中断发生
+  72   2                      {
+  73   3                              WdtIntEvFlag = 0;
+  74   3                      #ifdef PRINT_EN
+                                      uart_printf("Watch dog interrupt happen\n");    
+                              #endif
+  77   3                      }               
+  78   2              }
+  79   1      }
+  80          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

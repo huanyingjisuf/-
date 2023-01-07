@@ -1,0 +1,937 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Wed Sep 15 13:42:39 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT60F01X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	text0,local,class=CODE,merge=1,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2
+    10                           	psect	text2,local,class=CODE,merge=1,delta=2
+    11                           	psect	text3,local,class=CODE,merge=1,delta=2
+    12                           	psect	text4,local,class=CODE,merge=1,delta=2
+    13                           	psect	text5,local,class=CODE,merge=1,delta=2
+    14                           	psect	text6,local,class=CODE,merge=1,delta=2
+    15                           	psect	text7,local,class=CODE,merge=1,delta=2
+    16                           	psect	intentry,global,class=CODE,delta=2
+    17                           	psect	pa_nodes0,global,class=CODE,delta=2
+    18                           	dabs	1,0x7E,2
+    19  0000                     
+    20                           ; Version 2.20
+    21                           ; Generated 09/04/2020 
+    22                           ; 
+    23                           ; SFR Addresses
+    24  0000                     
+    25                           	psect	text0
+    26  0000                     __ptext0:	
+    27  001B                     _MSCKCON	set	27
+    28  000B                     _INTCON	set	11
+    29  0005                     _PORTA	set	5
+    30  0001                     _TMR0	set	1
+    31  005F                     _GIE	set	95
+    32  005D                     _T0IE	set	93
+    33  005B                     _PAIE	set	91
+    34  005A                     _T0IF	set	90
+    35  0058                     _PAIF	set	88
+    36  002C                     _PA4	set	44
+    37  002A                     _PA2	set	42
+    38  0095                     _WPUA	set	149
+    39  008F                     _OSCCON	set	143
+    40  0085                     _TRISA	set	133
+    41  0081                     _OPTION	set	129
+    42  04B2                     _IOCA2	set	1202
+    43  042A                     _TRISA2	set	1066
+    44                           
+    45                           	psect	cinit
+    46  000B                     start_initialization:	
+    47                           ; #config settings
+    48                           
+    49  000B                     __initialization:	
+    50                           
+    51                           ; Clear objects allocated to COMMON
+    52  000B  01F5               	clrf	__pbssCOMMON& (0+127)
+    53  000C                     end_of_initialization:	
+    54                           ;End of C runtime variable initialization code
+    55                           
+    56  000C                     __end_of__initialization:	
+    57  000C  0183               	clrf	3
+    58  000D  2861               	ljmp	_main	;jump to C main() function
+    59                           
+    60                           	psect	bssCOMMON
+    61  0075                     __pbssCOMMON:	
+    62  0075                     _RXFLAG:	
+    63  0075                     	ds	1
+    64                           
+    65                           	psect	cstackCOMMON
+    66  0070                     __pcstackCOMMON:	
+    67  0070                     ?_POWER_INITIAL:	
+    68  0070                     ?_TIMER0_INITIAL:	
+    69                           ; 1 bytes @ 0x0
+    70                           
+    71  0070                     ?_PA2_Level_Change_INITIAL:	
+    72                           ; 1 bytes @ 0x0
+    73                           
+    74  0070                     ?_ISR:	
+    75                           ; 1 bytes @ 0x0
+    76                           
+    77  0070                     ??_ISR:	
+    78                           ; 1 bytes @ 0x0
+    79                           
+    80  0070                     ?_WaitTF0:	
+    81                           ; 1 bytes @ 0x0
+    82                           
+    83  0070                     ?_WByte:	
+    84                           ; 1 bytes @ 0x0
+    85                           
+    86  0070                     ?_RByte:	
+    87                           ; 1 bytes @ 0x0
+    88                           
+    89  0070                     ?_main:	
+    90                           ; 1 bytes @ 0x0
+    91                           
+    92                           
+    93                           ; 1 bytes @ 0x0
+    94  0070                     	ds	2
+    95  0072                     ??_POWER_INITIAL:	
+    96  0072                     ??_TIMER0_INITIAL:	
+    97                           ; 1 bytes @ 0x2
+    98                           
+    99  0072                     ??_PA2_Level_Change_INITIAL:	
+   100                           ; 1 bytes @ 0x2
+   101                           
+   102  0072                     ??_WaitTF0:	
+   103                           ; 1 bytes @ 0x2
+   104                           
+   105  0072                     ??_WByte:	
+   106                           ; 1 bytes @ 0x2
+   107                           
+   108  0072                     ??_RByte:	
+   109                           ; 1 bytes @ 0x2
+   110                           
+   111  0072                     WByte@input:	
+   112                           ; 1 bytes @ 0x2
+   113                           
+   114  0072                     RByte@i:	
+   115                           ; 1 bytes @ 0x2
+   116                           
+   117                           
+   118                           ; 1 bytes @ 0x2
+   119  0072                     	ds	1
+   120  0073                     WByte@i:	
+   121  0073                     RByte@Output:	
+   122                           ; 1 bytes @ 0x3
+   123                           
+   124                           
+   125                           ; 1 bytes @ 0x3
+   126  0073                     	ds	1
+   127  0074                     ??_main:	
+   128  0074                     main@rdata:	
+   129                           ; 1 bytes @ 0x4
+   130                           
+   131                           
+   132                           ; 1 bytes @ 0x4
+   133  0074                     	ds	1
+   134                           
+   135                           	psect	maintext
+   136  0061                     __pmaintext:	
+   137 ;;
+   138 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   139 ;;
+   140 ;; *************** function _main *****************
+   141 ;; Defined at:
+   142 ;;		line 192 in file "test_60f01x_UART.C"
+   143 ;; Parameters:    Size  Location     Type
+   144 ;;		None
+   145 ;; Auto vars:     Size  Location     Type
+   146 ;;  rdata           1    4[COMMON] unsigned char 
+   147 ;; Return value:  Size  Location     Type
+   148 ;;                  1    wreg      void 
+   149 ;; Registers used:
+   150 ;;		wreg, status,2, status,0, pclath, cstack
+   151 ;; Tracked objects:
+   152 ;;		On entry : B00/0
+   153 ;;		On exit  : 100/100
+   154 ;;		Unchanged: 0/0
+   155 ;; Data sizes:     COMMON   BANK0
+   156 ;;      Params:         0       0
+   157 ;;      Locals:         1       0
+   158 ;;      Temps:          0       0
+   159 ;;      Totals:         1       0
+   160 ;;Total ram usage:        1 bytes
+   161 ;; Hardware stack levels required when called:    3
+   162 ;; This function calls:
+   163 ;;		_PA2_Level_Change_INITIAL
+   164 ;;		_POWER_INITIAL
+   165 ;;		_RByte
+   166 ;;		_TIMER0_INITIAL
+   167 ;;		_WByte
+   168 ;; This function is called by:
+   169 ;;		Startup code after reset
+   170 ;; This function uses a non-reentrant model
+   171 ;;
+   172                           
+   173                           
+   174                           ;psect for function _main
+   175  0061                     _main:	
+   176                           
+   177                           ;test_60f01x_UART.C: 195: POWER_INITIAL();
+   178                           
+   179                           ;incstack = 0
+   180                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   181  0061  2072               	fcall	_POWER_INITIAL
+   182                           
+   183                           ;test_60f01x_UART.C: 196: TIMER0_INITIAL();
+   184  0062  208A               	fcall	_TIMER0_INITIAL
+   185                           
+   186                           ;test_60f01x_UART.C: 197: PA2_Level_Change_INITIAL();
+   187  0063  2081               	fcall	_PA2_Level_Change_INITIAL
+   188                           
+   189                           ;test_60f01x_UART.C: 198: GIE = 1;
+   190  0064  178B               	bsf	11,7	;volatile
+   191                           
+   192                           ;test_60f01x_UART.C: 199: T0IE = 1;
+   193  0065  168B               	bsf	11,5	;volatile
+   194  0066                     l961:	
+   195                           
+   196                           ;test_60f01x_UART.C: 201: {
+   197                           ;test_60f01x_UART.C: 203: if(RXFLAG)
+   198  0066  0875               	movf	_RXFLAG,w
+   199  0067  1903               	btfsc	3,2
+   200  0068  2866               	goto	l961
+   201                           
+   202                           ;test_60f01x_UART.C: 204: {
+   203                           ;test_60f01x_UART.C: 205: rdata = RByte();
+   204  0069  2048               	fcall	_RByte
+   205  006A  00F4               	movwf	main@rdata
+   206                           
+   207                           ;test_60f01x_UART.C: 206: WByte(rdata);
+   208  006B  0874               	movf	main@rdata,w
+   209  006C  200E               	fcall	_WByte
+   210                           
+   211                           ;test_60f01x_UART.C: 208: IOCA2 =1;
+   212  006D  1683               	bsf	3,5	;RP0=1, select bank1
+   213  006E  1516               	bsf	22,2	;volatile
+   214                           
+   215                           ;test_60f01x_UART.C: 209: PAIE =1;
+   216  006F  158B               	bsf	11,3	;volatile
+   217                           
+   218                           ;test_60f01x_UART.C: 210: RXFLAG = 0;
+   219  0070  01F5               	clrf	_RXFLAG
+   220  0071  2866               	goto	l961
+   221  0072                     __end_of_main:	
+   222                           
+   223                           	psect	text1
+   224  000E                     __ptext1:	
+   225 ;; *************** function _WByte *****************
+   226 ;; Defined at:
+   227 ;;		line 128 in file "test_60f01x_UART.C"
+   228 ;; Parameters:    Size  Location     Type
+   229 ;;  input           1    wreg     unsigned char 
+   230 ;; Auto vars:     Size  Location     Type
+   231 ;;  input           1    2[COMMON] unsigned char 
+   232 ;;  i               1    3[COMMON] unsigned char 
+   233 ;; Return value:  Size  Location     Type
+   234 ;;                  1    wreg      void 
+   235 ;; Registers used:
+   236 ;;		wreg, status,2, status,0, pclath, cstack
+   237 ;; Tracked objects:
+   238 ;;		On entry : 0/100
+   239 ;;		On exit  : 100/0
+   240 ;;		Unchanged: 0/0
+   241 ;; Data sizes:     COMMON   BANK0
+   242 ;;      Params:         0       0
+   243 ;;      Locals:         2       0
+   244 ;;      Temps:          0       0
+   245 ;;      Totals:         2       0
+   246 ;;Total ram usage:        2 bytes
+   247 ;; Hardware stack levels used:    1
+   248 ;; Hardware stack levels required when called:    2
+   249 ;; This function calls:
+   250 ;;		_WaitTF0
+   251 ;; This function is called by:
+   252 ;;		_main
+   253 ;; This function uses a non-reentrant model
+   254 ;;
+   255                           
+   256                           
+   257                           ;psect for function _WByte
+   258  000E                     _WByte:	
+   259                           
+   260                           ;incstack = 0
+   261                           ; Regs used in _WByte: [wreg+status,2+status,0+pclath+cstack]
+   262                           ;WByte@input stored from wreg
+   263  000E  00F2               	movwf	WByte@input
+   264                           
+   265                           ;test_60f01x_UART.C: 131: unsigned char i=8;
+   266  000F  3008               	movlw	8
+   267  0010  00F3               	movwf	WByte@i
+   268                           
+   269                           ;test_60f01x_UART.C: 132: PA4 = 1;
+   270  0011  1283               	bcf	3,5	;RP0=0, select bank0
+   271  0012  1605               	bsf	5,4	;volatile
+   272                           
+   273                           ;test_60f01x_UART.C: 133: TMR0 = 49;
+   274  0013  3031               	movlw	49
+   275  0014  0081               	movwf	1	;volatile
+   276                           
+   277                           ;test_60f01x_UART.C: 134: T0IE = 1;
+   278  0015  168B               	bsf	11,5	;volatile
+   279                           
+   280                           ;test_60f01x_UART.C: 135: WaitTF0();
+   281  0016  2091               	fcall	_WaitTF0
+   282                           
+   283                           ;test_60f01x_UART.C: 136: PA4=0;
+   284  0017  1283               	bcf	3,5	;RP0=0, select bank0
+   285  0018  1205               	bcf	5,4	;volatile
+   286                           
+   287                           ;test_60f01x_UART.C: 137: WaitTF0();
+   288  0019  2091               	fcall	_WaitTF0
+   289                           
+   290                           ;test_60f01x_UART.C: 139: while(i--)
+   291  001A  2825               	goto	l899
+   292  001B                     l459:	
+   293                           
+   294                           ;test_60f01x_UART.C: 140: {
+   295                           ;test_60f01x_UART.C: 141: if(input&0x01)
+   296  001B  1C72               	btfss	WByte@input,0
+   297  001C  2820               	goto	l460
+   298                           
+   299                           ;test_60f01x_UART.C: 142: {
+   300                           ;test_60f01x_UART.C: 143: PA4=1;
+   301  001D  1283               	bcf	3,5	;RP0=0, select bank0
+   302  001E  1605               	bsf	5,4	;volatile
+   303                           
+   304                           ;test_60f01x_UART.C: 144: }
+   305  001F  2822               	goto	l895
+   306  0020                     l460:	
+   307                           
+   308                           ;test_60f01x_UART.C: 145: else
+   309                           ;test_60f01x_UART.C: 146: {
+   310                           ;test_60f01x_UART.C: 147: PA4 = 0;
+   311  0020  1283               	bcf	3,5	;RP0=0, select bank0
+   312  0021  1205               	bcf	5,4	;volatile
+   313  0022                     l895:	
+   314                           
+   315                           ;test_60f01x_UART.C: 148: }
+   316                           ;test_60f01x_UART.C: 149: WaitTF0();
+   317  0022  2091               	fcall	_WaitTF0
+   318                           
+   319                           ;test_60f01x_UART.C: 150: input=input>>1;
+   320  0023  1003               	clrc
+   321  0024  0CF2               	rrf	WByte@input,f
+   322  0025                     l899:	
+   323  0025  03F3               	decf	WByte@i,f
+   324  0026  0F73               	incfsz	WByte@i,w
+   325  0027  281B               	goto	l459
+   326                           
+   327                           ;test_60f01x_UART.C: 151: }
+   328                           ;test_60f01x_UART.C: 154: PA4=(bit)1;
+   329  0028  1283               	bcf	3,5	;RP0=0, select bank0
+   330  0029  1605               	bsf	5,4	;volatile
+   331                           
+   332                           ;test_60f01x_UART.C: 155: T0IE=0;
+   333  002A  128B               	bcf	11,5	;volatile
+   334  002B  0008               	return
+   335  002C                     __end_of_WByte:	
+   336                           
+   337                           	psect	text2
+   338  008A                     __ptext2:	
+   339 ;; *************** function _TIMER0_INITIAL *****************
+   340 ;; Defined at:
+   341 ;;		line 56 in file "test_60f01x_UART.C"
+   342 ;; Parameters:    Size  Location     Type
+   343 ;;		None
+   344 ;; Auto vars:     Size  Location     Type
+   345 ;;		None
+   346 ;; Return value:  Size  Location     Type
+   347 ;;                  1    wreg      void 
+   348 ;; Registers used:
+   349 ;;		wreg, status,2
+   350 ;; Tracked objects:
+   351 ;;		On entry : B00/0
+   352 ;;		On exit  : B00/0
+   353 ;;		Unchanged: A00/0
+   354 ;; Data sizes:     COMMON   BANK0
+   355 ;;      Params:         0       0
+   356 ;;      Locals:         0       0
+   357 ;;      Temps:          0       0
+   358 ;;      Totals:         0       0
+   359 ;;Total ram usage:        0 bytes
+   360 ;; Hardware stack levels used:    1
+   361 ;; Hardware stack levels required when called:    1
+   362 ;; This function calls:
+   363 ;;		Nothing
+   364 ;; This function is called by:
+   365 ;;		_main
+   366 ;; This function uses a non-reentrant model
+   367 ;;
+   368                           
+   369                           
+   370                           ;psect for function _TIMER0_INITIAL
+   371  008A                     _TIMER0_INITIAL:	
+   372                           
+   373                           ;test_60f01x_UART.C: 58: OPTION = 0B00000000;
+   374                           
+   375                           ;incstack = 0
+   376                           ; Regs used in _TIMER0_INITIAL: [wreg+status,2]
+   377  008A  1683               	bsf	3,5	;RP0=1, select bank1
+   378  008B  0181               	clrf	1	;volatile
+   379                           
+   380                           ;test_60f01x_UART.C: 64: TMR0 = 49;
+   381  008C  3031               	movlw	49
+   382  008D  1283               	bcf	3,5	;RP0=0, select bank0
+   383  008E  0081               	movwf	1	;volatile
+   384                           
+   385                           ;test_60f01x_UART.C: 65: T0IF = 0;
+   386  008F  110B               	bcf	11,2	;volatile
+   387  0090  0008               	return
+   388  0091                     __end_of_TIMER0_INITIAL:	
+   389                           
+   390                           	psect	text3
+   391  0048                     __ptext3:	
+   392 ;; *************** function _RByte *****************
+   393 ;; Defined at:
+   394 ;;		line 163 in file "test_60f01x_UART.C"
+   395 ;; Parameters:    Size  Location     Type
+   396 ;;		None
+   397 ;; Auto vars:     Size  Location     Type
+   398 ;;  Output          1    3[COMMON] unsigned char 
+   399 ;;  i               1    2[COMMON] unsigned char 
+   400 ;; Return value:  Size  Location     Type
+   401 ;;                  1    wreg      unsigned char 
+   402 ;; Registers used:
+   403 ;;		wreg, status,2, status,0, pclath, cstack
+   404 ;; Tracked objects:
+   405 ;;		On entry : 0/100
+   406 ;;		On exit  : 0/0
+   407 ;;		Unchanged: 0/0
+   408 ;; Data sizes:     COMMON   BANK0
+   409 ;;      Params:         0       0
+   410 ;;      Locals:         2       0
+   411 ;;      Temps:          0       0
+   412 ;;      Totals:         2       0
+   413 ;;Total ram usage:        2 bytes
+   414 ;; Hardware stack levels used:    1
+   415 ;; Hardware stack levels required when called:    2
+   416 ;; This function calls:
+   417 ;;		_WaitTF0
+   418 ;; This function is called by:
+   419 ;;		_main
+   420 ;; This function uses a non-reentrant model
+   421 ;;
+   422                           
+   423                           
+   424                           ;psect for function _RByte
+   425  0048                     _RByte:	
+   426  0048  3008               	movlw	8
+   427                           
+   428                           ;test_60f01x_UART.C: 165: unsigned char Output=0;
+   429                           
+   430                           ;incstack = 0
+   431                           ; Regs used in _RByte: [wreg+status,2+status,0+pclath+cstack]
+   432  0049  01F3               	clrf	RByte@Output
+   433                           
+   434                           ;test_60f01x_UART.C: 166: unsigned char i=8;
+   435  004A  00F2               	movwf	RByte@i
+   436                           
+   437                           ;test_60f01x_UART.C: 167: T0IE=1;
+   438  004B  168B               	bsf	11,5	;volatile
+   439                           
+   440                           ;test_60f01x_UART.C: 168: TMR0 = 49;
+   441  004C  3031               	movlw	49
+   442  004D  1283               	bcf	3,5	;RP0=0, select bank0
+   443  004E  0081               	movwf	1	;volatile
+   444                           
+   445                           ;test_60f01x_UART.C: 169: WaitTF0();
+   446  004F  2091               	fcall	_WaitTF0
+   447                           
+   448                           ;test_60f01x_UART.C: 170: T0IE=1;
+   449  0050  168B               	bsf	11,5	;volatile
+   450                           
+   451                           ;test_60f01x_UART.C: 171: TMR0 = 49;
+   452  0051  3031               	movlw	49
+   453  0052  1283               	bcf	3,5	;RP0=0, select bank0
+   454  0053  0081               	movwf	1	;volatile
+   455                           
+   456                           ;test_60f01x_UART.C: 174: while(i--)
+   457  0054  285A               	goto	l915
+   458  0055                     l467:	
+   459                           
+   460                           ;test_60f01x_UART.C: 175: {
+   461                           ;test_60f01x_UART.C: 176: Output >>=1;
+   462  0055  1003               	clrc
+   463  0056  0CF3               	rrf	RByte@Output,f
+   464                           
+   465                           ;test_60f01x_UART.C: 177: if(PA2)
+   466  0057  1283               	bcf	3,5	;RP0=0, select bank0
+   467  0058  1905               	btfsc	5,2	;volatile
+   468                           
+   469                           ;test_60f01x_UART.C: 178: {
+   470                           ;test_60f01x_UART.C: 179: Output|=0x80;
+   471  0059  17F3               	bsf	RByte@Output,7
+   472  005A                     l915:	
+   473                           
+   474                           ;test_60f01x_UART.C: 172: WaitTF0();
+   475  005A  2091               	fcall	_WaitTF0
+   476  005B  03F2               	decf	RByte@i,f
+   477  005C  0F72               	incfsz	RByte@i,w
+   478  005D  2855               	goto	l467
+   479                           
+   480                           ;test_60f01x_UART.C: 182: }
+   481                           ;test_60f01x_UART.C: 183: T0IE=0;
+   482  005E  128B               	bcf	11,5	;volatile
+   483                           
+   484                           ;test_60f01x_UART.C: 184: return Output;
+   485  005F  0873               	movf	RByte@Output,w
+   486  0060  0008               	return
+   487  0061                     __end_of_RByte:	
+   488                           
+   489                           	psect	text4
+   490  0091                     __ptext4:	
+   491 ;; *************** function _WaitTF0 *****************
+   492 ;; Defined at:
+   493 ;;		line 116 in file "test_60f01x_UART.C"
+   494 ;; Parameters:    Size  Location     Type
+   495 ;;		None
+   496 ;; Auto vars:     Size  Location     Type
+   497 ;;		None
+   498 ;; Return value:  Size  Location     Type
+   499 ;;                  1    wreg      void 
+   500 ;; Registers used:
+   501 ;;		None
+   502 ;; Tracked objects:
+   503 ;;		On entry : 0/0
+   504 ;;		On exit  : 0/0
+   505 ;;		Unchanged: 0/0
+   506 ;; Data sizes:     COMMON   BANK0
+   507 ;;      Params:         0       0
+   508 ;;      Locals:         0       0
+   509 ;;      Temps:          0       0
+   510 ;;      Totals:         0       0
+   511 ;;Total ram usage:        0 bytes
+   512 ;; Hardware stack levels used:    1
+   513 ;; Hardware stack levels required when called:    1
+   514 ;; This function calls:
+   515 ;;		Nothing
+   516 ;; This function is called by:
+   517 ;;		_WByte
+   518 ;;		_RByte
+   519 ;; This function uses a non-reentrant model
+   520 ;;
+   521                           
+   522                           
+   523                           ;psect for function _WaitTF0
+   524  0091                     _WaitTF0:	
+   525  0091                     l452:	
+   526                           ;test_60f01x_UART.C: 118: while(T0IE);
+   527                           
+   528                           ;incstack = 0
+   529                           ; Regs used in _WaitTF0: []
+   530                           
+   531  0091  1A8B               	btfsc	11,5	;volatile
+   532  0092  2891               	goto	l452
+   533                           
+   534                           ;test_60f01x_UART.C: 119: T0IE=1;
+   535  0093  168B               	bsf	11,5	;volatile
+   536  0094  0008               	return
+   537  0095                     __end_of_WaitTF0:	
+   538                           
+   539                           	psect	text5
+   540  0072                     __ptext5:	
+   541 ;; *************** function _POWER_INITIAL *****************
+   542 ;; Defined at:
+   543 ;;		line 35 in file "test_60f01x_UART.C"
+   544 ;; Parameters:    Size  Location     Type
+   545 ;;		None
+   546 ;; Auto vars:     Size  Location     Type
+   547 ;;		None
+   548 ;; Return value:  Size  Location     Type
+   549 ;;                  1    wreg      void 
+   550 ;; Registers used:
+   551 ;;		wreg, status,2
+   552 ;; Tracked objects:
+   553 ;;		On entry : B00/0
+   554 ;;		On exit  : B00/0
+   555 ;;		Unchanged: A00/0
+   556 ;; Data sizes:     COMMON   BANK0
+   557 ;;      Params:         0       0
+   558 ;;      Locals:         0       0
+   559 ;;      Temps:          0       0
+   560 ;;      Totals:         0       0
+   561 ;;Total ram usage:        0 bytes
+   562 ;; Hardware stack levels used:    1
+   563 ;; Hardware stack levels required when called:    1
+   564 ;; This function calls:
+   565 ;;		Nothing
+   566 ;; This function is called by:
+   567 ;;		_main
+   568 ;; This function uses a non-reentrant model
+   569 ;;
+   570                           
+   571                           
+   572                           ;psect for function _POWER_INITIAL
+   573  0072                     _POWER_INITIAL:	
+   574                           
+   575                           ;test_60f01x_UART.C: 37: OSCCON = 0B01110000;
+   576                           
+   577                           ;incstack = 0
+   578                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   579  0072  3070               	movlw	112
+   580  0073  1683               	bsf	3,5	;RP0=1, select bank1
+   581  0074  008F               	movwf	15	;volatile
+   582                           
+   583                           ;test_60f01x_UART.C: 38: INTCON = 0;
+   584  0075  018B               	clrf	11	;volatile
+   585                           
+   586                           ;test_60f01x_UART.C: 39: PORTA = 0B00000000;
+   587  0076  1283               	bcf	3,5	;RP0=0, select bank0
+   588  0077  0185               	clrf	5	;volatile
+   589                           
+   590                           ;test_60f01x_UART.C: 40: TRISA = 0B00000100;
+   591  0078  3004               	movlw	4
+   592  0079  1683               	bsf	3,5	;RP0=1, select bank1
+   593  007A  0085               	movwf	5	;volatile
+   594                           
+   595                           ;test_60f01x_UART.C: 42: WPUA = 0B00000100;
+   596  007B  0095               	movwf	21	;volatile
+   597                           
+   598                           ;test_60f01x_UART.C: 44: OPTION = 0B00001000;
+   599  007C  3008               	movlw	8
+   600  007D  0081               	movwf	1	;volatile
+   601                           
+   602                           ;test_60f01x_UART.C: 45: MSCKCON = 0B00000000;
+   603  007E  1283               	bcf	3,5	;RP0=0, select bank0
+   604  007F  019B               	clrf	27	;volatile
+   605  0080  0008               	return
+   606  0081                     __end_of_POWER_INITIAL:	
+   607                           
+   608                           	psect	text6
+   609  0081                     __ptext6:	
+   610 ;; *************** function _PA2_Level_Change_INITIAL *****************
+   611 ;; Defined at:
+   612 ;;		line 73 in file "test_60f01x_UART.C"
+   613 ;; Parameters:    Size  Location     Type
+   614 ;;		None
+   615 ;; Auto vars:     Size  Location     Type
+   616 ;;		None
+   617 ;; Return value:  Size  Location     Type
+   618 ;;                  1    wreg      void 
+   619 ;; Registers used:
+   620 ;;		wreg
+   621 ;; Tracked objects:
+   622 ;;		On entry : B00/0
+   623 ;;		On exit  : B00/100
+   624 ;;		Unchanged: A00/0
+   625 ;; Data sizes:     COMMON   BANK0
+   626 ;;      Params:         0       0
+   627 ;;      Locals:         0       0
+   628 ;;      Temps:          0       0
+   629 ;;      Totals:         0       0
+   630 ;;Total ram usage:        0 bytes
+   631 ;; Hardware stack levels used:    1
+   632 ;; Hardware stack levels required when called:    1
+   633 ;; This function calls:
+   634 ;;		Nothing
+   635 ;; This function is called by:
+   636 ;;		_main
+   637 ;; This function uses a non-reentrant model
+   638 ;;
+   639                           
+   640                           
+   641                           ;psect for function _PA2_Level_Change_INITIAL
+   642  0081                     _PA2_Level_Change_INITIAL:	
+   643                           
+   644                           ;test_60f01x_UART.C: 75: TRISA2 =1;
+   645                           
+   646                           ;incstack = 0
+   647                           ; Regs used in _PA2_Level_Change_INITIAL: [wreg]
+   648  0081  1683               	bsf	3,5	;RP0=1, select bank1
+   649  0082  1505               	bsf	5,2	;volatile
+   650                           
+   651                           ;test_60f01x_UART.C: 76: ReadAPin = PORTA;
+   652  0083  1283               	bcf	3,5	;RP0=0, select bank0
+   653  0084  0805               	movf	5,w	;volatile
+   654                           
+   655                           ;test_60f01x_UART.C: 77: PAIF =0;
+   656  0085  100B               	bcf	11,0	;volatile
+   657                           
+   658                           ;test_60f01x_UART.C: 78: IOCA2 =1;
+   659  0086  1683               	bsf	3,5	;RP0=1, select bank1
+   660  0087  1516               	bsf	22,2	;volatile
+   661                           
+   662                           ;test_60f01x_UART.C: 79: PAIE =1;
+   663  0088  158B               	bsf	11,3	;volatile
+   664  0089  0008               	return
+   665  008A                     __end_of_PA2_Level_Change_INITIAL:	
+   666                           
+   667                           	psect	text7
+   668  002C                     __ptext7:	
+   669 ;; *************** function _ISR *****************
+   670 ;; Defined at:
+   671 ;;		line 87 in file "test_60f01x_UART.C"
+   672 ;; Parameters:    Size  Location     Type
+   673 ;;		None
+   674 ;; Auto vars:     Size  Location     Type
+   675 ;;		None
+   676 ;; Return value:  Size  Location     Type
+   677 ;;                  1    wreg      void 
+   678 ;; Registers used:
+   679 ;;		wreg
+   680 ;; Tracked objects:
+   681 ;;		On entry : 0/0
+   682 ;;		On exit  : 0/0
+   683 ;;		Unchanged: 0/0
+   684 ;; Data sizes:     COMMON   BANK0
+   685 ;;      Params:         0       0
+   686 ;;      Locals:         0       0
+   687 ;;      Temps:          2       0
+   688 ;;      Totals:         2       0
+   689 ;;Total ram usage:        2 bytes
+   690 ;; Hardware stack levels used:    1
+   691 ;; This function calls:
+   692 ;;		Nothing
+   693 ;; This function is called by:
+   694 ;;		Interrupt level 1
+   695 ;; This function uses a non-reentrant model
+   696 ;;
+   697                           
+   698                           
+   699                           ;psect for function _ISR
+   700  002C                     _ISR:	
+   701                           
+   702                           ;test_60f01x_UART.C: 90: if(T0IE && T0IF)
+   703  002C  1A8B               	btfsc	11,5	;volatile
+   704  002D  1D0B               	btfss	11,2	;volatile
+   705  002E  2834               	goto	i1l937
+   706                           
+   707                           ;test_60f01x_UART.C: 91: {
+   708                           ;test_60f01x_UART.C: 92: TMR0 = 49;
+   709  002F  3031               	movlw	49
+   710  0030  1283               	bcf	3,5	;RP0=0, select bank0
+   711  0031  0081               	movwf	1	;volatile
+   712                           
+   713                           ;test_60f01x_UART.C: 93: T0IF = 0;
+   714  0032  110B               	bcf	11,2	;volatile
+   715                           
+   716                           ;test_60f01x_UART.C: 94: T0IE = 0;
+   717  0033  128B               	bcf	11,5	;volatile
+   718  0034                     i1l937:	
+   719                           
+   720                           ;test_60f01x_UART.C: 95: }
+   721                           ;test_60f01x_UART.C: 98: if(PAIE && PAIF)
+   722  0034  198B               	btfsc	11,3	;volatile
+   723  0035  1C0B               	btfss	11,0	;volatile
+   724  0036  2841               	goto	i1l449
+   725                           
+   726                           ;test_60f01x_UART.C: 99: {
+   727                           ;test_60f01x_UART.C: 100: ReadAPin = PORTA;
+   728  0037  1283               	bcf	3,5	;RP0=0, select bank0
+   729  0038  0805               	movf	5,w	;volatile
+   730                           
+   731                           ;test_60f01x_UART.C: 101: PAIF = 0;
+   732  0039  100B               	bcf	11,0	;volatile
+   733                           
+   734                           ;test_60f01x_UART.C: 102: if(PA2 == 0)
+   735  003A  1905               	btfsc	5,2	;volatile
+   736  003B  2841               	goto	i1l449
+   737                           
+   738                           ;test_60f01x_UART.C: 103: {
+   739                           ;test_60f01x_UART.C: 104: PAIE = 0;
+   740  003C  118B               	bcf	11,3	;volatile
+   741                           
+   742                           ;test_60f01x_UART.C: 105: IOCA2 =0;
+   743  003D  1683               	bsf	3,5	;RP0=1, select bank1
+   744  003E  1116               	bcf	22,2	;volatile
+   745                           
+   746                           ;test_60f01x_UART.C: 106: RXFLAG = 1;
+   747  003F  01F5               	clrf	_RXFLAG
+   748  0040  0AF5               	incf	_RXFLAG,f
+   749  0041                     i1l449:	
+   750  0041  0871               	movf	??_ISR+1,w
+   751  0042  008A               	movwf	10
+   752  0043  0E70               	swapf	??_ISR^(0+-128),w
+   753  0044  0083               	movwf	3
+   754  0045  0EFE               	swapf	126,f
+   755  0046  0E7E               	swapf	126,w
+   756  0047  0009               	retfie
+   757  0048                     __end_of_ISR:	
+   758  007E                     btemp	set	126	;btemp
+   759  007E                     wtemp0	set	126
+   760                           
+   761                           	psect	intentry
+   762  0004                     __pintentry:	
+   763                           ;incstack = 0
+   764                           ; Regs used in _ISR: [wreg]
+   765                           
+   766  0004                     interrupt_function:	
+   767  007E                     saved_w	set	btemp
+   768  0004  00FE               	movwf	btemp
+   769  0005  0E03               	swapf	3,w
+   770  0006  00F0               	movwf	??_ISR
+   771  0007  080A               	movf	10,w
+   772  0008  00F1               	movwf	??_ISR+1
+   773  0009  282C               	ljmp	_ISR
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      5       6
+    BANK0            48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_RByte
+    _main->_WByte
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 1     1      0      75
+                                              4 COMMON     1     1      0
+           _PA2_Level_Change_INITIAL
+                      _POWER_INITIAL
+                              _RByte
+                     _TIMER0_INITIAL
+                              _WByte
+ ---------------------------------------------------------------------------------
+ (1) _WByte                                                2     2      0      30
+                                              2 COMMON     2     2      0
+                            _WaitTF0
+ ---------------------------------------------------------------------------------
+ (1) _TIMER0_INITIAL                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _RByte                                                2     2      0      30
+                                              2 COMMON     2     2      0
+                            _WaitTF0
+ ---------------------------------------------------------------------------------
+ (2) _WaitTF0                                              0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _PA2_Level_Change_INITIAL                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _ISR                                                  2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _PA2_Level_Change_INITIAL
+   _POWER_INITIAL
+   _RByte
+     _WaitTF0
+   _TIMER0_INITIAL
+   _WByte
+     _WaitTF0
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      5       6       1       42.9%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       6       3        0.0%
+BITBANK0            30      0       0       4        0.0%
+BANK0               30      0       0       5        0.0%
+ABS                  0      0       6       6        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Wed Sep 15 13:42:39 2021
+
+                              l452 0091                                l460 0020  
+                              l467 0055                                l459 001B  
+                              l915 005A                                l961 0066  
+                              l895 0022                                l899 0025  
+                              _GIE 005F                                _PA2 002A  
+                              _PA4 002C                                _ISR 002C  
+                             ?_ISR 0070                               _T0IE 005D  
+                             _T0IF 005A                               _PAIE 005B  
+                             _PAIF 0058                               _TMR0 0001  
+                             _WPUA 0095                               _main 0061  
+                             btemp 007E                               start 000A  
+                            ??_ISR 0070                    __end_of_WaitTF0 0095  
+                   _TIMER0_INITIAL 008A                              ?_main 0070  
+                            _IOCA2 04B2                              i1l449 0041  
+                            i1l937 0034                              _PORTA 0005  
+                            _TRISA 0085                              _RByte 0048  
+                            _WByte 000E                              pclath 000A  
+                            status 0003                              wtemp0 007E  
+                  __initialization 000B                       __end_of_main 0072  
+           __end_of_TIMER0_INITIAL 0091                             ??_main 0074  
+                           ?_RByte 0070                             ?_WByte 0070  
+                           _INTCON 000B                             RByte@i 0072  
+                           _OSCCON 008F                             _OPTION 0081  
+                           _TRISA2 042A                             _RXFLAG 0075  
+                           WByte@i 0073                          ??_WaitTF0 0072  
+                  ?_TIMER0_INITIAL 0070  __size_of_PA2_Level_Change_INITIAL 0009  
+        ?_PA2_Level_Change_INITIAL 0070                             saved_w 007E  
+            __end_of_POWER_INITIAL 0081            __end_of__initialization 000C  
+                    __end_of_RByte 0061                      __end_of_WByte 002C  
+                   __pcstackCOMMON 0070                            ??_RByte 0072  
+                          ??_WByte 0072                         __pmaintext 0061  
+                       __pintentry 0004                            _MSCKCON 001B  
+                          _WaitTF0 0091                            __ptext0 0000  
+                          __ptext1 000E                            __ptext2 008A  
+                          __ptext3 0048                            __ptext4 0091  
+                          __ptext5 0072                            __ptext6 0081  
+                          __ptext7 002C                       __size_of_ISR 001C  
+             end_of_initialization 000C   __end_of_PA2_Level_Change_INITIAL 008A  
+                 ??_TIMER0_INITIAL 0072                start_initialization 000B  
+                      __end_of_ISR 0048           _PA2_Level_Change_INITIAL 0081  
+           __size_of_POWER_INITIAL 000F                        __pbssCOMMON 0075  
+                        ___latbits 0000                           ?_WaitTF0 0070  
+                   __size_of_RByte 0019                     __size_of_WByte 001E  
+                interrupt_function 0004                      _POWER_INITIAL 0072  
+                        main@rdata 0074                     ?_POWER_INITIAL 0070  
+                      RByte@Output 0073                   __size_of_WaitTF0 0004  
+       ??_PA2_Level_Change_INITIAL 0072                      __size_of_main 0011  
+          __size_of_TIMER0_INITIAL 0007                    ??_POWER_INITIAL 0072  
+                         intlevel1 0000                         WByte@input 0072  

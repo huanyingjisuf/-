@@ -1,0 +1,114 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT60F01X ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"35 C:\Users\Administrator\Desktop\C 修改\FT60F01x\test_60f01x_UART\test_60f01x_UART.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"56
+[v _TIMER0_INITIAL TIMER0_INITIAL `(v  1 e 1 0 ]
+"73
+[v _PA2_Level_Change_INITIAL PA2_Level_Change_INITIAL `(v  1 e 1 0 ]
+"87
+[v _ISR ISR `II(v  1 e 1 0 ]
+"116
+[v _WaitTF0 WaitTF0 `(v  1 e 1 0 ]
+"128
+[v _WByte WByte `(v  1 e 1 0 ]
+"163
+[v _RByte RByte `(uc  1 e 1 0 ]
+"192
+[v _main main `(v  1 e 1 0 ]
+"14 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\include\FT60F01X.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"63
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"74
+[v _PA2 PA2 `VEb  1 e 0 @42 ]
+"76
+[v _PA4 PA4 `VEb  1 e 0 @44 ]
+"111
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"113
+[v _PAIF PAIF `VEb  1 e 0 @88 ]
+"115
+[v _T0IF T0IF `VEb  1 e 0 @90 ]
+"116
+[v _PAIE PAIE `VEb  1 e 0 @91 ]
+"118
+[v _T0IE T0IE `VEb  1 e 0 @93 ]
+"120
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"217
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"257
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"286
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"290
+[v _TRISA2 TRISA2 `VEb  1 e 0 @1066 ]
+"340
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"372
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"413
+[v _IOCA2 IOCA2 `VEb  1 e 0 @1202 ]
+"27 C:\Users\Administrator\Desktop\C 修改\FT60F01x\test_60f01x_UART\test_60f01x_UART.C
+[v _RXFLAG RXFLAG `uc  1 e 1 0 ]
+"192
+[v _main main `(v  1 e 1 0 ]
+{
+"194
+[v main@rdata rdata `uc  1 a 1 4 ]
+"213
+} 0
+"128
+[v _WByte WByte `(v  1 e 1 0 ]
+{
+[v WByte@input input `uc  1 a 1 wreg ]
+"131
+[v WByte@i i `uc  1 a 1 3 ]
+"128
+[v WByte@input input `uc  1 a 1 wreg ]
+"131
+[v WByte@input input `uc  1 a 1 2 ]
+"156
+} 0
+"56
+[v _TIMER0_INITIAL TIMER0_INITIAL `(v  1 e 1 0 ]
+{
+"66
+} 0
+"163
+[v _RByte RByte `(uc  1 e 1 0 ]
+{
+"165
+[v RByte@Output Output `uc  1 a 1 3 ]
+"166
+[v RByte@i i `uc  1 a 1 2 ]
+"185
+} 0
+"116
+[v _WaitTF0 WaitTF0 `(v  1 e 1 0 ]
+{
+"120
+} 0
+"35
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"49
+} 0
+"73
+[v _PA2_Level_Change_INITIAL PA2_Level_Change_INITIAL `(v  1 e 1 0 ]
+{
+"80
+} 0
+"87
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"109
+} 0

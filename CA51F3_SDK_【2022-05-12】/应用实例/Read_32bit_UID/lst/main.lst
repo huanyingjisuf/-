@@ -1,0 +1,96 @@
+C51 COMPILER V9.02   MAIN                                                                  11/21/2021 20:42:48 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 BROWSE DEBUG PRINT(.\lst\main.lst) OBJECT(.\output\main.
+                    -obj)
+
+line level    source
+
+   1          
+   2          #ifndef _MAIN_C_
+   3          #define _MAIN_C_
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "include/ca51f_config.h"               
+   6          #include "include/ca51f3sfr.h"
+   7          #include "include/ca51f3xsfr.h"
+   8          #include "include/gpiodef_f3.h"
+   9          #include "include/system_clock.h"
+  10          
+  11          #include "include/uart.h"
+  12          #include "include/delay.h"
+  13          #include <intrins.h>
+  14          /*********************************************************************************************************
+             -************/
+  15          unsigned long int Read_32bit_UID(void)                          
+  16          {
+  17   1              unsigned long int ID;
+  18   1              LOCK  = 0x2B;   
+  19   1              FSCMD = 0x80;   
+  20   1              PTSH = 0x01;                            
+  21   1              PTSL = 0x00;                            
+  22   1              FSCMD = 0x81;                                           
+  23   1              ID = FSDAT;
+  24   1              ID *= 256;
+  25   1              ID |= FSDAT;
+  26   1              ID *= 256;
+  27   1              ID |= FSDAT;
+  28   1              ID *= 256;
+  29   1              ID |= FSDAT;
+  30   1              FSCMD = 0;
+  31   1              LOCK = 0xAA;
+  32   1              return ID;
+  33   1      }
+  34          void main(void)
+  35          {
+  36   1              unsigned long int UID;
+  37   1              
+  38   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //设置系统时钟为PLL，PLL_Multiple为倍频倍数
+              #endif
+  41   1              
+  42   1      #ifdef UART0_EN
+                      Uart0_Initial(UART0_BAUTRATE);  //初始化UART0
+              #endif
+  45   1              
+  46   1      #ifdef UART1_EN
+                      Uart1_Initial(UART1_BAUTRATE);  //初始化UART1
+              #endif
+  49   1      
+  50   1              EA = 1;                                                                                                 //开全局中断
+  51   1      
+  52   1      #ifdef PRINT_EN
+C51 COMPILER V9.02   MAIN                                                                  11/21/2021 20:42:48 PAGE 2   
+
+                      uart_printf("Read 32bits UID Demo Code\n");
+              #endif
+  55   1      
+  56   1              UID = Read_32bit_UID();
+  57   1      #ifdef PRINT_EN
+                      uart_printf ("UID = %ld\n",UID);                //打印UID值
+              #endif
+  60   1              while(1)
+  61   1              {
+  62   2              }
+  63   1      }
+  64          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    212    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

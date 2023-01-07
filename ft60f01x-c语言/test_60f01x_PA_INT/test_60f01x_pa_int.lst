@@ -1,0 +1,672 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Fri Oct 15 16:54:00 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT60F01X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	nvCOMMON,global,class=COMMON,space=1,delta=1
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	maintext,global,class=CODE,split=1,delta=2
+     8                           	psect	text1,local,class=CODE,merge=1,delta=2
+     9                           	psect	text2,local,class=CODE,merge=1,delta=2
+    10                           	psect	text3,local,class=CODE,merge=1,delta=2
+    11                           	psect	text4,local,class=CODE,merge=1,delta=2
+    12                           	psect	text5,local,class=CODE,merge=1,delta=2
+    13                           	psect	intentry,global,class=CODE,delta=2
+    14                           	psect	pa_nodes0,global,class=CODE,delta=2
+    15                           	dabs	1,0x7E,2
+    16  0000                     
+    17                           ; Version 2.20
+    18                           ; Generated 09/04/2020 
+    19                           ; 
+    20                           ; SFR Addresses
+    21  0000                     
+    22                           	psect	nvCOMMON
+    23  0077                     __pnvCOMMON:	
+    24  0077                     _FCount:	
+    25  0077                     	ds	1
+    26  001B                     _MSCKCON	set	27
+    27  000B                     _INTCON	set	11
+    28  0005                     _PORTA	set	5
+    29  005F                     _GIE	set	95
+    30  005B                     _PAIE	set	91
+    31  0058                     _PAIF	set	88
+    32  002C                     _PA4	set	44
+    33  0095                     _WPUA	set	149
+    34  008F                     _OSCCON	set	143
+    35  0085                     _TRISA	set	133
+    36  0081                     _OPTION	set	129
+    37  04B2                     _IOCA2	set	1202
+    38  042A                     _TRISA2	set	1066
+    39                           
+    40                           	psect	cinit
+    41  000B                     start_initialization:	
+    42                           ; #config settings
+    43                           
+    44  000B                     __initialization:	
+    45  000B                     end_of_initialization:	
+    46                           ;End of C runtime variable initialization code
+    47                           
+    48  000B                     __end_of__initialization:	
+    49  000B  0183               	clrf	3
+    50  000C  280D               	ljmp	_main	;jump to C main() function
+    51                           
+    52                           	psect	cstackCOMMON
+    53  0070                     __pcstackCOMMON:	
+    54  0070                     ?_ISR:	
+    55  0070                     ??_ISR:	
+    56                           ; 1 bytes @ 0x0
+    57                           
+    58  0070                     ?_POWER_INITIAL:	
+    59                           ; 1 bytes @ 0x0
+    60                           
+    61  0070                     ?_DelayUs:	
+    62                           ; 1 bytes @ 0x0
+    63                           
+    64  0070                     ?_DelayMs:	
+    65                           ; 1 bytes @ 0x0
+    66                           
+    67  0070                     ?_PA2_Level_Change_INITIAL:	
+    68                           ; 1 bytes @ 0x0
+    69                           
+    70  0070                     ?_main:	
+    71                           ; 1 bytes @ 0x0
+    72                           
+    73                           
+    74                           ; 1 bytes @ 0x0
+    75  0070                     	ds	2
+    76  0072                     ??_POWER_INITIAL:	
+    77  0072                     ??_DelayUs:	
+    78                           ; 1 bytes @ 0x2
+    79                           
+    80  0072                     ??_PA2_Level_Change_INITIAL:	
+    81                           ; 1 bytes @ 0x2
+    82                           
+    83  0072                     DelayUs@Time:	
+    84                           ; 1 bytes @ 0x2
+    85                           
+    86                           
+    87                           ; 1 bytes @ 0x2
+    88  0072                     	ds	1
+    89  0073                     DelayUs@a:	
+    90                           
+    91                           ; 1 bytes @ 0x3
+    92  0073                     	ds	1
+    93  0074                     ??_DelayMs:	
+    94  0074                     DelayMs@Time:	
+    95                           ; 1 bytes @ 0x4
+    96                           
+    97                           
+    98                           ; 1 bytes @ 0x4
+    99  0074                     	ds	1
+   100  0075                     DelayMs@a:	
+   101                           
+   102                           ; 1 bytes @ 0x5
+   103  0075                     	ds	1
+   104  0076                     DelayMs@b:	
+   105                           
+   106                           ; 1 bytes @ 0x6
+   107  0076                     	ds	1
+   108  0077                     ??_main:	
+   109                           
+   110                           	psect	maintext
+   111  000D                     __pmaintext:	
+   112                           ; 1 bytes @ 0x7
+   113 ;;
+   114 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   115 ;;
+   116 ;; *************** function _main *****************
+   117 ;; Defined at:
+   118 ;;		line 134 in file "test_60f01x_pa_int.C"
+   119 ;; Parameters:    Size  Location     Type
+   120 ;;		None
+   121 ;; Auto vars:     Size  Location     Type
+   122 ;;		None
+   123 ;; Return value:  Size  Location     Type
+   124 ;;                  1    wreg      void 
+   125 ;; Registers used:
+   126 ;;		wreg, status,2, status,0, pclath, cstack
+   127 ;; Tracked objects:
+   128 ;;		On entry : B00/0
+   129 ;;		On exit  : 0/0
+   130 ;;		Unchanged: 0/0
+   131 ;; Data sizes:     COMMON   BANK0
+   132 ;;      Params:         0       0
+   133 ;;      Locals:         0       0
+   134 ;;      Temps:          0       0
+   135 ;;      Totals:         0       0
+   136 ;;Total ram usage:        0 bytes
+   137 ;; Hardware stack levels required when called:    3
+   138 ;; This function calls:
+   139 ;;		_DelayMs
+   140 ;;		_PA2_Level_Change_INITIAL
+   141 ;;		_POWER_INITIAL
+   142 ;; This function is called by:
+   143 ;;		Startup code after reset
+   144 ;; This function uses a non-reentrant model
+   145 ;;
+   146                           
+   147                           
+   148                           ;psect for function _main
+   149  000D                     _main:	
+   150                           
+   151                           ;test_60f01x_pa_int.C: 136: POWER_INITIAL();
+   152                           
+   153                           ;incstack = 0
+   154                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   155  000D  2040               	fcall	_POWER_INITIAL
+   156  000E                     l912:	
+   157                           
+   158                           ;test_60f01x_pa_int.C: 138: {
+   159                           ;test_60f01x_pa_int.C: 139: for(FCount=0;FCount<100;FCount++)
+   160  000E  01F7               	clrf	_FCount
+   161  000F                     l474:	
+   162                           
+   163                           ;test_60f01x_pa_int.C: 140: {
+   164                           ;test_60f01x_pa_int.C: 141: PA4 = 1;
+   165  000F  1283               	bcf	3,5	;RP0=0, select bank0
+   166  0010  1605               	bsf	5,4	;volatile
+   167                           
+   168                           ;test_60f01x_pa_int.C: 142: DelayMs(10);
+   169  0011  300A               	movlw	10
+   170  0012  2020               	fcall	_DelayMs
+   171                           
+   172                           ;test_60f01x_pa_int.C: 143: PA4 = 0;
+   173  0013  1283               	bcf	3,5	;RP0=0, select bank0
+   174  0014  1205               	bcf	5,4	;volatile
+   175                           
+   176                           ;test_60f01x_pa_int.C: 144: DelayMs(10);
+   177  0015  300A               	movlw	10
+   178  0016  2020               	fcall	_DelayMs
+   179  0017  3064               	movlw	100
+   180  0018  0AF7               	incf	_FCount,f
+   181  0019  0277               	subwf	_FCount,w
+   182  001A  1C03               	skipc
+   183  001B  280F               	goto	l474
+   184                           
+   185                           ;test_60f01x_pa_int.C: 145: }
+   186                           ;test_60f01x_pa_int.C: 146: PA2_Level_Change_INITIAL();
+   187  001C  204F               	fcall	_PA2_Level_Change_INITIAL
+   188                           
+   189                           ;test_60f01x_pa_int.C: 147: GIE = 1;
+   190  001D  178B               	bsf	11,7	;volatile
+   191  001E  0063               	sleep	;# 
+   192  001F  280E               	goto	l912
+   193  0020                     __end_of_main:	
+   194                           
+   195                           	psect	text1
+   196  0040                     __ptext1:	
+   197 ;; *************** function _POWER_INITIAL *****************
+   198 ;; Defined at:
+   199 ;;		line 50 in file "test_60f01x_pa_int.C"
+   200 ;; Parameters:    Size  Location     Type
+   201 ;;		None
+   202 ;; Auto vars:     Size  Location     Type
+   203 ;;		None
+   204 ;; Return value:  Size  Location     Type
+   205 ;;                  1    wreg      void 
+   206 ;; Registers used:
+   207 ;;		wreg, status,2
+   208 ;; Tracked objects:
+   209 ;;		On entry : B00/0
+   210 ;;		On exit  : B00/0
+   211 ;;		Unchanged: A00/0
+   212 ;; Data sizes:     COMMON   BANK0
+   213 ;;      Params:         0       0
+   214 ;;      Locals:         0       0
+   215 ;;      Temps:          0       0
+   216 ;;      Totals:         0       0
+   217 ;;Total ram usage:        0 bytes
+   218 ;; Hardware stack levels used:    1
+   219 ;; Hardware stack levels required when called:    1
+   220 ;; This function calls:
+   221 ;;		Nothing
+   222 ;; This function is called by:
+   223 ;;		_main
+   224 ;; This function uses a non-reentrant model
+   225 ;;
+   226                           
+   227                           
+   228                           ;psect for function _POWER_INITIAL
+   229  0040                     _POWER_INITIAL:	
+   230                           
+   231                           ;test_60f01x_pa_int.C: 52: OSCCON = 0B01110001;
+   232                           
+   233                           ;incstack = 0
+   234                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   235  0040  3071               	movlw	113
+   236  0041  1683               	bsf	3,5	;RP0=1, select bank1
+   237  0042  008F               	movwf	15	;volatile
+   238                           
+   239                           ;test_60f01x_pa_int.C: 53: INTCON = 0;
+   240  0043  018B               	clrf	11	;volatile
+   241                           
+   242                           ;test_60f01x_pa_int.C: 55: PORTA = 0B00000000;
+   243  0044  1283               	bcf	3,5	;RP0=0, select bank0
+   244  0045  0185               	clrf	5	;volatile
+   245                           
+   246                           ;test_60f01x_pa_int.C: 56: TRISA = 0B11101111;
+   247  0046  30EF               	movlw	239
+   248  0047  1683               	bsf	3,5	;RP0=1, select bank1
+   249  0048  0085               	movwf	5	;volatile
+   250                           
+   251                           ;test_60f01x_pa_int.C: 58: WPUA = 0B00000000;
+   252  0049  0195               	clrf	21	;volatile
+   253                           
+   254                           ;test_60f01x_pa_int.C: 60: OPTION = 0B00001000;
+   255  004A  3008               	movlw	8
+   256  004B  0081               	movwf	1	;volatile
+   257                           
+   258                           ;test_60f01x_pa_int.C: 61: MSCKCON = 0B00000000;
+   259  004C  1283               	bcf	3,5	;RP0=0, select bank0
+   260  004D  019B               	clrf	27	;volatile
+   261  004E  0008               	return
+   262  004F                     __end_of_POWER_INITIAL:	
+   263                           
+   264                           	psect	text2
+   265  004F                     __ptext2:	
+   266 ;; *************** function _PA2_Level_Change_INITIAL *****************
+   267 ;; Defined at:
+   268 ;;		line 120 in file "test_60f01x_pa_int.C"
+   269 ;; Parameters:    Size  Location     Type
+   270 ;;		None
+   271 ;; Auto vars:     Size  Location     Type
+   272 ;;		None
+   273 ;; Return value:  Size  Location     Type
+   274 ;;                  1    wreg      void 
+   275 ;; Registers used:
+   276 ;;		wreg
+   277 ;; Tracked objects:
+   278 ;;		On entry : 0/0
+   279 ;;		On exit  : 100/100
+   280 ;;		Unchanged: 0/0
+   281 ;; Data sizes:     COMMON   BANK0
+   282 ;;      Params:         0       0
+   283 ;;      Locals:         0       0
+   284 ;;      Temps:          0       0
+   285 ;;      Totals:         0       0
+   286 ;;Total ram usage:        0 bytes
+   287 ;; Hardware stack levels used:    1
+   288 ;; Hardware stack levels required when called:    1
+   289 ;; This function calls:
+   290 ;;		Nothing
+   291 ;; This function is called by:
+   292 ;;		_main
+   293 ;; This function uses a non-reentrant model
+   294 ;;
+   295                           
+   296                           
+   297                           ;psect for function _PA2_Level_Change_INITIAL
+   298  004F                     _PA2_Level_Change_INITIAL:	
+   299                           
+   300                           ;test_60f01x_pa_int.C: 122: TRISA2 =1;
+   301                           
+   302                           ;incstack = 0
+   303                           ; Regs used in _PA2_Level_Change_INITIAL: [wreg]
+   304  004F  1683               	bsf	3,5	;RP0=1, select bank1
+   305  0050  1505               	bsf	5,2	;volatile
+   306                           
+   307                           ;test_60f01x_pa_int.C: 123: ReadAPin = PORTA;
+   308  0051  1283               	bcf	3,5	;RP0=0, select bank0
+   309  0052  0805               	movf	5,w	;volatile
+   310                           
+   311                           ;test_60f01x_pa_int.C: 124: PAIF =0;
+   312  0053  100B               	bcf	11,0	;volatile
+   313                           
+   314                           ;test_60f01x_pa_int.C: 125: IOCA2 =1;
+   315  0054  1683               	bsf	3,5	;RP0=1, select bank1
+   316  0055  1516               	bsf	22,2	;volatile
+   317                           
+   318                           ;test_60f01x_pa_int.C: 126: PAIE =1;
+   319  0056  158B               	bsf	11,3	;volatile
+   320  0057  0008               	return
+   321  0058                     __end_of_PA2_Level_Change_INITIAL:	
+   322                           
+   323                           	psect	text3
+   324  0020                     __ptext3:	
+   325 ;; *************** function _DelayMs *****************
+   326 ;; Defined at:
+   327 ;;		line 86 in file "test_60f01x_pa_int.C"
+   328 ;; Parameters:    Size  Location     Type
+   329 ;;  Time            1    wreg     unsigned char 
+   330 ;; Auto vars:     Size  Location     Type
+   331 ;;  Time            1    4[COMMON] unsigned char 
+   332 ;;  b               1    6[COMMON] unsigned char 
+   333 ;;  a               1    5[COMMON] unsigned char 
+   334 ;; Return value:  Size  Location     Type
+   335 ;;                  1    wreg      void 
+   336 ;; Registers used:
+   337 ;;		wreg, status,2, status,0, pclath, cstack
+   338 ;; Tracked objects:
+   339 ;;		On entry : 100/0
+   340 ;;		On exit  : 0/0
+   341 ;;		Unchanged: 0/0
+   342 ;; Data sizes:     COMMON   BANK0
+   343 ;;      Params:         0       0
+   344 ;;      Locals:         3       0
+   345 ;;      Temps:          0       0
+   346 ;;      Totals:         3       0
+   347 ;;Total ram usage:        3 bytes
+   348 ;; Hardware stack levels used:    1
+   349 ;; Hardware stack levels required when called:    2
+   350 ;; This function calls:
+   351 ;;		_DelayUs
+   352 ;; This function is called by:
+   353 ;;		_main
+   354 ;; This function uses a non-reentrant model
+   355 ;;
+   356                           
+   357                           
+   358                           ;psect for function _DelayMs
+   359  0020                     _DelayMs:	
+   360                           
+   361                           ;incstack = 0
+   362                           ; Regs used in _DelayMs: [wreg+status,2+status,0+pclath+cstack]
+   363                           ;DelayMs@Time stored from wreg
+   364  0020  00F4               	movwf	DelayMs@Time
+   365                           
+   366                           ;test_60f01x_pa_int.C: 88: unsigned char a,b;
+   367                           ;test_60f01x_pa_int.C: 89: for(a=0;a<Time;a++)
+   368  0021  01F5               	clrf	DelayMs@a
+   369  0022                     l886:	
+   370  0022  0874               	movf	DelayMs@Time,w
+   371  0023  0275               	subwf	DelayMs@a,w
+   372  0024  1803               	btfsc	3,0
+   373  0025  0008               	return
+   374                           
+   375                           ;test_60f01x_pa_int.C: 90: {
+   376                           ;test_60f01x_pa_int.C: 91: for(b=0;b<5;b++)
+   377  0026  01F6               	clrf	DelayMs@b
+   378  0027                     l878:	
+   379                           
+   380                           ;test_60f01x_pa_int.C: 92: {
+   381                           ;test_60f01x_pa_int.C: 93: DelayUs(98);
+   382  0027  3062               	movlw	98
+   383  0028  2058               	fcall	_DelayUs
+   384  0029  3005               	movlw	5
+   385  002A  0AF6               	incf	DelayMs@b,f
+   386  002B  0276               	subwf	DelayMs@b,w
+   387  002C  1C03               	skipc
+   388  002D  2827               	goto	l878
+   389  002E  0AF5               	incf	DelayMs@a,f
+   390  002F  2822               	goto	l886
+   391  0030                     __end_of_DelayMs:	
+   392                           
+   393                           	psect	text4
+   394  0058                     __ptext4:	
+   395 ;; *************** function _DelayUs *****************
+   396 ;; Defined at:
+   397 ;;		line 72 in file "test_60f01x_pa_int.C"
+   398 ;; Parameters:    Size  Location     Type
+   399 ;;  Time            1    wreg     unsigned char 
+   400 ;; Auto vars:     Size  Location     Type
+   401 ;;  Time            1    2[COMMON] unsigned char 
+   402 ;;  a               1    3[COMMON] unsigned char 
+   403 ;; Return value:  Size  Location     Type
+   404 ;;                  1    wreg      void 
+   405 ;; Registers used:
+   406 ;;		wreg, status,2, status,0
+   407 ;; Tracked objects:
+   408 ;;		On entry : 0/0
+   409 ;;		On exit  : 0/0
+   410 ;;		Unchanged: 0/0
+   411 ;; Data sizes:     COMMON   BANK0
+   412 ;;      Params:         0       0
+   413 ;;      Locals:         2       0
+   414 ;;      Temps:          0       0
+   415 ;;      Totals:         2       0
+   416 ;;Total ram usage:        2 bytes
+   417 ;; Hardware stack levels used:    1
+   418 ;; Hardware stack levels required when called:    1
+   419 ;; This function calls:
+   420 ;;		Nothing
+   421 ;; This function is called by:
+   422 ;;		_DelayMs
+   423 ;; This function uses a non-reentrant model
+   424 ;;
+   425                           
+   426                           
+   427                           ;psect for function _DelayUs
+   428  0058                     _DelayUs:	
+   429                           
+   430                           ;incstack = 0
+   431                           ; Regs used in _DelayUs: [wreg+status,2+status,0]
+   432                           ;DelayUs@Time stored from wreg
+   433  0058  00F2               	movwf	DelayUs@Time
+   434                           
+   435                           ;test_60f01x_pa_int.C: 74: unsigned char a;
+   436                           ;test_60f01x_pa_int.C: 75: for(a=0;a<Time;a++)
+   437  0059  01F3               	clrf	DelayUs@a
+   438  005A                     l858:	
+   439  005A  0872               	movf	DelayUs@Time,w
+   440  005B  0273               	subwf	DelayUs@a,w
+   441  005C  1803               	btfsc	3,0
+   442  005D  0008               	return
+   443                           
+   444                           ;test_60f01x_pa_int.C: 76: {
+   445                           ;test_60f01x_pa_int.C: 77: __nop();
+   446  005E  0000               	nop
+   447  005F  0AF3               	incf	DelayUs@a,f
+   448  0060  285A               	goto	l858
+   449  0061                     __end_of_DelayUs:	
+   450                           
+   451                           	psect	text5
+   452  0030                     __ptext5:	
+   453 ;; *************** function _ISR *****************
+   454 ;; Defined at:
+   455 ;;		line 33 in file "test_60f01x_pa_int.C"
+   456 ;; Parameters:    Size  Location     Type
+   457 ;;		None
+   458 ;; Auto vars:     Size  Location     Type
+   459 ;;		None
+   460 ;; Return value:  Size  Location     Type
+   461 ;;                  1    wreg      void 
+   462 ;; Registers used:
+   463 ;;		wreg
+   464 ;; Tracked objects:
+   465 ;;		On entry : 0/0
+   466 ;;		On exit  : 0/0
+   467 ;;		Unchanged: 0/0
+   468 ;; Data sizes:     COMMON   BANK0
+   469 ;;      Params:         0       0
+   470 ;;      Locals:         0       0
+   471 ;;      Temps:          2       0
+   472 ;;      Totals:         2       0
+   473 ;;Total ram usage:        2 bytes
+   474 ;; Hardware stack levels used:    1
+   475 ;; This function calls:
+   476 ;;		Nothing
+   477 ;; This function is called by:
+   478 ;;		Interrupt level 1
+   479 ;; This function uses a non-reentrant model
+   480 ;;
+   481                           
+   482                           
+   483                           ;psect for function _ISR
+   484  0030                     _ISR:	
+   485                           
+   486                           ;test_60f01x_pa_int.C: 36: if(PAIE && PAIF)
+   487  0030  198B               	btfsc	11,3	;volatile
+   488  0031  1C0B               	btfss	11,0	;volatile
+   489  0032  2839               	goto	i1l440
+   490                           
+   491                           ;test_60f01x_pa_int.C: 37: {
+   492                           ;test_60f01x_pa_int.C: 38: ReadAPin = PORTA;
+   493  0033  1283               	bcf	3,5	;RP0=0, select bank0
+   494  0034  0805               	movf	5,w	;volatile
+   495                           
+   496                           ;test_60f01x_pa_int.C: 39: PAIF = 0;
+   497  0035  100B               	bcf	11,0	;volatile
+   498                           
+   499                           ;test_60f01x_pa_int.C: 40: PAIE = 0;
+   500  0036  118B               	bcf	11,3	;volatile
+   501                           
+   502                           ;test_60f01x_pa_int.C: 41: IOCA2 =0;
+   503  0037  1683               	bsf	3,5	;RP0=1, select bank1
+   504  0038  1116               	bcf	22,2	;volatile
+   505  0039                     i1l440:	
+   506  0039  0871               	movf	??_ISR+1,w
+   507  003A  008A               	movwf	10
+   508  003B  0E70               	swapf	??_ISR^(0+-128),w
+   509  003C  0083               	movwf	3
+   510  003D  0EFE               	swapf	126,f
+   511  003E  0E7E               	swapf	126,w
+   512  003F  0009               	retfie
+   513  0040                     __end_of_ISR:	
+   514  007E                     btemp	set	126	;btemp
+   515  007E                     wtemp0	set	126
+   516                           
+   517                           	psect	intentry
+   518  0004                     __pintentry:	
+   519                           ;incstack = 0
+   520                           ; Regs used in _ISR: [wreg]
+   521                           
+   522  0004                     interrupt_function:	
+   523  007E                     saved_w	set	btemp
+   524  0004  00FE               	movwf	btemp
+   525  0005  0E03               	swapf	3,w
+   526  0006  00F0               	movwf	??_ISR
+   527  0007  080A               	movf	10,w
+   528  0008  00F1               	movwf	??_ISR+1
+   529  0009  2830               	ljmp	_ISR
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  1
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      7       8
+    BANK0            48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_DelayMs
+    _DelayMs->_DelayUs
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0      90
+                            _DelayMs
+           _PA2_Level_Change_INITIAL
+                      _POWER_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _PA2_Level_Change_INITIAL                             0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _DelayMs                                              3     3      0      90
+                                              4 COMMON     3     3      0
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (2) _DelayUs                                              2     2      0      30
+                                              2 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _ISR                                                  2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _DelayMs
+     _DelayUs
+   _PA2_Level_Change_INITIAL
+   _POWER_INITIAL
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      7       8       1       57.1%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       8       3        0.0%
+BITBANK0            30      0       0       4        0.0%
+BANK0               30      0       0       5        0.0%
+ABS                  0      0       8       6        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Fri Oct 15 16:54:00 2021
+
+                              l474 000F                                l912 000E  
+                              l858 005A                                l878 0027  
+                              l886 0022                                _GIE 005F  
+                              _PA4 002C                                _ISR 0030  
+                             ?_ISR 0070                               _PAIE 005B  
+                             _PAIF 0058                               _WPUA 0095  
+                             _main 000D                               btemp 007E  
+                             start 000A                    __end_of_DelayMs 0030  
+                  __end_of_DelayUs 0061                              ??_ISR 0070  
+                            ?_main 0070                              _IOCA2 04B2  
+                            i1l440 0039                              _PORTA 0005  
+                            _TRISA 0085                              pclath 000A  
+                            status 0003                              wtemp0 007E  
+                  __initialization 000B                       __end_of_main 0020  
+                           ??_main 0077                             _INTCON 000B  
+                        ??_DelayMs 0074                          ??_DelayUs 0072  
+                           _OSCCON 008F                             _FCount 0077  
+                           _OPTION 0081                             _TRISA2 042A  
+__size_of_PA2_Level_Change_INITIAL 0009          ?_PA2_Level_Change_INITIAL 0070  
+                           saved_w 007E              __end_of_POWER_INITIAL 004F  
+          __end_of__initialization 000B                     __pcstackCOMMON 0070  
+                       __pnvCOMMON 0077                         __pmaintext 000D  
+                       __pintentry 0004                            _MSCKCON 001B  
+                          _DelayMs 0020                            _DelayUs 0058  
+                          __ptext1 0040                            __ptext2 004F  
+                          __ptext3 0020                            __ptext4 0058  
+                          __ptext5 0030                       __size_of_ISR 0010  
+             end_of_initialization 000B   __end_of_PA2_Level_Change_INITIAL 0058  
+              start_initialization 000B                        __end_of_ISR 0040  
+         _PA2_Level_Change_INITIAL 004F             __size_of_POWER_INITIAL 000F  
+                        ___latbits 0000                           ?_DelayMs 0070  
+                         ?_DelayUs 0070                  interrupt_function 0004  
+                    _POWER_INITIAL 0040                           DelayMs@a 0075  
+                         DelayMs@b 0076                           DelayUs@a 0073  
+                      DelayMs@Time 0074                     ?_POWER_INITIAL 0070  
+                      DelayUs@Time 0072                   __size_of_DelayMs 0010  
+                 __size_of_DelayUs 0009         ??_PA2_Level_Change_INITIAL 0072  
+                    __size_of_main 0013                    ??_POWER_INITIAL 0072  
+                         intlevel1 0000  

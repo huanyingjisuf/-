@@ -1,0 +1,335 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+reset_vec CODE 0 0 0 2 2
+end_init CODE 0 B B 2 2
+$test_61f13x_int.obj
+cinit CODE 0 D D 3 2
+text1 CODE 0 72 72 15 2
+text2 CODE 0 87 87 9 2
+text3 CODE 0 3B 3B 1C 2
+text5 CODE 0 10 10 2B 2
+nvBANK0 BANK0 1 25 25 1 1
+maintext CODE 0 57 57 1B 2
+cstackCOMMON COMMON 1 70 70 7 1
+cstackBANK0 BANK0 1 20 20 5 1
+intentry CODE 0 4 4 7 2
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 26-6F 1
+RAM A0-EF 1
+RAM 120-16F 1
+BANK0 26-6F 1
+BANK1 A0-EF 1
+BANK2 120-16F 1
+CONST 2-3 2
+CONST 90-BFF 2
+ENTRY 2-3 2
+ENTRY 90-BFF 2
+IDLOC 2000-2003 2
+STACK A0-EF 1
+CODE 2-3 2
+CODE 90-BFF 2
+SFR0 0-1F 1
+SFR1 80-9F 1
+SFR2 100-11F 1
+SFR3 180-1EF 1
+COMMON 77-7D 1
+CONFIG 2007-2007 2
+EEDATA 2100-217F 2
+STRCODE 2-3 2
+STRCODE 90-BFF 2
+STRING 2-3 2
+STRING 90-BFF 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$test_61f13x_int.obj
+D cinit CODE >79:C:\Users\ADMIN\AppData\Local\Temp\s1m98.
+D cinit CODE >82:C:\Users\ADMIN\AppData\Local\Temp\s1m98.
+D cinit CODE >88:C:\Users\ADMIN\AppData\Local\Temp\s1m98.
+D cinit CODE >90:C:\Users\ADMIN\AppData\Local\Temp\s1m98.
+E cinit CODE >91:C:\Users\ADMIN\AppData\Local\Temp\s1m98.
+4 intentry CODE >101:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+10 text5 CODE >101:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+10 text5 CODE >103:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+12 text5 CODE >105:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+15 text5 CODE >106:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+16 text5 CODE >107:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+17 text5 CODE >109:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+19 text5 CODE >110:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+20 text5 CODE >59:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+21 text5 CODE >62:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+26 text5 CODE >64:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+2B text5 CODE >66:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+2E text5 CODE >64:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+30 text5 CODE >62:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+32 text5 CODE >45:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+33 text5 CODE >48:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+38 text5 CODE >50:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+39 text5 CODE >48:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+3B text3 CODE >59:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+3C text3 CODE >62:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+41 text3 CODE >64:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+42 text3 CODE >66:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+45 text3 CODE >64:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+4A text3 CODE >62:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+4C text3 CODE >45:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+4D text3 CODE >48:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+52 text3 CODE >50:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+53 text3 CODE >48:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+87 text2 CODE >117:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+87 text2 CODE >119:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+89 text2 CODE >120:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+8B text2 CODE >121:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+8D text2 CODE >122:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+8E text2 CODE >123:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+8F text2 CODE >124:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+72 text1 CODE >76:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+72 text1 CODE >78:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+75 text1 CODE >79:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+76 text1 CODE >80:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+78 text1 CODE >82:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+7A text1 CODE >83:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+7D text1 CODE >85:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+7F text1 CODE >86:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+81 text1 CODE >88:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+82 text1 CODE >90:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+83 text1 CODE >92:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+86 text1 CODE >94:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+57 maintext CODE >131:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+57 maintext CODE >133:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+5A maintext CODE >136:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+5D maintext CODE >137:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+5D maintext CODE >138:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+5E maintext CODE >139:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+62 maintext CODE >140:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+63 maintext CODE >141:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+67 maintext CODE >136:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+6C maintext CODE >143:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+6F maintext CODE >144:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+70 maintext CODE >145:D:\辉芒微开发资料\ft61f13x-c语言\test_61f13x_INT\test_61f13x_INT.C
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 1 0 ABS 0 - test_61f13x_int.obj
+__size_of_DelayMs 0 0 ABS 0 - test_61f13x_int.obj
+__size_of_DelayUs 0 0 ABS 0 - test_61f13x_int.obj
+__Hspace_0 90 0 ABS 0 - -
+__Hspace_1 77 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+__size_of_INT_INITIAL 0 0 ABS 0 - test_61f13x_int.obj
+_POWER_INITIAL E4 0 CODE 0 text1 test_61f13x_int.obj
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+__Hstrings 0 0 ABS 0 strings -
+_INTE 5C 0 ABS 0 - test_61f13x_int.obj
+_INTF 59 0 ABS 0 - test_61f13x_int.obj
+_WPUA 95 0 ABS 0 - test_61f13x_int.obj
+_WPUC 93 0 ABS 0 - test_61f13x_int.obj
+___sp 0 0 STACK 2 stack C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+_main AE 0 CODE 0 maintext test_61f13x_int.obj
+btemp 7E 0 ABS 0 - test_61f13x_int.obj
+start 16 0 CODE 0 init C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+__size_of_main 0 0 ABS 0 - test_61f13x_int.obj
+DelayUs@Time 20 0 BANK0 1 cstackBANK0 test_61f13x_int.obj
+__Hpowerup 0 0 CODE 0 powerup -
+intlevel0 0 0 ENTRY 0 functab C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+intlevel1 0 0 ENTRY 0 functab C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+intlevel2 0 0 ENTRY 0 functab C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+intlevel3 0 0 ENTRY 0 functab C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+intlevel4 0 0 ENTRY 0 functab C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+intlevel5 0 0 ENTRY 0 functab C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+wtemp0 7E 0 ABS 0 - test_61f13x_int.obj
+__Hfunctab 0 0 ENTRY 0 functab -
+__Hclrtext 0 0 ABS 0 clrtext -
+__end_ofi1_DelayMs 64 0 CODE 0 text5 test_61f13x_int.obj
+__end_ofi1_DelayUs 76 0 CODE 0 text5 test_61f13x_int.obj
+__size_ofi1_DelayMs 0 0 ABS 0 - test_61f13x_int.obj
+__size_ofi1_DelayUs 0 0 ABS 0 - test_61f13x_int.obj
+__end_of_DelayMs 98 0 CODE 0 text3 test_61f13x_int.obj
+__end_of_DelayUs AE 0 CODE 0 text3 test_61f13x_int.obj
+_ANSEL0 11E 0 ABS 0 - test_61f13x_int.obj
+__Hpa_nodes0 0 0 ABS 0 pa_nodes0 -
+__size_of_POWER_INITIAL 0 0 ABS 0 - test_61f13x_int.obj
+i1_DelayMs 40 0 CODE 0 text5 test_61f13x_int.obj
+i1_DelayUs 64 0 CODE 0 text5 test_61f13x_int.obj
+_FCount 25 0 BANK0 1 nvBANK0 test_61f13x_int.obj
+__Lmaintext 0 0 ABS 0 maintext -
+__LnvBANK0 0 0 ABS 0 nvBANK0 -
+_INTCON B 0 ABS 0 - test_61f13x_int.obj
+_INTEDG 40E 0 ABS 0 - test_61f13x_int.obj
+__Lpa_nodes0 0 0 ABS 0 pa_nodes0 -
+i1DelayUs@Time 70 0 COMMON 1 cstackCOMMON test_61f13x_int.obj
+__end_of_POWER_INITIAL 10E 0 CODE 0 text1 test_61f13x_int.obj
+start_initialization 1A 0 CODE 0 cinit test_61f13x_int.obj
+_OPTION 81 0 ABS 0 - test_61f13x_int.obj
+_OSCCON 8F 0 ABS 0 - test_61f13x_int.obj
+_INT_INITIAL 10E 0 CODE 0 text2 test_61f13x_int.obj
+__pcstackBANK0 20 0 BANK0 1 cstackBANK0 test_61f13x_int.obj
+_TRISA4 42C 0 ABS 0 - test_61f13x_int.obj
+___int_sp 0 0 STACK 2 stack C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 ABS 0 bank1 -
+__Hbank2 0 0 ABS 0 bank2 -
+__Hbank3 0 0 BANK3 1 bank3 -
+__Hcinit 20 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hstack 0 0 STACK 2 stack -
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 0 0 CONFIG 0 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 ABS 0 bank1 -
+__Lbank2 0 0 ABS 0 bank2 -
+__Lbank3 0 0 BANK3 1 bank3 -
+__Lcinit 1A 0 CODE 0 cinit -
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lstack 0 0 STACK 2 stack -
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 16 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Hsfr2 0 0 ABS 0 sfr2 -
+__Hsfr3 0 0 ABS 0 sfr3 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 16 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Lsfr2 0 0 ABS 0 sfr2 -
+__Lsfr3 0 0 ABS 0 sfr3 -
+__Ltext 0 0 ABS 0 text -
+__pnvBANK0 25 0 BANK0 1 nvBANK0 test_61f13x_int.obj
+__LcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_GIE 5F 0 ABS 0 - test_61f13x_int.obj
+_ISR 20 0 CODE 0 text5 test_61f13x_int.obj
+_PA2 2A 0 ABS 0 - test_61f13x_int.obj
+__S0 90 0 ABS 0 - -
+__S1 77 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+DelayMs@a 23 0 BANK0 1 cstackBANK0 test_61f13x_int.obj
+DelayMs@b 24 0 BANK0 1 cstackBANK0 test_61f13x_int.obj
+DelayUs@a 21 0 BANK0 1 cstackBANK0 test_61f13x_int.obj
+saved_w 7E 0 ABS 0 - test_61f13x_int.obj
+__end_of_ISR 40 0 CODE 0 text5 test_61f13x_int.obj
+__HnvBANK0 0 0 ABS 0 nvBANK0 -
+_DelayMs 76 0 CODE 0 text3 test_61f13x_int.obj
+_DelayUs 98 0 CODE 0 text3 test_61f13x_int.obj
+__Lintentry 8 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+__pmaintext AE 0 CODE 0 maintext test_61f13x_int.obj
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 0 0 CONFIG 0 config -
+stackhi 0 0 ABS 0 - C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+stacklo 0 0 ABS 0 - C:\Users\ADMIN\AppData\Local\Temp\s1m98.obj
+DelayMs@Time 22 0 BANK0 1 cstackBANK0 test_61f13x_int.obj
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__HcstackBANK0 0 0 ABS 0 cstackBANK0 -
+__Lend_init 16 0 CODE 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization 1A 0 CODE 0 cinit test_61f13x_int.obj
+__Hintentry 16 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__end_of_INT_INITIAL 120 0 CODE 0 text2 test_61f13x_int.obj
+__Hreset_vec 4 0 CODE 0 reset_vec -
+__ptext1 E4 0 CODE 0 text1 test_61f13x_int.obj
+__ptext2 10E 0 CODE 0 text2 test_61f13x_int.obj
+__ptext3 76 0 CODE 0 text3 test_61f13x_int.obj
+__ptext4 98 0 CODE 0 text3 test_61f13x_int.obj
+__ptext5 20 0 CODE 0 text5 test_61f13x_int.obj
+__ptext6 40 0 CODE 0 text5 test_61f13x_int.obj
+__ptext7 64 0 CODE 0 text5 test_61f13x_int.obj
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+__end_of__initialization 1A 0 CODE 0 cinit test_61f13x_int.obj
+__Lfunctab 0 0 ENTRY 0 functab -
+__Lclrtext 0 0 ABS 0 clrtext -
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON test_61f13x_int.obj
+i1DelayMs@Time 72 0 COMMON 1 cstackCOMMON test_61f13x_int.obj
+__Hend_init 1A 0 CODE 0 end_init -
+__end_of_main E4 0 CODE 0 maintext test_61f13x_int.obj
+_PORTA 5 0 ABS 0 - test_61f13x_int.obj
+_PORTC 7 0 ABS 0 - test_61f13x_int.obj
+_TRISA 85 0 ABS 0 - test_61f13x_int.obj
+_TRISC 87 0 ABS 0 - test_61f13x_int.obj
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+interrupt_function 8 0 CODE 0 intentry test_61f13x_int.obj
+__pintentry 8 0 CODE 0 intentry test_61f13x_int.obj
+i1DelayMs@a 73 0 COMMON 1 cstackCOMMON test_61f13x_int.obj
+i1DelayMs@b 74 0 COMMON 1 cstackCOMMON test_61f13x_int.obj
+i1DelayUs@a 71 0 COMMON 1 cstackCOMMON test_61f13x_int.obj
+__size_of_ISR 0 0 ABS 0 - test_61f13x_int.obj
+__initialization 1A 0 CODE 0 cinit test_61f13x_int.obj
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cstackCOMMON 1 70 70 7 1
+cstackBANK0 1 20 20 6 1
+intentry 0 4 8 8C 2
+reset_vec 0 0 0 2 2

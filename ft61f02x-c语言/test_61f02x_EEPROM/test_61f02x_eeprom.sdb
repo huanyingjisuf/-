@@ -1,0 +1,87 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F02X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"32 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT61F02x\test_61f02x_EEPROM\test_61f02x_EEPROM.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"56
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+"73
+[v _EEPROMwrite EEPROMwrite `(v  1 e 1 0 ]
+"91
+[v _main main `(v  1 e 1 0 ]
+"78 d:\ide3.0.3_6c03\data\include\FT61F02X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"129
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"184
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"193
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"218
+[v _EEIF EEIF `VEb  1 e 0 @103 ]
+"449
+[v _CMCON0 CMCON0 `VEuc  1 e 1 @25 ]
+"494
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"574
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"603
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"633
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"660
+[v _WPUC WPUC `VEuc  1 e 1 @136 ]
+"778
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"866
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"971
+[v _EEDAT EEDAT `VEuc  1 e 1 @154 ]
+"976
+[v _EEADR EEADR `VEuc  1 e 1 @155 ]
+"981
+[v _EECON1 EECON1 `VEuc  1 e 1 @156 ]
+"983
+[v _RD RD `VEb  1 e 0 @1248 ]
+"1004
+[v _WR WR `VEb  1 e 0 @1256 ]
+"25 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT61F02x\test_61f02x_EEPROM\test_61f02x_EEPROM.C
+[v _EEReadData EEReadData `uc  1 e 1 0 ]
+"91
+[v _main main `(v  1 e 1 0 ]
+{
+"103
+} 0
+"32
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"49
+} 0
+"73
+[v _EEPROMwrite EEPROMwrite `(v  1 e 1 0 ]
+{
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 wreg ]
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 wreg ]
+[v EEPROMwrite@Data Data `uc  1 p 1 0 ]
+"75
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 1 ]
+"84
+} 0
+"56
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+{
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+"58
+[v EEPROMread@ReEEPROMread ReEEPROMread `uc  1 a 1 1 ]
+"56
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+"60
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 0 ]
+"64
+} 0

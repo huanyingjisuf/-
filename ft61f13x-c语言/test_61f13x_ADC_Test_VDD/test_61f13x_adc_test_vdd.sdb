@@ -1,0 +1,111 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F13X ]
+[d frameptr 6 ]
+"62 C:\Users\ADMIN\Desktop\IDE3.08\IDE3.0.8Beta\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Users\ADMIN\Desktop\IDE3.08\IDE3.0.8Beta\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"6 C:\Users\ADMIN\Desktop\IDE3.08\IDE3.0.8Beta\data\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"34 C:\Users\ADMIN\Desktop\ft61f13x-c”Ô—‘\test_61f13x_ADC_Test_VDD\test_61f13x_ADC_Test_VDD.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"56
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"70
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+"179
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+"197
+[v _main main `(v  1 e 1 0 ]
+"78 C:\Users\ADMIN\Desktop\IDE3.08\IDE3.0.8Beta\data\include\FT61F13X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"129
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"179
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"247
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"597
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"626
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"655
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"774
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"838
+[v _WPUC WPUC `VEuc  1 e 1 @147 ]
+"876
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"1146
+[v _WPUB WPUB `VEuc  1 e 1 @269 ]
+"1250
+[v _ADRESL ADRESL `VEuc  1 e 1 @273 ]
+"1255
+[v _ADRESH ADRESH `VEuc  1 e 1 @274 ]
+"1259
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @275 ]
+"1261
+[v _ADON ADON `VEb  1 e 0 @2200 ]
+"1287
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @276 ]
+"1318
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @277 ]
+"1456
+[v _ADCON3 ADCON3 `VEuc  1 e 1 @390 ]
+"1476
+[v _ADCMPH ADCMPH `VEuc  1 e 1 @391 ]
+"26 C:\Users\ADMIN\Desktop\ft61f13x-c”Ô—‘\test_61f13x_ADC_Test_VDD\test_61f13x_ADC_Test_VDD.C
+[v _adcData adcData `VEui  1 e 2 0 ]
+"27
+[v _VDD_Voltage VDD_Voltage `VEui  1 e 2 0 ]
+"197
+[v _main main `(v  1 e 1 0 ]
+{
+"212
+} 0
+"6 C:\Users\ADMIN\Desktop\IDE3.08\IDE3.0.8Beta\data\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient quotient `ui  1 a 2 4 ]
+"12
+[v ___lwdiv@counter counter `uc  1 a 1 6 ]
+"6
+[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
+"31
+} 0
+"34 C:\Users\ADMIN\Desktop\ft61f13x-c”Ô—‘\test_61f13x_ADC_Test_VDD\test_61f13x_ADC_Test_VDD.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"49
+} 0
+"179
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+{
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+"181
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 5 ]
+"190
+} 0
+"70
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+{
+"172
+} 0
+"56
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"58
+[v DelayUs@a a `uc  1 a 1 1 ]
+"56
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"59
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"63
+} 0

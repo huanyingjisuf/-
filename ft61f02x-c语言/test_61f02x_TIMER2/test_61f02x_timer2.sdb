@@ -1,0 +1,79 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F02X ]
+[d frameptr 6 ]
+"62 D:\IDE3.0.3_6C03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.3_6C03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"33 D:\FMD demo 11-19\C(Word+PDF)\FT61F02x\test_61f02x_TIMER2\TEST_61F02x_Timer2.c
+[v _ISR ISR `II(v  1 e 1 0 ]
+"47
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"76
+[v _TIMER2_INITIAL TIMER2_INITIAL `(v  1 e 1 0 ]
+"97
+[v _main main `(v  1 e 1 0 ]
+"78 D:\IDE3.0.3_6C03\data\include\FT61F02X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"92
+[v _PA3 PA3 `VEb  1 e 0 @43 ]
+"129
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"141
+[v _PC3 PC3 `VEb  1 e 0 @59 ]
+"184
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"192
+[v _PEIE PEIE `VEb  1 e 0 @94 ]
+"193
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"213
+[v _TMR2IF TMR2IF `VEb  1 e 0 @97 ]
+"289
+[v _TMR2 TMR2 `VEuc  1 e 1 @17 ]
+"293
+[v _T2CON T2CON `VEuc  1 e 1 @18 ]
+"297
+[v _TMR2ON TMR2ON `VEb  1 e 0 @146 ]
+"449
+[v _CMCON0 CMCON0 `VEuc  1 e 1 @25 ]
+"494
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"574
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"603
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"633
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"660
+[v _WPUC WPUC `VEuc  1 e 1 @136 ]
+"709
+[v _TMR2IE TMR2IE `VEb  1 e 0 @1121 ]
+"778
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"862
+[v _PR2 PR2 `VEuc  1 e 1 @146 ]
+"866
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"97 D:\FMD demo 11-19\C(Word+PDF)\FT61F02x\test_61f02x_TIMER2\TEST_61F02x_Timer2.c
+[v _main main `(v  1 e 1 0 ]
+{
+"114
+} 0
+"76
+[v _TIMER2_INITIAL TIMER2_INITIAL `(v  1 e 1 0 ]
+{
+"90
+} 0
+"47
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"69
+} 0
+"33
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"40
+} 0

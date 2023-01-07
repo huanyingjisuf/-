@@ -1,0 +1,130 @@
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:27:31 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 BROWSE DEBUG PRINT(.\lst\main.lst) OBJECT(.\output\main.
+                    -obj)
+
+line level    source
+
+   1          
+   2          #ifndef _MAIN_C_
+   3          #define _MAIN_C_
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "include/ca51f_config.h"               
+   6          #include "include/ca51f3sfr.h"
+   7          #include "include/ca51f3xsfr.h"
+   8          #include "include/gpiodef_f3.h"
+   9          #include "include/system_clock.h"
+  10          
+  11          #include "include/uart.h"
+  12          #include "include/delay.h"
+  13          #include <intrins.h>
+  14          /*********************************************************************************************************
+             -************/
+  15          /*********************************************************************************************************
+             -************
+  16                  IDLE模式例程，并简单演示:通过INT2中断来唤醒IDLE                                                                 
+  17          **********************************************************************************************************
+             -************/
+  18          
+  19          /******************************************************************************************************/
+  20          void INT2_init(void)
+  21          {
+  22   1              P10F = 1;                               //设置P10为输入引脚
+  23   1              INDEX = 0;                              //INDEX为带索引的寄存器，设置INDEX=0对应INT2
+  24   1              EPCON = (1<<7) | 8;             //设置P10为INT2外部中断引脚，下降沿触发
+  25   1              INT2EN = 1;                     //外部中断2中断使能
+  26   1              EPIE |= 0x01;                   //INT2中断使能
+  27   1              EA = 1;                                 //总中断使能
+  28   1      }
+  29          void INT2_ISR (void) interrupt 7
+  30          {
+  31   1              if(EPIF & 0x01)                 //判断外部中断2中断标志
+  32   1              {
+  33   2                      EPIF = 0x01;            //中断标志写1清0
+  34   2              }
+  35   1      }
+  36          /******************************************************************************************************/
+  37          void Idle(void)
+  38          {
+  39   1              /*
+  40   1              备注：在应用时还要把IO设置为省电状态，未使用到的IO尽量不要为悬浮状态。
+  41   1              */
+  42   1              Sys_Clk_Set_IRCL();             //由于进入IDLE模式不会关闭主时钟，所以进入IDLE前把主时钟设为低速时钟可显著降低功耗
+  43   1      //      Sys_Clk_Set_XOSCL();    //两个低速时钟二选一
+  44   1      #if (SYSCLK_SRC == PLL)         //如主时钟为PLL时钟，把主时钟设为低速时钟后关闭PLL时钟
+                      PLLCON = 0;
+              #endif          
+  47   1              I2CCON = 0;                             //关闭I2C，否则无法关闭主时钟
+  48   1              CKCON = 0;                              //所有时钟关闭
+  49   1              PWCON &= ~0x08;                 //设置LDO进入低功率模式
+  50   1              MECON |= (1<<6);                //设置 FLASH 进入深度睡眠状态
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:27:31 PAGE 2   
+
+  51   1              while(IDLSTH|IDLSTL);   //如果有中断未响应,等待中断被响应       
+  52   1              PCON = (PCON&0x84) | 0x01;//进入IDLE模式
+  53   1              _nop_();
+  54   1              _nop_();        
+  55   1              PWCON |= 0x08;                  //退出IDLE模式后，把LDO设回高功率模式
+  56   1                      
+  57   1              //系统时钟设置回高速时钟
+  58   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //系统时钟切换回PLL
+              #else
+  61   1              Sys_Clk_Set_IRCH();                                                     
+  62   1      #endif
+  63   1      }
+  64          /******************************************************************************************************/
+  65          void main(void)
+  66          {
+  67   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //设置系统时钟为PLL，PLL_Multiple为倍频倍数
+              #endif
+  70   1              
+  71   1      #ifdef UART0_EN
+  72   1              Uart0_Initial(UART0_BAUTRATE);  //初始化UART0
+  73   1      #endif
+  74   1              
+  75   1      #ifdef UART1_EN
+                      Uart1_Initial(UART1_BAUTRATE);  //初始化UART1
+              #endif
+  78   1              
+  79   1              EA = 1; 
+  80   1      
+  81   1              INT2_init();
+  82   1              
+  83   1              while(1)
+  84   1              {
+  85   2              #ifdef PRINT_EN
+  86   2                      uart_printf("idle\n");
+  87   2                      Delay_ms(1);
+  88   2              #endif          
+  89   2                      Idle();
+  90   2              #ifdef PRINT_EN
+  91   2                      uart_printf("exit\n");
+  92   2              #endif
+  93   2                      Delay_ms(1000);
+  94   2              }
+  95   1      }
+  96          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    129    ----
+   CONSTANT SIZE    =     12    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

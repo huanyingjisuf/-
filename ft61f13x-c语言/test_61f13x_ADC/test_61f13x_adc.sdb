@@ -1,0 +1,111 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F13X ]
+[d frameptr 6 ]
+"62 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"15 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"37 C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_ADC\test_61f13x_ADC.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"60
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"74
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+"182
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+"199
+[v _main main `(v  1 e 1 0 ]
+"78 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\include\FT61F13X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"129
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"179
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"247
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"597
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"626
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"655
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"774
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"838
+[v _WPUC WPUC `VEuc  1 e 1 @147 ]
+"876
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"1146
+[v _WPUB WPUB `VEuc  1 e 1 @269 ]
+"1250
+[v _ADRESL ADRESL `VEuc  1 e 1 @273 ]
+"1255
+[v _ADRESH ADRESH `VEuc  1 e 1 @274 ]
+"1259
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @275 ]
+"1261
+[v _ADON ADON `VEb  1 e 0 @2200 ]
+"1287
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @276 ]
+"1318
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @277 ]
+"1419
+[v _ANSEL0 ANSEL0 `VEuc  1 e 1 @286 ]
+"1456
+[v _ADCON3 ADCON3 `VEuc  1 e 1 @390 ]
+"1476
+[v _ADCMPH ADCMPH `VEuc  1 e 1 @391 ]
+"29 C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_ADC\test_61f13x_ADC.C
+[v _adcData adcData `VEui  1 e 2 0 ]
+"30
+[v _theVoltage theVoltage `VEui  1 e 2 0 ]
+"199
+[v _main main `(v  1 e 1 0 ]
+{
+"210
+} 0
+"15 c:\users\administrator\desktop\软件\ide3.0.3_6c03\data\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+{
+"17
+[v ___lmul@product product `ul  1 a 4 8 ]
+"15
+[v ___lmul@multiplier multiplier `ul  1 p 4 0 ]
+[v ___lmul@multiplicand multiplicand `ul  1 p 4 4 ]
+"129
+} 0
+"37 C:\Users\Administrator\Desktop\demo code 检查-2021_09_02\FMD DEMO CODE(word+pdf)\C\FT61F13X\test_61f13x_ADC\test_61f13x_ADC.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"53
+} 0
+"182
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+{
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+"184
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 5 ]
+"192
+} 0
+"74
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+{
+"175
+} 0
+"60
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"62
+[v DelayUs@a a `uc  1 a 1 1 ]
+"60
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"63
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"67
+} 0

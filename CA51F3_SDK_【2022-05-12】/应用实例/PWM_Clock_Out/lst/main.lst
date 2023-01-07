@@ -1,0 +1,116 @@
+C51 COMPILER V9.02   MAIN                                                                  11/21/2021 20:25:31 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 BROWSE DEBUG PRINT(.\lst\main.lst) OBJECT(.\output\main.
+                    -obj)
+
+line level    source
+
+   1          
+   2          #ifndef _MAIN_C_
+   3          #define _MAIN_C_
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "include/ca51f_config.h"               
+   6          #include "include/ca51f3sfr.h"
+   7          #include "include/ca51f3xsfr.h"
+   8          #include "include/gpiodef_f3.h"
+   9          #include "include/system_clock.h"
+  10          
+  11          #include "include/uart.h"
+  12          #include "include/pwm.h"
+  13          #include "include/delay.h"
+  14          #include <intrins.h>
+  15          /*********************************************************************************************************
+             -************
+  16                  本例程设置PWM0直接输出内部时钟
+  17          **********************************************************************************************************
+             -***********/
+  18          void main(void)
+  19          {
+  20   1      #ifdef LVD_RST_ENABLE
+  21   1              LVDCON = 0xE1;                                  //设置LVD复位电压为2V
+  22   1      #endif
+  23   1      
+  24   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //设置系统时钟为PLL，PLL_Multiple为倍频倍数
+              #endif
+  27   1              
+  28   1      #ifdef UART0_EN
+                      Uart0_Initial(UART0_BAUTRATE);  //初始化UART0
+              #endif
+  31   1              
+  32   1      #ifdef UART1_EN
+                      Uart1_Initial(UART1_BAUTRATE);  //初始化UART1
+              #endif
+  35   1      
+  36   1              EA = 1;                                                                                                 //开全局中断
+  37   1      
+  38   1      #ifdef PRINT_EN
+                      uart_printf("PWM Clock Out Demo Code\n");
+              #endif
+  41   1      
+  42   1              
+  43   1              CKCON |= IHCKE;                                 //打开IRCH时钟
+  44   1      //      CKCON |= ILCKE;                         //打开IRCL时钟
+  45   1      //      CKCON |= TFCKE;                         //打开TFRC时钟
+  46   1      
+  47   1      //      GPIO_Init(P32F,P32_XOSC_IN_SETTING);
+  48   1      //      GPIO_Init(P33F,P33_XOSC_OUT_SETTING);
+  49   1      //      CKCON |= XLCKE;
+  50   1      //      while(!(CKCON & XLSTA));
+  51   1      //      CKSEL = (CKSEL&0xF8) | CKSEL_XOSCL;             //打开XSOCL时钟
+C51 COMPILER V9.02   MAIN                                                                  11/21/2021 20:25:31 PAGE 2   
+
+  52   1      
+  53   1      
+  54   1      //      PLLCON = PLLON(1) | MULFT(7);
+  55   1      //      while(!(PLLCON & PLSTA));
+  56   1      //      CKSEL = (CKSEL&0xF8) | CKSEL_PLL;                       //打开PLL时钟
+  57   1      
+  58   1              
+  59   1              P15F = P15_PWM0_SETTING;                                                                //设置P15为PWM引脚功能
+  60   1      
+  61   1              INDEX = PWM_CH0;                                                                                                //设置INDEX值对应PWM0
+  62   1              PWMCON = TIE(0) | ZIE(0) | PIE(0) | NIE(0) | MS(0) | CKS_IH ;             //设置PWM时钟源为IRCH  
+  63   1      //      PWMCON = TIE(0) | ZIE(0) | PIE(0) | NIE(0) | MS(0) | CKS_IL ;             //设置PWM时钟源为IRCL
+  64   1      //      PWMCON = TIE(0) | ZIE(0) | PIE(0) | NIE(0) | MS(0) | CKS_XL ;             //设置PWM时钟源为XOSCL  
+  65   1      //      PWMCON = TIE(0) | ZIE(0) | PIE(0) | NIE(0) | MS(0) | CKS_TF ;             //设置PWM时钟源为TFRC 
+  66   1      //      PWMCON = TIE(0) | ZIE(0) | PIE(0) | NIE(0) | MS(0) | CKS_PLL ;          //设置PWM时钟源为PLL  
+  67   1              PWMCFG = TOG(0) | 0;                                                                                                                                                                                            
+  68   1              
+  69   1              //PWMDIV、PWMDUT都设置为0可直接输出时钟
+  70   1              PWMDIVH = 0;                    
+  71   1              PWMDIVL = 0;
+  72   1              PWMDUTH = 0;
+  73   1              PWMDUTL = 0;
+  74   1      
+  75   1              PWMUPD = (1<<PWM_CH0);                                                                  //PWMDIV、PWMDUT更新使能
+  76   1              while(PWMUPD);                                                                                                  //等待更新完成
+  77   1              PWMEN = (1<<PWM_CH0);                                                                           //PWM0使能
+  78   1              
+  79   1              while(1)
+  80   1              {
+  81   2              }
+  82   1      }
+  83          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     42    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

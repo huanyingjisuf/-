@@ -1,0 +1,362 @@
+//Deviec:FT61F02X
+//-----------------------Variable---------------------------------
+		_pwm_d		EQU		78H
+		_SAFlag		EQU		7AH
+//		PWM_INITIAL@SET_PR2		EQU		77H
+//		PWM_INITIAL@SET_PR2		EQU		C00000H
+//		pwm_duty_count@lsb22		EQU		74H
+//		pwm_duty_count@lsb23		EQU		76H
+//		DelayMs@Time		EQU		74H
+//		DelayMs@b		EQU		76H
+//		DelayMs@a		EQU		75H
+//		DelayMs@Time		EQU		C00000H
+//		DelayUs@Time		EQU		72H
+//		DelayUs@a		EQU		73H
+//		DelayUs@Time		EQU		C00000H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		LJUMP 	0AH 			//0000 	380A
+		ORG		0004H
+		STR 	7EH 			//0004 	01FE
+		SWAPR 	STATUS,0 		//0005 	0703
+		STR 	70H 			//0006 	01F0
+		LDR 	PCLATH,0 		//0007 	080A
+		STR 	71H 			//0008 	01F1
+		LJUMP 	95H 			//0009 	3895
+		LJUMP 	0BH 			//000A 	380B
+		CLRR 	STATUS 			//000B 	0103
+		ORG		000CH
+		LJUMP 	0DH 			//000C 	380D
+
+		//;TEST_61F02x_PWM.c: 190: POWER_INITIAL();
+		LCALL 	5CH 			//000D 	305C
+
+		//;TEST_61F02x_PWM.c: 191: TIMER1_INITIAL();
+		LCALL 	A5H 			//000E 	30A5
+
+		//;TEST_61F02x_PWM.c: 192: pwm_d = 10;
+		LDWI 	AH 			//000F 	2A0A
+		STR 	78H 			//0010 	01F8
+		CLRR 	79H 			//0011 	0179
+
+		//;TEST_61F02x_PWM.c: 193: PWM_INITIAL(99);
+		LDWI 	63H 			//0012 	2A63
+		LCALL 	72H 			//0013 	3072
+		ORG		0014H
+
+		//;TEST_61F02x_PWM.c: 195: P1AOE = 1;
+		BSR 	STATUS,5 		//0014 	1A83
+		BSR 	10H,0 			//0015 	1810
+
+		//;TEST_61F02x_PWM.c: 197: TRISC5 = 0;
+		BCR 	7H,5 			//0016 	1287
+
+		//;TEST_61F02x_PWM.c: 199: TMR2ON = 1;
+		BCR 	STATUS,5 		//0017 	1283
+		BSR 	12H,2 			//0018 	1912
+
+		//;TEST_61F02x_PWM.c: 200: SAFlag = 1;
+		BSR 	7AH,0 			//0019 	187A
+
+		//;TEST_61F02x_PWM.c: 202: {
+		//;TEST_61F02x_PWM.c: 203: if(SAFlag == 1)
+		BTSS 	7AH,0 			//001A 	1C7A
+		LJUMP 	28H 			//001B 	3828
+		ORG		001CH
+
+		//;TEST_61F02x_PWM.c: 204: {
+		//;TEST_61F02x_PWM.c: 205: pwm_d++;
+		INCR	78H,1 			//001C 	09F8
+		BTSC 	STATUS,2 		//001D 	1503
+		INCR	79H,1 			//001E 	09F9
+
+		//;TEST_61F02x_PWM.c: 206: if(pwm_d > 400)
+		LDWI 	1H 			//001F 	2A01
+		SUBWR 	79H,0 			//0020 	0C79
+		LDWI 	91H 			//0021 	2A91
+		BTSC 	STATUS,2 		//0022 	1503
+		SUBWR 	78H,0 			//0023 	0C78
+		ORG		0024H
+		BTSS 	STATUS,0 		//0024 	1C03
+		LJUMP 	32H 			//0025 	3832
+
+		//;TEST_61F02x_PWM.c: 207: {
+		//;TEST_61F02x_PWM.c: 208: SAFlag = 0;
+		BCR 	7AH,0 			//0026 	107A
+		LJUMP 	32H 			//0027 	3832
+
+		//;TEST_61F02x_PWM.c: 211: else
+		//;TEST_61F02x_PWM.c: 212: {
+		//;TEST_61F02x_PWM.c: 213: pwm_d--;
+		LDWI 	1H 			//0028 	2A01
+		SUBWR 	78H,1 			//0029 	0CF8
+		LDWI 	0H 			//002A 	2A00
+		BTSS 	STATUS,0 		//002B 	1C03
+		ORG		002CH
+		DECR 	79H,1 			//002C 	0DF9
+		SUBWR 	79H,1 			//002D 	0CF9
+
+		//;TEST_61F02x_PWM.c: 214: if(pwm_d == 0)
+		LDR 	78H,0 			//002E 	0878
+		IORWR 	79H,0 			//002F 	0379
+		BTSC 	STATUS,2 		//0030 	1503
+
+		//;TEST_61F02x_PWM.c: 215: {
+		//;TEST_61F02x_PWM.c: 216: SAFlag = 1;
+		BSR 	7AH,0 			//0031 	187A
+
+		//;TEST_61F02x_PWM.c: 217: }
+		//;TEST_61F02x_PWM.c: 218: }
+		//;TEST_61F02x_PWM.c: 219: pwm_duty_count();
+		LCALL 	36H 			//0032 	3036
+
+		//;TEST_61F02x_PWM.c: 220: DelayMs(10);
+		LDWI 	AH 			//0033 	2A0A
+		ORG		0034H
+		LCALL 	85H 			//0034 	3085
+		LJUMP 	1AH 			//0035 	381A
+
+		//;TEST_61F02x_PWM.c: 103: unsigned int lsb22;
+		//;TEST_61F02x_PWM.c: 104: unsigned char lsb23;
+		//;TEST_61F02x_PWM.c: 105: lsb22 = (unsigned char) pwm_d & 0B00000011;
+		LDR 	78H,0 			//0036 	0878
+		ANDWI 	3H 			//0037 	2403
+		STR 	74H 			//0038 	01F4
+		LDWI 	CFH 			//0039 	2ACF
+		CLRR 	75H 			//003A 	0175
+
+		//;TEST_61F02x_PWM.c: 106: CCP1CON = CCP1CON & 0B11001111;
+		BCR 	STATUS,5 		//003B 	1283
+		ORG		003CH
+		BCR 	STATUS,6 		//003C 	1303
+		ANDWR 	15H,1 			//003D 	0295
+		LDWI 	F0H 			//003E 	2AF0
+
+		//;TEST_61F02x_PWM.c: 107: lsb22 <<= 4;
+		SWAPR 	74H,1 			//003F 	07F4
+		SWAPR 	75H,1 			//0040 	07F5
+		ANDWR 	75H,1 			//0041 	02F5
+		LDR 	74H,0 			//0042 	0874
+		ANDWI 	FH 			//0043 	240F
+		ORG		0044H
+		IORWR 	75H,1 			//0044 	03F5
+		LDWI 	F0H 			//0045 	2AF0
+		ANDWR 	74H,1 			//0046 	02F4
+
+		//;TEST_61F02x_PWM.c: 108: lsb23 = (unsigned char)lsb22;
+		LDR 	74H,0 			//0047 	0874
+		STR 	76H 			//0048 	01F6
+
+		//;TEST_61F02x_PWM.c: 109: CCP1CON = CCP1CON | lsb23;
+		IORWR 	15H,1 			//0049 	0395
+
+		//;TEST_61F02x_PWM.c: 110: lsb22 = pwm_d >> 2;
+		LDR 	79H,0 			//004A 	0879
+		STR 	73H 			//004B 	01F3
+		ORG		004CH
+		LDR 	78H,0 			//004C 	0878
+		STR 	72H 			//004D 	01F2
+		BCR 	STATUS,0 		//004E 	1003
+		RRR	73H,1 			//004F 	06F3
+		RRR	72H,1 			//0050 	06F2
+		BCR 	STATUS,0 		//0051 	1003
+		RRR	73H,1 			//0052 	06F3
+		RRR	72H,1 			//0053 	06F2
+		ORG		0054H
+		LDR 	72H,0 			//0054 	0872
+		STR 	74H 			//0055 	01F4
+		LDR 	73H,0 			//0056 	0873
+		STR 	75H 			//0057 	01F5
+
+		//;TEST_61F02x_PWM.c: 111: lsb23 = (unsigned char)lsb22;
+		LDR 	74H,0 			//0058 	0874
+		STR 	76H 			//0059 	01F6
+
+		//;TEST_61F02x_PWM.c: 112: CCPR1L = lsb23;
+		STR 	13H 			//005A 	0193
+		RET		 					//005B 	0004
+		ORG		005CH
+
+		//;TEST_61F02x_PWM.c: 58: OSCCON = 0B01110001;
+		LDWI 	71H 			//005C 	2A71
+		BSR 	STATUS,5 		//005D 	1A83
+		STR 	FH 			//005E 	018F
+
+		//;TEST_61F02x_PWM.c: 59: INTCON = 0;
+		CLRR 	INTCON 			//005F 	010B
+
+		//;TEST_61F02x_PWM.c: 61: PORTA = 0B00000000;
+		BCR 	STATUS,5 		//0060 	1283
+		CLRR 	5H 			//0061 	0105
+
+		//;TEST_61F02x_PWM.c: 62: TRISA = 0B00000000;
+		BSR 	STATUS,5 		//0062 	1A83
+		CLRR 	5H 			//0063 	0105
+		ORG		0064H
+
+		//;TEST_61F02x_PWM.c: 63: PORTC = 0B00000000;
+		BCR 	STATUS,5 		//0064 	1283
+		CLRR 	7H 			//0065 	0107
+
+		//;TEST_61F02x_PWM.c: 64: TRISC = 0B11111111;
+		LDWI 	FFH 			//0066 	2AFF
+		BSR 	STATUS,5 		//0067 	1A83
+		STR 	7H 			//0068 	0187
+
+		//;TEST_61F02x_PWM.c: 66: WPUA = 0;
+		CLRR 	15H 			//0069 	0115
+
+		//;TEST_61F02x_PWM.c: 67: WPUC = 0 ;
+		CLRR 	8H 			//006A 	0108
+
+		//;TEST_61F02x_PWM.c: 68: OPTION = 0B00001000;
+		LDWI 	8H 			//006B 	2A08
+		ORG		006CH
+		STR 	1H 			//006C 	0181
+
+		//;TEST_61F02x_PWM.c: 69: MSCKCON = 0B00000000;
+		BCR 	STATUS,5 		//006D 	1283
+		CLRR 	1BH 			//006E 	011B
+
+		//;TEST_61F02x_PWM.c: 73: CMCON0 = 0B00000111;
+		LDWI 	7H 			//006F 	2A07
+		STR 	19H 			//0070 	0199
+		RET		 					//0071 	0004
+		STR 	77H 			//0072 	01F7
+
+		//;TEST_61F02x_PWM.c: 123: MSCKCON = 0B00000000;
+		CLRR 	1BH 			//0073 	011B
+		ORG		0074H
+
+		//;TEST_61F02x_PWM.c: 127: T2CON = 0B00000000;
+		CLRR 	12H 			//0074 	0112
+
+		//;TEST_61F02x_PWM.c: 128: PR2 = SET_PR2;
+		BSR 	STATUS,5 		//0075 	1A83
+		STR 	12H 			//0076 	0192
+
+		//;TEST_61F02x_PWM.c: 129: CCP1CON = 0B10001101;
+		LDWI 	8DH 			//0077 	2A8D
+		BCR 	STATUS,5 		//0078 	1283
+		STR 	15H 			//0079 	0195
+
+		//;TEST_61F02x_PWM.c: 134: pwm_duty_count();
+		LCALL 	36H 			//007A 	3036
+
+		//;TEST_61F02x_PWM.c: 136: PWM1CON = 0B10000001;
+		LDWI 	81H 			//007B 	2A81
+		ORG		007CH
+		STR 	16H 			//007C 	0196
+
+		//;TEST_61F02x_PWM.c: 140: ECCPAS = 0B00001111;
+		LDWI 	FH 			//007D 	2A0F
+		STR 	17H 			//007E 	0197
+
+		//;TEST_61F02x_PWM.c: 144: PWM1AUX = 0B10000000;
+		LDWI 	80H 			//007F 	2A80
+		BSR 	STATUS,5 		//0080 	1A83
+		STR 	10H 			//0081 	0190
+
+		//;TEST_61F02x_PWM.c: 149: TMR2IF = 0;
+		BCR 	STATUS,5 		//0082 	1283
+		BCR 	CH,1 			//0083 	108C
+		ORG		0084H
+		RET		 					//0084 	0004
+		STR 	74H 			//0085 	01F4
+
+		//;TEST_61F02x_PWM.c: 173: unsigned char a,b;
+		//;TEST_61F02x_PWM.c: 174: for(a=0;a<Time;a++)
+		CLRR 	75H 			//0086 	0175
+		LDR 	74H,0 			//0087 	0874
+		SUBWR 	75H,0 			//0088 	0C75
+		BTSC 	STATUS,0 		//0089 	1403
+		RET		 					//008A 	0004
+
+		//;TEST_61F02x_PWM.c: 175: {
+		//;TEST_61F02x_PWM.c: 176: for(b=0;b<5;b++)
+		CLRR 	76H 			//008B 	0176
+		ORG		008CH
+
+		//;TEST_61F02x_PWM.c: 177: {
+		//;TEST_61F02x_PWM.c: 178: DelayUs(197);
+		LDWI 	C5H 			//008C 	2AC5
+		LCALL 	B1H 			//008D 	30B1
+		LDWI 	5H 			//008E 	2A05
+		INCR	76H,1 			//008F 	09F6
+		SUBWR 	76H,0 			//0090 	0C76
+		BTSS 	STATUS,0 		//0091 	1C03
+		LJUMP 	8CH 			//0092 	388C
+		INCR	75H,1 			//0093 	09F5
+		ORG		0094H
+		LJUMP 	87H 			//0094 	3887
+
+		//;TEST_61F02x_PWM.c: 41: if(TMR1IF)
+		BCR 	STATUS,5 		//0095 	1283
+		BCR 	STATUS,6 		//0096 	1303
+		BTSS 	CH,0 			//0097 	1C0C
+		LJUMP 	9EH 			//0098 	389E
+
+		//;TEST_61F02x_PWM.c: 42: {
+		//;TEST_61F02x_PWM.c: 43: TMR1IF = 0;
+		BCR 	CH,0 			//0099 	100C
+
+		//;TEST_61F02x_PWM.c: 46: TMR1L = 0X80;
+		LDWI 	80H 			//009A 	2A80
+		STR 	EH 			//009B 	018E
+		ORG		009CH
+
+		//;TEST_61F02x_PWM.c: 47: TMR1H = 0XC1;
+		LDWI 	C1H 			//009C 	2AC1
+		STR 	FH 			//009D 	018F
+		LDR 	71H,0 			//009E 	0871
+		STR 	PCLATH 			//009F 	018A
+		SWAPR 	70H,0 			//00A0 	0770
+		STR 	STATUS 			//00A1 	0183
+		SWAPR 	7EH,1 			//00A2 	07FE
+		SWAPR 	7EH,0 			//00A3 	077E
+		ORG		00A4H
+		RETI		 			//00A4 	0009
+
+		//;TEST_61F02x_PWM.c: 84: T1CON = 0B00000000;
+		CLRR 	10H 			//00A5 	0110
+
+		//;TEST_61F02x_PWM.c: 88: TMR1L = 0X80;
+		LDWI 	80H 			//00A6 	2A80
+		STR 	EH 			//00A7 	018E
+
+		//;TEST_61F02x_PWM.c: 89: TMR1H = 0XC1;
+		LDWI 	C1H 			//00A8 	2AC1
+		STR 	FH 			//00A9 	018F
+
+		//;TEST_61F02x_PWM.c: 90: TMR1IE = 1;
+		BSR 	STATUS,5 		//00AA 	1A83
+		BSR 	CH,0 			//00AB 	180C
+		ORG		00ACH
+
+		//;TEST_61F02x_PWM.c: 91: TMR1ON = 1;
+		BCR 	STATUS,5 		//00AC 	1283
+		BSR 	10H,0 			//00AD 	1810
+
+		//;TEST_61F02x_PWM.c: 92: PEIE=1;
+		BSR 	INTCON,6 		//00AE 	1B0B
+
+		//;TEST_61F02x_PWM.c: 93: GIE = 1;
+		BSR 	INTCON,7 		//00AF 	1B8B
+		RET		 					//00B0 	0004
+		STR 	72H 			//00B1 	01F2
+
+		//;TEST_61F02x_PWM.c: 159: unsigned char a;
+		//;TEST_61F02x_PWM.c: 160: for(a=0;a<Time;a++)
+		CLRR 	73H 			//00B2 	0173
+		LDR 	72H,0 			//00B3 	0872
+		ORG		00B4H
+		SUBWR 	73H,0 			//00B4 	0C73
+		BTSC 	STATUS,0 		//00B5 	1403
+		RET		 					//00B6 	0004
+
+		//;TEST_61F02x_PWM.c: 161: {
+		//;TEST_61F02x_PWM.c: 162: __nop();
+		NOP		 					//00B7 	0000
+		INCR	73H,1 			//00B8 	09F3
+		LJUMP 	B3H 			//00B9 	38B3
+			END

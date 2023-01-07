@@ -1,0 +1,176 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 RSC14E SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT62F08X ]
+[d frameptr 6 ]
+"62 D:\IDE3.0.3_6C03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.3_6C03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"25 D:\FMD demo 11-11总修改\C\FT62F08x\test_FT62F08X_SPI\test_FT62F08X_SPI.C
+[v _ISR ISR `II(v  1 e 1 0 ]
+"35
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"75
+[v _SPI_RW SPI_RW `(uc  1 e 1 0 ]
+"89
+[v _WriteEnable WriteEnable `(v  1 e 1 0 ]
+"99
+[v _WriteDisable WriteDisable `(v  1 e 1 0 ]
+"110
+[v _SPI_ReadStatus SPI_ReadStatus `(uc  1 e 1 0 ]
+"138
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+"155
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+"175
+[v _SPI_INITIAL SPI_INITIAL `(v  1 e 1 0 ]
+"290
+[v _main main `(v  1 e 1 0 ]
+"99 D:\IDE3.0.3_6C03\data\include\FT62F08X.h
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"125
+[v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"176
+[v _PORTB PORTB `VEuc  1 e 1 @13 ]
+"227
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
+"278
+[v _PORTD PORTD `VEuc  1 e 1 @15 ]
+"342
+[v _SPIDATA SPIDATA `VEuc  1 e 1 @21 ]
+"347
+[v _SPICTRL SPICTRL `VEuc  1 e 1 @22 ]
+"349
+[v _SPIEN SPIEN `VEb  1 e 0 @176 ]
+"351
+[v _NSSM0 NSSM0 `VEb  1 e 0 @178 ]
+"379
+[v _SPICFG SPICFG `VEuc  1 e 1 @23 ]
+"381
+[v _RXBMT RXBMT `VEb  1 e 0 @184 ]
+"388
+[v _BUSY BUSY `VEb  1 e 0 @191 ]
+"404
+[v _SPISCR SPISCR `VEuc  1 e 1 @24 ]
+"411
+[v _SPIRXCRC SPIRXCRC `VEuc  1 e 1 @26 ]
+"414
+[v _SPITXCRC SPITXCRC `VEuc  1 e 1 @27 ]
+"418
+[v _SPIIER SPIIER `VEuc  1 e 1 @28 ]
+"436
+[v _SPICTRL2 SPICTRL2 `VEuc  1 e 1 @29 ]
+"462
+[v _SPISTAT SPISTAT `VEuc  1 e 1 @30 ]
+"495
+[v _TRISA TRISA `VEuc  1 e 1 @140 ]
+"525
+[v _TRISB TRISB `VEuc  1 e 1 @141 ]
+"555
+[v _TRISC TRISC `VEuc  1 e 1 @142 ]
+"584
+[v _TRISD TRISD `VEuc  1 e 1 @143 ]
+"752
+[v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
+"783
+[v _PCKEN PCKEN `VEuc  1 e 1 @154 ]
+"1141
+[v _PSRC0 PSRC0 `VEuc  1 e 1 @282 ]
+"1146
+[v _PSRC1 PSRC1 `VEuc  1 e 1 @283 ]
+"1196
+[v _WPUA WPUA `VEuc  1 e 1 @396 ]
+"1225
+[v _WPUB WPUB `VEuc  1 e 1 @397 ]
+"1254
+[v _WPUC WPUC `VEuc  1 e 1 @398 ]
+"1283
+[v _WPUD WPUD `VEuc  1 e 1 @399 ]
+"1399
+[v _ANSELA ANSELA `VEuc  1 e 1 @407 ]
+"1443
+[v _PSINK0 PSINK0 `VEuc  1 e 1 @410 ]
+"1447
+[v _PSINK1 PSINK1 `VEuc  1 e 1 @411 ]
+"1450
+[v _PSINK2 PSINK2 `VEuc  1 e 1 @412 ]
+"1455
+[v _PSINK3 PSINK3 `VEuc  1 e 1 @413 ]
+"1501
+[v _WPDA WPDA `VEuc  1 e 1 @524 ]
+"1531
+[v _WPDB WPDB `VEuc  1 e 1 @525 ]
+"1560
+[v _WPDC WPDC `VEuc  1 e 1 @526 ]
+"1590
+[v _WPDD WPDD `VEuc  1 e 1 @527 ]
+"3928
+[v _ad3nop ad3nop `DCuc  1 e 1 @3 ]
+"19 D:\FMD demo 11-11总修改\C\FT62F08x\test_FT62F08X_SPI\test_FT62F08X_SPI.C
+[v _SPIReadData SPIReadData `VEuc  1 e 1 0 ]
+[v _SPIReadData1 SPIReadData1 `VEuc  1 e 1 0 ]
+"290
+[v _main main `(v  1 e 1 0 ]
+{
+"308
+} 0
+"155
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+{
+[v SPI_Write@addr addr `ui  1 p 2 3 ]
+[v SPI_Write@dat dat `uc  1 p 1 5 ]
+"168
+} 0
+"89
+[v _WriteEnable WriteEnable `(v  1 e 1 0 ]
+{
+"94
+} 0
+"99
+[v _WriteDisable WriteDisable `(v  1 e 1 0 ]
+{
+"104
+} 0
+"138
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+{
+"140
+[v SPI_Read@spidata spidata `uc  1 a 1 5 ]
+"138
+[v SPI_Read@addr addr `ui  1 p 2 3 ]
+"149
+} 0
+"110
+[v _SPI_ReadStatus SPI_ReadStatus `(uc  1 e 1 0 ]
+{
+"112
+[v SPI_ReadStatus@status status `uc  1 a 1 2 ]
+"118
+} 0
+"75
+[v _SPI_RW SPI_RW `(uc  1 e 1 0 ]
+{
+[v SPI_RW@data data `uc  1 a 1 wreg ]
+"77
+[v SPI_RW@spiData spiData `uc  1 a 1 1 ]
+"75
+[v SPI_RW@data data `uc  1 a 1 wreg ]
+[v SPI_RW@data data `uc  1 a 1 0 ]
+"84
+} 0
+"175
+[v _SPI_INITIAL SPI_INITIAL `(v  1 e 1 0 ]
+{
+"283
+} 0
+"35
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"68
+} 0
+"25
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"28
+} 0

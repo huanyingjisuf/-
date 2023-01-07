@@ -1,0 +1,79 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT60F01X ]
+[d frameptr 6 ]
+"62 D:\IDE3.0.8Beta\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.8Beta\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"29 D:\辉芒微开发资料\ft60f01x-c语言\test_60f01x_EEPROM\test_60f01x_EEPROM.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"50
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+"65
+[v _EEPROMwrite EEPROMwrite `(v  1 e 1 0 ]
+"83
+[v _main main `(v  1 e 1 0 ]
+"63 D:\IDE3.0.8Beta\data\include\FT60F01X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"111
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"120
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"141
+[v _EEIF EEIF `VEb  1 e 0 @103 ]
+"217
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"257
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"286
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"340
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"372
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"446
+[v _EEDAT EEDAT `VEuc  1 e 1 @154 ]
+"451
+[v _EEADR EEADR `VEuc  1 e 1 @155 ]
+"455
+[v _EECON1 EECON1 `VEuc  1 e 1 @156 ]
+"457
+[v _RD RD `VEb  1 e 0 @1248 ]
+"478
+[v _WR WR `VEb  1 e 0 @1256 ]
+"22 D:\辉芒微开发资料\ft60f01x-c语言\test_60f01x_EEPROM\test_60f01x_EEPROM.C
+[v _EEReadData EEReadData `uc  1 e 1 0 ]
+"83
+[v _main main `(v  1 e 1 0 ]
+{
+"96
+} 0
+"29
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"43
+} 0
+"65
+[v _EEPROMwrite EEPROMwrite `(v  1 e 1 0 ]
+{
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 wreg ]
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 wreg ]
+[v EEPROMwrite@Data Data `uc  1 p 1 0 ]
+"67
+[v EEPROMwrite@EEAddr EEAddr `uc  1 a 1 1 ]
+"76
+} 0
+"50
+[v _EEPROMread EEPROMread `(uc  1 e 1 0 ]
+{
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+"52
+[v EEPROMread@ReEEPROMread ReEEPROMread `uc  1 a 1 1 ]
+"50
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 wreg ]
+"53
+[v EEPROMread@EEAddr EEAddr `uc  1 a 1 0 ]
+"57
+} 0

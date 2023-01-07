@@ -1,0 +1,1237 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Sat Nov 20 16:01:35 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT60F01X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	nvCOMMON,global,class=COMMON,space=1,delta=1
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	maintext,global,class=CODE,split=1,delta=2
+     8                           	psect	text1,local,class=CODE,merge=1,delta=2
+     9                           	psect	text2,local,class=CODE,merge=1,delta=2
+    10                           	psect	text3,local,class=CODE,merge=1,delta=2
+    11                           	psect	text4,local,class=CODE,merge=1,delta=2
+    12                           	psect	text5,local,class=CODE,merge=1,delta=2
+    13                           	psect	text6,local,class=CODE,merge=1,delta=2
+    14                           	psect	text7,local,class=CODE,merge=1,delta=2
+    15                           	psect	text8,local,class=CODE,merge=1,delta=2
+    16                           	psect	text9,local,class=CODE,merge=1,delta=2
+    17                           	psect	text10,local,class=CODE,merge=1,delta=2
+    18                           	psect	pa_nodes0,global,class=CODE,delta=2
+    19                           	dabs	1,0x7E,2
+    20  0000                     
+    21                           ; Version 2.20
+    22                           ; Generated 09/04/2020 
+    23                           ; 
+    24                           ; SFR Addresses
+    25  0000                     
+    26                           	psect	nvCOMMON
+    27  0077                     __pnvCOMMON:	
+    28  0077                     _IICReadData:	
+    29  0077                     	ds	1
+    30  001B                     _MSCKCON	set	27
+    31  000B                     _INTCON	set	11
+    32  0005                     _PORTA	set	5
+    33  002C                     _PA4	set	44
+    34  002A                     _PA2	set	42
+    35  0095                     _WPUA	set	149
+    36  008F                     _OSCCON	set	143
+    37  0085                     _TRISA	set	133
+    38  0081                     _OPTION	set	129
+    39  042A                     _TRISA2	set	1066
+    40                           
+    41                           	psect	cinit
+    42  03FE                     start_initialization:	
+    43                           ; #config settings
+    44                           
+    45  03FE                     __initialization:	
+    46  03FE                     end_of_initialization:	
+    47                           ;End of C runtime variable initialization code
+    48                           
+    49  03FE                     __end_of__initialization:	
+    50  03FE  0183               	clrf	3
+    51  03FF  2B34               	ljmp	_main	;jump to C main() function
+    52                           
+    53                           	psect	cstackCOMMON
+    54  0070                     __pcstackCOMMON:	
+    55  0070                     ?_POWER_INITIAL:	
+    56  0070                     ??_POWER_INITIAL:	
+    57                           ; 1 bytes @ 0x0
+    58                           
+    59  0070                     ?_DelayUs:	
+    60                           ; 1 bytes @ 0x0
+    61                           
+    62  0070                     ??_DelayUs:	
+    63                           ; 1 bytes @ 0x0
+    64                           
+    65  0070                     ?_IIC_Start:	
+    66                           ; 1 bytes @ 0x0
+    67                           
+    68  0070                     ?_IIC_Stop:	
+    69                           ; 1 bytes @ 0x0
+    70                           
+    71  0070                     ?_IIC_Wait_Ack:	
+    72                           ; 1 bytes @ 0x0
+    73                           
+    74  0070                     ?_IIC_NAck:	
+    75                           ; 1 bytes @ 0x0
+    76                           
+    77  0070                     ?_IIC_Send_Byte:	
+    78                           ; 1 bytes @ 0x0
+    79                           
+    80  0070                     ?_IIC_Read_Byte:	
+    81                           ; 1 bytes @ 0x0
+    82                           
+    83  0070                     ?_IIC_READ:	
+    84                           ; 1 bytes @ 0x0
+    85                           
+    86  0070                     ?_main:	
+    87                           ; 1 bytes @ 0x0
+    88                           
+    89  0070                     DelayUs@Time:	
+    90                           ; 1 bytes @ 0x0
+    91                           
+    92                           
+    93                           ; 1 bytes @ 0x0
+    94  0070                     	ds	1
+    95  0071                     DelayUs@a:	
+    96                           
+    97                           ; 1 bytes @ 0x1
+    98  0071                     	ds	1
+    99  0072                     ??_IIC_Start:	
+   100  0072                     ??_IIC_Stop:	
+   101                           ; 1 bytes @ 0x2
+   102                           
+   103  0072                     ??_IIC_Wait_Ack:	
+   104                           ; 1 bytes @ 0x2
+   105                           
+   106  0072                     ??_IIC_NAck:	
+   107                           ; 1 bytes @ 0x2
+   108                           
+   109  0072                     ??_IIC_Send_Byte:	
+   110                           ; 1 bytes @ 0x2
+   111                           
+   112  0072                     ??_IIC_Read_Byte:	
+   113                           ; 1 bytes @ 0x2
+   114                           
+   115  0072                     IIC_Wait_Ack@ucErrTime:	
+   116                           ; 1 bytes @ 0x2
+   117                           
+   118  0072                     IIC_Read_Byte@receive:	
+   119                           ; 1 bytes @ 0x2
+   120                           
+   121                           
+   122                           ; 1 bytes @ 0x2
+   123  0072                     	ds	1
+   124  0073                     IIC_Send_Byte@txd:	
+   125  0073                     IIC_Read_Byte@i:	
+   126                           ; 1 bytes @ 0x3
+   127                           
+   128                           
+   129                           ; 1 bytes @ 0x3
+   130  0073                     	ds	1
+   131  0074                     IIC_Send_Byte@t:	
+   132                           
+   133                           ; 1 bytes @ 0x4
+   134  0074                     	ds	1
+   135  0075                     ??_IIC_READ:	
+   136  0075                     ?_IIC_WRITE:	
+   137                           ; 1 bytes @ 0x5
+   138                           
+   139  0075                     IIC_READ@address:	
+   140                           ; 1 bytes @ 0x5
+   141                           
+   142  0075                     IIC_WRITE@data:	
+   143                           ; 1 bytes @ 0x5
+   144                           
+   145                           
+   146                           ; 1 bytes @ 0x5
+   147  0075                     	ds	1
+   148  0076                     ??_IIC_WRITE:	
+   149  0076                     IIC_READ@iicdata:	
+   150                           ; 1 bytes @ 0x6
+   151                           
+   152  0076                     IIC_WRITE@address:	
+   153                           ; 1 bytes @ 0x6
+   154                           
+   155                           
+   156                           ; 1 bytes @ 0x6
+   157  0076                     	ds	1
+   158  0077                     ??_main:	
+   159                           
+   160                           	psect	maintext
+   161  0334                     __pmaintext:	
+   162                           ; 1 bytes @ 0x7
+   163 ;;
+   164 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   165 ;;
+   166 ;; *************** function _main *****************
+   167 ;; Defined at:
+   168 ;;		line 257 in file "test_60f01x_IIC.C"
+   169 ;; Parameters:    Size  Location     Type
+   170 ;;		None
+   171 ;; Auto vars:     Size  Location     Type
+   172 ;;		None
+   173 ;; Return value:  Size  Location     Type
+   174 ;;                  1    wreg      void 
+   175 ;; Registers used:
+   176 ;;		wreg, status,2, status,0, pclath, cstack
+   177 ;; Tracked objects:
+   178 ;;		On entry : B00/0
+   179 ;;		On exit  : 0/0
+   180 ;;		Unchanged: 0/0
+   181 ;; Data sizes:     COMMON   BANK0
+   182 ;;      Params:         0       0
+   183 ;;      Locals:         0       0
+   184 ;;      Temps:          0       0
+   185 ;;      Totals:         0       0
+   186 ;;Total ram usage:        0 bytes
+   187 ;; Hardware stack levels required when called:    4
+   188 ;; This function calls:
+   189 ;;		_IIC_READ
+   190 ;;		_IIC_WRITE
+   191 ;;		_POWER_INITIAL
+   192 ;; This function is called by:
+   193 ;;		Startup code after reset
+   194 ;; This function uses a non-reentrant model
+   195 ;;
+   196                           
+   197                           
+   198                           ;psect for function _main
+   199  0334                     _main:	
+   200                           
+   201                           ;test_60f01x_IIC.C: 259: POWER_INITIAL();
+   202                           
+   203                           ;incstack = 0
+   204                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   205  0334  233E               	fcall	_POWER_INITIAL
+   206                           
+   207                           ;test_60f01x_IIC.C: 261: IICReadData = IIC_READ(0x12);
+   208  0335  3012               	movlw	18
+   209  0336  23BD               	fcall	_IIC_READ
+   210  0337  00F7               	movwf	_IICReadData
+   211                           
+   212                           ;test_60f01x_IIC.C: 262: IIC_WRITE(0x13,~IICReadData);
+   213  0338  0977               	comf	_IICReadData,w
+   214  0339  00F5               	movwf	IIC_WRITE@data
+   215  033A  3013               	movlw	19
+   216  033B  2379               	fcall	_IIC_WRITE
+   217  033C                     l1043:	
+   218                           
+   219                           ;test_60f01x_IIC.C: 264: {
+   220                           ;test_60f01x_IIC.C: 265: __nop();
+   221  033C  0000               	nop
+   222  033D  2B3C               	goto	l1043
+   223  033E                     __end_of_main:	
+   224                           
+   225                           	psect	text1
+   226  033E                     __ptext1:	
+   227 ;; *************** function _POWER_INITIAL *****************
+   228 ;; Defined at:
+   229 ;;		line 36 in file "test_60f01x_IIC.C"
+   230 ;; Parameters:    Size  Location     Type
+   231 ;;		None
+   232 ;; Auto vars:     Size  Location     Type
+   233 ;;		None
+   234 ;; Return value:  Size  Location     Type
+   235 ;;                  1    wreg      void 
+   236 ;; Registers used:
+   237 ;;		wreg, status,2
+   238 ;; Tracked objects:
+   239 ;;		On entry : B00/0
+   240 ;;		On exit  : B00/0
+   241 ;;		Unchanged: A00/0
+   242 ;; Data sizes:     COMMON   BANK0
+   243 ;;      Params:         0       0
+   244 ;;      Locals:         0       0
+   245 ;;      Temps:          0       0
+   246 ;;      Totals:         0       0
+   247 ;;Total ram usage:        0 bytes
+   248 ;; Hardware stack levels used:    1
+   249 ;; This function calls:
+   250 ;;		Nothing
+   251 ;; This function is called by:
+   252 ;;		_main
+   253 ;; This function uses a non-reentrant model
+   254 ;;
+   255                           
+   256                           
+   257                           ;psect for function _POWER_INITIAL
+   258  033E                     _POWER_INITIAL:	
+   259                           
+   260                           ;test_60f01x_IIC.C: 38: OSCCON = 0B01110000;
+   261                           
+   262                           ;incstack = 0
+   263                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   264  033E  3070               	movlw	112
+   265  033F  1683               	bsf	3,5	;RP0=1, select bank1
+   266  0340  008F               	movwf	15	;volatile
+   267                           
+   268                           ;test_60f01x_IIC.C: 40: INTCON = 0;
+   269  0341  018B               	clrf	11	;volatile
+   270                           
+   271                           ;test_60f01x_IIC.C: 41: OPTION = 0B00001000;
+   272  0342  3008               	movlw	8
+   273  0343  0081               	movwf	1	;volatile
+   274                           
+   275                           ;test_60f01x_IIC.C: 43: PORTA = 0B00000000;
+   276  0344  1283               	bcf	3,5	;RP0=0, select bank0
+   277  0345  0185               	clrf	5	;volatile
+   278                           
+   279                           ;test_60f01x_IIC.C: 44: TRISA = 0B00000000;
+   280  0346  1683               	bsf	3,5	;RP0=1, select bank1
+   281  0347  0185               	clrf	5	;volatile
+   282                           
+   283                           ;test_60f01x_IIC.C: 46: WPUA = 0B00000000;
+   284  0348  0195               	clrf	21	;volatile
+   285                           
+   286                           ;test_60f01x_IIC.C: 47: MSCKCON = 0B00000000;
+   287  0349  1283               	bcf	3,5	;RP0=0, select bank0
+   288  034A  019B               	clrf	27	;volatile
+   289  034B  0008               	return
+   290  034C                     __end_of_POWER_INITIAL:	
+   291                           
+   292                           	psect	text2
+   293  0379                     __ptext2:	
+   294 ;; *************** function _IIC_WRITE *****************
+   295 ;; Defined at:
+   296 ;;		line 235 in file "test_60f01x_IIC.C"
+   297 ;; Parameters:    Size  Location     Type
+   298 ;;  address         1    wreg     unsigned char 
+   299 ;;  data            1    5[COMMON] unsigned char 
+   300 ;; Auto vars:     Size  Location     Type
+   301 ;;  address         1    6[COMMON] unsigned char 
+   302 ;; Return value:  Size  Location     Type
+   303 ;;                  1    wreg      void 
+   304 ;; Registers used:
+   305 ;;		wreg, status,2, status,0, pclath, cstack
+   306 ;; Tracked objects:
+   307 ;;		On entry : 0/0
+   308 ;;		On exit  : 0/0
+   309 ;;		Unchanged: 0/0
+   310 ;; Data sizes:     COMMON   BANK0
+   311 ;;      Params:         1       0
+   312 ;;      Locals:         1       0
+   313 ;;      Temps:          0       0
+   314 ;;      Totals:         2       0
+   315 ;;Total ram usage:        2 bytes
+   316 ;; Hardware stack levels used:    1
+   317 ;; Hardware stack levels required when called:    3
+   318 ;; This function calls:
+   319 ;;		_IIC_Send_Byte
+   320 ;;		_IIC_Start
+   321 ;;		_IIC_Stop
+   322 ;;		_IIC_Wait_Ack
+   323 ;; This function is called by:
+   324 ;;		_main
+   325 ;; This function uses a non-reentrant model
+   326 ;;
+   327                           
+   328                           
+   329                           ;psect for function _IIC_WRITE
+   330  0379                     _IIC_WRITE:	
+   331                           
+   332                           ;incstack = 0
+   333                           ; Regs used in _IIC_WRITE: [wreg+status,2+status,0+pclath+cstack]
+   334                           ;IIC_WRITE@address stored from wreg
+   335  0379  00F6               	movwf	IIC_WRITE@address
+   336  037A                     l483:	
+   337                           ;test_60f01x_IIC.C: 237: IIC_WRITE_Begin:
+   338                           
+   339                           
+   340                           ;test_60f01x_IIC.C: 238: IIC_Start();
+   341  037A  235B               	fcall	_IIC_Start
+   342                           
+   343                           ;test_60f01x_IIC.C: 239: IIC_Send_Byte(0xa0);
+   344  037B  30A0               	movlw	160
+   345  037C  23D7               	fcall	_IIC_Send_Byte
+   346                           
+   347                           ;test_60f01x_IIC.C: 240: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+   348  037D  238E               	fcall	_IIC_Wait_Ack
+   349  037E  3A00               	xorlw	0
+   350  037F  1D03               	btfss	3,2
+   351  0380  2B7A               	goto	l483
+   352                           
+   353                           ;test_60f01x_IIC.C: 242: IIC_Send_Byte(address);
+   354  0381  0876               	movf	IIC_WRITE@address,w
+   355  0382  23D7               	fcall	_IIC_Send_Byte
+   356                           
+   357                           ;test_60f01x_IIC.C: 243: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+   358  0383  238E               	fcall	_IIC_Wait_Ack
+   359  0384  3A00               	xorlw	0
+   360  0385  1D03               	btfss	3,2
+   361  0386  2B7A               	goto	l483
+   362                           
+   363                           ;test_60f01x_IIC.C: 245: IIC_Send_Byte(data);
+   364  0387  0875               	movf	IIC_WRITE@data,w
+   365  0388  23D7               	fcall	_IIC_Send_Byte
+   366                           
+   367                           ;test_60f01x_IIC.C: 246: if(IIC_Wait_Ack())goto IIC_WRITE_Begin;
+   368  0389  238E               	fcall	_IIC_Wait_Ack
+   369  038A  3A00               	xorlw	0
+   370  038B  1D03               	btfss	3,2
+   371  038C  2B7A               	goto	l483
+   372                           
+   373                           ;test_60f01x_IIC.C: 248: IIC_Stop();
+   374  038D  2B6A               	ljmp	l877
+   375  038E                     __end_of_IIC_WRITE:	
+   376                           
+   377                           	psect	text3
+   378  03BD                     __ptext3:	
+   379 ;; *************** function _IIC_READ *****************
+   380 ;; Defined at:
+   381 ;;		line 213 in file "test_60f01x_IIC.C"
+   382 ;; Parameters:    Size  Location     Type
+   383 ;;  address         1    wreg     unsigned char 
+   384 ;; Auto vars:     Size  Location     Type
+   385 ;;  address         1    5[COMMON] unsigned char 
+   386 ;;  iicdata         1    6[COMMON] unsigned char 
+   387 ;; Return value:  Size  Location     Type
+   388 ;;                  1    wreg      unsigned char 
+   389 ;; Registers used:
+   390 ;;		wreg, status,2, status,0, pclath, cstack
+   391 ;; Tracked objects:
+   392 ;;		On entry : B00/0
+   393 ;;		On exit  : 0/0
+   394 ;;		Unchanged: 0/0
+   395 ;; Data sizes:     COMMON   BANK0
+   396 ;;      Params:         0       0
+   397 ;;      Locals:         2       0
+   398 ;;      Temps:          0       0
+   399 ;;      Totals:         2       0
+   400 ;;Total ram usage:        2 bytes
+   401 ;; Hardware stack levels used:    1
+   402 ;; Hardware stack levels required when called:    3
+   403 ;; This function calls:
+   404 ;;		_IIC_Read_Byte
+   405 ;;		_IIC_Send_Byte
+   406 ;;		_IIC_Start
+   407 ;;		_IIC_Stop
+   408 ;;		_IIC_Wait_Ack
+   409 ;; This function is called by:
+   410 ;;		_main
+   411 ;; This function uses a non-reentrant model
+   412 ;;
+   413                           
+   414                           
+   415                           ;psect for function _IIC_READ
+   416  03BD                     _IIC_READ:	
+   417                           
+   418                           ;incstack = 0
+   419                           ; Regs used in _IIC_READ: [wreg+status,2+status,0+pclath+cstack]
+   420                           ;IIC_READ@address stored from wreg
+   421  03BD  00F5               	movwf	IIC_READ@address
+   422  03BE                     l987:	
+   423                           
+   424                           ;test_60f01x_IIC.C: 217: IIC_Start();
+   425  03BE  235B               	fcall	_IIC_Start
+   426                           
+   427                           ;test_60f01x_IIC.C: 218: IIC_Send_Byte(0xa0);
+   428  03BF  30A0               	movlw	160
+   429  03C0  23D7               	fcall	_IIC_Send_Byte
+   430                           
+   431                           ;test_60f01x_IIC.C: 219: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+   432  03C1  238E               	fcall	_IIC_Wait_Ack
+   433  03C2  3A00               	xorlw	0
+   434  03C3  1D03               	btfss	3,2
+   435  03C4  2BBE               	goto	l987
+   436                           
+   437                           ;test_60f01x_IIC.C: 220: IIC_Send_Byte(address);
+   438  03C5  0875               	movf	IIC_READ@address,w
+   439  03C6  23D7               	fcall	_IIC_Send_Byte
+   440                           
+   441                           ;test_60f01x_IIC.C: 221: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+   442  03C7  238E               	fcall	_IIC_Wait_Ack
+   443  03C8  3A00               	xorlw	0
+   444  03C9  1D03               	btfss	3,2
+   445  03CA  2BBE               	goto	l987
+   446                           
+   447                           ;test_60f01x_IIC.C: 222: IIC_Start();
+   448  03CB  235B               	fcall	_IIC_Start
+   449                           
+   450                           ;test_60f01x_IIC.C: 223: IIC_Send_Byte(0xa1);
+   451  03CC  30A1               	movlw	161
+   452  03CD  23D7               	fcall	_IIC_Send_Byte
+   453                           
+   454                           ;test_60f01x_IIC.C: 224: if(IIC_Wait_Ack())goto IIC_READ_Begin;
+   455  03CE  238E               	fcall	_IIC_Wait_Ack
+   456  03CF  3A00               	xorlw	0
+   457  03D0  1D03               	btfss	3,2
+   458  03D1  2BBE               	goto	l987
+   459                           
+   460                           ;test_60f01x_IIC.C: 225: iicdata=IIC_Read_Byte();
+   461  03D2  23A5               	fcall	_IIC_Read_Byte
+   462  03D3  00F6               	movwf	IIC_READ@iicdata
+   463                           
+   464                           ;test_60f01x_IIC.C: 226: IIC_Stop();
+   465  03D4  236A               	fcall	_IIC_Stop
+   466                           
+   467                           ;test_60f01x_IIC.C: 227: return iicdata;
+   468  03D5  0876               	movf	IIC_READ@iicdata,w
+   469  03D6  0008               	return
+   470  03D7                     __end_of_IIC_READ:	
+   471                           
+   472                           	psect	text4
+   473  038E                     __ptext4:	
+   474 ;; *************** function _IIC_Wait_Ack *****************
+   475 ;; Defined at:
+   476 ;;		line 107 in file "test_60f01x_IIC.C"
+   477 ;; Parameters:    Size  Location     Type
+   478 ;;		None
+   479 ;; Auto vars:     Size  Location     Type
+   480 ;;  ucErrTime       1    2[COMMON] unsigned char 
+   481 ;; Return value:  Size  Location     Type
+   482 ;;                  1    wreg      unsigned char 
+   483 ;; Registers used:
+   484 ;;		wreg, status,2, status,0, pclath, cstack
+   485 ;; Tracked objects:
+   486 ;;		On entry : 0/0
+   487 ;;		On exit  : 0/0
+   488 ;;		Unchanged: 0/0
+   489 ;; Data sizes:     COMMON   BANK0
+   490 ;;      Params:         0       0
+   491 ;;      Locals:         1       0
+   492 ;;      Temps:          0       0
+   493 ;;      Totals:         1       0
+   494 ;;Total ram usage:        1 bytes
+   495 ;; Hardware stack levels used:    1
+   496 ;; Hardware stack levels required when called:    2
+   497 ;; This function calls:
+   498 ;;		_DelayUs
+   499 ;;		_IIC_Stop
+   500 ;; This function is called by:
+   501 ;;		_IIC_READ
+   502 ;;		_IIC_WRITE
+   503 ;; This function uses a non-reentrant model
+   504 ;;
+   505                           
+   506                           
+   507                           ;psect for function _IIC_Wait_Ack
+   508  038E                     _IIC_Wait_Ack:	
+   509                           
+   510                           ;test_60f01x_IIC.C: 109: unsigned char ucErrTime=0;
+   511                           
+   512                           ;incstack = 0
+   513                           ; Regs used in _IIC_Wait_Ack: [wreg+status,2+status,0+pclath+cstack]
+   514  038E  01F2               	clrf	IIC_Wait_Ack@ucErrTime
+   515                           
+   516                           ;test_60f01x_IIC.C: 110: TRISA2 =1;
+   517  038F  1683               	bsf	3,5	;RP0=1, select bank1
+   518  0390  1505               	bsf	5,2	;volatile
+   519                           
+   520                           ;test_60f01x_IIC.C: 111: PA2=1;
+   521  0391  1283               	bcf	3,5	;RP0=0, select bank0
+   522  0392  1505               	bsf	5,2	;volatile
+   523                           
+   524                           ;test_60f01x_IIC.C: 112: DelayUs(5);
+   525  0393  3005               	movlw	5
+   526  0394  232B               	fcall	_DelayUs
+   527                           
+   528                           ;test_60f01x_IIC.C: 113: PA4=1;
+   529  0395  1283               	bcf	3,5	;RP0=0, select bank0
+   530  0396  1605               	bsf	5,4	;volatile
+   531                           
+   532                           ;test_60f01x_IIC.C: 114: DelayUs(5);
+   533  0397  3005               	movlw	5
+   534  0398  232B               	fcall	_DelayUs
+   535  0399                     l450:	
+   536                           ;test_60f01x_IIC.C: 115: while(PA2)
+   537                           
+   538  0399  1283               	bcf	3,5	;RP0=0, select bank0
+   539  039A  1D05               	btfss	5,2	;volatile
+   540  039B  2BA3               	goto	l454
+   541  039C  30FB               	movlw	251
+   542                           
+   543                           ;test_60f01x_IIC.C: 116: {
+   544                           ;test_60f01x_IIC.C: 117: ucErrTime++;
+   545  039D  0AF2               	incf	IIC_Wait_Ack@ucErrTime,f
+   546                           
+   547                           ;test_60f01x_IIC.C: 118: if(ucErrTime>250)
+   548  039E  0272               	subwf	IIC_Wait_Ack@ucErrTime,w
+   549  039F  1C03               	skipc
+   550  03A0  2B99               	goto	l450
+   551                           
+   552                           ;test_60f01x_IIC.C: 119: {
+   553                           ;test_60f01x_IIC.C: 120: IIC_Stop();
+   554  03A1  236A               	fcall	_IIC_Stop
+   555                           
+   556                           ;test_60f01x_IIC.C: 121: return 1;
+   557  03A2  3401               	retlw	1
+   558  03A3                     l454:	
+   559                           
+   560                           ;test_60f01x_IIC.C: 122: }
+   561                           ;test_60f01x_IIC.C: 123: }
+   562                           ;test_60f01x_IIC.C: 124: PA4=0;
+   563  03A3  1205               	bcf	5,4	;volatile
+   564                           
+   565                           ;test_60f01x_IIC.C: 125: return 0;
+   566  03A4  3400               	retlw	0
+   567  03A5                     __end_of_IIC_Wait_Ack:	
+   568                           
+   569                           	psect	text5
+   570  036A                     __ptext5:	
+   571 ;; *************** function _IIC_Stop *****************
+   572 ;; Defined at:
+   573 ;;		line 89 in file "test_60f01x_IIC.C"
+   574 ;; Parameters:    Size  Location     Type
+   575 ;;		None
+   576 ;; Auto vars:     Size  Location     Type
+   577 ;;		None
+   578 ;; Return value:  Size  Location     Type
+   579 ;;                  1    wreg      void 
+   580 ;; Registers used:
+   581 ;;		wreg, status,2, status,0, pclath, cstack
+   582 ;; Tracked objects:
+   583 ;;		On entry : 0/0
+   584 ;;		On exit  : 0/0
+   585 ;;		Unchanged: 0/0
+   586 ;; Data sizes:     COMMON   BANK0
+   587 ;;      Params:         0       0
+   588 ;;      Locals:         0       0
+   589 ;;      Temps:          0       0
+   590 ;;      Totals:         0       0
+   591 ;;Total ram usage:        0 bytes
+   592 ;; Hardware stack levels used:    1
+   593 ;; Hardware stack levels required when called:    1
+   594 ;; This function calls:
+   595 ;;		_DelayUs
+   596 ;; This function is called by:
+   597 ;;		_IIC_Wait_Ack
+   598 ;;		_IIC_READ
+   599 ;;		_IIC_WRITE
+   600 ;; This function uses a non-reentrant model
+   601 ;;
+   602                           
+   603                           
+   604                           ;psect for function _IIC_Stop
+   605  036A                     _IIC_Stop:	
+   606  036A                     l877:	
+   607                           ;incstack = 0
+   608                           ; Regs used in _IIC_Stop: [wreg+status,2+status,0+pclath+cstack]
+   609                           
+   610                           
+   611                           ;test_60f01x_IIC.C: 91: TRISA2 =0;
+   612  036A  1683               	bsf	3,5	;RP0=1, select bank1
+   613  036B  1105               	bcf	5,2	;volatile
+   614                           
+   615                           ;test_60f01x_IIC.C: 92: PA4=0;
+   616  036C  1283               	bcf	3,5	;RP0=0, select bank0
+   617  036D  1205               	bcf	5,4	;volatile
+   618                           
+   619                           ;test_60f01x_IIC.C: 93: PA2=0;
+   620  036E  1105               	bcf	5,2	;volatile
+   621                           
+   622                           ;test_60f01x_IIC.C: 94: DelayUs(10);
+   623  036F  300A               	movlw	10
+   624  0370  232B               	fcall	_DelayUs
+   625                           
+   626                           ;test_60f01x_IIC.C: 95: PA4=1;
+   627  0371  1283               	bcf	3,5	;RP0=0, select bank0
+   628  0372  1605               	bsf	5,4	;volatile
+   629                           
+   630                           ;test_60f01x_IIC.C: 96: DelayUs(10);
+   631  0373  300A               	movlw	10
+   632  0374  232B               	fcall	_DelayUs
+   633                           
+   634                           ;test_60f01x_IIC.C: 97: PA2=1;
+   635  0375  1283               	bcf	3,5	;RP0=0, select bank0
+   636  0376  1505               	bsf	5,2	;volatile
+   637                           
+   638                           ;test_60f01x_IIC.C: 98: DelayUs(10);
+   639  0377  300A               	movlw	10
+   640  0378  2B2B               	ljmp	_DelayUs
+   641  0379                     __end_of_IIC_Stop:	
+   642                           
+   643                           	psect	text6
+   644  035B                     __ptext6:	
+   645 ;; *************** function _IIC_Start *****************
+   646 ;; Defined at:
+   647 ;;		line 72 in file "test_60f01x_IIC.C"
+   648 ;; Parameters:    Size  Location     Type
+   649 ;;		None
+   650 ;; Auto vars:     Size  Location     Type
+   651 ;;		None
+   652 ;; Return value:  Size  Location     Type
+   653 ;;                  1    wreg      void 
+   654 ;; Registers used:
+   655 ;;		wreg, status,2, status,0, pclath, cstack
+   656 ;; Tracked objects:
+   657 ;;		On entry : 0/0
+   658 ;;		On exit  : 0/0
+   659 ;;		Unchanged: 0/0
+   660 ;; Data sizes:     COMMON   BANK0
+   661 ;;      Params:         0       0
+   662 ;;      Locals:         0       0
+   663 ;;      Temps:          0       0
+   664 ;;      Totals:         0       0
+   665 ;;Total ram usage:        0 bytes
+   666 ;; Hardware stack levels used:    1
+   667 ;; Hardware stack levels required when called:    1
+   668 ;; This function calls:
+   669 ;;		_DelayUs
+   670 ;; This function is called by:
+   671 ;;		_IIC_READ
+   672 ;;		_IIC_WRITE
+   673 ;; This function uses a non-reentrant model
+   674 ;;
+   675                           
+   676                           
+   677                           ;psect for function _IIC_Start
+   678  035B                     _IIC_Start:	
+   679                           
+   680                           ;test_60f01x_IIC.C: 74: TRISA2 =0;
+   681                           
+   682                           ;incstack = 0
+   683                           ; Regs used in _IIC_Start: [wreg+status,2+status,0+pclath+cstack]
+   684  035B  1683               	bsf	3,5	;RP0=1, select bank1
+   685  035C  1105               	bcf	5,2	;volatile
+   686                           
+   687                           ;test_60f01x_IIC.C: 75: PA2=1;
+   688  035D  1283               	bcf	3,5	;RP0=0, select bank0
+   689  035E  1505               	bsf	5,2	;volatile
+   690                           
+   691                           ;test_60f01x_IIC.C: 76: PA4=1;
+   692  035F  1605               	bsf	5,4	;volatile
+   693                           
+   694                           ;test_60f01x_IIC.C: 77: DelayUs(10);
+   695  0360  300A               	movlw	10
+   696  0361  232B               	fcall	_DelayUs
+   697                           
+   698                           ;test_60f01x_IIC.C: 78: PA2=0;
+   699  0362  1283               	bcf	3,5	;RP0=0, select bank0
+   700  0363  1105               	bcf	5,2	;volatile
+   701                           
+   702                           ;test_60f01x_IIC.C: 79: DelayUs(10);
+   703  0364  300A               	movlw	10
+   704  0365  232B               	fcall	_DelayUs
+   705                           
+   706                           ;test_60f01x_IIC.C: 80: PA4=0;
+   707  0366  1283               	bcf	3,5	;RP0=0, select bank0
+   708  0367  1205               	bcf	5,4	;volatile
+   709                           
+   710                           ;test_60f01x_IIC.C: 81: DelayUs(10);
+   711  0368  300A               	movlw	10
+   712  0369  2B2B               	ljmp	_DelayUs
+   713  036A                     __end_of_IIC_Start:	
+   714                           
+   715                           	psect	text7
+   716  03D7                     __ptext7:	
+   717 ;; *************** function _IIC_Send_Byte *****************
+   718 ;; Defined at:
+   719 ;;		line 165 in file "test_60f01x_IIC.C"
+   720 ;; Parameters:    Size  Location     Type
+   721 ;;  txd             1    wreg     unsigned char 
+   722 ;; Auto vars:     Size  Location     Type
+   723 ;;  txd             1    3[COMMON] unsigned char 
+   724 ;;  t               1    4[COMMON] unsigned char 
+   725 ;; Return value:  Size  Location     Type
+   726 ;;                  1    wreg      void 
+   727 ;; Registers used:
+   728 ;;		wreg, status,2, status,0, pclath, cstack
+   729 ;; Tracked objects:
+   730 ;;		On entry : 0/0
+   731 ;;		On exit  : 0/0
+   732 ;;		Unchanged: 0/0
+   733 ;; Data sizes:     COMMON   BANK0
+   734 ;;      Params:         0       0
+   735 ;;      Locals:         2       0
+   736 ;;      Temps:          1       0
+   737 ;;      Totals:         3       0
+   738 ;;Total ram usage:        3 bytes
+   739 ;; Hardware stack levels used:    1
+   740 ;; Hardware stack levels required when called:    1
+   741 ;; This function calls:
+   742 ;;		_DelayUs
+   743 ;; This function is called by:
+   744 ;;		_IIC_READ
+   745 ;;		_IIC_WRITE
+   746 ;; This function uses a non-reentrant model
+   747 ;;
+   748                           
+   749                           
+   750                           ;psect for function _IIC_Send_Byte
+   751  03D7                     _IIC_Send_Byte:	
+   752                           
+   753                           ;incstack = 0
+   754                           ; Regs used in _IIC_Send_Byte: [wreg+status,2+status,0+pclath+cstack]
+   755                           ;IIC_Send_Byte@txd stored from wreg
+   756  03D7  00F3               	movwf	IIC_Send_Byte@txd
+   757                           
+   758                           ;test_60f01x_IIC.C: 167: unsigned char t;
+   759                           ;test_60f01x_IIC.C: 168: TRISA2 =0;
+   760  03D8  1683               	bsf	3,5	;RP0=1, select bank1
+   761  03D9  1105               	bcf	5,2	;volatile
+   762                           
+   763                           ;test_60f01x_IIC.C: 169: PA4=0;
+   764  03DA  1283               	bcf	3,5	;RP0=0, select bank0
+   765  03DB  1205               	bcf	5,4	;volatile
+   766                           
+   767                           ;test_60f01x_IIC.C: 170: for(t=0;t<8;t++)
+   768  03DC  01F4               	clrf	IIC_Send_Byte@t
+   769  03DD                     l935:	
+   770                           
+   771                           ;test_60f01x_IIC.C: 171: {
+   772                           ;test_60f01x_IIC.C: 172: if((txd&0x80)>>7)
+   773  03DD  0873               	movf	IIC_Send_Byte@txd,w
+   774  03DE  00F2               	movwf	??_IIC_Send_Byte
+   775  03DF  3007               	movlw	7
+   776  03E0                     u45:	
+   777  03E0  1003               	clrc
+   778  03E1  0CF2               	rrf	??_IIC_Send_Byte,f
+   779  03E2  3EFF               	addlw	-1
+   780  03E3  1D03               	skipz
+   781  03E4  2BE0               	goto	u45
+   782  03E5  1C72               	btfss	??_IIC_Send_Byte,0
+   783  03E6  2BEA               	goto	l465
+   784                           
+   785                           ;test_60f01x_IIC.C: 173: PA2=1;
+   786  03E7  1283               	bcf	3,5	;RP0=0, select bank0
+   787  03E8  1505               	bsf	5,2	;volatile
+   788  03E9  2BEC               	goto	l466
+   789  03EA                     l465:	
+   790                           
+   791                           ;test_60f01x_IIC.C: 174: else
+   792                           ;test_60f01x_IIC.C: 175: PA2=0;
+   793  03EA  1283               	bcf	3,5	;RP0=0, select bank0
+   794  03EB  1105               	bcf	5,2	;volatile
+   795  03EC                     l466:	
+   796  03EC  3005               	movlw	5
+   797                           
+   798                           ;test_60f01x_IIC.C: 176: txd<<=1;
+   799  03ED  1003               	clrc
+   800  03EE  0DF3               	rlf	IIC_Send_Byte@txd,f
+   801                           
+   802                           ;test_60f01x_IIC.C: 177: DelayUs(5);
+   803  03EF  232B               	fcall	_DelayUs
+   804                           
+   805                           ;test_60f01x_IIC.C: 178: PA4=1;
+   806  03F0  1283               	bcf	3,5	;RP0=0, select bank0
+   807  03F1  1605               	bsf	5,4	;volatile
+   808                           
+   809                           ;test_60f01x_IIC.C: 179: DelayUs(5);
+   810  03F2  3005               	movlw	5
+   811  03F3  232B               	fcall	_DelayUs
+   812                           
+   813                           ;test_60f01x_IIC.C: 180: PA4=0;
+   814  03F4  1283               	bcf	3,5	;RP0=0, select bank0
+   815  03F5  1205               	bcf	5,4	;volatile
+   816                           
+   817                           ;test_60f01x_IIC.C: 181: DelayUs(5);
+   818  03F6  3005               	movlw	5
+   819  03F7  232B               	fcall	_DelayUs
+   820  03F8  3008               	movlw	8
+   821  03F9  0AF4               	incf	IIC_Send_Byte@t,f
+   822  03FA  0274               	subwf	IIC_Send_Byte@t,w
+   823  03FB  1803               	btfsc	3,0
+   824  03FC  0008               	return
+   825  03FD  2BDD               	goto	l935
+   826  03FE                     __end_of_IIC_Send_Byte:	
+   827                           
+   828                           	psect	text8
+   829  03A5                     __ptext8:	
+   830 ;; *************** function _IIC_Read_Byte *****************
+   831 ;; Defined at:
+   832 ;;		line 190 in file "test_60f01x_IIC.C"
+   833 ;; Parameters:    Size  Location     Type
+   834 ;;		None
+   835 ;; Auto vars:     Size  Location     Type
+   836 ;;  i               1    3[COMMON] unsigned char 
+   837 ;;  receive         1    2[COMMON] unsigned char 
+   838 ;; Return value:  Size  Location     Type
+   839 ;;                  1    wreg      unsigned char 
+   840 ;; Registers used:
+   841 ;;		wreg, status,2, status,0, pclath, cstack
+   842 ;; Tracked objects:
+   843 ;;		On entry : 0/0
+   844 ;;		On exit  : 100/0
+   845 ;;		Unchanged: 0/0
+   846 ;; Data sizes:     COMMON   BANK0
+   847 ;;      Params:         0       0
+   848 ;;      Locals:         2       0
+   849 ;;      Temps:          0       0
+   850 ;;      Totals:         2       0
+   851 ;;Total ram usage:        2 bytes
+   852 ;; Hardware stack levels used:    1
+   853 ;; Hardware stack levels required when called:    2
+   854 ;; This function calls:
+   855 ;;		_DelayUs
+   856 ;;		_IIC_NAck
+   857 ;; This function is called by:
+   858 ;;		_IIC_READ
+   859 ;; This function uses a non-reentrant model
+   860 ;;
+   861                           
+   862                           
+   863                           ;psect for function _IIC_Read_Byte
+   864  03A5                     _IIC_Read_Byte:	
+   865                           
+   866                           ;test_60f01x_IIC.C: 192: unsigned char i,receive=0;
+   867                           
+   868                           ;incstack = 0
+   869                           ; Regs used in _IIC_Read_Byte: [wreg+status,2+status,0+pclath+cstack]
+   870  03A5  01F2               	clrf	IIC_Read_Byte@receive
+   871                           
+   872                           ;test_60f01x_IIC.C: 193: TRISA2 =1;
+   873  03A6  1683               	bsf	3,5	;RP0=1, select bank1
+   874  03A7  1505               	bsf	5,2	;volatile
+   875                           
+   876                           ;test_60f01x_IIC.C: 194: for(i=0;i<8;i++ )
+   877  03A8  01F3               	clrf	IIC_Read_Byte@i
+   878  03A9                     l470:	
+   879                           
+   880                           ;test_60f01x_IIC.C: 195: {
+   881                           ;test_60f01x_IIC.C: 196: PA4=0;
+   882  03A9  1283               	bcf	3,5	;RP0=0, select bank0
+   883  03AA  1205               	bcf	5,4	;volatile
+   884                           
+   885                           ;test_60f01x_IIC.C: 197: DelayUs(5);
+   886  03AB  3005               	movlw	5
+   887  03AC  232B               	fcall	_DelayUs
+   888                           
+   889                           ;test_60f01x_IIC.C: 198: PA4=1;
+   890  03AD  1283               	bcf	3,5	;RP0=0, select bank0
+   891  03AE  1605               	bsf	5,4	;volatile
+   892                           
+   893                           ;test_60f01x_IIC.C: 199: receive<<=1;
+   894  03AF  1003               	clrc
+   895  03B0  0DF2               	rlf	IIC_Read_Byte@receive,f
+   896                           
+   897                           ;test_60f01x_IIC.C: 200: if(PA2)receive++;
+   898  03B1  1905               	btfsc	5,2	;volatile
+   899  03B2  0AF2               	incf	IIC_Read_Byte@receive,f
+   900                           
+   901                           ;test_60f01x_IIC.C: 201: DelayUs(5);
+   902  03B3  3005               	movlw	5
+   903  03B4  232B               	fcall	_DelayUs
+   904  03B5  3008               	movlw	8
+   905  03B6  0AF3               	incf	IIC_Read_Byte@i,f
+   906  03B7  0273               	subwf	IIC_Read_Byte@i,w
+   907  03B8  1C03               	skipc
+   908  03B9  2BA9               	goto	l470
+   909                           
+   910                           ;test_60f01x_IIC.C: 202: }
+   911                           ;test_60f01x_IIC.C: 203: IIC_NAck();
+   912  03BA  234C               	fcall	_IIC_NAck
+   913                           
+   914                           ;test_60f01x_IIC.C: 205: return receive;
+   915  03BB  0872               	movf	IIC_Read_Byte@receive,w
+   916  03BC  0008               	return
+   917  03BD                     __end_of_IIC_Read_Byte:	
+   918                           
+   919                           	psect	text9
+   920  034C                     __ptext9:	
+   921 ;; *************** function _IIC_NAck *****************
+   922 ;; Defined at:
+   923 ;;		line 149 in file "test_60f01x_IIC.C"
+   924 ;; Parameters:    Size  Location     Type
+   925 ;;		None
+   926 ;; Auto vars:     Size  Location     Type
+   927 ;;		None
+   928 ;; Return value:  Size  Location     Type
+   929 ;;                  1    wreg      void 
+   930 ;; Registers used:
+   931 ;;		wreg, status,2, status,0, pclath, cstack
+   932 ;; Tracked objects:
+   933 ;;		On entry : 0/0
+   934 ;;		On exit  : 100/0
+   935 ;;		Unchanged: 0/0
+   936 ;; Data sizes:     COMMON   BANK0
+   937 ;;      Params:         0       0
+   938 ;;      Locals:         0       0
+   939 ;;      Temps:          0       0
+   940 ;;      Totals:         0       0
+   941 ;;Total ram usage:        0 bytes
+   942 ;; Hardware stack levels used:    1
+   943 ;; Hardware stack levels required when called:    1
+   944 ;; This function calls:
+   945 ;;		_DelayUs
+   946 ;; This function is called by:
+   947 ;;		_IIC_Read_Byte
+   948 ;; This function uses a non-reentrant model
+   949 ;;
+   950                           
+   951                           
+   952                           ;psect for function _IIC_NAck
+   953  034C                     _IIC_NAck:	
+   954                           
+   955                           ;test_60f01x_IIC.C: 151: PA4=0;
+   956                           
+   957                           ;incstack = 0
+   958                           ; Regs used in _IIC_NAck: [wreg+status,2+status,0+pclath+cstack]
+   959  034C  1283               	bcf	3,5	;RP0=0, select bank0
+   960  034D  1205               	bcf	5,4	;volatile
+   961                           
+   962                           ;test_60f01x_IIC.C: 152: TRISA2 =0;
+   963  034E  1683               	bsf	3,5	;RP0=1, select bank1
+   964  034F  1105               	bcf	5,2	;volatile
+   965                           
+   966                           ;test_60f01x_IIC.C: 153: PA2=1;
+   967  0350  1283               	bcf	3,5	;RP0=0, select bank0
+   968  0351  1505               	bsf	5,2	;volatile
+   969                           
+   970                           ;test_60f01x_IIC.C: 154: DelayUs(5);
+   971  0352  3005               	movlw	5
+   972  0353  232B               	fcall	_DelayUs
+   973                           
+   974                           ;test_60f01x_IIC.C: 155: PA4=1;
+   975  0354  1283               	bcf	3,5	;RP0=0, select bank0
+   976  0355  1605               	bsf	5,4	;volatile
+   977                           
+   978                           ;test_60f01x_IIC.C: 156: DelayUs(5);
+   979  0356  3005               	movlw	5
+   980  0357  232B               	fcall	_DelayUs
+   981                           
+   982                           ;test_60f01x_IIC.C: 157: PA4=0;
+   983  0358  1283               	bcf	3,5	;RP0=0, select bank0
+   984  0359  1205               	bcf	5,4	;volatile
+   985  035A  0008               	return
+   986  035B                     __end_of_IIC_NAck:	
+   987                           
+   988                           	psect	text10
+   989  032B                     __ptext10:	
+   990 ;; *************** function _DelayUs *****************
+   991 ;; Defined at:
+   992 ;;		line 58 in file "test_60f01x_IIC.C"
+   993 ;; Parameters:    Size  Location     Type
+   994 ;;  Time            1    wreg     unsigned char 
+   995 ;; Auto vars:     Size  Location     Type
+   996 ;;  Time            1    0[COMMON] unsigned char 
+   997 ;;  a               1    1[COMMON] unsigned char 
+   998 ;; Return value:  Size  Location     Type
+   999 ;;                  1    wreg      void 
+  1000 ;; Registers used:
+  1001 ;;		wreg, status,2, status,0
+  1002 ;; Tracked objects:
+  1003 ;;		On entry : 100/0
+  1004 ;;		On exit  : 0/0
+  1005 ;;		Unchanged: 0/0
+  1006 ;; Data sizes:     COMMON   BANK0
+  1007 ;;      Params:         0       0
+  1008 ;;      Locals:         2       0
+  1009 ;;      Temps:          0       0
+  1010 ;;      Totals:         2       0
+  1011 ;;Total ram usage:        2 bytes
+  1012 ;; Hardware stack levels used:    1
+  1013 ;; This function calls:
+  1014 ;;		Nothing
+  1015 ;; This function is called by:
+  1016 ;;		_IIC_Start
+  1017 ;;		_IIC_Stop
+  1018 ;;		_IIC_Wait_Ack
+  1019 ;;		_IIC_NAck
+  1020 ;;		_IIC_Send_Byte
+  1021 ;;		_IIC_Read_Byte
+  1022 ;; This function uses a non-reentrant model
+  1023 ;;
+  1024                           
+  1025                           
+  1026                           ;psect for function _DelayUs
+  1027  032B                     _DelayUs:	
+  1028                           
+  1029                           ;incstack = 0
+  1030                           ; Regs used in _DelayUs: [wreg+status,2+status,0]
+  1031                           ;DelayUs@Time stored from wreg
+  1032  032B  00F0               	movwf	DelayUs@Time
+  1033                           
+  1034                           ;test_60f01x_IIC.C: 60: unsigned char a;
+  1035                           ;test_60f01x_IIC.C: 61: for(a=0;a<Time;a++)
+  1036  032C  01F1               	clrf	DelayUs@a
+  1037  032D                     l875:	
+  1038  032D  0870               	movf	DelayUs@Time,w
+  1039  032E  0271               	subwf	DelayUs@a,w
+  1040  032F  1803               	btfsc	3,0
+  1041  0330  0008               	return
+  1042                           
+  1043                           ;test_60f01x_IIC.C: 62: {
+  1044                           ;test_60f01x_IIC.C: 63: __nop();
+  1045  0331  0000               	nop
+  1046  0332  0AF1               	incf	DelayUs@a,f
+  1047  0333  2B2D               	goto	l875
+  1048  0334                     __end_of_DelayUs:	
+  1049  007E                     btemp	set	126	;btemp
+  1050  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  1
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      7       8
+    BANK0            48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_IIC_READ
+    _main->_IIC_WRITE
+    _IIC_WRITE->_IIC_Send_Byte
+    _IIC_READ->_IIC_Send_Byte
+    _IIC_Wait_Ack->_DelayUs
+    _IIC_Stop->_DelayUs
+    _IIC_Start->_DelayUs
+    _IIC_Send_Byte->_DelayUs
+    _IIC_Read_Byte->_DelayUs
+    _IIC_NAck->_DelayUs
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     642
+                           _IIC_READ
+                          _IIC_WRITE
+                      _POWER_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _IIC_WRITE                                            2     1      1     297
+                                              5 COMMON     2     1      1
+                      _IIC_Send_Byte
+                          _IIC_Start
+                           _IIC_Stop
+                       _IIC_Wait_Ack
+ ---------------------------------------------------------------------------------
+ (1) _IIC_READ                                             2     2      0     345
+                                              5 COMMON     2     2      0
+                      _IIC_Read_Byte
+                      _IIC_Send_Byte
+                          _IIC_Start
+                           _IIC_Stop
+                       _IIC_Wait_Ack
+ ---------------------------------------------------------------------------------
+ (2) _IIC_Wait_Ack                                         1     1      0      75
+                                              2 COMMON     1     1      0
+                            _DelayUs
+                           _IIC_Stop
+ ---------------------------------------------------------------------------------
+ (3) _IIC_Stop                                             0     0      0      30
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (2) _IIC_Start                                            0     0      0      30
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (2) _IIC_Send_Byte                                        3     3      0      75
+                                              2 COMMON     3     3      0
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (2) _IIC_Read_Byte                                        2     2      0     105
+                                              2 COMMON     2     2      0
+                            _DelayUs
+                           _IIC_NAck
+ ---------------------------------------------------------------------------------
+ (3) _IIC_NAck                                             0     0      0      30
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (4) _DelayUs                                              2     2      0      30
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 4
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _IIC_READ
+     _IIC_Read_Byte
+       _DelayUs
+       _IIC_NAck
+         _DelayUs
+     _IIC_Send_Byte
+       _DelayUs
+     _IIC_Start
+       _DelayUs
+     _IIC_Stop
+       _DelayUs
+     _IIC_Wait_Ack
+       _DelayUs
+       _IIC_Stop
+         _DelayUs
+   _IIC_WRITE
+     _IIC_Send_Byte
+       _DelayUs
+     _IIC_Start
+       _DelayUs
+     _IIC_Stop
+       _DelayUs
+     _IIC_Wait_Ack
+       _DelayUs
+       _IIC_Stop
+         _DelayUs
+   _POWER_INITIAL
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      7       8       1       57.1%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       8       3        0.0%
+BITBANK0            30      0       0       4        0.0%
+BANK0               30      0       0       5        0.0%
+ABS                  0      0       8       6        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Sat Nov 20 16:01:35 2021
+
+                     u45 03E0                      l450 0399                      l470 03A9  
+                    l454 03A3                      l465 03EA                      l466 03EC  
+                    l483 037A                      l935 03DD                      l875 032D  
+                    l877 036A                      l987 03BE                      _PA2 002A  
+                    _PA4 002C            ?_IIC_Wait_Ack 0070                     l1043 033C  
+         ?_IIC_Read_Byte 0070                     _WPUA 0095       __size_of_IIC_WRITE 0015  
+                   _main 0334                     btemp 007E       __size_of_IIC_Start 000F  
+                   start 0000          __end_of_DelayUs 0334           ?_IIC_Send_Byte 0070  
+       __end_of_IIC_READ 03D7         __end_of_IIC_NAck 035B         __end_of_IIC_Stop 0379  
+   IIC_Read_Byte@receive 0072                    ?_main 0070                    _PORTA 0005  
+                  _TRISA 0085           ??_IIC_Wait_Ack 0072            IIC_WRITE@data 0075  
+                  status 0003                    wtemp0 007E          __initialization 03FE  
+           __end_of_main 033E                   ??_main 0077        __end_of_IIC_WRITE 038E  
+      __end_of_IIC_Start 036A         IIC_Send_Byte@txd 0073          ??_IIC_Read_Byte 0072  
+                 _INTCON 000B                ??_DelayUs 0070                   _OSCCON 008F  
+                 _OPTION 0081                   _TRISA2 042A          ??_IIC_Send_Byte 0072  
+  IIC_Wait_Ack@ucErrTime 0072                ?_IIC_READ 0070                ?_IIC_NAck 0070  
+  __end_of_POWER_INITIAL 034C  __end_of__initialization 03FE                ?_IIC_Stop 0070  
+         __pcstackCOMMON 0070     __end_of_IIC_Wait_Ack 03A5               ??_IIC_READ 0075  
+             ??_IIC_NAck 0072               ??_IIC_Stop 0072               __pnvCOMMON 0077  
+             __pmaintext 0334                  _MSCKCON 001B                  _DelayUs 032B  
+                __ptext1 033E                  __ptext2 0379                  __ptext3 03BD  
+                __ptext4 038E                  __ptext5 036A                  __ptext6 035B  
+                __ptext7 03D7                  __ptext8 03A5                  __ptext9 034C  
+              _IIC_WRITE 0379                _IIC_Start 035B     end_of_initialization 03FE  
+  __size_of_IIC_Wait_Ack 0017           IIC_Read_Byte@i 0073               ?_IIC_WRITE 0075  
+           _IIC_Wait_Ack 038E               ?_IIC_Start 0070    __end_of_IIC_Read_Byte 03BD  
+      __size_of_IIC_READ 001A        __size_of_IIC_NAck 000F        __size_of_IIC_Stop 000F  
+  __end_of_IIC_Send_Byte 03FE           IIC_Send_Byte@t 0074      start_initialization 03FE  
+ __size_of_POWER_INITIAL 000E                ___latbits 0000              ??_IIC_WRITE 0076  
+            ??_IIC_Start 0072                 ?_DelayUs 0070                 _IIC_READ 03BD  
+               _IIC_NAck 034C            _POWER_INITIAL 033E                 _IIC_Stop 036A  
+               DelayUs@a 0071              _IICReadData 0077           ?_POWER_INITIAL 0070  
+            DelayUs@Time 0070         __size_of_DelayUs 0009                 __ptext10 032B  
+          __size_of_main 000A   __size_of_IIC_Read_Byte 0018         IIC_WRITE@address 0076  
+ __size_of_IIC_Send_Byte 0027          ??_POWER_INITIAL 0070          IIC_READ@address 0075  
+        IIC_READ@iicdata 0076            _IIC_Read_Byte 03A5            _IIC_Send_Byte 03D7  

@@ -1,0 +1,227 @@
+//Deviec:FT62F08X
+//-----------------------Variable---------------------------------
+//		DelayMs@Time		EQU		72H
+//		DelayMs@b		EQU		74H
+//		DelayMs@a		EQU		73H
+//		DelayMs@Time		EQU		C00000H
+//		DelayUs@Time		EQU		70H
+//		DelayUs@a		EQU		71H
+//		DelayUs@Time		EQU		C00000H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		MOVLP 	0H 			//0000 	0180
+		LJUMP 	8H 			//0001 	3808
+		ORG		0003H
+		NOP 					//0003 	1000
+		BSR 	7EH, 0H 			//0004 	247E
+		MOVLP 	0H 			//0005 	0180
+		BCR 	7EH, 0H 			//0006 	207E
+		RETI 					//0007 	1009
+		MOVLP 	0H 			//0008 	0180
+		LJUMP 	AH 			//0009 	380A
+		BCR 	7EH, 0H 			//000A 	207E
+		ORG		000BH
+		MOVLB 	0H 			//000B 	1020
+		LJUMP 	DH 			//000C 	380D
+
+		//;test_FT62F08X_WDT.C: 124: POWER_INITIAL();
+		LCALL 	3FH 			//000D 	303F
+		MOVLP 	0H 			//000E 	0180
+
+		//;test_FT62F08X_WDT.C: 125: WDT_INITIAL();
+		LCALL 	68H 			//000F 	3068
+		MOVLP 	0H 			//0010 	0180
+
+		//;test_FT62F08X_WDT.C: 127: PB3 = 1;
+		MOVLB 	0H 			//0011 	1020
+		BSR 	DH, 3H 			//0012 	258D
+		ORG		0013H
+
+		//;test_FT62F08X_WDT.C: 128: DelayMs(3);
+		LDWI 	3H 			//0013 	0003
+		LCALL 	25H 			//0014 	3025
+		MOVLP 	0H 			//0015 	0180
+
+		//;test_FT62F08X_WDT.C: 129: PB3 = 0;
+		MOVLB 	0H 			//0016 	1020
+		BCR 	DH, 3H 			//0017 	218D
+
+		//;test_FT62F08X_WDT.C: 130: DelayMs(3);
+		LDWI 	3H 			//0018 	0003
+		LCALL 	25H 			//0019 	3025
+		MOVLP 	0H 			//001A 	0180
+		ORG		001BH
+
+		//;test_FT62F08X_WDT.C: 131: while(1)
+		CLRWDT 			//001B 	1064
+
+		//;test_FT62F08X_WDT.C: 134: PB3 = 1;
+		MOVLB 	0H 			//001C 	1020
+		BSR 	DH, 3H 			//001D 	258D
+
+		//;test_FT62F08X_WDT.C: 135: DelayMs(1);
+		LDWI 	1H 			//001E 	0001
+		LCALL 	25H 			//001F 	3025
+		MOVLP 	0H 			//0020 	0180
+
+		//;test_FT62F08X_WDT.C: 136: PB3 = 0;
+		MOVLB 	0H 			//0021 	1020
+		BCR 	DH, 3H 			//0022 	218D
+		ORG		0023H
+
+		//;test_FT62F08X_WDT.C: 137: DelayMs(1);
+		LDWI 	1H 			//0023 	0001
+		LJUMP 	19H 			//0024 	3819
+		STR 	72H 			//0025 	10F2
+
+		//;test_FT62F08X_WDT.C: 95: unsigned char a,b;
+		//;test_FT62F08X_WDT.C: 96: for(a=0;a<Time;a++)
+		CLRF 	73H 			//0026 	11F3
+		LDR 	72H, 0H 			//0027 	1872
+		SUBWR 	73H, 0H 		//0028 	1273
+		BTSC 	3H, 0H 			//0029 	2803
+		RET 					//002A 	1008
+		ORG		002BH
+
+		//;test_FT62F08X_WDT.C: 97: {
+		//;test_FT62F08X_WDT.C: 98: for(b=0;b<5;b++)
+		CLRF 	74H 			//002B 	11F4
+
+		//;test_FT62F08X_WDT.C: 99: {
+		//;test_FT62F08X_WDT.C: 100: DelayUs(197);
+		LDWI 	C5H 			//002C 	00C5
+		LCALL 	36H 			//002D 	3036
+		MOVLP 	0H 			//002E 	0180
+		LDWI 	5H 			//002F 	0005
+		INCR 	74H, 1H 		//0030 	1AF4
+		SUBWR 	74H, 0H 		//0031 	1274
+		BTSS 	3H, 0H 			//0032 	2C03
+		ORG		0033H
+		LJUMP 	2CH 			//0033 	382C
+		INCR 	73H, 1H 		//0034 	1AF3
+		LJUMP 	27H 			//0035 	3827
+		STR 	70H 			//0036 	10F0
+
+		//;test_FT62F08X_WDT.C: 81: unsigned char a;
+		//;test_FT62F08X_WDT.C: 82: for(a=0;a<Time;a++)
+		CLRF 	71H 			//0037 	11F1
+		LDR 	70H, 0H 			//0038 	1870
+		SUBWR 	71H, 0H 		//0039 	1271
+		BTSC 	3H, 0H 			//003A 	2803
+		ORG		003BH
+		RET 					//003B 	1008
+
+		//;test_FT62F08X_WDT.C: 83: {
+		//;test_FT62F08X_WDT.C: 84: __nop();
+		NOP 					//003C 	1000
+		INCR 	71H, 1H 		//003D 	1AF1
+		LJUMP 	38H 			//003E 	3838
+
+		//;test_FT62F08X_WDT.C: 41: OSCCON = 0B01110001;
+		LDWI 	71H 			//003F 	0071
+		MOVLB 	1H 			//0040 	1021
+		STR 	19H 			//0041 	1099
+
+		//;test_FT62F08X_WDT.C: 42: INTCON = 0;
+		CLRF 	BH 			//0042 	118B
+		ORG		0043H
+
+		//;test_FT62F08X_WDT.C: 44: PORTA = 0B00000000;
+		MOVLB 	0H 			//0043 	1020
+		CLRF 	CH 			//0044 	118C
+
+		//;test_FT62F08X_WDT.C: 45: TRISA = 0B00000000;
+		MOVLB 	1H 			//0045 	1021
+		CLRF 	CH 			//0046 	118C
+
+		//;test_FT62F08X_WDT.C: 46: PORTB = 0B00000000;
+		MOVLB 	0H 			//0047 	1020
+		CLRF 	DH 			//0048 	118D
+
+		//;test_FT62F08X_WDT.C: 47: TRISB = 0B00000000;
+		MOVLB 	1H 			//0049 	1021
+		CLRF 	DH 			//004A 	118D
+		ORG		004BH
+
+		//;test_FT62F08X_WDT.C: 48: PORTC = 0B00000000;
+		MOVLB 	0H 			//004B 	1020
+		CLRF 	EH 			//004C 	118E
+
+		//;test_FT62F08X_WDT.C: 49: TRISC = 0B00000000;
+		MOVLB 	1H 			//004D 	1021
+		CLRF 	EH 			//004E 	118E
+
+		//;test_FT62F08X_WDT.C: 50: PORTD = 0B00000000;
+		MOVLB 	0H 			//004F 	1020
+		CLRF 	FH 			//0050 	118F
+
+		//;test_FT62F08X_WDT.C: 51: TRISD = 0B00000000;
+		MOVLB 	1H 			//0051 	1021
+		CLRF 	FH 			//0052 	118F
+		ORG		0053H
+
+		//;test_FT62F08X_WDT.C: 53: WPUA = 0B00000000;
+		MOVLB 	3H 			//0053 	1023
+		CLRF 	CH 			//0054 	118C
+
+		//;test_FT62F08X_WDT.C: 54: WPUB = 0B00000000;
+		CLRF 	DH 			//0055 	118D
+
+		//;test_FT62F08X_WDT.C: 55: WPUC = 0B00000000;
+		CLRF 	EH 			//0056 	118E
+
+		//;test_FT62F08X_WDT.C: 56: WPUD = 0B00000000;
+		CLRF 	FH 			//0057 	118F
+
+		//;test_FT62F08X_WDT.C: 58: WPDA = 0B00000000;
+		MOVLB 	4H 			//0058 	1024
+		CLRF 	CH 			//0059 	118C
+
+		//;test_FT62F08X_WDT.C: 59: WPDB = 0B00000000;
+		CLRF 	DH 			//005A 	118D
+		ORG		005BH
+
+		//;test_FT62F08X_WDT.C: 60: WPDC = 0B00000000;
+		CLRF 	EH 			//005B 	118E
+
+		//;test_FT62F08X_WDT.C: 61: WPDD = 0B00000000;
+		CLRF 	FH 			//005C 	118F
+
+		//;test_FT62F08X_WDT.C: 63: PSRC0 = 0B11111111;
+		LDWI 	FFH 			//005D 	00FF
+		MOVLB 	2H 			//005E 	1022
+		STR 	1AH 			//005F 	109A
+
+		//;test_FT62F08X_WDT.C: 64: PSRC1 = 0B11111111;
+		STR 	1BH 			//0060 	109B
+
+		//;test_FT62F08X_WDT.C: 66: PSINK0 = 0B11111111;
+		MOVLB 	3H 			//0061 	1023
+		STR 	1AH 			//0062 	109A
+		ORG		0063H
+
+		//;test_FT62F08X_WDT.C: 67: PSINK1 = 0B11111111;
+		STR 	1BH 			//0063 	109B
+
+		//;test_FT62F08X_WDT.C: 68: PSINK2 = 0B11111111;
+		STR 	1CH 			//0064 	109C
+
+		//;test_FT62F08X_WDT.C: 69: PSINK3 = 0B11111111;
+		STR 	1DH 			//0065 	109D
+
+		//;test_FT62F08X_WDT.C: 71: ANSELA = 0B00000000;
+		CLRF 	17H 			//0066 	1197
+		RET 					//0067 	1008
+		CLRWDT 			//0068 	1064
+
+		//;test_FT62F08X_WDT.C: 113: MISC0 = 0B00000000;
+		MOVLB 	2H 			//0069 	1022
+		CLRF 	1CH 			//006A 	119C
+		ORG		006BH
+
+		//;test_FT62F08X_WDT.C: 114: WDTCON = 0B00001011;
+		LDWI 	BH 			//006B 	000B
+		MOVLB 	1H 			//006C 	1021
+		STR 	17H 			//006D 	1097
+		RET 					//006E 	1008
+			END

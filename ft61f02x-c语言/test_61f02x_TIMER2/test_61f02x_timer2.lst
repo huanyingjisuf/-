@@ -1,0 +1,520 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Sat Nov 20 17:02:44 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT61F02X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	text0,local,class=CODE,merge=1,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	maintext,global,class=CODE,split=1,delta=2
+     8                           	psect	text1,local,class=CODE,merge=1,delta=2
+     9                           	psect	text2,local,class=CODE,merge=1,delta=2
+    10                           	psect	text3,local,class=CODE,merge=1,delta=2
+    11                           	psect	intentry,global,class=CODE,delta=2
+    12                           	psect	pa_nodes0,global,class=CODE,delta=2
+    13                           	dabs	1,0x7E,2
+    14  0000                     
+    15                           ; Version 2.20
+    16                           ; Generated 09/04/2020 
+    17                           ; 
+    18                           ; SFR Addresses
+    19  0000                     
+    20                           	psect	text0
+    21  0000                     __ptext0:	
+    22  001B                     _MSCKCON	set	27
+    23  0019                     _CMCON0	set	25
+    24  0012                     _T2CON	set	18
+    25  0011                     _TMR2	set	17
+    26  000B                     _INTCON	set	11
+    27  0007                     _PORTC	set	7
+    28  0005                     _PORTA	set	5
+    29  0092                     _TMR2ON	set	146
+    30  0061                     _TMR2IF	set	97
+    31  005F                     _GIE	set	95
+    32  005E                     _PEIE	set	94
+    33  003B                     _PC3	set	59
+    34  002B                     _PA3	set	43
+    35  0095                     _WPUA	set	149
+    36  0092                     _PR2	set	146
+    37  008F                     _OSCCON	set	143
+    38  0088                     _WPUC	set	136
+    39  0087                     _TRISC	set	135
+    40  0085                     _TRISA	set	133
+    41  0081                     _OPTION	set	129
+    42  0461                     _TMR2IE	set	1121
+    43                           
+    44                           	psect	cinit
+    45  000B                     start_initialization:	
+    46                           ; #config settings
+    47                           
+    48  000B                     __initialization:	
+    49  000B                     end_of_initialization:	
+    50                           ;End of C runtime variable initialization code
+    51                           
+    52  000B                     __end_of__initialization:	
+    53  000B  0183               	clrf	3
+    54  000C  2844               	ljmp	_main	;jump to C main() function
+    55                           
+    56                           	psect	cstackCOMMON
+    57  0070                     __pcstackCOMMON:	
+    58  0070                     ?_ISR:	
+    59  0070                     ??_ISR:	
+    60                           ; 1 bytes @ 0x0
+    61                           
+    62  0070                     ?_POWER_INITIAL:	
+    63                           ; 1 bytes @ 0x0
+    64                           
+    65  0070                     ?_TIMER2_INITIAL:	
+    66                           ; 1 bytes @ 0x0
+    67                           
+    68  0070                     ?_main:	
+    69                           ; 1 bytes @ 0x0
+    70                           
+    71                           
+    72                           ; 1 bytes @ 0x0
+    73  0070                     	ds	2
+    74  0072                     ??_POWER_INITIAL:	
+    75  0072                     ??_TIMER2_INITIAL:	
+    76                           ; 1 bytes @ 0x2
+    77                           
+    78  0072                     ??_main:	
+    79                           ; 1 bytes @ 0x2
+    80                           
+    81                           
+    82                           	psect	maintext
+    83  0044                     __pmaintext:	
+    84                           ; 1 bytes @ 0x2
+    85 ;;
+    86 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    87 ;;
+    88 ;; *************** function _main *****************
+    89 ;; Defined at:
+    90 ;;		line 97 in file "TEST_61F02x_Timer2.c"
+    91 ;; Parameters:    Size  Location     Type
+    92 ;;		None
+    93 ;; Auto vars:     Size  Location     Type
+    94 ;;		None
+    95 ;; Return value:  Size  Location     Type
+    96 ;;                  1    wreg      void 
+    97 ;; Registers used:
+    98 ;;		wreg, status,2, status,0, pclath, cstack
+    99 ;; Tracked objects:
+   100 ;;		On entry : B00/0
+   101 ;;		On exit  : B00/0
+   102 ;;		Unchanged: 800/0
+   103 ;; Data sizes:     COMMON   BANK0   BANK1
+   104 ;;      Params:         0       0       0
+   105 ;;      Locals:         0       0       0
+   106 ;;      Temps:          0       0       0
+   107 ;;      Totals:         0       0       0
+   108 ;;Total ram usage:        0 bytes
+   109 ;; Hardware stack levels required when called:    2
+   110 ;; This function calls:
+   111 ;;		_POWER_INITIAL
+   112 ;;		_TIMER2_INITIAL
+   113 ;; This function is called by:
+   114 ;;		Startup code after reset
+   115 ;; This function uses a non-reentrant model
+   116 ;;
+   117                           
+   118                           
+   119                           ;psect for function _main
+   120  0044                     _main:	
+   121                           
+   122                           ;TEST_61F02x_Timer2.c: 99: POWER_INITIAL();
+   123                           
+   124                           ;incstack = 0
+   125                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   126  0044  200D               	fcall	_POWER_INITIAL
+   127                           
+   128                           ;TEST_61F02x_Timer2.c: 100: TIMER2_INITIAL();
+   129  0045  2035               	fcall	_TIMER2_INITIAL
+   130  0046  2849               	goto	l1500
+   131  0047                     l1502:	
+   132                           
+   133                           ;TEST_61F02x_Timer2.c: 105: {
+   134                           ;TEST_61F02x_Timer2.c: 106: TMR2IE = 1;
+   135  0047  1683               	bsf	3,5	;RP0=1, select bank1
+   136  0048  148C               	bsf	12,1	;volatile
+   137  0049                     l1500:	
+   138                           ;TEST_61F02x_Timer2.c: 107: }
+   139                           
+   140                           
+   141                           ;TEST_61F02x_Timer2.c: 103: {
+   142                           ;TEST_61F02x_Timer2.c: 104: if(PC3 == 1)
+   143  0049  1283               	bcf	3,5	;RP0=0, select bank0
+   144  004A  1987               	btfsc	7,3	;volatile
+   145  004B  2847               	goto	l1502
+   146                           
+   147                           ;TEST_61F02x_Timer2.c: 108: else
+   148                           ;TEST_61F02x_Timer2.c: 109: {
+   149                           ;TEST_61F02x_Timer2.c: 110: TMR2IE = 0;
+   150  004C  1683               	bsf	3,5	;RP0=1, select bank1
+   151  004D  108C               	bcf	12,1	;volatile
+   152                           
+   153                           ;TEST_61F02x_Timer2.c: 111: PA3 = 1;
+   154  004E  1283               	bcf	3,5	;RP0=0, select bank0
+   155  004F  1585               	bsf	5,3	;volatile
+   156  0050  2849               	goto	l1500
+   157  0051                     __end_of_main:	
+   158                           
+   159                           	psect	text1
+   160  0035                     __ptext1:	
+   161 ;; *************** function _TIMER2_INITIAL *****************
+   162 ;; Defined at:
+   163 ;;		line 76 in file "TEST_61F02x_Timer2.c"
+   164 ;; Parameters:    Size  Location     Type
+   165 ;;		None
+   166 ;; Auto vars:     Size  Location     Type
+   167 ;;		None
+   168 ;; Return value:  Size  Location     Type
+   169 ;;                  1    wreg      void 
+   170 ;; Registers used:
+   171 ;;		wreg, status,2
+   172 ;; Tracked objects:
+   173 ;;		On entry : B00/0
+   174 ;;		On exit  : B00/0
+   175 ;;		Unchanged: 800/0
+   176 ;; Data sizes:     COMMON   BANK0   BANK1
+   177 ;;      Params:         0       0       0
+   178 ;;      Locals:         0       0       0
+   179 ;;      Temps:          0       0       0
+   180 ;;      Totals:         0       0       0
+   181 ;;Total ram usage:        0 bytes
+   182 ;; Hardware stack levels used:    1
+   183 ;; Hardware stack levels required when called:    1
+   184 ;; This function calls:
+   185 ;;		Nothing
+   186 ;; This function is called by:
+   187 ;;		_main
+   188 ;; This function uses a non-reentrant model
+   189 ;;
+   190                           
+   191                           
+   192                           ;psect for function _TIMER2_INITIAL
+   193  0035                     _TIMER2_INITIAL:	
+   194                           
+   195                           ;TEST_61F02x_Timer2.c: 78: T2CON = 0B00000001;
+   196                           
+   197                           ;incstack = 0
+   198                           ; Regs used in _TIMER2_INITIAL: [wreg+status,2]
+   199  0035  3001               	movlw	1
+   200  0036  0092               	movwf	18	;volatile
+   201                           
+   202                           ;TEST_61F02x_Timer2.c: 82: TMR2 = 0;
+   203  0037  0191               	clrf	17	;volatile
+   204                           
+   205                           ;TEST_61F02x_Timer2.c: 83: PR2 = 200;
+   206  0038  30C8               	movlw	200
+   207  0039  1683               	bsf	3,5	;RP0=1, select bank1
+   208  003A  0092               	movwf	18	;volatile
+   209                           
+   210                           ;TEST_61F02x_Timer2.c: 85: TMR2IF = 0;
+   211  003B  1283               	bcf	3,5	;RP0=0, select bank0
+   212  003C  108C               	bcf	12,1	;volatile
+   213                           
+   214                           ;TEST_61F02x_Timer2.c: 86: TMR2IE = 1;
+   215  003D  1683               	bsf	3,5	;RP0=1, select bank1
+   216  003E  148C               	bsf	12,1	;volatile
+   217                           
+   218                           ;TEST_61F02x_Timer2.c: 87: TMR2ON = 1;
+   219  003F  1283               	bcf	3,5	;RP0=0, select bank0
+   220  0040  1512               	bsf	18,2	;volatile
+   221                           
+   222                           ;TEST_61F02x_Timer2.c: 88: PEIE = 1;
+   223  0041  170B               	bsf	11,6	;volatile
+   224                           
+   225                           ;TEST_61F02x_Timer2.c: 89: GIE = 1;
+   226  0042  178B               	bsf	11,7	;volatile
+   227  0043  0008               	return
+   228  0044                     __end_of_TIMER2_INITIAL:	
+   229                           
+   230                           	psect	text2
+   231  000D                     __ptext2:	
+   232 ;; *************** function _POWER_INITIAL *****************
+   233 ;; Defined at:
+   234 ;;		line 47 in file "TEST_61F02x_Timer2.c"
+   235 ;; Parameters:    Size  Location     Type
+   236 ;;		None
+   237 ;; Auto vars:     Size  Location     Type
+   238 ;;		None
+   239 ;; Return value:  Size  Location     Type
+   240 ;;                  1    wreg      void 
+   241 ;; Registers used:
+   242 ;;		wreg, status,2
+   243 ;; Tracked objects:
+   244 ;;		On entry : B00/0
+   245 ;;		On exit  : B00/0
+   246 ;;		Unchanged: 800/0
+   247 ;; Data sizes:     COMMON   BANK0   BANK1
+   248 ;;      Params:         0       0       0
+   249 ;;      Locals:         0       0       0
+   250 ;;      Temps:          0       0       0
+   251 ;;      Totals:         0       0       0
+   252 ;;Total ram usage:        0 bytes
+   253 ;; Hardware stack levels used:    1
+   254 ;; Hardware stack levels required when called:    1
+   255 ;; This function calls:
+   256 ;;		Nothing
+   257 ;; This function is called by:
+   258 ;;		_main
+   259 ;; This function uses a non-reentrant model
+   260 ;;
+   261                           
+   262                           
+   263                           ;psect for function _POWER_INITIAL
+   264  000D                     _POWER_INITIAL:	
+   265                           
+   266                           ;TEST_61F02x_Timer2.c: 49: OPTION = 0B00001000;
+   267                           
+   268                           ;incstack = 0
+   269                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   270  000D  3008               	movlw	8
+   271  000E  1683               	bsf	3,5	;RP0=1, select bank1
+   272  000F  0081               	movwf	1	;volatile
+   273                           
+   274                           ;TEST_61F02x_Timer2.c: 50: INTCON = 0;
+   275  0010  018B               	clrf	11	;volatile
+   276                           
+   277                           ;TEST_61F02x_Timer2.c: 51: OSCCON = 0B01110001;
+   278  0011  3071               	movlw	113
+   279  0012  008F               	movwf	15	;volatile
+   280                           
+   281                           ;TEST_61F02x_Timer2.c: 53: PORTA = 0B00000000;
+   282  0013  1283               	bcf	3,5	;RP0=0, select bank0
+   283  0014  0185               	clrf	5	;volatile
+   284                           
+   285                           ;TEST_61F02x_Timer2.c: 54: TRISA = 0B00000000;
+   286  0015  1683               	bsf	3,5	;RP0=1, select bank1
+   287  0016  0185               	clrf	5	;volatile
+   288                           
+   289                           ;TEST_61F02x_Timer2.c: 56: PORTC = 0B00000000;
+   290  0017  1283               	bcf	3,5	;RP0=0, select bank0
+   291  0018  0187               	clrf	7	;volatile
+   292                           
+   293                           ;TEST_61F02x_Timer2.c: 57: TRISC = 0B00001000;
+   294  0019  3008               	movlw	8
+   295  001A  1683               	bsf	3,5	;RP0=1, select bank1
+   296  001B  0087               	movwf	7	;volatile
+   297                           
+   298                           ;TEST_61F02x_Timer2.c: 59: WPUA = 0B00000000;
+   299  001C  0195               	clrf	21	;volatile
+   300                           
+   301                           ;TEST_61F02x_Timer2.c: 60: WPUC = 0B00001000;
+   302  001D  0088               	movwf	8	;volatile
+   303                           
+   304                           ;TEST_61F02x_Timer2.c: 62: OPTION = 0B00001000;
+   305  001E  0081               	movwf	1	;volatile
+   306                           
+   307                           ;TEST_61F02x_Timer2.c: 63: MSCKCON = 0B00000000;
+   308  001F  1283               	bcf	3,5	;RP0=0, select bank0
+   309  0020  019B               	clrf	27	;volatile
+   310                           
+   311                           ;TEST_61F02x_Timer2.c: 68: CMCON0 = 0B00000111;
+   312  0021  3007               	movlw	7
+   313  0022  0099               	movwf	25	;volatile
+   314  0023  0008               	return
+   315  0024                     __end_of_POWER_INITIAL:	
+   316                           
+   317                           	psect	text3
+   318  0024                     __ptext3:	
+   319 ;; *************** function _ISR *****************
+   320 ;; Defined at:
+   321 ;;		line 33 in file "TEST_61F02x_Timer2.c"
+   322 ;; Parameters:    Size  Location     Type
+   323 ;;		None
+   324 ;; Auto vars:     Size  Location     Type
+   325 ;;		None
+   326 ;; Return value:  Size  Location     Type
+   327 ;;                  1    wreg      void 
+   328 ;; Registers used:
+   329 ;;		wreg
+   330 ;; Tracked objects:
+   331 ;;		On entry : 0/0
+   332 ;;		On exit  : 200/0
+   333 ;;		Unchanged: 0/0
+   334 ;; Data sizes:     COMMON   BANK0   BANK1
+   335 ;;      Params:         0       0       0
+   336 ;;      Locals:         0       0       0
+   337 ;;      Temps:          2       0       0
+   338 ;;      Totals:         2       0       0
+   339 ;;Total ram usage:        2 bytes
+   340 ;; Hardware stack levels used:    1
+   341 ;; This function calls:
+   342 ;;		Nothing
+   343 ;; This function is called by:
+   344 ;;		Interrupt level 1
+   345 ;; This function uses a non-reentrant model
+   346 ;;
+   347                           
+   348                           
+   349                           ;psect for function _ISR
+   350  0024                     _ISR:	
+   351                           
+   352                           ;TEST_61F02x_Timer2.c: 35: if(TMR2IE && TMR2IF)
+   353  0024  1683               	bsf	3,5	;RP0=1, select bank1
+   354  0025  1303               	bcf	3,6	;RP1=0, select bank1
+   355  0026  1C8C               	btfss	12,1	;volatile
+   356  0027  282E               	goto	i1l1068
+   357  0028  1283               	bcf	3,5	;RP0=0, select bank0
+   358  0029  1C8C               	btfss	12,1	;volatile
+   359  002A  282E               	goto	i1l1068
+   360                           
+   361                           ;TEST_61F02x_Timer2.c: 36: {
+   362                           ;TEST_61F02x_Timer2.c: 37: TMR2IF = 0;
+   363  002B  108C               	bcf	12,1	;volatile
+   364                           
+   365                           ;TEST_61F02x_Timer2.c: 38: PA3 = ~PA3;
+   366  002C  3008               	movlw	8
+   367  002D  0685               	xorwf	5,f
+   368  002E                     i1l1068:	
+   369  002E  0871               	movf	??_ISR+1,w
+   370  002F  008A               	movwf	10
+   371  0030  0E70               	swapf	??_ISR^(0+-128),w
+   372  0031  0083               	movwf	3
+   373  0032  0EFE               	swapf	126,f
+   374  0033  0E7E               	swapf	126,w
+   375  0034  0009               	retfie
+   376  0035                     __end_of_ISR:	
+   377  007E                     btemp	set	126	;btemp
+   378  007E                     wtemp0	set	126
+   379                           
+   380                           	psect	intentry
+   381  0004                     __pintentry:	
+   382                           ;incstack = 0
+   383                           ; Regs used in _ISR: [wreg]
+   384                           
+   385  0004                     interrupt_function:	
+   386  007E                     saved_w	set	btemp
+   387  0004  00FE               	movwf	btemp
+   388  0005  0E03               	swapf	3,w
+   389  0006  00F0               	movwf	??_ISR
+   390  0007  080A               	movf	10,w
+   391  0008  00F1               	movwf	??_ISR+1
+   392  0009  2824               	ljmp	_ISR
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      2       2
+    BANK0            80      0       0
+    BANK1            32      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0       0
+                      _POWER_INITIAL
+                     _TIMER2_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _TIMER2_INITIAL                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ISR                                                  2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _POWER_INITIAL
+   _TIMER2_INITIAL
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      2       2       1       14.3%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+BITBANK0            50      0       0       3        0.0%
+BANK0               50      0       0       4        0.0%
+BITBANK1            20      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BANK1               20      0       0       6        0.0%
+ABS                  0      0       0       7        0.0%
+DATA                 0      0       0       8        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Sat Nov 20 17:02:44 2021
+
+                    _GIE 005F                      _PA3 002B                      _PC3 003B  
+                    _PR2 0092                      _ISR 0024                     ?_ISR 0070  
+                   l1500 0049                     l1502 0047                     _PEIE 005E  
+                   _TMR2 0011                     _WPUA 0095                     _WPUC 0088  
+                   _main 0044                     btemp 007E                     start 000A  
+                  ??_ISR 0070                    ?_main 0070           _TIMER2_INITIAL 0035  
+                  _T2CON 0012                    _PORTA 0005                    _PORTC 0007  
+                  _TRISA 0085                    _TRISC 0087                    pclath 000A  
+                  status 0003                    wtemp0 007E          __initialization 000B  
+           __end_of_main 0051   __end_of_TIMER2_INITIAL 0044                   ??_main 0072  
+                 _CMCON0 0019                   i1l1068 002E                   _INTCON 000B  
+                 _OSCCON 008F                   _TMR2IE 0461                   _TMR2IF 0061  
+                 _OPTION 0081                   _TMR2ON 0092          ?_TIMER2_INITIAL 0070  
+                 saved_w 007E    __end_of_POWER_INITIAL 0024  __end_of__initialization 000B  
+         __pcstackCOMMON 0070               __pmaintext 0044               __pintentry 0004  
+                _MSCKCON 001B                  __ptext0 0000                  __ptext1 0035  
+                __ptext2 000D                  __ptext3 0024             __size_of_ISR 0011  
+   end_of_initialization 000B         ??_TIMER2_INITIAL 0072      start_initialization 000B  
+            __end_of_ISR 0035   __size_of_POWER_INITIAL 0017                ___latbits 0000  
+      interrupt_function 0004            _POWER_INITIAL 000D           ?_POWER_INITIAL 0070  
+          __size_of_main 000D  __size_of_TIMER2_INITIAL 000F          ??_POWER_INITIAL 0072  
+               intlevel1 0000  

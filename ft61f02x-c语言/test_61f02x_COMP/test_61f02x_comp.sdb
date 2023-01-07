@@ -1,0 +1,62 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F02X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"34 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT61F02x\test_61f02x_comp\test_61f02x_comp.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"61
+[v _COMP_INITIAL COMP_INITIAL `(v  1 e 1 0 ]
+"97
+[v _main main `(v  1 e 1 0 ]
+"78 d:\ide3.0.3_6c03\data\include\FT61F02X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"92
+[v _PA3 PA3 `VEb  1 e 0 @43 ]
+"129
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"184
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"449
+[v _CMCON0 CMCON0 `VEuc  1 e 1 @25 ]
+"458
+[v _C2OUT C2OUT `VEb  1 e 0 @207 ]
+"479
+[v _CMCON1 CMCON1 `VEuc  1 e 1 @26 ]
+"494
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"574
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"603
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"633
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"660
+[v _WPUC WPUC `VEuc  1 e 1 @136 ]
+"778
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"834
+[v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
+"866
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"944
+[v _VRCON VRCON `VEuc  1 e 1 @153 ]
+"97 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT61F02x\test_61f02x_comp\test_61f02x_comp.C
+[v _main main `(v  1 e 1 0 ]
+{
+"106
+} 0
+"34
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"54
+} 0
+"61
+[v _COMP_INITIAL COMP_INITIAL `(v  1 e 1 0 ]
+{
+"90
+} 0

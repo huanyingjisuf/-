@@ -1,0 +1,1 @@
+                      test_FT62F08X_ADC.d  test_FT62F08X_ADC.obj:  test_FT62F08X_ADC.C

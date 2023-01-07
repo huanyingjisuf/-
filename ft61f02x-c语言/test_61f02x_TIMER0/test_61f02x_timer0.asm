@@ -1,0 +1,113 @@
+//Deviec:FT61F02X
+//-----------------------Variable---------------------------------
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		LJUMP 	0AH 			//0000 	380A
+		ORG		0004H
+		STR 	7EH 			//0004 	01FE
+		SWAPR 	STATUS,0 		//0005 	0703
+		STR 	70H 			//0006 	01F0
+		LDR 	PCLATH,0 		//0007 	080A
+		STR 	71H 			//0008 	01F1
+		LJUMP 	22H 			//0009 	3822
+		LJUMP 	0BH 			//000A 	380B
+		CLRR 	STATUS 			//000B 	0103
+		ORG		000CH
+		LJUMP 	31H 			//000C 	3831
+
+		//;TEST_61F02x_Timer0.c: 46: OSCCON = 0B01110001;
+		LDWI 	71H 			//000D 	2A71
+		BSR 	STATUS,5 		//000E 	1A83
+		STR 	FH 			//000F 	018F
+
+		//;TEST_61F02x_Timer0.c: 47: INTCON = 0;
+		CLRR 	INTCON 			//0010 	010B
+
+		//;TEST_61F02x_Timer0.c: 48: PORTA = 0B00000000;
+		BCR 	STATUS,5 		//0011 	1283
+		CLRR 	5H 			//0012 	0105
+
+		//;TEST_61F02x_Timer0.c: 49: TRISA = 0B00000000;
+		BSR 	STATUS,5 		//0013 	1A83
+		ORG		0014H
+		CLRR 	5H 			//0014 	0105
+
+		//;TEST_61F02x_Timer0.c: 51: PORTC = 0B00000000;
+		BCR 	STATUS,5 		//0015 	1283
+		CLRR 	7H 			//0016 	0107
+
+		//;TEST_61F02x_Timer0.c: 52: TRISC = 0B00000000;
+		BSR 	STATUS,5 		//0017 	1A83
+		CLRR 	7H 			//0018 	0107
+
+		//;TEST_61F02x_Timer0.c: 53: WPUA = 0B00000000;
+		CLRR 	15H 			//0019 	0115
+
+		//;TEST_61F02x_Timer0.c: 54: WPUC = 0B0000000;
+		CLRR 	8H 			//001A 	0108
+
+		//;TEST_61F02x_Timer0.c: 56: OPTION = 0B00001000;
+		LDWI 	8H 			//001B 	2A08
+		ORG		001CH
+		STR 	1H 			//001C 	0181
+
+		//;TEST_61F02x_Timer0.c: 57: MSCKCON = 0B00000000;
+		BCR 	STATUS,5 		//001D 	1283
+		CLRR 	1BH 			//001E 	011B
+
+		//;TEST_61F02x_Timer0.c: 61: CMCON0 = 0B00000111;
+		LDWI 	7H 			//001F 	2A07
+		STR 	19H 			//0020 	0199
+		RET		 					//0021 	0004
+
+		//;TEST_61F02x_Timer0.c: 32: if(T0IE && T0IF)
+		BTSC 	INTCON,5 		//0022 	168B
+		BTSS 	INTCON,2 		//0023 	1D0B
+		ORG		0024H
+		LJUMP 	2AH 			//0024 	382A
+
+		//;TEST_61F02x_Timer0.c: 33: {
+		//;TEST_61F02x_Timer0.c: 34: T0IF = 0;
+		BCR 	INTCON,2 		//0025 	110B
+
+		//;TEST_61F02x_Timer0.c: 35: PA3 = ~PA3;
+		LDWI 	8H 			//0026 	2A08
+		BCR 	STATUS,5 		//0027 	1283
+		BCR 	STATUS,6 		//0028 	1303
+		XORWR 	5H,1 			//0029 	0485
+		LDR 	71H,0 			//002A 	0871
+		STR 	PCLATH 			//002B 	018A
+		ORG		002CH
+		SWAPR 	70H,0 			//002C 	0770
+		STR 	STATUS 			//002D 	0183
+		SWAPR 	7EH,1 			//002E 	07FE
+		SWAPR 	7EH,0 			//002F 	077E
+		RETI		 			//0030 	0009
+
+		//;TEST_61F02x_Timer0.c: 88: POWER_INITIAL();
+		LCALL 	DH 			//0031 	300D
+
+		//;TEST_61F02x_Timer0.c: 89: TIMER0_INITIAL();
+		LCALL 	37H 			//0032 	3037
+
+		//;TEST_61F02x_Timer0.c: 90: GIE = 1;
+		BSR 	INTCON,7 		//0033 	1B8B
+		ORG		0034H
+
+		//;TEST_61F02x_Timer0.c: 91: T0IE = 1;
+		BSR 	INTCON,5 		//0034 	1A8B
+
+		//;TEST_61F02x_Timer0.c: 93: {
+		//;TEST_61F02x_Timer0.c: 94: __nop();
+		NOP		 					//0035 	0000
+		LJUMP 	35H 			//0036 	3835
+
+		//;TEST_61F02x_Timer0.c: 71: OPTION = 0B00000111;
+		LDWI 	7H 			//0037 	2A07
+		BSR 	STATUS,5 		//0038 	1A83
+		STR 	1H 			//0039 	0181
+
+		//;TEST_61F02x_Timer0.c: 78: T0IF = 0;
+		BCR 	INTCON,2 		//003A 	110B
+		RET		 					//003B 	0004
+			END

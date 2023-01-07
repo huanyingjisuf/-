@@ -1,0 +1,89 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT60F01X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"28 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT60F01x\test_60f01x_MSCK\test_60f01x_MSCK.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"48
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"62
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"81
+[v _SlowTimeTest SlowTimeTest `(ui  1 e 2 0 ]
+"101
+[v _main main `(v  1 e 1 0 ]
+"63 d:\ide3.0.3_6c03\data\include\FT60F01X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"111
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"140
+[v _CKMEAIF CKMEAIF `VEb  1 e 0 @102 ]
+"167
+[v _TMR2ON TMR2ON `VEb  1 e 0 @146 ]
+"217
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"219
+[v _CKCNTI CKCNTI `VEb  1 e 0 @217 ]
+"220
+[v _CKMAVG CKMAVG `VEb  1 e 0 @218 ]
+"236
+[v _SOSCPRL SOSCPRL `VEuc  1 e 1 @28 ]
+"240
+[v _SOSCPRH SOSCPRH `VEuc  1 e 1 @29 ]
+"257
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"286
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"340
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"372
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"21 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT60F01x\test_60f01x_MSCK\test_60f01x_MSCK.C
+[v _TestBuff TestBuff `VEui  1 e 2 0 ]
+"101
+[v _main main `(v  1 e 1 0 ]
+{
+"112
+} 0
+"81
+[v _SlowTimeTest SlowTimeTest `(ui  1 e 2 0 ]
+{
+"83
+[v SlowTimeTest@TestTime TestTime `ui  1 a 2 2 ]
+"94
+} 0
+"28
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"41
+} 0
+"62
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"64
+[v DelayMs@b b `uc  1 a 1 4 ]
+[v DelayMs@a a `uc  1 a 1 3 ]
+"62
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"65
+[v DelayMs@Time Time `uc  1 a 1 2 ]
+"72
+} 0
+"48
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"50
+[v DelayUs@a a `uc  1 a 1 1 ]
+"48
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"51
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"55
+} 0

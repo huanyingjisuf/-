@@ -1,0 +1,113 @@
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:40:36 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 BROWSE DEBUG PRINT(.\lst\main.lst) OBJECT(.\output\main.
+                    -obj)
+
+line level    source
+
+   1          #ifndef _MAIN_C_
+   2          #define _MAIN_C_
+   3          /*********************************************************************************************************
+             -************/
+   4          #include "include/ca51f_config.h"               
+   5          #include "include/ca51f3sfr.h"
+   6          #include "include/ca51f3xsfr.h"
+   7          #include "include/gpiodef_f3.h"
+   8          #include "include/system_clock.h"
+   9          
+  10          #include "include/uart.h"
+  11          #include "include/delay.h"
+  12          #include <intrins.h>
+  13          /*********************************************************************************************************
+             -************/
+  14          //寄存器T2CON定义
+  15          #define TR2(N)   (N<<6)
+  16          #define T2R(N)   (N<<4)         //N=0~3
+  17          #define T2IE(N)  (N<<3)
+  18          #define UCKS(N)  (N<<2)
+  19          #define T2P(N)   (N)        //N=0~3
+  20          
+  21          //寄存器T2MOD定义
+  22          #define TF2              (1<<7)
+  23          #define CF2              (1<<6)
+  24          #define RF2              (1<<5)
+  25          #define CCFG(N)  (N<<3)         //N=0~3
+  26          #define T2M(N)   (N)            //N=0~3
+  27          
+  28          /*********************************************************************************************************
+             -************/
+  29          void TIMER2_ISR (void) interrupt 5 
+  30          {
+  31   1              unsigned int T2CapValue;
+  32   1              if(T2MOD & TF2)           //定时器2溢出中断
+  33   1              {
+  34   2                      T2MOD = (T2MOD&0x1F) | TF2;
+  35   2              }
+  36   1              if(T2MOD & CF2)           //定时器2抓取中断
+  37   1              {
+  38   2                      T2MOD = (T2MOD&0x1F) | CF2;
+  39   2                      T2CapValue = T2CH*256 + T2CL;           //读取定时器抓取值
+  40   2      
+  41   2              }
+  42   1      }
+  43          void main(void)
+  44          {       
+  45   1      #ifdef LVD_RST_ENABLE
+  46   1              LVDCON = 0xE1;                                  //设置LVD复位电压为2V
+  47   1      #endif
+  48   1              
+  49   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //设置系统时钟为PLL，PLL_Multiple为倍频倍数
+              #endif
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:40:36 PAGE 2   
+
+  52   1              
+  53   1      #ifdef UART0_EN
+                      Uart0_Initial_Timer1(UART0_BAUTRATE);   //初始化UART0
+              #endif
+  56   1              
+  57   1      #ifdef UART1_EN
+                      Uart1_Initial(UART1_BAUTRATE);  //初始化UART1
+              #endif
+  60   1      
+  61   1              EA = 1;                                                 //开全局中断
+  62   1      
+  63   1      #ifdef PRINT_EN
+                      uart_printf("Timer2 Capture Mode Demo Code\n");
+              #endif
+  66   1                 
+  67   1              P36F = P36_T2CP_SETTING;         
+  68   1              T2CON = TR2(0) | T2R(0) | T2IE(1) | UCKS(0) | T2P(0);                                                                                                                                                                                          
+             -                      
+  69   1              T2MOD = CCFG(1) | T2M(2);                               //设置为抓取模式，下降沿有效
+  70   1              T2CON |= TR2(1);                                                //定时器2使能
+  71   1              ET2 = 1;                                                        //定时器2中断使能
+  72   1                      
+  73   1              while(1)
+  74   1              {
+  75   2              }
+  76   1      }
+  77          #endif
+  78          
+  79          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     97    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

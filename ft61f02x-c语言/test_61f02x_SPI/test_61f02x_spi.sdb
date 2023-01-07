@@ -1,0 +1,121 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F02X ]
+[d frameptr 6 ]
+"62 D:\IDE3.0.3_6C03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.3_6C03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"39 D:\FMD demo 11-11总修改\C\FT61F02x\test_61f02x_SPI\test_61f02x_SPI.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"66
+[v _init_25c64_io init_25c64_io `(v  1 e 1 0 ]
+"78
+[v _SPI_RW SPI_RW `(uc  1 e 1 0 ]
+"104
+[v _WriteEnable WriteEnable `(v  1 e 1 0 ]
+"114
+[v _WriteDisable WriteDisable `(v  1 e 1 0 ]
+"126
+[v _SPI_ReadStatus SPI_ReadStatus `(uc  1 e 1 0 ]
+"154
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+"171
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+"191
+[v _main main `(v  1 e 1 0 ]
+"78 D:\IDE3.0.3_6C03\data\include\FT61F02X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"91
+[v _PA2 PA2 `VEb  1 e 0 @42 ]
+"93
+[v _PA4 PA4 `VEb  1 e 0 @44 ]
+"95
+[v _PA6 PA6 `VEb  1 e 0 @46 ]
+"96
+[v _PA7 PA7 `VEb  1 e 0 @47 ]
+"129
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"184
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"449
+[v _CMCON0 CMCON0 `VEuc  1 e 1 @25 ]
+"494
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"574
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"603
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"633
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"660
+[v _WPUC WPUC `VEuc  1 e 1 @136 ]
+"778
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"834
+[v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
+"866
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"32 D:\FMD demo 11-11总修改\C\FT61F02x\test_61f02x_SPI\test_61f02x_SPI.C
+[v _SPIReadData SPIReadData `uc  1 e 1 0 ]
+"191
+[v _main main `(v  1 e 1 0 ]
+{
+"201
+} 0
+"66
+[v _init_25c64_io init_25c64_io `(v  1 e 1 0 ]
+{
+"71
+} 0
+"171
+[v _SPI_Write SPI_Write `(v  1 e 1 0 ]
+{
+[v SPI_Write@addr addr `ui  1 p 2 3 ]
+[v SPI_Write@dat dat `uc  1 p 1 5 ]
+"184
+} 0
+"104
+[v _WriteEnable WriteEnable `(v  1 e 1 0 ]
+{
+"109
+} 0
+"114
+[v _WriteDisable WriteDisable `(v  1 e 1 0 ]
+{
+"119
+} 0
+"154
+[v _SPI_Read SPI_Read `(uc  1 e 1 0 ]
+{
+"156
+[v SPI_Read@spidata spidata `uc  1 a 1 5 ]
+"154
+[v SPI_Read@addr addr `ui  1 p 2 3 ]
+"165
+} 0
+"126
+[v _SPI_ReadStatus SPI_ReadStatus `(uc  1 e 1 0 ]
+{
+"128
+[v SPI_ReadStatus@status status `uc  1 a 1 2 ]
+"134
+} 0
+"78
+[v _SPI_RW SPI_RW `(uc  1 e 1 0 ]
+{
+[v SPI_RW@data data `uc  1 a 1 wreg ]
+"80
+[v SPI_RW@i i `uc  1 a 1 0 ]
+"78
+[v SPI_RW@data data `uc  1 a 1 wreg ]
+"81
+[v SPI_RW@data data `uc  1 a 1 1 ]
+"99
+} 0
+"39
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"58
+} 0

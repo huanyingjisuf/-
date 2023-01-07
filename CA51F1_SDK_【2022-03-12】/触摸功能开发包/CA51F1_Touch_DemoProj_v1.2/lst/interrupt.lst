@@ -1,0 +1,109 @@
+C51 COMPILER V9.02   INTERRUPT                                                             01/06/2022 11:25:27 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE INTERRUPT
+OBJECT MODULE PLACED IN .\hex\interrupt.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE interrupt.c OMF2 OPTIMIZE(9,SIZE) BROWSE DEBUG PRINT(.\lst\interrupt.lst
+                    -) OBJECT(.\hex\interrupt.obj)
+
+line level    source
+
+   1          #ifndef _INTERRUPT_C_
+   2          #define _INTERRUPT_C_
+   3          
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "ca51f1_config.h"
+   6          #include "includes\ca51f1sfr.h"
+   7          #include "includes\ca51f1xsfr.h"
+   8          #include "includes\gpiodef_f1.h"
+   9          #include "includes\system.h"
+  10          #include "Library\includes\uart.h"
+  11          #include "Library\Includes\tmc.h"       
+  12          
+  13          #include "TS_Lib\Includes\ts_configuration.h"
+  14          #include "TS_Lib\Includes\ts_def.h"
+  15          #include "TS_Lib\Includes\ts_api.h"
+  16          #include "TS_Lib\Includes\ts_service.h"
+  17          #include <intrins.h>
+  18          /*********************************************************************************************************
+             -************/
+  19          #if DEBUG
+              #include "Library\Includes\i2c.h"               
+              void I2C_ISR(void);
+              #endif
+  23          /*********************************************************************************************************
+             -************/
+  24          extern unsigned char idata TS_HalfSecCnt;
+  25          void INT3_ISR (void) interrupt 5         
+  26          {
+  27   1              static unsigned char TmCnt = 0;
+  28   1              if(TMCON & TMF)                 //ºÁÃëÖÐ¶Ï
+  29   1              {
+  30   2                      TMCON |= TMF;
+  31   2              
+  32   2      #if SUPPORT_TOUCH_SLEEP_MODE    
+                              if(TS_SleepMode)
+                              {
+                                      TS_HalfSecCnt++;
+                                      return;
+                              }
+                              else
+                              {
+                                      TS_MS_ISR();
+                              }
+              #else           
+  43   2                      TS_MS_ISR();
+  44   2      #endif
+  45   2                      if(TS_LongKeyTimer)
+  46   2                      {
+  47   3                              TS_LongKeyTimer--;              
+  48   3                      }       
+  49   2                      TmCnt++;
+  50   2                      if(TmCnt >= 128)
+  51   2                      {
+C51 COMPILER V9.02   INTERRUPT                                                             01/06/2022 11:25:27 PAGE 2   
+
+  52   3                              TmCnt = 0;
+  53   3                              TS_HS_ISR();
+  54   3                      }
+  55   2              }
+  56   1      #if SUPPORT_TOUCH_SLEEP_MODE    
+                      if(TS_SleepMode)
+                      {
+                              return;
+                      }
+              #endif
+  62   1              if(TKIF != 0)
+  63   1              {
+  64   2                      TS_ISR();
+  65   2              }
+  66   1      }
+  67          void INT4_ISR(void) interrupt 6 
+  68          {
+  69   1      #if DEBUG
+                      if(I2CFLG & I2CF)               
+                      {
+                              I2C_ISR();
+                      }
+              #endif
+  75   1      }
+  76          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    102    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

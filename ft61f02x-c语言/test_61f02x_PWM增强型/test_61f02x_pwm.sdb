@@ -1,0 +1,152 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F02X ]
+[d frameptr 6 ]
+"62 c:\users\admin\desktop\ide3.0.3\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 c:\users\admin\desktop\ide3.0.3\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"39 C:\Users\ADMIN\Desktop\ft61f02x-c语言\test_61f02x_PWM增强型\TEST_61F02x_PWM.c
+[v _ISR ISR `II(v  1 e 1 0 ]
+"56
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"81
+[v _TIMER1_INITIAL TIMER1_INITIAL `(v  1 e 1 0 ]
+"101
+[v _pwm_duty_count pwm_duty_count `(v  1 e 1 0 ]
+"121
+[v _PWM_INITIAL PWM_INITIAL `(v  1 e 1 0 ]
+"157
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"171
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+"188
+[v _main main `(v  1 e 1 0 ]
+"78 c:\users\admin\desktop\ide3.0.3\data\include\FT61F02X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"129
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"184
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"192
+[v _PEIE PEIE `VEb  1 e 0 @94 ]
+"193
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"212
+[v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
+"213
+[v _TMR2IF TMR2IF `VEb  1 e 0 @97 ]
+"251
+[v _TMR1L TMR1L `VEuc  1 e 1 @14 ]
+"255
+[v _TMR1H TMR1H `VEuc  1 e 1 @15 ]
+"259
+[v _T1CON T1CON `VEuc  1 e 1 @16 ]
+"261
+[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
+"293
+[v _T2CON T2CON `VEuc  1 e 1 @18 ]
+"297
+[v _TMR2ON TMR2ON `VEb  1 e 0 @146 ]
+"323
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @19 ]
+"331
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @21 ]
+"363
+[v _PWM1CON PWM1CON `VEuc  1 e 1 @22 ]
+"393
+[v _ECCPAS ECCPAS `VEuc  1 e 1 @23 ]
+"449
+[v _CMCON0 CMCON0 `VEuc  1 e 1 @25 ]
+"494
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"574
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"603
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"633
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"640
+[v _TRISC5 TRISC5 `VEb  1 e 0 @1085 ]
+"660
+[v _WPUC WPUC `VEuc  1 e 1 @136 ]
+"708
+[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
+"778
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"808
+[v _PWM1AUX PWM1AUX `VEuc  1 e 1 @144 ]
+"810
+[v _P1AOE P1AOE `VEb  1 e 0 @1152 ]
+"862
+[v _PR2 PR2 `VEuc  1 e 1 @146 ]
+"866
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"31 C:\Users\ADMIN\Desktop\ft61f02x-c语言\test_61f02x_PWM增强型\TEST_61F02x_PWM.c
+[v _pwm_d pwm_d `VEui  1 e 2 0 ]
+"32
+[v _SAFlag SAFlag `VEb  1 e 0 0 ]
+"188
+[v _main main `(v  1 e 1 0 ]
+{
+"222
+} 0
+"81
+[v _TIMER1_INITIAL TIMER1_INITIAL `(v  1 e 1 0 ]
+{
+"94
+} 0
+"121
+[v _PWM_INITIAL PWM_INITIAL `(v  1 e 1 0 ]
+{
+[v PWM_INITIAL@SET_PR2 SET_PR2 `uc  1 a 1 wreg ]
+[v PWM_INITIAL@SET_PR2 SET_PR2 `uc  1 a 1 wreg ]
+"123
+[v PWM_INITIAL@SET_PR2 SET_PR2 `uc  1 a 1 7 ]
+"150
+} 0
+"101
+[v _pwm_duty_count pwm_duty_count `(v  1 e 1 0 ]
+{
+"103
+[v pwm_duty_count@lsb22 lsb22 `ui  1 a 2 4 ]
+"104
+[v pwm_duty_count@lsb23 lsb23 `uc  1 a 1 6 ]
+"113
+} 0
+"56
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"74
+} 0
+"171
+[v _DelayMs DelayMs `(v  1 e 1 0 ]
+{
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"173
+[v DelayMs@b b `uc  1 a 1 6 ]
+[v DelayMs@a a `uc  1 a 1 5 ]
+"171
+[v DelayMs@Time Time `uc  1 a 1 wreg ]
+"174
+[v DelayMs@Time Time `uc  1 a 1 4 ]
+"181
+} 0
+"157
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"159
+[v DelayUs@a a `uc  1 a 1 3 ]
+"157
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"160
+[v DelayUs@Time Time `uc  1 a 1 2 ]
+"164
+} 0
+"39
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"49
+} 0

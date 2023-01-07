@@ -1,0 +1,26 @@
+### HEX     logfile and output summary ###
+### Memory Usage ###
+ Unused memory ranges:
+  4h - 5h
+  C4h - FFh
+  
+ test_ft62f08x_tim2_pwm.hex ranges:
+  0h - 3h
+  6h - C3h
+  
+### Hex Memory Map ###
+ Legend:
+  - = Unused memory
+  F = Filled ROM
+  S = Stored serial code
+  A = Stored ASCII string
+  R = Reserved for checksum
+  C = Stored checksum result
+  T = Trailing code
+  & = Find & replace opcode
+  X = Find & delete opcode
+  1 = test_ft62f08x_tim2_pwm.hex
+00000000: 1111--1111111111111111111111111111111111111111111111111111111111
+00000040: 1111111111111111111111111111111111111111111111111111111111111111
+00000080: 1111111111111111111111111111111111111111111111111111111111111111
+000000C0: 1111------------------------------------------------------------

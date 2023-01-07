@@ -1,0 +1,980 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Wed Nov 24 11:39:57 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT62F08X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	_ad3nop_text,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	intentry,global,class=CODE,delta=2
+     9                           	psect	pa_nodes0,global,class=CODE,delta=2
+    10                           	dabs	1,0x7E,2
+    11  0000                     
+    12                           ; Version 1.45
+    13                           ; Generated 16/11/2017 
+    14                           ; 
+    15                           ; SFR Addresses
+    16  0003                     _ad3nop_absaddr	set	3
+    17  0003                     _ad3nop_absaddr	set	3
+    18                           
+    19                           	psect	_ad3nop_text
+    20  0003                     __p_ad3nop_text:	
+    21  0003                     _ad3nop:	
+    22  0003  3400               	retlw	0
+    23  0004                     __end_of_ad3nop:	
+    24  000F                     _PORTD	set	15
+    25  000E                     _PORTC	set	14
+    26  000D                     _PORTB	set	13
+    27  000C                     _PORTA	set	12
+    28  000B                     _INTCON	set	11
+    29  0008                     _BSREG	set	8
+    30  005F                     _GIE	set	95
+    31  005A                     _EEIF	set	90
+    32  0099                     _OSCCON	set	153
+    33  008F                     _TRISD	set	143
+    34  008E                     _TRISC	set	142
+    35  008D                     _TRISB	set	141
+    36  008C                     _TRISA	set	140
+    37  011B                     _PSRC1	set	283
+    38  011A                     _PSRC0	set	282
+    39  019D                     _PSINK3	set	413
+    40  019C                     _PSINK2	set	412
+    41  019B                     _PSINK1	set	411
+    42  019A                     _PSINK0	set	410
+    43  0197                     _ANSELA	set	407
+    44  0196                     _EECON2	set	406
+    45  0195                     _EECON1	set	405
+    46  0193                     _EEDATL	set	403
+    47  0191                     _EEADRL	set	401
+    48  018F                     _WPUD	set	399
+    49  018E                     _WPUC	set	398
+    50  018D                     _WPUB	set	397
+    51  018C                     _WPUA	set	396
+    52  0CC0                     _DRDEN	set	3264
+    53  0CAF                     _EEPGD	set	3247
+    54  0CAE                     _CFGS	set	3246
+    55  0CAA                     _WREN	set	3242
+    56  0CA9                     _WR	set	3241
+    57  0CA8                     _RD	set	3240
+    58  020F                     _WPDD	set	527
+    59  020E                     _WPDC	set	526
+    60  020D                     _WPDB	set	525
+    61  020C                     _WPDA	set	524
+    62                           
+    63                           	psect	cinit
+    64  000A                     start_initialization:	
+    65                           ; #config settings
+    66                           
+    67  000A                     __initialization:	
+    68                           
+    69                           ; Clear objects allocated to COMMON
+    70  000A  01F2               	clrf	__pbssCOMMON& (0+127)
+    71  000B                     end_of_initialization:	
+    72                           ;End of C runtime variable initialization code
+    73                           
+    74  000B                     __end_of__initialization:	
+    75  000B  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+    76  000C  0020               	movlb	0
+    77  000D  280E               	ljmp	_main	;jump to C main() function
+    78  000E                     __pmaintext:	
+    79                           ; 1 bytes @ 0x2
+    80 ;;
+    81 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    82 ;;
+    83 ;; *************** function _main *****************
+    84 ;; Defined at:
+    85 ;;		line 158 in file "test_FT62F08X_EEPROM.C"
+    86 ;; Parameters:    Size  Location     Type
+    87 ;;		None
+    88 ;; Auto vars:     Size  Location     Type
+    89 ;;		None
+    90 ;; Return value:  Size  Location     Type
+    91 ;;                  1    wreg      void 
+    92 ;; Registers used:
+    93 ;;		wreg, status,2, status,0, pclath, cstack
+    94 ;; Tracked objects:
+    95 ;;		On entry : B1F/0
+    96 ;;		On exit  : 0/0
+    97 ;;		Unchanged: 0/0
+    98 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+    99 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   100 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   101 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   102 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   103 ;;Total ram usage:        0 bytes
+   104 ;; Hardware stack levels required when called:    3
+   105 ;; This function calls:
+   106 ;;		_EEPROMread
+   107 ;;		_EEPROMwrite
+   108 ;;		_POWER_INITIAL
+   109 ;; This function is called by:
+   110 ;;		Startup code after reset
+   111 ;; This function uses a non-reentrant model
+   112 ;;
+   113                           
+   114                           
+   115                           ;psect for function _main
+   116  000E                     _main:	
+   117                           
+   118                           ;test_FT62F08X_EEPROM.C: 160: POWER_INITIAL();
+   119                           
+   120                           ;incstack = 0
+   121                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   122  000E  2056  3180         	fcall	_POWER_INITIAL
+   123                           
+   124                           ;test_FT62F08X_EEPROM.C: 162: EEPROMwrite(0x13,0x55);
+   125  0010  3055               	movlw	85
+   126  0011  00F0               	movwf	EEPROMwrite@Data
+   127  0012  3013               	movlw	19
+   128  0013  2030  3180         	fcall	_EEPROMwrite
+   129                           
+   130                           ;test_FT62F08X_EEPROM.C: 163: EEReadData = EEPROMread(0x13);
+   131  0015  3013               	movlw	19
+   132  0016  201B  3180         	fcall	_EEPROMread
+   133  0018  00F2               	movwf	_EEReadData	;volatile
+   134  0019                     l2886:	
+   135                           
+   136                           ;test_FT62F08X_EEPROM.C: 166: {
+   137                           ;test_FT62F08X_EEPROM.C: 167: __nop();
+   138  0019  0000               	nop
+   139  001A  2819               	goto	l2886
+   140  001B                     __end_of_main:	
+   141  001B                     __ptext4:	
+   142 ;; *************** function _EEPROMread *****************
+   143 ;; Defined at:
+   144 ;;		line 75 in file "test_FT62F08X_EEPROM.C"
+   145 ;; Parameters:    Size  Location     Type
+   146 ;;  EEAddr          1    wreg     unsigned char 
+   147 ;; Auto vars:     Size  Location     Type
+   148 ;;  EEAddr          1    0[COMMON] unsigned char 
+   149 ;;  ReEEPROMread    1    1[COMMON] unsigned char 
+   150 ;; Return value:  Size  Location     Type
+   151 ;;                  1    wreg      unsigned char 
+   152 ;; Registers used:
+   153 ;;		wreg
+   154 ;; Tracked objects:
+   155 ;;		On entry : 1F/3
+   156 ;;		On exit  : 1F/3
+   157 ;;		Unchanged: 0/0
+   158 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   159 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   160 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   161 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   162 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   163 ;;Total ram usage:        2 bytes
+   164 ;; Hardware stack levels used:    1
+   165 ;; Hardware stack levels required when called:    1
+   166 ;; This function calls:
+   167 ;;		Nothing
+   168 ;; This function is called by:
+   169 ;;		_main
+   170 ;; This function uses a non-reentrant model
+   171 ;;
+   172                           
+   173                           
+   174                           ;psect for function _EEPROMread
+   175  001B                     _EEPROMread:	
+   176                           
+   177                           ;incstack = 0
+   178                           ; Regs used in _EEPROMread: [wreg]
+   179                           ;EEPROMread@EEAddr stored from wreg
+   180  001B  00F0               	movwf	EEPROMread@EEAddr
+   181  001C                     l2367:	
+   182                           ;test_FT62F08X_EEPROM.C: 77: unsigned char ReEEPROMread;
+   183                           ;test_FT62F08X_EEPROM.C: 78: while(GIE)
+   184                           
+   185  001C  1F8B               	btfss	11,7	;volatile
+   186  001D  2822               	goto	l2369
+   187                           
+   188                           ;test_FT62F08X_EEPROM.C: 79: {
+   189                           ;test_FT62F08X_EEPROM.C: 80: GIE = 0;
+   190  001E  138B               	bcf	11,7	;volatile
+   191                           
+   192                           ;test_FT62F08X_EEPROM.C: 81: __nop();
+   193  001F  0000               	nop
+   194                           
+   195                           ;test_FT62F08X_EEPROM.C: 82: __nop();
+   196  0020  0000               	nop
+   197  0021  281C               	goto	l2367
+   198  0022                     l2369:	
+   199                           
+   200                           ;test_FT62F08X_EEPROM.C: 83: }
+   201                           ;test_FT62F08X_EEPROM.C: 84: DRDEN=1;
+   202  0022  0023               	movlb	3	; select bank3
+   203  0023  1418               	bsf	24,0	;volatile
+   204                           
+   205                           ;test_FT62F08X_EEPROM.C: 85: __nop();
+   206  0024  0000               	nop
+   207                           
+   208                           ;test_FT62F08X_EEPROM.C: 86: __nop();
+   209  0025  0000               	nop
+   210                           
+   211                           ;test_FT62F08X_EEPROM.C: 87: EEADRL = EEAddr;
+   212  0026  0870               	movf	EEPROMread@EEAddr,w
+   213  0027  0023               	movlb	3	; select bank3
+   214  0028  0091               	movwf	17	;volatile
+   215                           
+   216                           ;test_FT62F08X_EEPROM.C: 89: CFGS = 0;
+   217  0029  1315               	bcf	21,6	;volatile
+   218                           
+   219                           ;test_FT62F08X_EEPROM.C: 90: EEPGD = 0;
+   220  002A  1395               	bcf	21,7	;volatile
+   221                           
+   222                           ;test_FT62F08X_EEPROM.C: 91: RD = 1;
+   223  002B  1415               	bsf	21,0	;volatile
+   224                           
+   225                           ;test_FT62F08X_EEPROM.C: 93: ReEEPROMread = EEDATL;
+   226  002C  0813               	movf	19,w	;volatile
+   227  002D  00F1               	movwf	EEPROMread@ReEEPROMread
+   228                           
+   229                           ;test_FT62F08X_EEPROM.C: 94: DRDEN=0;
+   230  002E  1018               	bcf	24,0	;volatile
+   231                           
+   232                           ;test_FT62F08X_EEPROM.C: 95: return ReEEPROMread;
+   233  002F  0008               	return
+   234  0030                     __end_of_EEPROMread:	
+   235  0030                     __ptext2:	
+   236 ;; *************** function _EEPROMwrite *****************
+   237 ;; Defined at:
+   238 ;;		line 125 in file "test_FT62F08X_EEPROM.C"
+   239 ;; Parameters:    Size  Location     Type
+   240 ;;  EEAddr          1    wreg     unsigned char 
+   241 ;;  Data            1    0[COMMON] unsigned char 
+   242 ;; Auto vars:     Size  Location     Type
+   243 ;;  EEAddr          1    1[COMMON] unsigned char 
+   244 ;; Return value:  Size  Location     Type
+   245 ;;                  1    wreg      void 
+   246 ;; Registers used:
+   247 ;;		wreg, status,2, status,0, pclath, cstack
+   248 ;; Tracked objects:
+   249 ;;		On entry : B1F/3
+   250 ;;		On exit  : 1F/3
+   251 ;;		Unchanged: 0/0
+   252 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   253 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   254 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   255 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   256 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   257 ;;Total ram usage:        2 bytes
+   258 ;; Hardware stack levels used:    1
+   259 ;; Hardware stack levels required when called:    2
+   260 ;; This function calls:
+   261 ;;		_Unlock_Flash
+   262 ;; This function is called by:
+   263 ;;		_main
+   264 ;; This function uses a non-reentrant model
+   265 ;;
+   266                           
+   267                           
+   268                           ;psect for function _EEPROMwrite
+   269  0030                     _EEPROMwrite:	
+   270                           
+   271                           ;incstack = 0
+   272                           ; Regs used in _EEPROMwrite: [wreg+status,2+status,0+pclath+cstack]
+   273                           ;EEPROMwrite@EEAddr stored from wreg
+   274  0030  00F1               	movwf	EEPROMwrite@EEAddr
+   275  0031                     l2376:	
+   276                           ;test_FT62F08X_EEPROM.C: 127: while(GIE)
+   277                           
+   278  0031  1F8B               	btfss	11,7	;volatile
+   279  0032  2837               	goto	l2862
+   280                           
+   281                           ;test_FT62F08X_EEPROM.C: 128: {
+   282                           ;test_FT62F08X_EEPROM.C: 129: GIE = 0;
+   283  0033  138B               	bcf	11,7	;volatile
+   284                           
+   285                           ;test_FT62F08X_EEPROM.C: 130: __nop();
+   286  0034  0000               	nop
+   287                           
+   288                           ;test_FT62F08X_EEPROM.C: 131: __nop();
+   289  0035  0000               	nop
+   290  0036  2831               	goto	l2376
+   291  0037                     l2862:	
+   292                           
+   293                           ;test_FT62F08X_EEPROM.C: 132: }
+   294                           ;test_FT62F08X_EEPROM.C: 133: EEADRL = EEAddr;
+   295  0037  0871               	movf	EEPROMwrite@EEAddr,w
+   296  0038  0023               	movlb	3	; select bank3
+   297  0039  0091               	movwf	17	;volatile
+   298                           
+   299                           ;test_FT62F08X_EEPROM.C: 134: EEDATL = Data;
+   300  003A  0870               	movf	EEPROMwrite@Data,w
+   301  003B  0093               	movwf	19	;volatile
+   302                           
+   303                           ;test_FT62F08X_EEPROM.C: 136: CFGS =0;
+   304  003C  1315               	bcf	21,6	;volatile
+   305                           
+   306                           ;test_FT62F08X_EEPROM.C: 137: EEPGD=0;
+   307  003D  1395               	bcf	21,7	;volatile
+   308                           
+   309                           ;test_FT62F08X_EEPROM.C: 138: WREN=1;
+   310  003E  1515               	bsf	21,2	;volatile
+   311                           
+   312                           ;test_FT62F08X_EEPROM.C: 139: EEIF = 0;
+   313  003F  110B               	bcf	11,2	;volatile
+   314                           
+   315                           ;test_FT62F08X_EEPROM.C: 141: Unlock_Flash();
+   316  0040  204C  3180         	fcall	_Unlock_Flash
+   317                           
+   318                           ;test_FT62F08X_EEPROM.C: 142: __nop();
+   319  0042  0000               	nop
+   320                           
+   321                           ;test_FT62F08X_EEPROM.C: 143: __nop();
+   322  0043  0000               	nop
+   323                           
+   324                           ;test_FT62F08X_EEPROM.C: 144: __nop();
+   325  0044  0000               	nop
+   326                           
+   327                           ;test_FT62F08X_EEPROM.C: 145: __nop();
+   328  0045  0000               	nop
+   329  0046                     l2379:	
+   330                           ;test_FT62F08X_EEPROM.C: 147: while(WR);
+   331                           
+   332  0046  0023               	movlb	3	; select bank3
+   333  0047  1895               	btfsc	21,1	;volatile
+   334  0048  2846               	goto	l2379
+   335                           
+   336                           ;test_FT62F08X_EEPROM.C: 148: WREN=0;
+   337  0049  1115               	bcf	21,2	;volatile
+   338                           
+   339                           ;test_FT62F08X_EEPROM.C: 149: GIE = 1;
+   340  004A  178B               	bsf	11,7	;volatile
+   341  004B  0008               	return
+   342  004C                     __end_of_EEPROMwrite:	
+   343  004C                     __ptext3:	
+   344 ;; *************** function _Unlock_Flash *****************
+   345 ;; Defined at:
+   346 ;;		line 104 in file "test_FT62F08X_EEPROM.C"
+   347 ;; Parameters:    Size  Location     Type
+   348 ;;		None
+   349 ;; Auto vars:     Size  Location     Type
+   350 ;;		None
+   351 ;; Return value:  Size  Location     Type
+   352 ;;                  1    wreg      void 
+   353 ;; Registers used:
+   354 ;;		None
+   355 ;; Tracked objects:
+   356 ;;		On entry : 1F/3
+   357 ;;		On exit  : 0/0
+   358 ;;		Unchanged: 0/0
+   359 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   360 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   361 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   362 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   363 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   364 ;;Total ram usage:        0 bytes
+   365 ;; Hardware stack levels used:    1
+   366 ;; Hardware stack levels required when called:    1
+   367 ;; This function calls:
+   368 ;;		Nothing
+   369 ;; This function is called by:
+   370 ;;		_EEPROMwrite
+   371 ;; This function uses a non-reentrant model
+   372 ;;
+   373                           
+   374                           
+   375                           ;psect for function _Unlock_Flash
+   376  004C                     _Unlock_Flash:	
+   377                           
+   378                           ;incstack = 0
+   379                           ; Regs used in _Unlock_Flash: []
+   380  004C  3003               	movlw	3	;# 
+   381  004D  0088               	movwf	8	;# 
+   382  004E  3055               	movlw	85	;# 
+   383  004F  0096               	movwf	22	;# 
+   384  0050  30AA               	movlw	170	;# 
+   385  0051  0096               	movwf	22	;# 
+   386  0052  1495               	bsf	21,1	;# 
+   387  0053  0000               	nop	;# 
+   388  0054  0000               	nop	;# 
+   389  0055  0008               	return
+   390  0056                     __end_of_Unlock_Flash:	
+   391  0056                     __ptext1:	
+   392 ;; *************** function _POWER_INITIAL *****************
+   393 ;; Defined at:
+   394 ;;		line 35 in file "test_FT62F08X_EEPROM.C"
+   395 ;; Parameters:    Size  Location     Type
+   396 ;;		None
+   397 ;; Auto vars:     Size  Location     Type
+   398 ;;		None
+   399 ;; Return value:  Size  Location     Type
+   400 ;;                  1    wreg      void 
+   401 ;; Registers used:
+   402 ;;		wreg, status,2
+   403 ;; Tracked objects:
+   404 ;;		On entry : B1F/0
+   405 ;;		On exit  : B1F/3
+   406 ;;		Unchanged: B00/0
+   407 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   408 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   409 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   410 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   411 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   412 ;;Total ram usage:        0 bytes
+   413 ;; Hardware stack levels used:    1
+   414 ;; Hardware stack levels required when called:    1
+   415 ;; This function calls:
+   416 ;;		Nothing
+   417 ;; This function is called by:
+   418 ;;		_main
+   419 ;; This function uses a non-reentrant model
+   420 ;;
+   421                           
+   422                           
+   423                           ;psect for function _POWER_INITIAL
+   424  0056                     _POWER_INITIAL:	
+   425                           
+   426                           ;test_FT62F08X_EEPROM.C: 37: OSCCON = 0B01110001;
+   427                           
+   428                           ;incstack = 0
+   429                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   430  0056  3071               	movlw	113
+   431  0057  0021               	movlb	1	; select bank1
+   432  0058  0099               	movwf	25	;volatile
+   433                           
+   434                           ;test_FT62F08X_EEPROM.C: 38: INTCON = 0;
+   435  0059  018B               	clrf	11	;volatile
+   436                           
+   437                           ;test_FT62F08X_EEPROM.C: 40: PORTA = 0B00000000;
+   438  005A  0020               	movlb	0	; select bank0
+   439  005B  018C               	clrf	12	;volatile
+   440                           
+   441                           ;test_FT62F08X_EEPROM.C: 41: TRISA = 0B00000000;
+   442  005C  0021               	movlb	1	; select bank1
+   443  005D  018C               	clrf	12	;volatile
+   444                           
+   445                           ;test_FT62F08X_EEPROM.C: 42: PORTB = 0B00000000;
+   446  005E  0020               	movlb	0	; select bank0
+   447  005F  018D               	clrf	13	;volatile
+   448                           
+   449                           ;test_FT62F08X_EEPROM.C: 43: TRISB = 0B00000000;
+   450  0060  0021               	movlb	1	; select bank1
+   451  0061  018D               	clrf	13	;volatile
+   452                           
+   453                           ;test_FT62F08X_EEPROM.C: 44: PORTC = 0B00000000;
+   454  0062  0020               	movlb	0	; select bank0
+   455  0063  018E               	clrf	14	;volatile
+   456                           
+   457                           ;test_FT62F08X_EEPROM.C: 45: TRISC = 0B00000000;
+   458  0064  0021               	movlb	1	; select bank1
+   459  0065  018E               	clrf	14	;volatile
+   460                           
+   461                           ;test_FT62F08X_EEPROM.C: 46: PORTD = 0B00000000;
+   462  0066  0020               	movlb	0	; select bank0
+   463  0067  018F               	clrf	15	;volatile
+   464                           
+   465                           ;test_FT62F08X_EEPROM.C: 47: TRISD = 0B00000000;
+   466  0068  0021               	movlb	1	; select bank1
+   467  0069  018F               	clrf	15	;volatile
+   468                           
+   469                           ;test_FT62F08X_EEPROM.C: 49: WPUA = 0B00000000;
+   470  006A  0023               	movlb	3	; select bank3
+   471  006B  018C               	clrf	12	;volatile
+   472                           
+   473                           ;test_FT62F08X_EEPROM.C: 50: WPUB = 0B00000000;
+   474  006C  018D               	clrf	13	;volatile
+   475                           
+   476                           ;test_FT62F08X_EEPROM.C: 51: WPUC = 0B00000000;
+   477  006D  018E               	clrf	14	;volatile
+   478                           
+   479                           ;test_FT62F08X_EEPROM.C: 52: WPUD = 0B00000000;
+   480  006E  018F               	clrf	15	;volatile
+   481                           
+   482                           ;test_FT62F08X_EEPROM.C: 54: WPDA = 0B00000000;
+   483  006F  0024               	movlb	4	; select bank4
+   484  0070  018C               	clrf	12	;volatile
+   485                           
+   486                           ;test_FT62F08X_EEPROM.C: 55: WPDB = 0B00000000;
+   487  0071  018D               	clrf	13	;volatile
+   488                           
+   489                           ;test_FT62F08X_EEPROM.C: 56: WPDC = 0B00000000;
+   490  0072  018E               	clrf	14	;volatile
+   491                           
+   492                           ;test_FT62F08X_EEPROM.C: 57: WPDD = 0B00000000;
+   493  0073  018F               	clrf	15	;volatile
+   494                           
+   495                           ;test_FT62F08X_EEPROM.C: 59: PSRC0 = 0B11111111;
+   496  0074  30FF               	movlw	255
+   497  0075  0022               	movlb	2	; select bank2
+   498  0076  009A               	movwf	26	;volatile
+   499                           
+   500                           ;test_FT62F08X_EEPROM.C: 60: PSRC1 = 0B11111111;
+   501  0077  009B               	movwf	27	;volatile
+   502                           
+   503                           ;test_FT62F08X_EEPROM.C: 62: PSINK0 = 0B11111111;
+   504  0078  0023               	movlb	3	; select bank3
+   505  0079  009A               	movwf	26	;volatile
+   506                           
+   507                           ;test_FT62F08X_EEPROM.C: 63: PSINK1 = 0B11111111;
+   508  007A  009B               	movwf	27	;volatile
+   509                           
+   510                           ;test_FT62F08X_EEPROM.C: 64: PSINK2 = 0B11111111;
+   511  007B  009C               	movwf	28	;volatile
+   512                           
+   513                           ;test_FT62F08X_EEPROM.C: 65: PSINK3 = 0B11111111;
+   514  007C  009D               	movwf	29	;volatile
+   515                           
+   516                           ;test_FT62F08X_EEPROM.C: 67: ANSELA = 0B00000000;
+   517  007D  0197               	clrf	23	;volatile
+   518  007E  0008               	return
+   519  007F                     __end_of_POWER_INITIAL:	
+   520                           
+   521                           	psect	bssCOMMON
+   522  0072                     __pbssCOMMON:	
+   523  0072                     _EEReadData:	
+   524  0072                     	ds	1
+   525                           
+   526                           	psect	cstackCOMMON
+   527  0070                     __pcstackCOMMON:	
+   528  0070                     ?_ISR:	
+   529  0070                     ??_ISR:	
+   530                           ; 1 bytes @ 0x0
+   531                           
+   532  0070                     ?_POWER_INITIAL:	
+   533                           ; 1 bytes @ 0x0
+   534                           
+   535  0070                     ??_POWER_INITIAL:	
+   536                           ; 1 bytes @ 0x0
+   537                           
+   538  0070                     ?_EEPROMread:	
+   539                           ; 1 bytes @ 0x0
+   540                           
+   541  0070                     ??_EEPROMread:	
+   542                           ; 1 bytes @ 0x0
+   543                           
+   544  0070                     ?_Unlock_Flash:	
+   545                           ; 1 bytes @ 0x0
+   546                           
+   547  0070                     ??_Unlock_Flash:	
+   548                           ; 1 bytes @ 0x0
+   549                           
+   550  0070                     ?_EEPROMwrite:	
+   551                           ; 1 bytes @ 0x0
+   552                           
+   553  0070                     ?_main:	
+   554                           ; 1 bytes @ 0x0
+   555                           
+   556  0070                     EEPROMread@EEAddr:	
+   557                           ; 1 bytes @ 0x0
+   558                           
+   559  0070                     EEPROMwrite@Data:	
+   560                           ; 1 bytes @ 0x0
+   561                           
+   562                           
+   563                           ; 1 bytes @ 0x0
+   564  0070                     	ds	1
+   565  0071                     ??_EEPROMwrite:	
+   566  0071                     EEPROMread@ReEEPROMread:	
+   567                           ; 1 bytes @ 0x1
+   568                           
+   569  0071                     EEPROMwrite@EEAddr:	
+   570                           ; 1 bytes @ 0x1
+   571                           
+   572                           
+   573                           ; 1 bytes @ 0x1
+   574  0071                     	ds	1
+   575  0072                     ??_main:	
+   576                           
+   577                           	psect	intentry
+   578  0004                     __pintentry:	
+   579 ;; *************** function _ISR *****************
+   580 ;; Defined at:
+   581 ;;		line 25 in file "test_FT62F08X_EEPROM.C"
+   582 ;; Parameters:    Size  Location     Type
+   583 ;;		None
+   584 ;; Auto vars:     Size  Location     Type
+   585 ;;		None
+   586 ;; Return value:  Size  Location     Type
+   587 ;;                  1    wreg      void 
+   588 ;; Registers used:
+   589 ;;		None
+   590 ;; Tracked objects:
+   591 ;;		On entry : 0/0
+   592 ;;		On exit  : 0/0
+   593 ;;		Unchanged: 0/0
+   594 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   595 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   596 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   597 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   598 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   599 ;;Total ram usage:        0 bytes
+   600 ;; Hardware stack levels used:    1
+   601 ;; This function calls:
+   602 ;;		Nothing
+   603 ;; This function is called by:
+   604 ;;		Interrupt level 1
+   605 ;; This function uses a non-reentrant model
+   606 ;;
+   607                           
+   608  0004                     _ISR:	
+   609                           
+   610                           ;incstack = 0
+   611  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+   612                           
+   613                           ; Regs used in _ISR: []
+   614  0005  3180               	pagesel	$
+   615  0006  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   616  0007  0009               	retfie
+   617  0008                     __end_of_ISR:	
+   618  007E                     btemp	set	126	;btemp
+   619  007E                     int$flags	set	126
+   620  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      2       3
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK2            80      0       0
+    BANK3            80      0       0
+    BANK4            80      0       0
+    BANK5            80      0       0
+    BANK6            80      0       0
+    BANK7            80      0       0
+    BANK8            80      0       0
+    BANK9            80      0       0
+    BANK10           80      0       0
+    BANK11           80      0       0
+    BANK12           48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_EEPROMread
+    _main->_EEPROMwrite
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _ISR in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _ISR in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _ISR in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _ISR in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _ISR in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _ISR in BANK12
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     117
+                         _EEPROMread
+                        _EEPROMwrite
+                      _POWER_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _EEPROMwrite                                          2     1      1      87
+                                              0 COMMON     2     1      1
+                       _Unlock_Flash
+ ---------------------------------------------------------------------------------
+ (2) _Unlock_Flash                                         0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _EEPROMread                                           2     2      0      30
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _ISR                                                  0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _EEPROMread
+   _EEPROMwrite
+     _Unlock_Flash
+   _POWER_INITIAL
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             3F0      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      2       3       2       21.4%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BITBANK2            50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BANK2               50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BITBANK3            50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BANK3               50      0       0      11        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITBANK4            50      0       0      12        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BANK4               50      0       0      13        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITBANK5            50      0       0      14        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BANK5               50      0       0      15        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITBANK6            50      0       0      16        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BANK6               50      0       0      17        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITBANK7            50      0       0      18        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BANK7               50      0       0      19        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+ABS                  0      0       3      20        0.0%
+BITBANK8            50      0       0      21        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BANK8               50      0       0      22        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITBANK9            50      0       0      23        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BANK9               50      0       0      24        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITBANK10           50      0       0      25        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BANK10              50      0       0      26        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITBANK11           50      0       0      27        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BANK11              50      0       0      28        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITBANK12           30      0       0      29        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BANK12              30      0       0      30        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+DATA                 0      0       3      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Wed Nov 24 11:39:57 2021
+
+                     _RD 0CA8                       _WR 0CA9                      _GIE 005F  
+                    _ISR 0004                     ?_ISR 0070                     l2367 001C  
+                   l2376 0031                     l2369 0022                     l2379 0046  
+                   l2862 0037                     l2886 0019                     _CFGS 0CAE  
+                   _EEIF 005A                     _WPDA 020C                     _WPDB 020D  
+                   _WPDC 020E                     _WPDD 020F                     _WREN 0CAA  
+                   _WPUA 018C                     _WPUB 018D                     _WPUC 018E  
+                   _WPUD 018F           _ad3nop_absaddr 0003                     _main 000E  
+                   btemp 007E                     start 0008      __size_of_EEPROMread 0015  
+                  ??_ISR 0070                    ?_main 0070                    _EEPGD 0CAF  
+                  _DRDEN 0CC0                    _BSREG 0008                    _PSRC0 011A  
+                  _PSRC1 011B                    _PORTA 000C                    _PORTB 000D  
+                  _PORTC 000E                    _PORTD 000F                    _TRISA 008C  
+                  _TRISB 008D                    _TRISC 008E                    _TRISD 008F  
+                  wtemp0 007E          __initialization 000A             __end_of_main 001B  
+   __size_of_EEPROMwrite 001C                   ??_main 0072                   _EEADRL 0191  
+                 _EEDATL 0193                   _EECON1 0195                   _EECON2 0196  
+                 _ANSELA 0197                   _INTCON 000B                   _OSCCON 0099  
+                 _PSINK0 019A                   _PSINK1 019B                   _PSINK2 019C  
+                 _PSINK3 019D                   _ad3nop 0003             ??_EEPROMread 0070  
+  __end_of_POWER_INITIAL 007F  __end_of__initialization 000B           __pcstackCOMMON 0070  
+     __end_of_EEPROMread 0030               __pmaintext 000E               __pintentry 0004  
+        EEPROMwrite@Data 0070         EEPROMread@EEAddr 0070        EEPROMwrite@EEAddr 0071  
+                __ptext1 0056                  __ptext2 0030                  __ptext3 004C  
+                __ptext4 001B             __size_of_ISR 0004     end_of_initialization 000B  
+          ??_EEPROMwrite 0071            ?_Unlock_Flash 0070           __end_of_ad3nop 0004  
+    __end_of_EEPROMwrite 004C      start_initialization 000A           __p_ad3nop_text 0003  
+            __end_of_ISR 0008           ??_Unlock_Flash 0070   __size_of_POWER_INITIAL 0029  
+            __pbssCOMMON 0072                ___latbits 0002              _EEPROMwrite 0030  
+          _POWER_INITIAL 0056     __end_of_Unlock_Flash 0056           ?_POWER_INITIAL 0070  
+             _EEPROMread 001B            __size_of_main 000D   EEPROMread@ReEEPROMread 0071  
+             _EEReadData 0072                 int$flags 007E          ??_POWER_INITIAL 0070  
+               intlevel1 0000    __size_of_Unlock_Flash 000A             ?_EEPROMwrite 0070  
+            ?_EEPROMread 0070             _Unlock_Flash 004C  

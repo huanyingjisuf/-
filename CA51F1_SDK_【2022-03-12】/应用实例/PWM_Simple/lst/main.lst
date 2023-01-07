@@ -1,0 +1,156 @@
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:35:49 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 OPTIMIZE(9,SPEED) BROWSE DEBUG PRINT(.\lst\main.lst) OBJ
+                    -ECT(.\output\main.obj)
+
+line level    source
+
+   1          #ifndef _MAIN_C_
+   2          #define _MAIN_C_
+   3          /*********************************************************************************************************
+             -************/
+   4          #include "include/ca51f1_config.h"              
+   5          #include "include/ca51f1sfr.h"
+   6          #include "include/ca51f1xsfr.h"
+   7          #include "include/gpiodef_f1.h"
+   8          
+   9          #include "include/delay.h"
+  10          /*********************************************************************************************************
+             -************
+  11                  PWMÀý³Ì
+  12          **********************************************************************************************************
+             -***********/
+  13          
+  14          #define TOG(n)                  (n<<6)
+  15          #define PWM_CKS_SYS             (0<<0)
+  16          #define PWM_CKS_IL              (1<<0)
+  17          #define PWM_CKS_IH              (2<<0)
+  18          
+  19          #define PWMMOD(N)               (N<<3)    //N=0-7
+  20          #define PWMPOL(N)               (N<<2)    //N=0-1
+  21          
+  22          #define PWM0DIV                 100
+  23          #define PWM0DUT                 50
+  24          
+  25          #define PWM1DIV                 1000
+  26          #define PWM1DUT                 300
+  27          
+  28          #define PWM2DIV                 1000
+  29          #define PWM2DUT                 300
+  30          
+  31          #define LEBSY                   (1<<2)
+  32          
+  33          #define LED_DRIVE    
+  34          
+  35          void main(void)
+  36          {       
+  37   1      #ifdef LVD_RST_ENABLE
+  38   1              LVDCON = 0xE0;                                  //ÉèÖÃLVD¸´Î»µçÑ¹Îª2.2V
+  39   1      #endif
+  40   1      
+  41   1      #ifdef SYSCLK_16MHZ                                     //ÏµÍ³Ê±ÖÓÎª16MHz,ÉèÖÃCKDIVÎª0
+  42   1              CKDIV = 0;
+  43   1      #endif
+  44   1              
+  45   1              EA = 1;                                                 //¿ªÈ«¾ÖÖÐ¶Ï
+  46   1      
+  47   1              //PWM0£º160K,50%DUTY;
+  48   1              PWM0CON = TOG(1)|PWM_CKS_IH;//ÉèÖÃPWMÊ±ÖÓ£¬PWMÊÇ·ñ·´ÏòÊä³ö
+  49   1              PWM0CKD = 0;                //ÉèÖÃÔ¤·ÖÆµÏµÊý£¬ÉèÖÃÎª0±íÊ¾²»·ÖÆµ
+  50   1              PWM0DIVH = PWM0DIV/256;     //ÉèÖÃÆµÂÊ
+  51   1              PWM0DIVL = PWM0DIV%256;
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:35:49 PAGE 2   
+
+  52   1              PWM0DUTH = PWM0DUT/256;     //ÉèÖÃÕ¼¿Õ±È
+  53   1              PWM0DUTL = PWM0DUT%256; 
+  54   1              P32F = P32_PWM0_SETTING;        //ÉèÖÃP32ÎªPWMÒý½Å¹¦ÄÜ 
+  55   1              PWMEN |= (1<<0);                //PWM0Ê¹ÄÜ
+  56   1              
+  57   1              //PWM1£º16K,30%DUTY;
+  58   1      //      PWM1CON = TOG(0)| PWMMOD(0) | PWMPOL(0) | PWM_CKS_IH;
+  59   1      //      PWM1CKD = 0;
+  60   1      //      PWM1DIVH = PWM1DIV/256;
+  61   1      //      PWM1DIVL = PWM1DIV%256;
+  62   1      //      PWM1DUTH = PWM1DUT/256;
+  63   1      //      PWM1DUTL = PWM1DUT%256; 
+  64   1      //      P34F = P34_PWM1_SETTING;
+  65   1      //      PWMEN |= (1<<1);        
+  66   1              
+  67   1              //PWM2£º16K,30%DUTY;
+  68   1              PWM2CON = TOG(0) | PWM_CKS_IH;
+  69   1              PWM2CKD = 0;
+  70   1              PWM2DIVH = PWM2DIV/256;
+  71   1              PWM2DIVL = PWM2DIV%256;
+  72   1              PWM2DUTH = PWM2DUT/256;
+  73   1              PWM2DUTL = PWM2DUT%256; 
+  74   1              P01F = P01_PWM2_SETTING;
+  75   1              PWMEN |= (1<<2);        
+  76   1              
+  77   1      #ifdef LED_DRIVE
+  78   1              //µ¥Ïß¼¶ÁªLED
+  79   1              PWM1CON = TOG(0)| PWMMOD(3) | PWMPOL(0) | PWM_CKS_IH; //ÉèÖÃ IRCHÎª PWMÊ±ÖÓÔ´£¬·¢ËÍ 3 ¸ö×Ö½Úºó²åÈëÔÝÍ£Ê±¼
+             -ä
+  80   1              PWM1CKD = 0;            //ÉèÖÃÔ¤·ÖÆµÏµÊý£¬ÉèÖÃÎª 0 ±íÊ¾²»·ÖÆµ
+  81   1              PWM1DIVH= 0;            //ÉèÖÃÎ»ÖÜÆÚÊ±¼ä
+  82   1              PWM1DIVL= 20;           
+  83   1              PWM1DUTH= 0;            //ÉèÖÃÎ»Âë 0 Ê±¼ä
+  84   1              PWM1DUTL= 6;    
+  85   1              LEDUTH  = 0;            //ÉèÖÃÎ»Âë 1 Ê±¼ä
+  86   1              LEDUTL  = 13;           
+  87   1              LEDWTMH = 0;            //ÉèÖÃÔÝÍ£Ê±¼ä
+  88   1              LEDWTML = 50;   
+  89   1              P34F = P34_PWM1_SETTING;    //ÉèÖÃP34ÎªPWMÒý½Å¹¦ÄÜ 
+  90   1              PWMEN |= (1<<1);                        //PWM1 Ê¹ÄÜ
+  91   1      #endif
+  92   1              
+  93   1              
+  94   1              while(1)
+  95   1              {
+  96   2              #ifdef LED_DRIVE
+  97   2                      unsigned char i;
+  98   2              static unsigned char color_index = 0;
+  99   2                      code unsigned char LED_DAT[][3] = 
+ 100   2                      {
+ 101   2                              {0xff,0x00,0x00},
+ 102   2                              {0xff,0xff,0x00},
+ 103   2                              {0x00,0xff,0x00},
+ 104   2                              {0x00,0xff,0xff},
+ 105   2                              {0x00,0x00,0xff},
+ 106   2                              {0xff,0x00,0xff},
+ 107   2                      };
+ 108   2                      for(i=0;i<24;i++) 
+ 109   2                      {
+ 110   3                              while(LEFLG & LEBSY);
+ 111   3                              LEDAT0 = LED_DAT[color_index][i%3];
+ 112   3                      }
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:35:49 PAGE 3   
+
+ 113   2                      color_index++; 
+ 114   2                      if(color_index>=6) 
+ 115   2                      color_index=0;
+ 116   2                      Delay_ms(500);
+ 117   2              #endif
+ 118   2              }
+ 119   1      }
+ 120          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    167    ----
+   CONSTANT SIZE    =     18    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

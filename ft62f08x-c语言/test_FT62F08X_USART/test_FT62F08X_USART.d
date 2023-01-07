@@ -1,0 +1,1 @@
+ test_FT62F08X_USART.d  test_FT62F08X_USART.obj:  test_FT62F08X_USART.C

@@ -1,0 +1,591 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Thu Sep 09 10:38:07 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT61F13X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	text0,local,class=CODE,merge=1,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	maintext,global,class=CODE,split=1,delta=2
+     8                           	psect	text1,local,class=CODE,merge=1,delta=2
+     9                           	psect	text2,local,class=CODE,merge=1,delta=2
+    10                           	psect	text3,local,class=CODE,merge=1,delta=2
+    11                           	psect	text4,local,class=CODE,merge=1,delta=2
+    12                           	psect	intentry,global,class=CODE,delta=2
+    13                           	psect	pa_nodes0,global,class=CODE,delta=2
+    14                           	dabs	1,0x7E,2
+    15  0000                     
+    16                           ; Version 2.20
+    17                           ; Generated 09/04/2020 
+    18                           ; 
+    19                           ; SFR Addresses
+    20  0000                     
+    21                           	psect	text0
+    22  0000                     __ptext0:	
+    23  000B                     _INTCON	set	11
+    24  0007                     _PORTC	set	7
+    25  0005                     _PORTA	set	5
+    26  0067                     _EEIF	set	103
+    27  005F                     _GIE	set	95
+    28  009C                     _EECON1	set	156
+    29  009B                     _EEADR	set	155
+    30  009A                     _EEDAT	set	154
+    31  0095                     _WPUA	set	149
+    32  0093                     _WPUC	set	147
+    33  008F                     _OSCCON	set	143
+    34  0087                     _TRISC	set	135
+    35  0085                     _TRISA	set	133
+    36  0081                     _OPTION	set	129
+    37  04E8                     _WR	set	1256
+    38  04E0                     _RD	set	1248
+    39                           
+    40                           	psect	cinit
+    41  000D                     start_initialization:	
+    42                           ; #config settings
+    43                           
+    44  000D                     __initialization:	
+    45  000D                     end_of_initialization:	
+    46                           ;End of C runtime variable initialization code
+    47                           
+    48  000D                     __end_of__initialization:	
+    49  000D  0183               	clrf	3
+    50  000E  118A  2810         	ljmp	_main	;jump to C main() function
+    51                           
+    52                           	psect	cstackCOMMON
+    53  0070                     __pcstackCOMMON:	
+    54  0070                     ?_POWER_INITIAL:	
+    55  0070                     ?_ISR:	
+    56                           ; 1 bytes @ 0x0
+    57                           
+    58  0070                     ??_ISR:	
+    59                           ; 1 bytes @ 0x0
+    60                           
+    61  0070                     ?_EEPROMread:	
+    62                           ; 1 bytes @ 0x0
+    63                           
+    64  0070                     ?_main:	
+    65                           ; 1 bytes @ 0x0
+    66                           
+    67                           
+    68                           ; 2 bytes @ 0x0
+    69  0070                     	ds	2
+    70  0072                     ??_POWER_INITIAL:	
+    71  0072                     ??_EEPROMread:	
+    72                           ; 1 bytes @ 0x2
+    73                           
+    74  0072                     ?_EEPROMwrite:	
+    75                           ; 1 bytes @ 0x2
+    76                           
+    77  0072                     EEPROMread@EEAddr:	
+    78                           ; 1 bytes @ 0x2
+    79                           
+    80  0072                     EEPROMwrite@Data:	
+    81                           ; 1 bytes @ 0x2
+    82                           
+    83                           
+    84                           ; 1 bytes @ 0x2
+    85  0072                     	ds	1
+    86  0073                     ??_EEPROMwrite:	
+    87  0073                     EEPROMread@ReEEPROMread:	
+    88                           ; 1 bytes @ 0x3
+    89                           
+    90  0073                     EEPROMwrite@EEAddr:	
+    91                           ; 1 bytes @ 0x3
+    92                           
+    93                           
+    94                           ; 1 bytes @ 0x3
+    95  0073                     	ds	1
+    96  0074                     ??_main:	
+    97                           
+    98                           	psect	maintext
+    99  0010                     __pmaintext:	
+   100                           ; 1 bytes @ 0x4
+   101 ;;
+   102 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   103 ;;
+   104 ;; *************** function _main *****************
+   105 ;; Defined at:
+   106 ;;		line 104 in file "test_61f13x_EEPROM.C"
+   107 ;; Parameters:    Size  Location     Type
+   108 ;;		None
+   109 ;; Auto vars:     Size  Location     Type
+   110 ;;		None
+   111 ;; Return value:  Size  Location     Type
+   112 ;;                  2  1250[None  ] int 
+   113 ;; Registers used:
+   114 ;;		wreg, status,2, status,0, pclath, cstack
+   115 ;; Tracked objects:
+   116 ;;		On entry : B00/0
+   117 ;;		On exit  : 200/0
+   118 ;;		Unchanged: 0/0
+   119 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   120 ;;      Params:         0       0       0       0
+   121 ;;      Locals:         0       0       0       0
+   122 ;;      Temps:          0       0       0       0
+   123 ;;      Totals:         0       0       0       0
+   124 ;;Total ram usage:        0 bytes
+   125 ;; Hardware stack levels required when called:    2
+   126 ;; This function calls:
+   127 ;;		_EEPROMread
+   128 ;;		_EEPROMwrite
+   129 ;;		_POWER_INITIAL
+   130 ;; This function is called by:
+   131 ;;		Startup code after reset
+   132 ;; This function uses a non-reentrant model
+   133 ;;
+   134                           
+   135                           
+   136                           ;psect for function _main
+   137  0010                     _main:	
+   138                           
+   139                           ;test_61f13x_EEPROM.C: 106: POWER_INITIAL();
+   140                           
+   141                           ;incstack = 0
+   142                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   143  0010  118A  203C  118A   	fcall	_POWER_INITIAL
+   144                           
+   145                           ;test_61f13x_EEPROM.C: 107: EEPROMwrite(0xff,0xaa);
+   146  0013  30AA               	movlw	170
+   147  0014  00F2               	movwf	EEPROMwrite@Data
+   148  0015  30FF               	movlw	255
+   149  0016  118A  202A  118A   	fcall	_EEPROMwrite
+   150                           
+   151                           ;test_61f13x_EEPROM.C: 108: EEPROMwrite(0xff,0xaa);
+   152  0019  30AA               	movlw	170
+   153  001A  00F2               	movwf	EEPROMwrite@Data
+   154  001B  30FF               	movlw	255
+   155  001C  118A  202A  118A   	fcall	_EEPROMwrite
+   156                           
+   157                           ;test_61f13x_EEPROM.C: 110: EEPROMwrite(0x13,0x55);
+   158  001F  3055               	movlw	85
+   159  0020  00F2               	movwf	EEPROMwrite@Data
+   160  0021  3013               	movlw	19
+   161  0022  118A  202A  118A   	fcall	_EEPROMwrite
+   162                           
+   163                           ;test_61f13x_EEPROM.C: 111: EEReadData = EEPROMread(0x13);
+   164  0025  3013               	movlw	19
+   165  0026  118A  2054  118A   	fcall	_EEPROMread
+   166  0029                     l1251:	
+   167                           ;test_61f13x_EEPROM.C: 113: {
+   168                           ;test_61f13x_EEPROM.C: 114: EEReadData=0;
+   169                           
+   170  0029  2829               	goto	l1251
+   171  002A                     __end_of_main:	
+   172                           
+   173                           	psect	text1
+   174  003C                     __ptext1:	
+   175 ;; *************** function _POWER_INITIAL *****************
+   176 ;; Defined at:
+   177 ;;		line 39 in file "test_61f13x_EEPROM.C"
+   178 ;; Parameters:    Size  Location     Type
+   179 ;;		None
+   180 ;; Auto vars:     Size  Location     Type
+   181 ;;		None
+   182 ;; Return value:  Size  Location     Type
+   183 ;;                  1    wreg      void 
+   184 ;; Registers used:
+   185 ;;		wreg, status,2
+   186 ;; Tracked objects:
+   187 ;;		On entry : B00/0
+   188 ;;		On exit  : B00/100
+   189 ;;		Unchanged: 800/0
+   190 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   191 ;;      Params:         0       0       0       0
+   192 ;;      Locals:         0       0       0       0
+   193 ;;      Temps:          0       0       0       0
+   194 ;;      Totals:         0       0       0       0
+   195 ;;Total ram usage:        0 bytes
+   196 ;; Hardware stack levels used:    1
+   197 ;; Hardware stack levels required when called:    1
+   198 ;; This function calls:
+   199 ;;		Nothing
+   200 ;; This function is called by:
+   201 ;;		_main
+   202 ;; This function uses a non-reentrant model
+   203 ;;
+   204                           
+   205                           
+   206                           ;psect for function _POWER_INITIAL
+   207  003C                     _POWER_INITIAL:	
+   208                           
+   209                           ;test_61f13x_EEPROM.C: 41: OSCCON = 0B01110001;
+   210                           
+   211                           ;incstack = 0
+   212                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   213  003C  3071               	movlw	113
+   214  003D  1683               	bsf	3,5	;RP0=1, select bank1
+   215  003E  008F               	movwf	15	;volatile
+   216                           
+   217                           ;test_61f13x_EEPROM.C: 42: INTCON = 0;
+   218  003F  018B               	clrf	11	;volatile
+   219                           
+   220                           ;test_61f13x_EEPROM.C: 44: PORTA = 0B00000000;
+   221  0040  1283               	bcf	3,5	;RP0=0, select bank0
+   222  0041  0185               	clrf	5	;volatile
+   223                           
+   224                           ;test_61f13x_EEPROM.C: 45: TRISA = 0B00000000;
+   225  0042  1683               	bsf	3,5	;RP0=1, select bank1
+   226  0043  0185               	clrf	5	;volatile
+   227                           
+   228                           ;test_61f13x_EEPROM.C: 46: PORTC = 0B00000000;
+   229  0044  1283               	bcf	3,5	;RP0=0, select bank0
+   230  0045  0187               	clrf	7	;volatile
+   231                           
+   232                           ;test_61f13x_EEPROM.C: 47: TRISC = 0B00000000;
+   233  0046  1683               	bsf	3,5	;RP0=1, select bank1
+   234  0047  0187               	clrf	7	;volatile
+   235                           
+   236                           ;test_61f13x_EEPROM.C: 49: WPUA = 0B00000000;
+   237  0048  0195               	clrf	21	;volatile
+   238                           
+   239                           ;test_61f13x_EEPROM.C: 50: WPUC = 0B00000000;
+   240  0049  0193               	clrf	19	;volatile
+   241                           
+   242                           ;test_61f13x_EEPROM.C: 52: OPTION = 0B00001000;
+   243  004A  3008               	movlw	8
+   244  004B  0081               	movwf	1	;volatile
+   245  004C  0008               	return
+   246  004D                     __end_of_POWER_INITIAL:	
+   247                           
+   248                           	psect	text2
+   249  002A                     __ptext2:	
+   250 ;; *************** function _EEPROMwrite *****************
+   251 ;; Defined at:
+   252 ;;		line 86 in file "test_61f13x_EEPROM.C"
+   253 ;; Parameters:    Size  Location     Type
+   254 ;;  EEAddr          1    wreg     unsigned char 
+   255 ;;  Data            1    2[COMMON] unsigned char 
+   256 ;; Auto vars:     Size  Location     Type
+   257 ;;  EEAddr          1    3[COMMON] unsigned char 
+   258 ;; Return value:  Size  Location     Type
+   259 ;;                  1    wreg      void 
+   260 ;; Registers used:
+   261 ;;		wreg, status,2, status,0
+   262 ;; Tracked objects:
+   263 ;;		On entry : 300/100
+   264 ;;		On exit  : 300/100
+   265 ;;		Unchanged: 0/0
+   266 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   267 ;;      Params:         1       0       0       0
+   268 ;;      Locals:         1       0       0       0
+   269 ;;      Temps:          0       0       0       0
+   270 ;;      Totals:         2       0       0       0
+   271 ;;Total ram usage:        2 bytes
+   272 ;; Hardware stack levels used:    1
+   273 ;; Hardware stack levels required when called:    1
+   274 ;; This function calls:
+   275 ;;		Nothing
+   276 ;; This function is called by:
+   277 ;;		_main
+   278 ;; This function uses a non-reentrant model
+   279 ;;
+   280                           
+   281                           
+   282                           ;psect for function _EEPROMwrite
+   283  002A                     _EEPROMwrite:	
+   284                           
+   285                           ;incstack = 0
+   286                           ; Regs used in _EEPROMwrite: [wreg+status,2+status,0]
+   287                           ;EEPROMwrite@EEAddr stored from wreg
+   288  002A  00F3               	movwf	EEPROMwrite@EEAddr
+   289                           
+   290                           ;test_61f13x_EEPROM.C: 88: GIE = 0;
+   291  002B  138B               	bcf	11,7	;volatile
+   292  002C                     l1240:	
+   293                           ;test_61f13x_EEPROM.C: 89: while(GIE);
+   294                           
+   295  002C  1B8B               	btfsc	11,7	;volatile
+   296  002D  282C               	goto	l1240
+   297                           
+   298                           ;test_61f13x_EEPROM.C: 90: EEADR = EEAddr;
+   299  002E  0873               	movf	EEPROMwrite@EEAddr,w
+   300  002F  009B               	movwf	27	;volatile
+   301                           
+   302                           ;test_61f13x_EEPROM.C: 91: EEDAT = Data;
+   303  0030  0872               	movf	EEPROMwrite@Data,w
+   304  0031  009A               	movwf	26	;volatile
+   305                           
+   306                           ;test_61f13x_EEPROM.C: 92: EEIF = 0;
+   307  0032  1283               	bcf	3,5	;RP0=0, select bank0
+   308  0033  138C               	bcf	12,7	;volatile
+   309                           
+   310                           ;test_61f13x_EEPROM.C: 93: EECON1 |= 0x34;
+   311  0034  3034               	movlw	52
+   312  0035  1683               	bsf	3,5	;RP0=1, select bank1
+   313  0036  049C               	iorwf	28,f	;volsfr
+   314                           
+   315                           ;test_61f13x_EEPROM.C: 94: WR = 1;
+   316  0037  141D               	bsf	29,0	;volsfr
+   317  0038                     l1243:	
+   318                           ;test_61f13x_EEPROM.C: 95: while(WR);
+   319                           
+   320  0038  181D               	btfsc	29,0	;volsfr
+   321  0039  2838               	goto	l1243
+   322                           
+   323                           ;test_61f13x_EEPROM.C: 96: GIE = 1;
+   324  003A  178B               	bsf	11,7	;volatile
+   325  003B  0008               	return
+   326  003C                     __end_of_EEPROMwrite:	
+   327                           
+   328                           	psect	text3
+   329  0054                     __ptext3:	
+   330 ;; *************** function _EEPROMread *****************
+   331 ;; Defined at:
+   332 ;;		line 70 in file "test_61f13x_EEPROM.C"
+   333 ;; Parameters:    Size  Location     Type
+   334 ;;  EEAddr          1    wreg     unsigned char 
+   335 ;; Auto vars:     Size  Location     Type
+   336 ;;  EEAddr          1    2[COMMON] unsigned char 
+   337 ;;  ReEEPROMread    1    3[COMMON] unsigned char 
+   338 ;; Return value:  Size  Location     Type
+   339 ;;                  1    wreg      unsigned char 
+   340 ;; Registers used:
+   341 ;;		wreg
+   342 ;; Tracked objects:
+   343 ;;		On entry : 300/100
+   344 ;;		On exit  : 300/100
+   345 ;;		Unchanged: 0/0
+   346 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   347 ;;      Params:         0       0       0       0
+   348 ;;      Locals:         2       0       0       0
+   349 ;;      Temps:          0       0       0       0
+   350 ;;      Totals:         2       0       0       0
+   351 ;;Total ram usage:        2 bytes
+   352 ;; Hardware stack levels used:    1
+   353 ;; Hardware stack levels required when called:    1
+   354 ;; This function calls:
+   355 ;;		Nothing
+   356 ;; This function is called by:
+   357 ;;		_main
+   358 ;; This function uses a non-reentrant model
+   359 ;;
+   360                           
+   361                           
+   362                           ;psect for function _EEPROMread
+   363  0054                     _EEPROMread:	
+   364                           
+   365                           ;incstack = 0
+   366                           ; Regs used in _EEPROMread: [wreg]
+   367                           ;EEPROMread@EEAddr stored from wreg
+   368  0054  00F2               	movwf	EEPROMread@EEAddr
+   369                           
+   370                           ;test_61f13x_EEPROM.C: 72: unsigned char ReEEPROMread;
+   371                           ;test_61f13x_EEPROM.C: 74: EEADR = EEAddr;
+   372  0055  009B               	movwf	27	;volatile
+   373                           
+   374                           ;test_61f13x_EEPROM.C: 75: RD = 1;
+   375  0056  141C               	bsf	28,0	;volsfr
+   376                           
+   377                           ;test_61f13x_EEPROM.C: 76: ReEEPROMread = EEDAT;
+   378  0057  081A               	movf	26,w	;volatile
+   379  0058  00F3               	movwf	EEPROMread@ReEEPROMread
+   380                           
+   381                           ;test_61f13x_EEPROM.C: 77: return ReEEPROMread;
+   382  0059  0008               	return
+   383  005A                     __end_of_EEPROMread:	
+   384                           
+   385                           	psect	text4
+   386  004D                     __ptext4:	
+   387 ;; *************** function _ISR *****************
+   388 ;; Defined at:
+   389 ;;		line 60 in file "test_61f13x_EEPROM.C"
+   390 ;; Parameters:    Size  Location     Type
+   391 ;;		None
+   392 ;; Auto vars:     Size  Location     Type
+   393 ;;		None
+   394 ;; Return value:  Size  Location     Type
+   395 ;;                  1    wreg      void 
+   396 ;; Registers used:
+   397 ;;		None
+   398 ;; Tracked objects:
+   399 ;;		On entry : 0/0
+   400 ;;		On exit  : 0/0
+   401 ;;		Unchanged: 0/0
+   402 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   403 ;;      Params:         0       0       0       0
+   404 ;;      Locals:         0       0       0       0
+   405 ;;      Temps:          2       0       0       0
+   406 ;;      Totals:         2       0       0       0
+   407 ;;Total ram usage:        2 bytes
+   408 ;; Hardware stack levels used:    1
+   409 ;; This function calls:
+   410 ;;		Nothing
+   411 ;; This function is called by:
+   412 ;;		Interrupt level 1
+   413 ;; This function uses a non-reentrant model
+   414 ;;
+   415                           
+   416                           
+   417                           ;psect for function _ISR
+   418  004D                     _ISR:	
+   419  004D  0871               	movf	??_ISR+1,w
+   420  004E  008A               	movwf	10
+   421  004F  0E70               	swapf	??_ISR^(0+-128),w
+   422  0050  0083               	movwf	3
+   423  0051  0EFE               	swapf	126,f
+   424  0052  0E7E               	swapf	126,w
+   425  0053  0009               	retfie
+   426  0054                     __end_of_ISR:	
+   427  007E                     btemp	set	126	;btemp
+   428  007E                     wtemp0	set	126
+   429                           
+   430                           	psect	intentry
+   431  0004                     __pintentry:	
+   432                           ;incstack = 0
+   433                           ; Regs used in _ISR: []
+   434                           
+   435  0004                     interrupt_function:	
+   436  007E                     saved_w	set	btemp
+   437  0004  00FE               	movwf	btemp
+   438  0005  0E03               	swapf	3,w
+   439  0006  00F0               	movwf	??_ISR
+   440  0007  080A               	movf	10,w
+   441  0008  00F1               	movwf	??_ISR+1
+   442  0009  118A  284D         	ljmp	_ISR
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      4       4
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK2            80      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_EEPROMread
+    _main->_EEPROMwrite
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     203
+                         _EEPROMread
+                        _EEPROMwrite
+                      _POWER_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _EEPROMwrite                                          2     1      1     173
+                                              2 COMMON     2     1      1
+ ---------------------------------------------------------------------------------
+ (1) _EEPROMread                                           2     2      0      30
+                                              2 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ISR                                                  2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _EEPROMread
+   _EEPROMwrite
+   _POWER_INITIAL
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA              80      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      4       4       1       28.6%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+BANK0               50      0       0       3        0.0%
+BITBANK1            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK1               50      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK2            50      0       0       6        0.0%
+BANK2               50      0       0       7        0.0%
+ABS                  0      0       0       8        0.0%
+BITBANK0            50      0       0       9        0.0%
+DATA                 0      0       0      10        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Thu Sep 09 10:38:07 2021
+
+                     _RD 04E0                       _WR 04E8                      _GIE 005F  
+                    _ISR 004D                     ?_ISR 0070                     l1240 002C  
+                   l1243 0038                     l1251 0029                     _EEIF 0067  
+                   _WPUA 0095                     _WPUC 0093                     _main 0010  
+                   btemp 007E                     start 000B      __size_of_EEPROMread 0006  
+                  ??_ISR 0070                    ?_main 0070                    _EEADR 009B  
+                  _EEDAT 009A                    _PORTA 0005                    _PORTC 0007  
+                  _TRISA 0085                    _TRISC 0087                    pclath 000A  
+                  status 0003                    wtemp0 007E          __initialization 000D  
+           __end_of_main 002A     __size_of_EEPROMwrite 0012                   ??_main 0074  
+                 _EECON1 009C                   _INTCON 000B                   _OSCCON 008F  
+                 _OPTION 0081             ??_EEPROMread 0072                   saved_w 007E  
+  __end_of_POWER_INITIAL 004D  __end_of__initialization 000D           __pcstackCOMMON 0070  
+     __end_of_EEPROMread 005A               __pmaintext 0010               __pintentry 0004  
+        EEPROMwrite@Data 0072         EEPROMread@EEAddr 0072        EEPROMwrite@EEAddr 0073  
+                __ptext0 0000                  __ptext1 003C                  __ptext2 002A  
+                __ptext3 0054                  __ptext4 004D             __size_of_ISR 0007  
+   end_of_initialization 000D            ??_EEPROMwrite 0073      __end_of_EEPROMwrite 003C  
+    start_initialization 000D              __end_of_ISR 0054   __size_of_POWER_INITIAL 0011  
+              ___latbits 0001              _EEPROMwrite 002A        interrupt_function 0004  
+          _POWER_INITIAL 003C           ?_POWER_INITIAL 0070               _EEPROMread 0054  
+          __size_of_main 001A   EEPROMread@ReEEPROMread 0073          ??_POWER_INITIAL 0072  
+               intlevel1 0000             ?_EEPROMwrite 0072              ?_EEPROMread 0070  

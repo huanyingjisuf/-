@@ -1,0 +1,846 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Fri Oct 29 14:38:04 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT62F08X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	_ad3nop_text,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	intentry,global,class=CODE,delta=2
+     9                           	psect	pa_nodes0,global,class=CODE,delta=2
+    10                           	dabs	1,0x7E,2
+    11  0000                     
+    12                           ; Version 1.45
+    13                           ; Generated 16/11/2017 
+    14                           ; 
+    15                           ; SFR Addresses
+    16  0003                     _ad3nop_absaddr	set	3
+    17  0003                     _ad3nop_absaddr	set	3
+    18                           
+    19                           	psect	_ad3nop_text
+    20  0003                     __p_ad3nop_text:	
+    21  0003                     _ad3nop:	
+    22  0003  3400               	retlw	0
+    23  0004                     __end_of_ad3nop:	
+    24  000F                     _PORTD	set	15
+    25  000E                     _PORTC	set	14
+    26  000D                     _PORTB	set	13
+    27  000C                     _PORTA	set	12
+    28  000B                     _INTCON	set	11
+    29  006B                     _PB3	set	107
+    30  0099                     _OSCCON	set	153
+    31  008F                     _TRISD	set	143
+    32  008E                     _TRISC	set	142
+    33  008D                     _TRISB	set	141
+    34  008C                     _TRISA	set	140
+    35  011B                     _PSRC1	set	283
+    36  011A                     _PSRC0	set	282
+    37  019D                     _PSINK3	set	413
+    38  019C                     _PSINK2	set	412
+    39  019B                     _PSINK1	set	411
+    40  019A                     _PSINK0	set	410
+    41  0197                     _ANSELA	set	407
+    42  018F                     _WPUD	set	399
+    43  018E                     _WPUC	set	398
+    44  018D                     _WPUB	set	397
+    45  018C                     _WPUA	set	396
+    46  020F                     _WPDD	set	527
+    47  020E                     _WPDC	set	526
+    48  020D                     _WPDB	set	525
+    49  020C                     _WPDA	set	524
+    50                           
+    51                           	psect	cinit
+    52  000A                     start_initialization:	
+    53                           ; #config settings
+    54                           
+    55  000A                     __initialization:	
+    56                           
+    57                           ; Clear objects allocated to COMMON
+    58  000A  01F5               	clrf	__pbssCOMMON& (0+127)
+    59  000B                     end_of_initialization:	
+    60                           ;End of C runtime variable initialization code
+    61                           
+    62  000B                     __end_of__initialization:	
+    63  000B  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+    64  000C  0020               	movlb	0
+    65  000D  280E               	ljmp	_main	;jump to C main() function
+    66  000E                     __pmaintext:	
+    67                           ; 1 bytes @ 0x5
+    68 ;;
+    69 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    70 ;;
+    71 ;; *************** function _main *****************
+    72 ;; Defined at:
+    73 ;;		line 105 in file "test_FT62F08X_SLEEP.C"
+    74 ;; Parameters:    Size  Location     Type
+    75 ;;		None
+    76 ;; Auto vars:     Size  Location     Type
+    77 ;;		None
+    78 ;; Return value:  Size  Location     Type
+    79 ;;                  1    wreg      void 
+    80 ;; Registers used:
+    81 ;;		wreg, status,2, status,0, pclath, cstack
+    82 ;; Tracked objects:
+    83 ;;		On entry : B1F/0
+    84 ;;		On exit  : 0/0
+    85 ;;		Unchanged: 0/0
+    86 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+    87 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+    88 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+    89 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+    90 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+    91 ;;Total ram usage:        0 bytes
+    92 ;; Hardware stack levels required when called:    3
+    93 ;; This function calls:
+    94 ;;		_DelayMs
+    95 ;;		_POWER_INITIAL
+    96 ;; This function is called by:
+    97 ;;		Startup code after reset
+    98 ;; This function uses a non-reentrant model
+    99 ;;
+   100                           
+   101                           
+   102                           ;psect for function _main
+   103  000E                     _main:	
+   104                           
+   105                           ;test_FT62F08X_SLEEP.C: 107: POWER_INITIAL();
+   106                           
+   107                           ;incstack = 0
+   108                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   109  000E  203E  3180         	fcall	_POWER_INITIAL
+   110  0010                     l2839:	
+   111                           
+   112                           ;test_FT62F08X_SLEEP.C: 109: {
+   113                           ;test_FT62F08X_SLEEP.C: 110: PB3 = 1;
+   114  0010  0020               	movlb	0	; select bank0
+   115  0011  158D               	bsf	13,3	;volatile
+   116                           
+   117                           ;test_FT62F08X_SLEEP.C: 111: DelayMs(10);
+   118  0012  300A               	movlw	10
+   119  0013  2024  3180         	fcall	_DelayMs
+   120                           
+   121                           ;test_FT62F08X_SLEEP.C: 112: PB3 = 0;
+   122  0015  0020               	movlb	0	; select bank0
+   123  0016  118D               	bcf	13,3	;volatile
+   124                           
+   125                           ;test_FT62F08X_SLEEP.C: 113: DelayMs(10);
+   126  0017  300A               	movlw	10
+   127  0018  2024  3180         	fcall	_DelayMs
+   128                           
+   129                           ;test_FT62F08X_SLEEP.C: 115: if(++outputcounter>100)
+   130  001A  3065               	movlw	101
+   131  001B  0AF5               	incf	_outputcounter,f
+   132  001C  0275               	subwf	_outputcounter,w
+   133  001D  1C03               	skipc
+   134  001E  2810               	goto	l2839
+   135                           
+   136                           ;test_FT62F08X_SLEEP.C: 116: {
+   137                           ;test_FT62F08X_SLEEP.C: 117: outputcounter=0;
+   138  001F  01F5               	clrf	_outputcounter
+   139  0020  0063               	sleep	;# 
+   140                           
+   141                           ;test_FT62F08X_SLEEP.C: 120: __nop();
+   142  0021  0000               	nop
+   143                           
+   144                           ;test_FT62F08X_SLEEP.C: 121: __nop();
+   145  0022  0000               	nop
+   146  0023  2810               	goto	l2839
+   147  0024                     __end_of_main:	
+   148  0024                     __ptext2:	
+   149 ;; *************** function _DelayMs *****************
+   150 ;; Defined at:
+   151 ;;		line 88 in file "test_FT62F08X_SLEEP.C"
+   152 ;; Parameters:    Size  Location     Type
+   153 ;;  Time            1    wreg     unsigned char 
+   154 ;; Auto vars:     Size  Location     Type
+   155 ;;  Time            1    2[COMMON] unsigned char 
+   156 ;;  b               1    4[COMMON] unsigned char 
+   157 ;;  a               1    3[COMMON] unsigned char 
+   158 ;; Return value:  Size  Location     Type
+   159 ;;                  1    wreg      void 
+   160 ;; Registers used:
+   161 ;;		wreg, status,2, status,0, pclath, cstack
+   162 ;; Tracked objects:
+   163 ;;		On entry : 1F/0
+   164 ;;		On exit  : 0/0
+   165 ;;		Unchanged: 0/0
+   166 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   167 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   168 ;;      Locals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   169 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   170 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   171 ;;Total ram usage:        3 bytes
+   172 ;; Hardware stack levels used:    1
+   173 ;; Hardware stack levels required when called:    2
+   174 ;; This function calls:
+   175 ;;		_DelayUs
+   176 ;; This function is called by:
+   177 ;;		_main
+   178 ;; This function uses a non-reentrant model
+   179 ;;
+   180                           
+   181                           
+   182                           ;psect for function _DelayMs
+   183  0024                     _DelayMs:	
+   184                           
+   185                           ;incstack = 0
+   186                           ; Regs used in _DelayMs: [wreg+status,2+status,0+pclath+cstack]
+   187                           ;DelayMs@Time stored from wreg
+   188  0024  00F2               	movwf	DelayMs@Time
+   189                           
+   190                           ;test_FT62F08X_SLEEP.C: 90: unsigned char a,b;
+   191                           ;test_FT62F08X_SLEEP.C: 91: for(a=0;a<Time;a++)
+   192  0025  01F3               	clrf	DelayMs@a
+   193  0026                     l2835:	
+   194  0026  0872               	movf	DelayMs@Time,w
+   195  0027  0273               	subwf	DelayMs@a,w
+   196  0028  1803               	btfsc	3,0
+   197  0029  0008               	return
+   198                           
+   199                           ;test_FT62F08X_SLEEP.C: 92: {
+   200                           ;test_FT62F08X_SLEEP.C: 93: for(b=0;b<5;b++)
+   201  002A  01F4               	clrf	DelayMs@b
+   202  002B                     l2827:	
+   203                           
+   204                           ;test_FT62F08X_SLEEP.C: 94: {
+   205                           ;test_FT62F08X_SLEEP.C: 95: DelayUs(197);
+   206  002B  30C5               	movlw	197
+   207  002C  2035  3180         	fcall	_DelayUs
+   208  002E  3005               	movlw	5
+   209  002F  0AF4               	incf	DelayMs@b,f
+   210  0030  0274               	subwf	DelayMs@b,w
+   211  0031  1C03               	skipc
+   212  0032  282B               	goto	l2827
+   213  0033  0AF3               	incf	DelayMs@a,f
+   214  0034  2826               	goto	l2835
+   215  0035                     __end_of_DelayMs:	
+   216  0035                     __ptext3:	
+   217 ;; *************** function _DelayUs *****************
+   218 ;; Defined at:
+   219 ;;		line 74 in file "test_FT62F08X_SLEEP.C"
+   220 ;; Parameters:    Size  Location     Type
+   221 ;;  Time            1    wreg     unsigned char 
+   222 ;; Auto vars:     Size  Location     Type
+   223 ;;  Time            1    0[COMMON] unsigned char 
+   224 ;;  a               1    1[COMMON] unsigned char 
+   225 ;; Return value:  Size  Location     Type
+   226 ;;                  1    wreg      void 
+   227 ;; Registers used:
+   228 ;;		wreg, status,2, status,0
+   229 ;; Tracked objects:
+   230 ;;		On entry : 0/0
+   231 ;;		On exit  : 0/0
+   232 ;;		Unchanged: 0/0
+   233 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   234 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   235 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   236 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   237 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   238 ;;Total ram usage:        2 bytes
+   239 ;; Hardware stack levels used:    1
+   240 ;; Hardware stack levels required when called:    1
+   241 ;; This function calls:
+   242 ;;		Nothing
+   243 ;; This function is called by:
+   244 ;;		_DelayMs
+   245 ;; This function uses a non-reentrant model
+   246 ;;
+   247                           
+   248                           
+   249                           ;psect for function _DelayUs
+   250  0035                     _DelayUs:	
+   251                           
+   252                           ;incstack = 0
+   253                           ; Regs used in _DelayUs: [wreg+status,2+status,0]
+   254                           ;DelayUs@Time stored from wreg
+   255  0035  00F0               	movwf	DelayUs@Time
+   256                           
+   257                           ;test_FT62F08X_SLEEP.C: 76: unsigned char a;
+   258                           ;test_FT62F08X_SLEEP.C: 77: for(a=0;a<Time;a++)
+   259  0036  01F1               	clrf	DelayUs@a
+   260  0037                     l2767:	
+   261  0037  0870               	movf	DelayUs@Time,w
+   262  0038  0271               	subwf	DelayUs@a,w
+   263  0039  1803               	btfsc	3,0
+   264  003A  0008               	return
+   265                           
+   266                           ;test_FT62F08X_SLEEP.C: 78: {
+   267                           ;test_FT62F08X_SLEEP.C: 79: __nop();
+   268  003B  0000               	nop
+   269  003C  0AF1               	incf	DelayUs@a,f
+   270  003D  2837               	goto	l2767
+   271  003E                     __end_of_DelayUs:	
+   272  003E                     __ptext1:	
+   273 ;; *************** function _POWER_INITIAL *****************
+   274 ;; Defined at:
+   275 ;;		line 34 in file "test_FT62F08X_SLEEP.C"
+   276 ;; Parameters:    Size  Location     Type
+   277 ;;		None
+   278 ;; Auto vars:     Size  Location     Type
+   279 ;;		None
+   280 ;; Return value:  Size  Location     Type
+   281 ;;                  1    wreg      void 
+   282 ;; Registers used:
+   283 ;;		wreg, status,2
+   284 ;; Tracked objects:
+   285 ;;		On entry : B1F/0
+   286 ;;		On exit  : B1F/3
+   287 ;;		Unchanged: B00/0
+   288 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   289 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   290 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   291 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   292 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   293 ;;Total ram usage:        0 bytes
+   294 ;; Hardware stack levels used:    1
+   295 ;; Hardware stack levels required when called:    1
+   296 ;; This function calls:
+   297 ;;		Nothing
+   298 ;; This function is called by:
+   299 ;;		_main
+   300 ;; This function uses a non-reentrant model
+   301 ;;
+   302                           
+   303                           
+   304                           ;psect for function _POWER_INITIAL
+   305  003E                     _POWER_INITIAL:	
+   306                           
+   307                           ;test_FT62F08X_SLEEP.C: 36: OSCCON = 0B01110001;
+   308                           
+   309                           ;incstack = 0
+   310                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   311  003E  3071               	movlw	113
+   312  003F  0021               	movlb	1	; select bank1
+   313  0040  0099               	movwf	25	;volatile
+   314                           
+   315                           ;test_FT62F08X_SLEEP.C: 37: INTCON = 0;
+   316  0041  018B               	clrf	11	;volatile
+   317                           
+   318                           ;test_FT62F08X_SLEEP.C: 39: PORTA = 0B00000000;
+   319  0042  0020               	movlb	0	; select bank0
+   320  0043  018C               	clrf	12	;volatile
+   321                           
+   322                           ;test_FT62F08X_SLEEP.C: 40: TRISA = 0B00000000;
+   323  0044  0021               	movlb	1	; select bank1
+   324  0045  018C               	clrf	12	;volatile
+   325                           
+   326                           ;test_FT62F08X_SLEEP.C: 41: PORTB = 0B00000000;
+   327  0046  0020               	movlb	0	; select bank0
+   328  0047  018D               	clrf	13	;volatile
+   329                           
+   330                           ;test_FT62F08X_SLEEP.C: 42: TRISB = 0B00000000;
+   331  0048  0021               	movlb	1	; select bank1
+   332  0049  018D               	clrf	13	;volatile
+   333                           
+   334                           ;test_FT62F08X_SLEEP.C: 43: PORTC = 0B00000000;
+   335  004A  0020               	movlb	0	; select bank0
+   336  004B  018E               	clrf	14	;volatile
+   337                           
+   338                           ;test_FT62F08X_SLEEP.C: 44: TRISC = 0B00000000;
+   339  004C  0021               	movlb	1	; select bank1
+   340  004D  018E               	clrf	14	;volatile
+   341                           
+   342                           ;test_FT62F08X_SLEEP.C: 45: PORTD = 0B00000000;
+   343  004E  0020               	movlb	0	; select bank0
+   344  004F  018F               	clrf	15	;volatile
+   345                           
+   346                           ;test_FT62F08X_SLEEP.C: 46: TRISD = 0B00000000;
+   347  0050  0021               	movlb	1	; select bank1
+   348  0051  018F               	clrf	15	;volatile
+   349                           
+   350                           ;test_FT62F08X_SLEEP.C: 48: WPUA = 0B00000000;
+   351  0052  0023               	movlb	3	; select bank3
+   352  0053  018C               	clrf	12	;volatile
+   353                           
+   354                           ;test_FT62F08X_SLEEP.C: 49: WPUB = 0B00000000;
+   355  0054  018D               	clrf	13	;volatile
+   356                           
+   357                           ;test_FT62F08X_SLEEP.C: 50: WPUC = 0B00000000;
+   358  0055  018E               	clrf	14	;volatile
+   359                           
+   360                           ;test_FT62F08X_SLEEP.C: 51: WPUD = 0B00000000;
+   361  0056  018F               	clrf	15	;volatile
+   362                           
+   363                           ;test_FT62F08X_SLEEP.C: 53: WPDA = 0B00000000;
+   364  0057  0024               	movlb	4	; select bank4
+   365  0058  018C               	clrf	12	;volatile
+   366                           
+   367                           ;test_FT62F08X_SLEEP.C: 54: WPDB = 0B00000000;
+   368  0059  018D               	clrf	13	;volatile
+   369                           
+   370                           ;test_FT62F08X_SLEEP.C: 55: WPDC = 0B00000000;
+   371  005A  018E               	clrf	14	;volatile
+   372                           
+   373                           ;test_FT62F08X_SLEEP.C: 56: WPDD = 0B00000000;
+   374  005B  018F               	clrf	15	;volatile
+   375                           
+   376                           ;test_FT62F08X_SLEEP.C: 58: PSRC0 = 0B11111111;
+   377  005C  30FF               	movlw	255
+   378  005D  0022               	movlb	2	; select bank2
+   379  005E  009A               	movwf	26	;volatile
+   380                           
+   381                           ;test_FT62F08X_SLEEP.C: 59: PSRC1 = 0B11111111;
+   382  005F  009B               	movwf	27	;volatile
+   383                           
+   384                           ;test_FT62F08X_SLEEP.C: 61: PSINK0 = 0B11111111;
+   385  0060  0023               	movlb	3	; select bank3
+   386  0061  009A               	movwf	26	;volatile
+   387                           
+   388                           ;test_FT62F08X_SLEEP.C: 62: PSINK1 = 0B11111111;
+   389  0062  009B               	movwf	27	;volatile
+   390                           
+   391                           ;test_FT62F08X_SLEEP.C: 63: PSINK2 = 0B11111111;
+   392  0063  009C               	movwf	28	;volatile
+   393                           
+   394                           ;test_FT62F08X_SLEEP.C: 64: PSINK3 = 0B11111111;
+   395  0064  009D               	movwf	29	;volatile
+   396                           
+   397                           ;test_FT62F08X_SLEEP.C: 66: ANSELA = 0B00000000;
+   398  0065  0197               	clrf	23	;volatile
+   399  0066  0008               	return
+   400  0067                     __end_of_POWER_INITIAL:	
+   401                           
+   402                           	psect	bssCOMMON
+   403  0075                     __pbssCOMMON:	
+   404  0075                     _outputcounter:	
+   405  0075                     	ds	1
+   406                           
+   407                           	psect	cstackCOMMON
+   408  0070                     __pcstackCOMMON:	
+   409  0070                     ?_ISR:	
+   410  0070                     ??_ISR:	
+   411                           ; 1 bytes @ 0x0
+   412                           
+   413  0070                     ?_POWER_INITIAL:	
+   414                           ; 1 bytes @ 0x0
+   415                           
+   416  0070                     ??_POWER_INITIAL:	
+   417                           ; 1 bytes @ 0x0
+   418                           
+   419  0070                     ?_DelayUs:	
+   420                           ; 1 bytes @ 0x0
+   421                           
+   422  0070                     ??_DelayUs:	
+   423                           ; 1 bytes @ 0x0
+   424                           
+   425  0070                     ?_DelayMs:	
+   426                           ; 1 bytes @ 0x0
+   427                           
+   428  0070                     ?_main:	
+   429                           ; 1 bytes @ 0x0
+   430                           
+   431  0070                     DelayUs@Time:	
+   432                           ; 1 bytes @ 0x0
+   433                           
+   434                           
+   435                           ; 1 bytes @ 0x0
+   436  0070                     	ds	1
+   437  0071                     DelayUs@a:	
+   438                           
+   439                           ; 1 bytes @ 0x1
+   440  0071                     	ds	1
+   441  0072                     ??_DelayMs:	
+   442  0072                     DelayMs@Time:	
+   443                           ; 1 bytes @ 0x2
+   444                           
+   445                           
+   446                           ; 1 bytes @ 0x2
+   447  0072                     	ds	1
+   448  0073                     DelayMs@a:	
+   449                           
+   450                           ; 1 bytes @ 0x3
+   451  0073                     	ds	1
+   452  0074                     DelayMs@b:	
+   453                           
+   454                           ; 1 bytes @ 0x4
+   455  0074                     	ds	1
+   456  0075                     ??_main:	
+   457                           
+   458                           	psect	intentry
+   459  0004                     __pintentry:	
+   460 ;; *************** function _ISR *****************
+   461 ;; Defined at:
+   462 ;;		line 24 in file "test_FT62F08X_SLEEP.C"
+   463 ;; Parameters:    Size  Location     Type
+   464 ;;		None
+   465 ;; Auto vars:     Size  Location     Type
+   466 ;;		None
+   467 ;; Return value:  Size  Location     Type
+   468 ;;                  1    wreg      void 
+   469 ;; Registers used:
+   470 ;;		None
+   471 ;; Tracked objects:
+   472 ;;		On entry : 0/0
+   473 ;;		On exit  : 0/0
+   474 ;;		Unchanged: 0/0
+   475 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   476 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   477 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   478 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   479 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   480 ;;Total ram usage:        0 bytes
+   481 ;; Hardware stack levels used:    1
+   482 ;; This function calls:
+   483 ;;		Nothing
+   484 ;; This function is called by:
+   485 ;;		Interrupt level 1
+   486 ;; This function uses a non-reentrant model
+   487 ;;
+   488                           
+   489  0004                     _ISR:	
+   490                           
+   491                           ;incstack = 0
+   492  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+   493                           
+   494                           ; Regs used in _ISR: []
+   495  0005  3180               	pagesel	$
+   496  0006  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   497  0007  0009               	retfie
+   498  0008                     __end_of_ISR:	
+   499  007E                     btemp	set	126	;btemp
+   500  007E                     int$flags	set	126
+   501  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      5       6
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK2            80      0       0
+    BANK3            80      0       0
+    BANK4            80      0       0
+    BANK5            80      0       0
+    BANK6            80      0       0
+    BANK7            80      0       0
+    BANK8            80      0       0
+    BANK9            80      0       0
+    BANK10           80      0       0
+    BANK11           80      0       0
+    BANK12           48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_DelayMs
+    _DelayMs->_DelayUs
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _ISR in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _ISR in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _ISR in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _ISR in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _ISR in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _ISR in BANK12
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0      90
+                            _DelayMs
+                      _POWER_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _DelayMs                                              3     3      0      90
+                                              2 COMMON     3     3      0
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (2) _DelayUs                                              2     2      0      30
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _ISR                                                  0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _DelayMs
+     _DelayUs
+   _POWER_INITIAL
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             3F0      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      5       6       2       42.9%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BITBANK2            50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BANK2               50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BITBANK3            50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BANK3               50      0       0      11        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITBANK4            50      0       0      12        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BANK4               50      0       0      13        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITBANK5            50      0       0      14        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BANK5               50      0       0      15        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITBANK6            50      0       0      16        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BANK6               50      0       0      17        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITBANK7            50      0       0      18        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BANK7               50      0       0      19        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+ABS                  0      0       6      20        0.0%
+BITBANK8            50      0       0      21        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BANK8               50      0       0      22        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITBANK9            50      0       0      23        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BANK9               50      0       0      24        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITBANK10           50      0       0      25        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BANK10              50      0       0      26        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITBANK11           50      0       0      27        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BANK11              50      0       0      28        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITBANK12           30      0       0      29        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BANK12              30      0       0      30        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+DATA                 0      0       6      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Fri Oct 29 14:38:04 2021
+
+                    _PB3 006B                      _ISR 0004                     ?_ISR 0070  
+                   l2827 002B                     l2835 0026                     l2767 0037  
+                   l2839 0010                     _WPDA 020C                     _WPDB 020D  
+                   _WPDC 020E                     _WPDD 020F                     _WPUA 018C  
+                   _WPUB 018D                     _WPUC 018E                     _WPUD 018F  
+         _ad3nop_absaddr 0003                     _main 000E                     btemp 007E  
+                   start 0008          __end_of_DelayMs 0035          __end_of_DelayUs 003E  
+                  ??_ISR 0070                    ?_main 0070                    _PSRC0 011A  
+                  _PSRC1 011B                    _PORTA 000C                    _PORTB 000D  
+                  _PORTC 000E                    _PORTD 000F                    _TRISA 008C  
+                  _TRISB 008D                    _TRISC 008E                    _TRISD 008F  
+                  wtemp0 007E          __initialization 000A             __end_of_main 0024  
+                 ??_main 0075                   _ANSELA 0197                   _INTCON 000B  
+              ??_DelayMs 0072                ??_DelayUs 0070                   _OSCCON 0099  
+                 _PSINK0 019A                   _PSINK1 019B                   _PSINK2 019C  
+                 _PSINK3 019D                   _ad3nop 0003            _outputcounter 0075  
+  __end_of_POWER_INITIAL 0067  __end_of__initialization 000B           __pcstackCOMMON 0070  
+             __pmaintext 000E               __pintentry 0004                  _DelayMs 0024  
+                _DelayUs 0035                  __ptext1 003E                  __ptext2 0024  
+                __ptext3 0035             __size_of_ISR 0004     end_of_initialization 000B  
+         __end_of_ad3nop 0004      start_initialization 000A           __p_ad3nop_text 0003  
+            __end_of_ISR 0008   __size_of_POWER_INITIAL 0029              __pbssCOMMON 0075  
+              ___latbits 0002                 ?_DelayMs 0070                 ?_DelayUs 0070  
+          _POWER_INITIAL 003E                 DelayMs@a 0073                 DelayMs@b 0074  
+               DelayUs@a 0071              DelayMs@Time 0072           ?_POWER_INITIAL 0070  
+            DelayUs@Time 0070         __size_of_DelayMs 0011         __size_of_DelayUs 0009  
+          __size_of_main 0016                 int$flags 007E          ??_POWER_INITIAL 0070  
+               intlevel1 0000  

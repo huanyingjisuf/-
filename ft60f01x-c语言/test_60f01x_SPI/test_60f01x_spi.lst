@@ -1,0 +1,910 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Wed Nov 10 16:40:36 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT60F01X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	nvCOMMON,global,class=COMMON,space=1,delta=1
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	maintext,global,class=CODE,split=1,delta=2
+     8                           	psect	text1,local,class=CODE,merge=1,delta=2
+     9                           	psect	text2,local,class=CODE,merge=1,delta=2
+    10                           	psect	text3,local,class=CODE,merge=1,delta=2
+    11                           	psect	text4,local,class=CODE,merge=1,delta=2
+    12                           	psect	text5,local,class=CODE,merge=1,delta=2
+    13                           	psect	text6,local,class=CODE,merge=1,delta=2
+    14                           	psect	text7,local,class=CODE,merge=1,delta=2
+    15                           	psect	text8,local,class=CODE,merge=1,delta=2
+    16                           	psect	pa_nodes0,global,class=CODE,delta=2
+    17                           	dabs	1,0x7E,2
+    18  0000                     
+    19                           ; Version 2.20
+    20                           ; Generated 09/04/2020 
+    21                           ; 
+    22                           ; SFR Addresses
+    23  0000                     
+    24                           	psect	nvCOMMON
+    25  0076                     __pnvCOMMON:	
+    26  0076                     _SPIReadData:	
+    27  0076                     	ds	1
+    28  001B                     _MSCKCON	set	27
+    29  000B                     _INTCON	set	11
+    30  0005                     _PORTA	set	5
+    31  002D                     _PA5	set	45
+    32  002C                     _PA4	set	44
+    33  002A                     _PA2	set	42
+    34  0028                     _PA0	set	40
+    35  0095                     _WPUA	set	149
+    36  008F                     _OSCCON	set	143
+    37  0085                     _TRISA	set	133
+    38  0081                     _OPTION	set	129
+    39                           
+    40                           	psect	cinit
+    41  03FE                     start_initialization:	
+    42                           ; #config settings
+    43                           
+    44  03FE                     __initialization:	
+    45  03FE                     end_of_initialization:	
+    46                           ;End of C runtime variable initialization code
+    47                           
+    48  03FE                     __end_of__initialization:	
+    49  03FE  0183               	clrf	3
+    50  03FF  2BAD               	ljmp	_main	;jump to C main() function
+    51                           
+    52                           	psect	cstackCOMMON
+    53  0070                     __pcstackCOMMON:	
+    54  0070                     ?_POWER_INITIAL:	
+    55  0070                     ??_POWER_INITIAL:	
+    56                           ; 1 bytes @ 0x0
+    57                           
+    58  0070                     ?_init_25c64_io:	
+    59                           ; 1 bytes @ 0x0
+    60                           
+    61  0070                     ??_init_25c64_io:	
+    62                           ; 1 bytes @ 0x0
+    63                           
+    64  0070                     ?_SPI_RW:	
+    65                           ; 1 bytes @ 0x0
+    66                           
+    67  0070                     ??_SPI_RW:	
+    68                           ; 1 bytes @ 0x0
+    69                           
+    70  0070                     ?_WriteEnable:	
+    71                           ; 1 bytes @ 0x0
+    72                           
+    73  0070                     ?_WriteDisable:	
+    74                           ; 1 bytes @ 0x0
+    75                           
+    76  0070                     ?_SPI_ReadStatus:	
+    77                           ; 1 bytes @ 0x0
+    78                           
+    79  0070                     ?_main:	
+    80                           ; 1 bytes @ 0x0
+    81                           
+    82  0070                     SPI_RW@i:	
+    83                           ; 1 bytes @ 0x0
+    84                           
+    85                           
+    86                           ; 1 bytes @ 0x0
+    87  0070                     	ds	1
+    88  0071                     SPI_RW@data:	
+    89                           
+    90                           ; 1 bytes @ 0x1
+    91  0071                     	ds	1
+    92  0072                     ??_WriteEnable:	
+    93  0072                     ??_WriteDisable:	
+    94                           ; 1 bytes @ 0x2
+    95                           
+    96  0072                     ??_SPI_ReadStatus:	
+    97                           ; 1 bytes @ 0x2
+    98                           
+    99  0072                     SPI_ReadStatus@status:	
+   100                           ; 1 bytes @ 0x2
+   101                           
+   102                           
+   103                           ; 1 bytes @ 0x2
+   104  0072                     	ds	1
+   105  0073                     ?_SPI_Read:	
+   106  0073                     ?_SPI_Write:	
+   107                           ; 1 bytes @ 0x3
+   108                           
+   109  0073                     SPI_Read@addr:	
+   110                           ; 1 bytes @ 0x3
+   111                           
+   112  0073                     SPI_Write@addr:	
+   113                           ; 2 bytes @ 0x3
+   114                           
+   115                           
+   116                           ; 2 bytes @ 0x3
+   117  0073                     	ds	2
+   118  0075                     ??_SPI_Read:	
+   119  0075                     SPI_Read@spidata:	
+   120                           ; 1 bytes @ 0x5
+   121                           
+   122  0075                     SPI_Write@dat:	
+   123                           ; 1 bytes @ 0x5
+   124                           
+   125                           
+   126                           ; 1 bytes @ 0x5
+   127  0075                     	ds	1
+   128  0076                     ??_SPI_Write:	
+   129  0076                     ??_main:	
+   130                           ; 1 bytes @ 0x6
+   131                           
+   132                           
+   133                           	psect	maintext
+   134  03AD                     __pmaintext:	
+   135                           ; 1 bytes @ 0x6
+   136 ;;
+   137 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   138 ;;
+   139 ;; *************** function _main *****************
+   140 ;; Defined at:
+   141 ;;		line 179 in file "test_60f01x_SPI.C"
+   142 ;; Parameters:    Size  Location     Type
+   143 ;;		None
+   144 ;; Auto vars:     Size  Location     Type
+   145 ;;		None
+   146 ;; Return value:  Size  Location     Type
+   147 ;;                  1    wreg      void 
+   148 ;; Registers used:
+   149 ;;		wreg, status,2, status,0, pclath, cstack
+   150 ;; Tracked objects:
+   151 ;;		On entry : B00/0
+   152 ;;		On exit  : 0/0
+   153 ;;		Unchanged: 0/0
+   154 ;; Data sizes:     COMMON   BANK0
+   155 ;;      Params:         0       0
+   156 ;;      Locals:         0       0
+   157 ;;      Temps:          0       0
+   158 ;;      Totals:         0       0
+   159 ;;Total ram usage:        0 bytes
+   160 ;; Hardware stack levels required when called:    3
+   161 ;; This function calls:
+   162 ;;		_POWER_INITIAL
+   163 ;;		_SPI_Read
+   164 ;;		_SPI_Write
+   165 ;;		_init_25c64_io
+   166 ;; This function is called by:
+   167 ;;		Startup code after reset
+   168 ;; This function uses a non-reentrant model
+   169 ;;
+   170                           
+   171                           
+   172                           ;psect for function _main
+   173  03AD                     _main:	
+   174                           
+   175                           ;test_60f01x_SPI.C: 181: POWER_INITIAL();
+   176                           
+   177                           ;incstack = 0
+   178                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   179  03AD  239E               	fcall	_POWER_INITIAL
+   180                           
+   181                           ;test_60f01x_SPI.C: 182: init_25c64_io();
+   182  03AE  2388               	fcall	_init_25c64_io
+   183                           
+   184                           ;test_60f01x_SPI.C: 183: SPIReadData = SPI_Read(0x0012);
+   185  03AF  3012               	movlw	18
+   186  03B0  00F3               	movwf	SPI_Read@addr
+   187  03B1  01F4               	clrf	SPI_Read@addr+1
+   188  03B2  23BC               	fcall	_SPI_Read
+   189  03B3  00F6               	movwf	_SPIReadData
+   190                           
+   191                           ;test_60f01x_SPI.C: 184: SPI_Write(0x0013,~SPIReadData);
+   192  03B4  3013               	movlw	19
+   193  03B5  00F3               	movwf	SPI_Write@addr
+   194  03B6  01F4               	clrf	SPI_Write@addr+1
+   195  03B7  0976               	comf	_SPIReadData,w
+   196  03B8  00F5               	movwf	SPI_Write@dat
+   197  03B9  23CC               	fcall	_SPI_Write
+   198  03BA                     l978:	
+   199                           
+   200                           ;test_60f01x_SPI.C: 186: {
+   201                           ;test_60f01x_SPI.C: 187: __nop();
+   202  03BA  0000               	nop
+   203  03BB  2BBA               	goto	l978
+   204  03BC                     __end_of_main:	
+   205                           
+   206                           	psect	text1
+   207  0388                     __ptext1:	
+   208 ;; *************** function _init_25c64_io *****************
+   209 ;; Defined at:
+   210 ;;		line 54 in file "test_60f01x_SPI.C"
+   211 ;; Parameters:    Size  Location     Type
+   212 ;;		None
+   213 ;; Auto vars:     Size  Location     Type
+   214 ;;		None
+   215 ;; Return value:  Size  Location     Type
+   216 ;;                  1    wreg      void 
+   217 ;; Registers used:
+   218 ;;		None
+   219 ;; Tracked objects:
+   220 ;;		On entry : B00/0
+   221 ;;		On exit  : B00/0
+   222 ;;		Unchanged: A00/0
+   223 ;; Data sizes:     COMMON   BANK0
+   224 ;;      Params:         0       0
+   225 ;;      Locals:         0       0
+   226 ;;      Temps:          0       0
+   227 ;;      Totals:         0       0
+   228 ;;Total ram usage:        0 bytes
+   229 ;; Hardware stack levels used:    1
+   230 ;; This function calls:
+   231 ;;		Nothing
+   232 ;; This function is called by:
+   233 ;;		_main
+   234 ;; This function uses a non-reentrant model
+   235 ;;
+   236                           
+   237                           
+   238                           ;psect for function _init_25c64_io
+   239  0388                     _init_25c64_io:	
+   240                           
+   241                           ;test_60f01x_SPI.C: 56: PA0 = 1;
+   242                           
+   243                           ;incstack = 0
+   244                           ; Regs used in _init_25c64_io: []
+   245  0388  1405               	bsf	5,0	;volatile
+   246                           
+   247                           ;test_60f01x_SPI.C: 57: PA5 = 0;
+   248  0389  1285               	bcf	5,5	;volatile
+   249                           
+   250                           ;test_60f01x_SPI.C: 58: PA2 = 0;
+   251  038A  1105               	bcf	5,2	;volatile
+   252  038B  0008               	return
+   253  038C                     __end_of_init_25c64_io:	
+   254                           
+   255                           	psect	text2
+   256  03CC                     __ptext2:	
+   257 ;; *************** function _SPI_Write *****************
+   258 ;; Defined at:
+   259 ;;		line 158 in file "test_60f01x_SPI.C"
+   260 ;; Parameters:    Size  Location     Type
+   261 ;;  addr            2    3[COMMON] unsigned int 
+   262 ;;  dat             1    5[COMMON] unsigned char 
+   263 ;; Auto vars:     Size  Location     Type
+   264 ;;		None
+   265 ;; Return value:  Size  Location     Type
+   266 ;;                  1    wreg      void 
+   267 ;; Registers used:
+   268 ;;		wreg, status,2, status,0, pclath, cstack
+   269 ;; Tracked objects:
+   270 ;;		On entry : 100/0
+   271 ;;		On exit  : 100/0
+   272 ;;		Unchanged: 0/0
+   273 ;; Data sizes:     COMMON   BANK0
+   274 ;;      Params:         3       0
+   275 ;;      Locals:         0       0
+   276 ;;      Temps:          0       0
+   277 ;;      Totals:         3       0
+   278 ;;Total ram usage:        3 bytes
+   279 ;; Hardware stack levels used:    1
+   280 ;; Hardware stack levels required when called:    2
+   281 ;; This function calls:
+   282 ;;		_SPI_RW
+   283 ;;		_SPI_ReadStatus
+   284 ;;		_WriteDisable
+   285 ;;		_WriteEnable
+   286 ;; This function is called by:
+   287 ;;		_main
+   288 ;; This function uses a non-reentrant model
+   289 ;;
+   290                           
+   291                           
+   292                           ;psect for function _SPI_Write
+   293  03CC                     _SPI_Write:	
+   294  03CC                     l960:	
+   295                           ;test_60f01x_SPI.C: 160: while(SPI_ReadStatus()&0x01);
+   296                           
+   297                           ;incstack = 0
+   298                           ; Regs used in _SPI_Write: [wreg+status,2+status,0+pclath+cstack]
+   299                           
+   300  03CC  2396               	fcall	_SPI_ReadStatus
+   301  03CD  3901               	andlw	1
+   302  03CE  1D03               	btfss	3,2
+   303  03CF  2BCC               	goto	l960
+   304                           
+   305                           ;test_60f01x_SPI.C: 161: WriteEnable();
+   306  03D0  2391               	fcall	_WriteEnable
+   307                           
+   308                           ;test_60f01x_SPI.C: 162: PA0=0;
+   309  03D1  1005               	bcf	5,0	;volatile
+   310                           
+   311                           ;test_60f01x_SPI.C: 163: SPI_RW(0x02);
+   312  03D2  3002               	movlw	2
+   313  03D3  23E1               	fcall	_SPI_RW
+   314                           
+   315                           ;test_60f01x_SPI.C: 164: SPI_RW((unsigned char)((addr)>>8));
+   316  03D4  0874               	movf	SPI_Write@addr+1,w
+   317  03D5  23E1               	fcall	_SPI_RW
+   318                           
+   319                           ;test_60f01x_SPI.C: 165: SPI_RW((unsigned char)addr);
+   320  03D6  0873               	movf	SPI_Write@addr,w
+   321  03D7  23E1               	fcall	_SPI_RW
+   322                           
+   323                           ;test_60f01x_SPI.C: 167: SPI_RW(dat);
+   324  03D8  0875               	movf	SPI_Write@dat,w
+   325  03D9  23E1               	fcall	_SPI_RW
+   326                           
+   327                           ;test_60f01x_SPI.C: 168: PA0=1;
+   328  03DA  1405               	bsf	5,0	;volatile
+   329                           
+   330                           ;test_60f01x_SPI.C: 169: WriteDisable();
+   331  03DB  238C               	fcall	_WriteDisable
+   332  03DC                     l968:	
+   333                           ;test_60f01x_SPI.C: 171: while(SPI_ReadStatus()&0x01);
+   334                           
+   335  03DC  2396               	fcall	_SPI_ReadStatus
+   336  03DD  3901               	andlw	1
+   337  03DE  1903               	btfsc	3,2
+   338  03DF  0008               	return
+   339  03E0  2BDC               	goto	l968
+   340  03E1                     __end_of_SPI_Write:	
+   341                           
+   342                           	psect	text3
+   343  0391                     __ptext3:	
+   344 ;; *************** function _WriteEnable *****************
+   345 ;; Defined at:
+   346 ;;		line 92 in file "test_60f01x_SPI.C"
+   347 ;; Parameters:    Size  Location     Type
+   348 ;;		None
+   349 ;; Auto vars:     Size  Location     Type
+   350 ;;		None
+   351 ;; Return value:  Size  Location     Type
+   352 ;;                  1    wreg      void 
+   353 ;; Registers used:
+   354 ;;		wreg, status,2, status,0, pclath, cstack
+   355 ;; Tracked objects:
+   356 ;;		On entry : 100/0
+   357 ;;		On exit  : 100/0
+   358 ;;		Unchanged: 0/0
+   359 ;; Data sizes:     COMMON   BANK0
+   360 ;;      Params:         0       0
+   361 ;;      Locals:         0       0
+   362 ;;      Temps:          0       0
+   363 ;;      Totals:         0       0
+   364 ;;Total ram usage:        0 bytes
+   365 ;; Hardware stack levels used:    1
+   366 ;; Hardware stack levels required when called:    1
+   367 ;; This function calls:
+   368 ;;		_SPI_RW
+   369 ;; This function is called by:
+   370 ;;		_SPI_Write
+   371 ;; This function uses a non-reentrant model
+   372 ;;
+   373                           
+   374                           
+   375                           ;psect for function _WriteEnable
+   376  0391                     _WriteEnable:	
+   377                           
+   378                           ;test_60f01x_SPI.C: 94: PA0=0;
+   379                           
+   380                           ;incstack = 0
+   381                           ; Regs used in _WriteEnable: [wreg+status,2+status,0+pclath+cstack]
+   382  0391  1005               	bcf	5,0	;volatile
+   383                           
+   384                           ;test_60f01x_SPI.C: 95: SPI_RW(0x06);
+   385  0392  3006               	movlw	6
+   386  0393  23E1               	fcall	_SPI_RW
+   387                           
+   388                           ;test_60f01x_SPI.C: 96: PA0=1;
+   389  0394  1405               	bsf	5,0	;volatile
+   390  0395  0008               	return
+   391  0396                     __end_of_WriteEnable:	
+   392                           
+   393                           	psect	text4
+   394  038C                     __ptext4:	
+   395 ;; *************** function _WriteDisable *****************
+   396 ;; Defined at:
+   397 ;;		line 102 in file "test_60f01x_SPI.C"
+   398 ;; Parameters:    Size  Location     Type
+   399 ;;		None
+   400 ;; Auto vars:     Size  Location     Type
+   401 ;;		None
+   402 ;; Return value:  Size  Location     Type
+   403 ;;                  1    wreg      void 
+   404 ;; Registers used:
+   405 ;;		wreg, status,2, status,0, pclath, cstack
+   406 ;; Tracked objects:
+   407 ;;		On entry : 100/0
+   408 ;;		On exit  : 100/0
+   409 ;;		Unchanged: 0/0
+   410 ;; Data sizes:     COMMON   BANK0
+   411 ;;      Params:         0       0
+   412 ;;      Locals:         0       0
+   413 ;;      Temps:          0       0
+   414 ;;      Totals:         0       0
+   415 ;;Total ram usage:        0 bytes
+   416 ;; Hardware stack levels used:    1
+   417 ;; Hardware stack levels required when called:    1
+   418 ;; This function calls:
+   419 ;;		_SPI_RW
+   420 ;; This function is called by:
+   421 ;;		_SPI_Write
+   422 ;; This function uses a non-reentrant model
+   423 ;;
+   424                           
+   425                           
+   426                           ;psect for function _WriteDisable
+   427  038C                     _WriteDisable:	
+   428                           
+   429                           ;test_60f01x_SPI.C: 104: PA0=0;
+   430                           
+   431                           ;incstack = 0
+   432                           ; Regs used in _WriteDisable: [wreg+status,2+status,0+pclath+cstack]
+   433  038C  1005               	bcf	5,0	;volatile
+   434                           
+   435                           ;test_60f01x_SPI.C: 105: SPI_RW(0x04);
+   436  038D  3004               	movlw	4
+   437  038E  23E1               	fcall	_SPI_RW
+   438                           
+   439                           ;test_60f01x_SPI.C: 106: PA0=1;
+   440  038F  1405               	bsf	5,0	;volatile
+   441  0390  0008               	return
+   442  0391                     __end_of_WriteDisable:	
+   443                           
+   444                           	psect	text5
+   445  03BC                     __ptext5:	
+   446 ;; *************** function _SPI_Read *****************
+   447 ;; Defined at:
+   448 ;;		line 141 in file "test_60f01x_SPI.C"
+   449 ;; Parameters:    Size  Location     Type
+   450 ;;  addr            2    3[COMMON] unsigned int 
+   451 ;; Auto vars:     Size  Location     Type
+   452 ;;  spidata         1    5[COMMON] unsigned char 
+   453 ;; Return value:  Size  Location     Type
+   454 ;;                  1    wreg      unsigned char 
+   455 ;; Registers used:
+   456 ;;		wreg, status,2, status,0, pclath, cstack
+   457 ;; Tracked objects:
+   458 ;;		On entry : B00/0
+   459 ;;		On exit  : 100/0
+   460 ;;		Unchanged: 0/0
+   461 ;; Data sizes:     COMMON   BANK0
+   462 ;;      Params:         2       0
+   463 ;;      Locals:         1       0
+   464 ;;      Temps:          0       0
+   465 ;;      Totals:         3       0
+   466 ;;Total ram usage:        3 bytes
+   467 ;; Hardware stack levels used:    1
+   468 ;; Hardware stack levels required when called:    2
+   469 ;; This function calls:
+   470 ;;		_SPI_RW
+   471 ;;		_SPI_ReadStatus
+   472 ;; This function is called by:
+   473 ;;		_main
+   474 ;; This function uses a non-reentrant model
+   475 ;;
+   476                           
+   477                           
+   478                           ;psect for function _SPI_Read
+   479  03BC                     _SPI_Read:	
+   480  03BC                     l948:	
+   481                           ;test_60f01x_SPI.C: 143: unsigned char spidata;
+   482                           ;test_60f01x_SPI.C: 144: while(SPI_ReadStatus()&0x01);
+   483                           
+   484                           ;incstack = 0
+   485                           ; Regs used in _SPI_Read: [wreg+status,2+status,0+pclath+cstack]
+   486                           
+   487  03BC  2396               	fcall	_SPI_ReadStatus
+   488  03BD  3901               	andlw	1
+   489  03BE  1D03               	btfss	3,2
+   490  03BF  2BBC               	goto	l948
+   491                           
+   492                           ;test_60f01x_SPI.C: 145: PA0=0;
+   493  03C0  1005               	bcf	5,0	;volatile
+   494                           
+   495                           ;test_60f01x_SPI.C: 146: SPI_RW(0x03);
+   496  03C1  3003               	movlw	3
+   497  03C2  23E1               	fcall	_SPI_RW
+   498                           
+   499                           ;test_60f01x_SPI.C: 147: SPI_RW((unsigned char)((addr)>>8));
+   500  03C3  0874               	movf	SPI_Read@addr+1,w
+   501  03C4  23E1               	fcall	_SPI_RW
+   502                           
+   503                           ;test_60f01x_SPI.C: 148: SPI_RW((unsigned char)addr);
+   504  03C5  0873               	movf	SPI_Read@addr,w
+   505  03C6  23E1               	fcall	_SPI_RW
+   506                           
+   507                           ;test_60f01x_SPI.C: 149: spidata = SPI_RW(0x00);
+   508  03C7  3000               	movlw	0
+   509  03C8  23E1               	fcall	_SPI_RW
+   510  03C9  00F5               	movwf	SPI_Read@spidata
+   511                           
+   512                           ;test_60f01x_SPI.C: 150: PA0=1;
+   513  03CA  1405               	bsf	5,0	;volatile
+   514                           
+   515                           ;test_60f01x_SPI.C: 151: return spidata;
+   516  03CB  0008               	return
+   517  03CC                     __end_of_SPI_Read:	
+   518                           
+   519                           	psect	text6
+   520  0396                     __ptext6:	
+   521 ;; *************** function _SPI_ReadStatus *****************
+   522 ;; Defined at:
+   523 ;;		line 113 in file "test_60f01x_SPI.C"
+   524 ;; Parameters:    Size  Location     Type
+   525 ;;		None
+   526 ;; Auto vars:     Size  Location     Type
+   527 ;;  status          1    2[COMMON] unsigned char 
+   528 ;; Return value:  Size  Location     Type
+   529 ;;                  1    wreg      unsigned char 
+   530 ;; Registers used:
+   531 ;;		wreg, status,2, status,0, pclath, cstack
+   532 ;; Tracked objects:
+   533 ;;		On entry : 100/0
+   534 ;;		On exit  : 100/0
+   535 ;;		Unchanged: 0/0
+   536 ;; Data sizes:     COMMON   BANK0
+   537 ;;      Params:         0       0
+   538 ;;      Locals:         1       0
+   539 ;;      Temps:          0       0
+   540 ;;      Totals:         1       0
+   541 ;;Total ram usage:        1 bytes
+   542 ;; Hardware stack levels used:    1
+   543 ;; Hardware stack levels required when called:    1
+   544 ;; This function calls:
+   545 ;;		_SPI_RW
+   546 ;; This function is called by:
+   547 ;;		_SPI_Read
+   548 ;;		_SPI_Write
+   549 ;; This function uses a non-reentrant model
+   550 ;;
+   551                           
+   552                           
+   553                           ;psect for function _SPI_ReadStatus
+   554  0396                     _SPI_ReadStatus:	
+   555                           
+   556                           ;test_60f01x_SPI.C: 116: PA0=0;
+   557                           
+   558                           ;incstack = 0
+   559                           ; Regs used in _SPI_ReadStatus: [wreg+status,2+status,0+pclath+cstack]
+   560  0396  1005               	bcf	5,0	;volatile
+   561                           
+   562                           ;test_60f01x_SPI.C: 117: SPI_RW(0x05);
+   563  0397  3005               	movlw	5
+   564  0398  23E1               	fcall	_SPI_RW
+   565                           
+   566                           ;test_60f01x_SPI.C: 118: status = SPI_RW(0x00);
+   567  0399  3000               	movlw	0
+   568  039A  23E1               	fcall	_SPI_RW
+   569  039B  00F2               	movwf	SPI_ReadStatus@status
+   570                           
+   571                           ;test_60f01x_SPI.C: 119: PA0=1;
+   572  039C  1405               	bsf	5,0	;volatile
+   573                           
+   574                           ;test_60f01x_SPI.C: 120: return status;
+   575  039D  0008               	return
+   576  039E                     __end_of_SPI_ReadStatus:	
+   577                           
+   578                           	psect	text7
+   579  03E1                     __ptext7:	
+   580 ;; *************** function _SPI_RW *****************
+   581 ;; Defined at:
+   582 ;;		line 66 in file "test_60f01x_SPI.C"
+   583 ;; Parameters:    Size  Location     Type
+   584 ;;  data            1    wreg     unsigned char 
+   585 ;; Auto vars:     Size  Location     Type
+   586 ;;  data            1    1[COMMON] unsigned char 
+   587 ;;  i               1    0[COMMON] unsigned char 
+   588 ;; Return value:  Size  Location     Type
+   589 ;;                  1    wreg      unsigned char 
+   590 ;; Registers used:
+   591 ;;		wreg, status,2, status,0
+   592 ;; Tracked objects:
+   593 ;;		On entry : 100/0
+   594 ;;		On exit  : 100/0
+   595 ;;		Unchanged: 0/0
+   596 ;; Data sizes:     COMMON   BANK0
+   597 ;;      Params:         0       0
+   598 ;;      Locals:         2       0
+   599 ;;      Temps:          0       0
+   600 ;;      Totals:         2       0
+   601 ;;Total ram usage:        2 bytes
+   602 ;; Hardware stack levels used:    1
+   603 ;; This function calls:
+   604 ;;		Nothing
+   605 ;; This function is called by:
+   606 ;;		_WriteEnable
+   607 ;;		_WriteDisable
+   608 ;;		_SPI_ReadStatus
+   609 ;;		_SPI_Read
+   610 ;;		_SPI_Write
+   611 ;; This function uses a non-reentrant model
+   612 ;;
+   613                           
+   614                           
+   615                           ;psect for function _SPI_RW
+   616  03E1                     _SPI_RW:	
+   617                           
+   618                           ;incstack = 0
+   619                           ; Regs used in _SPI_RW: [wreg+status,2+status,0]
+   620                           ;SPI_RW@data stored from wreg
+   621  03E1  00F1               	movwf	SPI_RW@data
+   622                           
+   623                           ;test_60f01x_SPI.C: 68: unsigned char i;
+   624                           ;test_60f01x_SPI.C: 69: for(i=0;i<8;i++)
+   625  03E2  01F0               	clrf	SPI_RW@i
+   626  03E3                     l441:	
+   627                           
+   628                           ;test_60f01x_SPI.C: 70: {
+   629                           ;test_60f01x_SPI.C: 71: if(data&0x80)
+   630  03E3  1FF1               	btfss	SPI_RW@data,7
+   631  03E4  2BE7               	goto	l443
+   632                           
+   633                           ;test_60f01x_SPI.C: 72: PA2 = 1;
+   634  03E5  1505               	bsf	5,2	;volatile
+   635  03E6  2BE8               	goto	l444
+   636  03E7                     l443:	
+   637                           
+   638                           ;test_60f01x_SPI.C: 73: else
+   639                           ;test_60f01x_SPI.C: 74: PA2 = 0;
+   640  03E7  1105               	bcf	5,2	;volatile
+   641  03E8                     l444:	
+   642                           
+   643                           ;test_60f01x_SPI.C: 75: __nop();
+   644  03E8  0000               	nop
+   645                           
+   646                           ;test_60f01x_SPI.C: 76: data<<=1;
+   647  03E9  1003               	clrc
+   648  03EA  0DF1               	rlf	SPI_RW@data,f
+   649                           
+   650                           ;test_60f01x_SPI.C: 77: PA5 = 1;
+   651  03EB  1283               	bcf	3,5	;RP0=0, select bank0
+   652  03EC  1685               	bsf	5,5	;volatile
+   653                           
+   654                           ;test_60f01x_SPI.C: 78: __nop();
+   655  03ED  0000               	nop
+   656                           
+   657                           ;test_60f01x_SPI.C: 79: if(PA4)
+   658  03EE  1283               	bcf	3,5	;RP0=0, select bank0
+   659  03EF  1E05               	btfss	5,4	;volatile
+   660  03F0  2BF3               	goto	l445
+   661                           
+   662                           ;test_60f01x_SPI.C: 80: data |= 0x01;
+   663  03F1  1471               	bsf	SPI_RW@data,0
+   664  03F2  2BF4               	goto	l446
+   665  03F3                     l445:	
+   666                           
+   667                           ;test_60f01x_SPI.C: 81: else
+   668                           ;test_60f01x_SPI.C: 82: data &= 0xFE;
+   669  03F3  1071               	bcf	SPI_RW@data,0
+   670  03F4                     l446:	
+   671                           
+   672                           ;test_60f01x_SPI.C: 83: __nop();
+   673  03F4  0000               	nop
+   674                           
+   675                           ;test_60f01x_SPI.C: 84: PA5 = 0;
+   676  03F5  1283               	bcf	3,5	;RP0=0, select bank0
+   677  03F6  1285               	bcf	5,5	;volatile
+   678  03F7  3008               	movlw	8
+   679  03F8  0AF0               	incf	SPI_RW@i,f
+   680  03F9  0270               	subwf	SPI_RW@i,w
+   681  03FA  1C03               	skipc
+   682  03FB  2BE3               	goto	l441
+   683                           
+   684                           ;test_60f01x_SPI.C: 85: }
+   685                           ;test_60f01x_SPI.C: 86: return data;
+   686  03FC  0871               	movf	SPI_RW@data,w
+   687  03FD  0008               	return
+   688  03FE                     __end_of_SPI_RW:	
+   689                           
+   690                           	psect	text8
+   691  039E                     __ptext8:	
+   692 ;; *************** function _POWER_INITIAL *****************
+   693 ;; Defined at:
+   694 ;;		line 35 in file "test_60f01x_SPI.C"
+   695 ;; Parameters:    Size  Location     Type
+   696 ;;		None
+   697 ;; Auto vars:     Size  Location     Type
+   698 ;;		None
+   699 ;; Return value:  Size  Location     Type
+   700 ;;                  1    wreg      void 
+   701 ;; Registers used:
+   702 ;;		wreg, status,2
+   703 ;; Tracked objects:
+   704 ;;		On entry : B00/0
+   705 ;;		On exit  : B00/0
+   706 ;;		Unchanged: A00/0
+   707 ;; Data sizes:     COMMON   BANK0
+   708 ;;      Params:         0       0
+   709 ;;      Locals:         0       0
+   710 ;;      Temps:          0       0
+   711 ;;      Totals:         0       0
+   712 ;;Total ram usage:        0 bytes
+   713 ;; Hardware stack levels used:    1
+   714 ;; This function calls:
+   715 ;;		Nothing
+   716 ;; This function is called by:
+   717 ;;		_main
+   718 ;; This function uses a non-reentrant model
+   719 ;;
+   720                           
+   721                           
+   722                           ;psect for function _POWER_INITIAL
+   723  039E                     _POWER_INITIAL:	
+   724                           
+   725                           ;test_60f01x_SPI.C: 37: OSCCON = 0B01110000;
+   726                           
+   727                           ;incstack = 0
+   728                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   729  039E  3070               	movlw	112
+   730  039F  1683               	bsf	3,5	;RP0=1, select bank1
+   731  03A0  008F               	movwf	15	;volatile
+   732                           
+   733                           ;test_60f01x_SPI.C: 38: INTCON = 0;
+   734  03A1  018B               	clrf	11	;volatile
+   735                           
+   736                           ;test_60f01x_SPI.C: 39: PORTA = 0B00000000;
+   737  03A2  1283               	bcf	3,5	;RP0=0, select bank0
+   738  03A3  0185               	clrf	5	;volatile
+   739                           
+   740                           ;test_60f01x_SPI.C: 40: TRISA = 0B00010000;
+   741  03A4  3010               	movlw	16
+   742  03A5  1683               	bsf	3,5	;RP0=1, select bank1
+   743  03A6  0085               	movwf	5	;volatile
+   744                           
+   745                           ;test_60f01x_SPI.C: 41: WPUA = 0B00010000;
+   746  03A7  0095               	movwf	21	;volatile
+   747                           
+   748                           ;test_60f01x_SPI.C: 42: OPTION = 0B00001000;
+   749  03A8  3008               	movlw	8
+   750  03A9  0081               	movwf	1	;volatile
+   751                           
+   752                           ;test_60f01x_SPI.C: 43: MSCKCON = 0B00000000;
+   753  03AA  1283               	bcf	3,5	;RP0=0, select bank0
+   754  03AB  019B               	clrf	27	;volatile
+   755  03AC  0008               	return
+   756  03AD                     __end_of_POWER_INITIAL:	
+   757  007E                     btemp	set	126	;btemp
+   758  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  1
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      6       7
+    BANK0            48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_SPI_Read
+    _main->_SPI_Write
+    _SPI_Write->_SPI_ReadStatus
+    _WriteEnable->_SPI_RW
+    _WriteDisable->_SPI_RW
+    _SPI_Read->_SPI_ReadStatus
+    _SPI_ReadStatus->_SPI_RW
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     654
+                      _POWER_INITIAL
+                           _SPI_Read
+                          _SPI_Write
+                      _init_25c64_io
+ ---------------------------------------------------------------------------------
+ (1) _init_25c64_io                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _SPI_Write                                            3     0      3     408
+                                              3 COMMON     3     0      3
+                             _SPI_RW
+                     _SPI_ReadStatus
+                       _WriteDisable
+                        _WriteEnable
+ ---------------------------------------------------------------------------------
+ (2) _WriteEnable                                          0     0      0      60
+                             _SPI_RW
+ ---------------------------------------------------------------------------------
+ (2) _WriteDisable                                         0     0      0      60
+                             _SPI_RW
+ ---------------------------------------------------------------------------------
+ (1) _SPI_Read                                             3     1      2     246
+                                              3 COMMON     3     1      2
+                             _SPI_RW
+                     _SPI_ReadStatus
+ ---------------------------------------------------------------------------------
+ (2) _SPI_ReadStatus                                       1     1      0      75
+                                              2 COMMON     1     1      0
+                             _SPI_RW
+ ---------------------------------------------------------------------------------
+ (3) _SPI_RW                                               2     2      0      60
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _POWER_INITIAL
+   _SPI_Read
+     _SPI_RW
+     _SPI_ReadStatus
+       _SPI_RW
+   _SPI_Write
+     _SPI_RW
+     _SPI_ReadStatus
+       _SPI_RW
+     _WriteDisable
+       _SPI_RW
+     _WriteEnable
+       _SPI_RW
+   _init_25c64_io
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      6       7       1       50.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+DATA                 0      0       7       3        0.0%
+BITBANK0            30      0       0       4        0.0%
+BANK0               30      0       0       5        0.0%
+ABS                  0      0       7       6        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Wed Nov 10 16:40:36 2021
+
+ __size_of_init_25c64_io 0004     __size_of_WriteEnable 0005                      l441 03E3  
+                    l443 03E7                      l444 03E8                      l445 03F3  
+                    l446 03F4                      l960 03CC                      l948 03BC  
+                    l968 03DC                      l978 03BA                      _PA0 0028  
+                    _PA2 002A                      _PA4 002C                      _PA5 002D  
+  __size_of_WriteDisable 0005          SPI_Read@spidata 0075                     _WPUA 0095  
+                   _main 03AD                     btemp 007E                     start 0000  
+ __end_of_SPI_ReadStatus 039E             _WriteDisable 038C                    ?_main 0070  
+                  _PORTA 0005                    _TRISA 0085            _init_25c64_io 0388  
+       __end_of_SPI_Read 03CC                    status 0003                    wtemp0 007E  
+     __size_of_SPI_Write 0015          ?_SPI_ReadStatus 0070             SPI_Read@addr 0073  
+        __initialization 03FE             __end_of_main 03BC                   ??_main 0076  
+         ?_init_25c64_io 0070                   _INTCON 000B                   _OSCCON 008F  
+                 _OPTION 0081                   _SPI_RW 03E1             SPI_Write@dat 0075  
+      __end_of_SPI_Write 03E1    __end_of_POWER_INITIAL 03AD  __end_of__initialization 03FE  
+         __pcstackCOMMON 0070                ?_SPI_Read 0073          ??_init_25c64_io 0070  
+                ?_SPI_RW 0070               __pnvCOMMON 0076               __pmaintext 03AD  
+          ??_WriteEnable 0072                  SPI_RW@i 0070               ??_SPI_Read 0075  
+                _MSCKCON 001B         ??_SPI_ReadStatus 0072          __size_of_SPI_RW 001D  
+          SPI_Write@addr 0073                  __ptext1 0388                  __ptext2 03CC  
+                __ptext3 0391                  __ptext4 038C                  __ptext5 03BC  
+                __ptext6 0396                  __ptext7 03E1                  __ptext8 039E  
+    __end_of_WriteEnable 0396     end_of_initialization 03FE                _SPI_Write 03CC  
+         __end_of_SPI_RW 03FE              _WriteEnable 0391        __size_of_SPI_Read 0010  
+    start_initialization 03FE               ?_SPI_Write 0073                 ??_SPI_RW 0070  
+          ?_WriteDisable 0070   __size_of_POWER_INITIAL 000F                ___latbits 0000  
+  __end_of_init_25c64_io 038C           ??_WriteDisable 0072     SPI_ReadStatus@status 0072  
+            ??_SPI_Write 0076            _POWER_INITIAL 039E                 _SPI_Read 03BC  
+             SPI_RW@data 0071           ?_POWER_INITIAL 0070  __size_of_SPI_ReadStatus 0008  
+           ?_WriteEnable 0070     __end_of_WriteDisable 0391            __size_of_main 000F  
+        ??_POWER_INITIAL 0070              _SPIReadData 0076           _SPI_ReadStatus 0396  

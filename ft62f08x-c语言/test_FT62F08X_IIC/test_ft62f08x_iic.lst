@@ -1,0 +1,1155 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Tue Nov 16 09:02:14 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT62F08X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	_ad3nop_text,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	intentry,global,class=CODE,delta=2
+     9                           	psect	pa_nodes0,global,class=CODE,delta=2
+    10                           	dabs	1,0x7E,2
+    11  0000                     
+    12                           ; Version 1.45
+    13                           ; Generated 16/11/2017 
+    14                           ; 
+    15                           ; SFR Addresses
+    16  0003                     _ad3nop_absaddr	set	3
+    17  0003                     _ad3nop_absaddr	set	3
+    18                           
+    19                           	psect	_ad3nop_text
+    20  0003                     __p_ad3nop_text:	
+    21  0003                     _ad3nop:	
+    22  0003  3400               	retlw	0
+    23  0004                     __end_of_ad3nop:	
+    24  000F                     _PORTD	set	15
+    25  000E                     _PORTC	set	14
+    26  000D                     _PORTB	set	13
+    27  000C                     _PORTA	set	12
+    28  000B                     _INTCON	set	11
+    29  009A                     _PCKEN	set	154
+    30  0099                     _OSCCON	set	153
+    31  008F                     _TRISD	set	143
+    32  008E                     _TRISC	set	142
+    33  008D                     _TRISB	set	141
+    34  008C                     _TRISA	set	140
+    35  011B                     _PSRC1	set	283
+    36  011A                     _PSRC0	set	282
+    37  019D                     _PSINK3	set	413
+    38  019C                     _PSINK2	set	412
+    39  019B                     _PSINK1	set	411
+    40  019A                     _PSINK0	set	410
+    41  0197                     _ANSELA	set	407
+    42  018F                     _WPUD	set	399
+    43  018E                     _WPUC	set	398
+    44  018D                     _WPUB	set	397
+    45  018C                     _WPUA	set	396
+    46  021F                     _ODCON0	set	543
+    47  020F                     _WPDD	set	527
+    48  020E                     _WPDC	set	526
+    49  020D                     _WPDB	set	525
+    50  020C                     _WPDA	set	524
+    51  0416                     _I2CITR	set	1046
+    52  0415                     _I2CCCRH	set	1045
+    53  0414                     _I2CCCRL	set	1044
+    54  0413                     _I2CCMD	set	1043
+    55  0412                     _I2CDR	set	1042
+    56  0411                     _I2CFREQ	set	1041
+    57  0410                     _I2COARH	set	1040
+    58  040F                     _I2COARL	set	1039
+    59  040E                     _I2CCR3	set	1038
+    60  040D                     _I2CCR2	set	1037
+    61  040C                     _I2CCR1	set	1036
+    62  20BF                     _IICTXE	set	8383
+    63  20BE                     _IICRXNE	set	8382
+    64  2070                     _ENABLE	set	8304
+    65                           
+    66                           	psect	cinit
+    67  000A                     start_initialization:	
+    68                           ; #config settings
+    69                           
+    70  000A                     __initialization:	
+    71                           
+    72                           ; Clear objects allocated to COMMON
+    73  000A  01F5               	clrf	__pbssCOMMON& (0+127)
+    74  000B                     end_of_initialization:	
+    75                           ;End of C runtime variable initialization code
+    76                           
+    77  000B                     __end_of__initialization:	
+    78  000B  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+    79  000C  0020               	movlb	0
+    80  000D  280E               	ljmp	_main	;jump to C main() function
+    81  000E                     __pmaintext:	
+    82                           ; 1 bytes @ 0x5
+    83 ;;
+    84 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    85 ;;
+    86 ;; *************** function _main *****************
+    87 ;; Defined at:
+    88 ;;		line 185 in file "test_FT62F08X_IIC.C"
+    89 ;; Parameters:    Size  Location     Type
+    90 ;;		None
+    91 ;; Auto vars:     Size  Location     Type
+    92 ;;		None
+    93 ;; Return value:  Size  Location     Type
+    94 ;;                  1    wreg      void 
+    95 ;; Registers used:
+    96 ;;		wreg, status,2, status,0, pclath, cstack
+    97 ;; Tracked objects:
+    98 ;;		On entry : B1F/0
+    99 ;;		On exit  : 0/0
+   100 ;;		Unchanged: 0/0
+   101 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   102 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   103 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   104 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   105 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   106 ;;Total ram usage:        0 bytes
+   107 ;; Hardware stack levels required when called:    3
+   108 ;; This function calls:
+   109 ;;		_DelayMs
+   110 ;;		_IIC_INITIAL
+   111 ;;		_IIC_READ
+   112 ;;		_IIC_WRITE
+   113 ;;		_POWER_INITIAL
+   114 ;; This function is called by:
+   115 ;;		Startup code after reset
+   116 ;; This function uses a non-reentrant model
+   117 ;;
+   118                           
+   119                           
+   120                           ;psect for function _main
+   121  000E                     _main:	
+   122                           
+   123                           ;test_FT62F08X_IIC.C: 187: POWER_INITIAL();
+   124                           
+   125                           ;incstack = 0
+   126                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   127  000E  206E  3180         	fcall	_POWER_INITIAL
+   128                           
+   129                           ;test_FT62F08X_IIC.C: 188: IIC_INITIAL();
+   130  0010  203A  3180         	fcall	_IIC_INITIAL
+   131                           
+   132                           ;test_FT62F08X_IIC.C: 190: IIC_WRITE(0x12,0x55);
+   133  0012  3055               	movlw	85
+   134  0013  00F0               	movwf	IIC_WRITE@data
+   135  0014  3012               	movlw	18
+   136  0015  205F  3180         	fcall	_IIC_WRITE
+   137                           
+   138                           ;test_FT62F08X_IIC.C: 191: DelayMs(10);
+   139  0017  300A               	movlw	10
+   140  0018  2020  3180         	fcall	_DelayMs
+   141                           
+   142                           ;test_FT62F08X_IIC.C: 192: IICReadData = IIC_READ(0x12);
+   143  001A  3012               	movlw	18
+   144  001B  204E  3180         	fcall	_IIC_READ
+   145  001D  00F5               	movwf	_IICReadData	;volatile
+   146  001E                     l2905:	
+   147                           
+   148                           ;test_FT62F08X_IIC.C: 195: {
+   149                           ;test_FT62F08X_IIC.C: 196: __nop();
+   150  001E  0000               	nop
+   151  001F  281E               	goto	l2905
+   152  0020                     __end_of_main:	
+   153  0020                     __ptext5:	
+   154 ;; *************** function _DelayMs *****************
+   155 ;; Defined at:
+   156 ;;		line 88 in file "test_FT62F08X_IIC.C"
+   157 ;; Parameters:    Size  Location     Type
+   158 ;;  Time            1    wreg     unsigned char 
+   159 ;; Auto vars:     Size  Location     Type
+   160 ;;  Time            1    2[COMMON] unsigned char 
+   161 ;;  b               1    4[COMMON] unsigned char 
+   162 ;;  a               1    3[COMMON] unsigned char 
+   163 ;; Return value:  Size  Location     Type
+   164 ;;                  1    wreg      void 
+   165 ;; Registers used:
+   166 ;;		wreg, status,2, status,0, pclath, cstack
+   167 ;; Tracked objects:
+   168 ;;		On entry : B1F/8
+   169 ;;		On exit  : 0/0
+   170 ;;		Unchanged: 0/0
+   171 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   172 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   173 ;;      Locals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   174 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   175 ;;      Totals:         3       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   176 ;;Total ram usage:        3 bytes
+   177 ;; Hardware stack levels used:    1
+   178 ;; Hardware stack levels required when called:    2
+   179 ;; This function calls:
+   180 ;;		_DelayUs
+   181 ;; This function is called by:
+   182 ;;		_main
+   183 ;; This function uses a non-reentrant model
+   184 ;;
+   185                           
+   186                           
+   187                           ;psect for function _DelayMs
+   188  0020                     _DelayMs:	
+   189                           
+   190                           ;incstack = 0
+   191                           ; Regs used in _DelayMs: [wreg+status,2+status,0+pclath+cstack]
+   192                           ;DelayMs@Time stored from wreg
+   193  0020  00F2               	movwf	DelayMs@Time
+   194                           
+   195                           ;test_FT62F08X_IIC.C: 90: unsigned char a,b;
+   196                           ;test_FT62F08X_IIC.C: 91: for(a=0;a<Time;a++)
+   197  0021  01F3               	clrf	DelayMs@a
+   198  0022                     l2847:	
+   199  0022  0872               	movf	DelayMs@Time,w
+   200  0023  0273               	subwf	DelayMs@a,w
+   201  0024  1803               	btfsc	3,0
+   202  0025  0008               	return
+   203                           
+   204                           ;test_FT62F08X_IIC.C: 92: {
+   205                           ;test_FT62F08X_IIC.C: 93: for(b=0;b<5;b++)
+   206  0026  01F4               	clrf	DelayMs@b
+   207  0027                     l2839:	
+   208                           
+   209                           ;test_FT62F08X_IIC.C: 94: {
+   210                           ;test_FT62F08X_IIC.C: 95: DelayUs(197);
+   211  0027  30C5               	movlw	197
+   212  0028  2031  3180         	fcall	_DelayUs
+   213  002A  3005               	movlw	5
+   214  002B  0AF4               	incf	DelayMs@b,f
+   215  002C  0274               	subwf	DelayMs@b,w
+   216  002D  1C03               	skipc
+   217  002E  2827               	goto	l2839
+   218  002F  0AF3               	incf	DelayMs@a,f
+   219  0030  2822               	goto	l2847
+   220  0031                     __end_of_DelayMs:	
+   221  0031                     __ptext6:	
+   222 ;; *************** function _DelayUs *****************
+   223 ;; Defined at:
+   224 ;;		line 74 in file "test_FT62F08X_IIC.C"
+   225 ;; Parameters:    Size  Location     Type
+   226 ;;  Time            1    wreg     unsigned char 
+   227 ;; Auto vars:     Size  Location     Type
+   228 ;;  Time            1    0[COMMON] unsigned char 
+   229 ;;  a               1    1[COMMON] unsigned char 
+   230 ;; Return value:  Size  Location     Type
+   231 ;;                  1    wreg      void 
+   232 ;; Registers used:
+   233 ;;		wreg, status,2, status,0
+   234 ;; Tracked objects:
+   235 ;;		On entry : 0/8
+   236 ;;		On exit  : 0/0
+   237 ;;		Unchanged: 0/0
+   238 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   239 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   240 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   241 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   242 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   243 ;;Total ram usage:        2 bytes
+   244 ;; Hardware stack levels used:    1
+   245 ;; Hardware stack levels required when called:    1
+   246 ;; This function calls:
+   247 ;;		Nothing
+   248 ;; This function is called by:
+   249 ;;		_DelayMs
+   250 ;; This function uses a non-reentrant model
+   251 ;;
+   252                           
+   253                           
+   254                           ;psect for function _DelayUs
+   255  0031                     _DelayUs:	
+   256                           
+   257                           ;incstack = 0
+   258                           ; Regs used in _DelayUs: [wreg+status,2+status,0]
+   259                           ;DelayUs@Time stored from wreg
+   260  0031  00F0               	movwf	DelayUs@Time
+   261                           
+   262                           ;test_FT62F08X_IIC.C: 76: unsigned char a;
+   263                           ;test_FT62F08X_IIC.C: 77: for(a=0;a<Time;a++)
+   264  0032  01F1               	clrf	DelayUs@a
+   265  0033                     l2793:	
+   266  0033  0870               	movf	DelayUs@Time,w
+   267  0034  0271               	subwf	DelayUs@a,w
+   268  0035  1803               	btfsc	3,0
+   269  0036  0008               	return
+   270                           
+   271                           ;test_FT62F08X_IIC.C: 78: {
+   272                           ;test_FT62F08X_IIC.C: 79: __nop();
+   273  0037  0000               	nop
+   274  0038  0AF1               	incf	DelayUs@a,f
+   275  0039  2833               	goto	l2793
+   276  003A                     __end_of_DelayUs:	
+   277  003A                     __ptext4:	
+   278 ;; *************** function _IIC_INITIAL *****************
+   279 ;; Defined at:
+   280 ;;		line 139 in file "test_FT62F08X_IIC.C"
+   281 ;; Parameters:    Size  Location     Type
+   282 ;;		None
+   283 ;; Auto vars:     Size  Location     Type
+   284 ;;		None
+   285 ;; Return value:  Size  Location     Type
+   286 ;;                  1    wreg      void 
+   287 ;; Registers used:
+   288 ;;		wreg, status,2
+   289 ;; Tracked objects:
+   290 ;;		On entry : B1F/3
+   291 ;;		On exit  : B1F/8
+   292 ;;		Unchanged: B00/0
+   293 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   294 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   295 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   296 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   297 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   298 ;;Total ram usage:        0 bytes
+   299 ;; Hardware stack levels used:    1
+   300 ;; Hardware stack levels required when called:    1
+   301 ;; This function calls:
+   302 ;;		Nothing
+   303 ;; This function is called by:
+   304 ;;		_main
+   305 ;; This function uses a non-reentrant model
+   306 ;;
+   307                           
+   308                           
+   309                           ;psect for function _IIC_INITIAL
+   310  003A                     _IIC_INITIAL:	
+   311                           
+   312                           ;test_FT62F08X_IIC.C: 141: PCKEN|= 0B01000000;
+   313                           
+   314                           ;incstack = 0
+   315                           ; Regs used in _IIC_INITIAL: [wreg+status,2]
+   316  003A  0021               	movlb	1	; select bank1
+   317  003B  171A               	bsf	26,6	;volatile
+   318                           
+   319                           ;test_FT62F08X_IIC.C: 143: ODCON0|= 0B00000010;
+   320  003C  0024               	movlb	4	; select bank4
+   321  003D  149F               	bsf	31,1	;volatile
+   322                           
+   323                           ;test_FT62F08X_IIC.C: 144: I2CCR1 = 0B00000001;
+   324  003E  3001               	movlw	1
+   325  003F  0028               	movlb	8	; select bank8
+   326  0040  008C               	movwf	12	;volatile
+   327                           
+   328                           ;test_FT62F08X_IIC.C: 163: I2CCR2 = 0B00000000;
+   329  0041  018D               	clrf	13	;volatile
+   330                           
+   331                           ;test_FT62F08X_IIC.C: 164: I2CCR3 = 0B00000000;
+   332  0042  018E               	clrf	14	;volatile
+   333                           
+   334                           ;test_FT62F08X_IIC.C: 169: I2COARL = 0B01010000;
+   335  0043  3050               	movlw	80
+   336  0044  008F               	movwf	15	;volatile
+   337                           
+   338                           ;test_FT62F08X_IIC.C: 170: I2COARH = 0B00000000;
+   339  0045  0190               	clrf	16	;volatile
+   340                           
+   341                           ;test_FT62F08X_IIC.C: 171: I2CFREQ = 0B00010000;
+   342  0046  3010               	movlw	16
+   343  0047  0091               	movwf	17	;volatile
+   344                           
+   345                           ;test_FT62F08X_IIC.C: 173: I2CCCRL = 0B10000000;
+   346  0048  3080               	movlw	128
+   347  0049  0094               	movwf	20	;volatile
+   348                           
+   349                           ;test_FT62F08X_IIC.C: 174: I2CCCRH = 0B00000000;
+   350  004A  0195               	clrf	21	;volatile
+   351                           
+   352                           ;test_FT62F08X_IIC.C: 175: I2CITR = 0B00000000;
+   353  004B  0196               	clrf	22	;volatile
+   354                           
+   355                           ;test_FT62F08X_IIC.C: 177: ENABLE=1;
+   356  004C  140E               	bsf	14,0	;volatile
+   357  004D  0008               	return
+   358  004E                     __end_of_IIC_INITIAL:	
+   359  004E                     __ptext3:	
+   360 ;; *************** function _IIC_READ *****************
+   361 ;; Defined at:
+   362 ;;		line 105 in file "test_FT62F08X_IIC.C"
+   363 ;; Parameters:    Size  Location     Type
+   364 ;;  address         1    wreg     unsigned char 
+   365 ;; Auto vars:     Size  Location     Type
+   366 ;;  address         1    0[COMMON] unsigned char 
+   367 ;;  iicdata         1    1[COMMON] unsigned char 
+   368 ;; Return value:  Size  Location     Type
+   369 ;;                  1    wreg      unsigned char 
+   370 ;; Registers used:
+   371 ;;		wreg, status,2
+   372 ;; Tracked objects:
+   373 ;;		On entry : 0/0
+   374 ;;		On exit  : 1F/8
+   375 ;;		Unchanged: 0/0
+   376 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   377 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   378 ;;      Locals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   379 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   380 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   381 ;;Total ram usage:        2 bytes
+   382 ;; Hardware stack levels used:    1
+   383 ;; Hardware stack levels required when called:    1
+   384 ;; This function calls:
+   385 ;;		Nothing
+   386 ;; This function is called by:
+   387 ;;		_main
+   388 ;; This function uses a non-reentrant model
+   389 ;;
+   390                           
+   391                           
+   392                           ;psect for function _IIC_READ
+   393  004E                     _IIC_READ:	
+   394                           
+   395                           ;incstack = 0
+   396                           ; Regs used in _IIC_READ: [wreg+status,2]
+   397                           ;IIC_READ@address stored from wreg
+   398  004E  00F0               	movwf	IIC_READ@address
+   399  004F                     l2381:	
+   400                           ;test_FT62F08X_IIC.C: 108: while(!IICTXE);
+   401                           
+   402  004F  0028               	movlb	8	; select bank8
+   403  0050  1F97               	btfss	23,7	;volatile
+   404  0051  284F               	goto	l2381
+   405                           
+   406                           ;test_FT62F08X_IIC.C: 109: I2CDR = address;
+   407  0052  0870               	movf	IIC_READ@address,w
+   408  0053  0092               	movwf	18	;volatile
+   409                           
+   410                           ;test_FT62F08X_IIC.C: 110: I2CCMD = 0B00000110;
+   411  0054  3006               	movlw	6
+   412  0055  0093               	movwf	19	;volatile
+   413  0056                     l2384:	
+   414                           ;test_FT62F08X_IIC.C: 111: while(!IICTXE);
+   415                           
+   416  0056  1F97               	btfss	23,7	;volatile
+   417  0057  2856               	goto	l2384
+   418                           
+   419                           ;test_FT62F08X_IIC.C: 112: I2CCMD = 0B00000011;
+   420  0058  3003               	movlw	3
+   421  0059  0093               	movwf	19	;volatile
+   422  005A                     l2387:	
+   423                           ;test_FT62F08X_IIC.C: 113: while(!IICRXNE);
+   424                           
+   425  005A  1F17               	btfss	23,6	;volatile
+   426  005B  285A               	goto	l2387
+   427                           
+   428                           ;test_FT62F08X_IIC.C: 114: iicdata = I2CDR;
+   429  005C  0812               	movf	18,w	;volatile
+   430  005D  00F1               	movwf	IIC_READ@iicdata
+   431                           
+   432                           ;test_FT62F08X_IIC.C: 115: return iicdata;
+   433  005E  0008               	return
+   434  005F                     __end_of_IIC_READ:	
+   435  005F                     __ptext2:	
+   436 ;; *************** function _IIC_WRITE *****************
+   437 ;; Defined at:
+   438 ;;		line 123 in file "test_FT62F08X_IIC.C"
+   439 ;; Parameters:    Size  Location     Type
+   440 ;;  address         1    wreg     unsigned char 
+   441 ;;  data            1    0[COMMON] unsigned char 
+   442 ;; Auto vars:     Size  Location     Type
+   443 ;;  address         1    1[COMMON] unsigned char 
+   444 ;; Return value:  Size  Location     Type
+   445 ;;                  1    wreg      void 
+   446 ;; Registers used:
+   447 ;;		wreg, status,2
+   448 ;; Tracked objects:
+   449 ;;		On entry : B1F/8
+   450 ;;		On exit  : B1F/8
+   451 ;;		Unchanged: B00/0
+   452 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   453 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   454 ;;      Locals:         1       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   455 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   456 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   457 ;;Total ram usage:        2 bytes
+   458 ;; Hardware stack levels used:    1
+   459 ;; Hardware stack levels required when called:    1
+   460 ;; This function calls:
+   461 ;;		Nothing
+   462 ;; This function is called by:
+   463 ;;		_main
+   464 ;; This function uses a non-reentrant model
+   465 ;;
+   466                           
+   467                           
+   468                           ;psect for function _IIC_WRITE
+   469  005F                     _IIC_WRITE:	
+   470                           
+   471                           ;incstack = 0
+   472                           ; Regs used in _IIC_WRITE: [wreg+status,2]
+   473                           ;IIC_WRITE@address stored from wreg
+   474  005F  00F1               	movwf	IIC_WRITE@address
+   475  0060                     l2393:	
+   476                           ;test_FT62F08X_IIC.C: 125: while(!IICTXE);
+   477                           
+   478  0060  1F97               	btfss	23,7	;volatile
+   479  0061  2860               	goto	l2393
+   480                           
+   481                           ;test_FT62F08X_IIC.C: 126: I2CDR = address;
+   482  0062  0871               	movf	IIC_WRITE@address,w
+   483  0063  0092               	movwf	18	;volatile
+   484                           
+   485                           ;test_FT62F08X_IIC.C: 127: I2CCMD = 0B00000000;
+   486  0064  0193               	clrf	19	;volatile
+   487  0065                     l2396:	
+   488                           ;test_FT62F08X_IIC.C: 128: while(!IICTXE);
+   489                           
+   490  0065  1F97               	btfss	23,7	;volatile
+   491  0066  2865               	goto	l2396
+   492                           
+   493                           ;test_FT62F08X_IIC.C: 129: I2CDR = data;
+   494  0067  0870               	movf	IIC_WRITE@data,w
+   495  0068  0092               	movwf	18	;volatile
+   496                           
+   497                           ;test_FT62F08X_IIC.C: 130: I2CCMD = 0B00000010;
+   498  0069  3002               	movlw	2
+   499  006A  0093               	movwf	19	;volatile
+   500  006B                     l2399:	
+   501                           ;test_FT62F08X_IIC.C: 131: while(!IICTXE);
+   502                           
+   503  006B  1B97               	btfsc	23,7	;volatile
+   504  006C  0008               	return
+   505  006D  286B               	goto	l2399
+   506  006E                     __end_of_IIC_WRITE:	
+   507  006E                     __ptext1:	
+   508 ;; *************** function _POWER_INITIAL *****************
+   509 ;; Defined at:
+   510 ;;		line 34 in file "test_FT62F08X_IIC.C"
+   511 ;; Parameters:    Size  Location     Type
+   512 ;;		None
+   513 ;; Auto vars:     Size  Location     Type
+   514 ;;		None
+   515 ;; Return value:  Size  Location     Type
+   516 ;;                  1    wreg      void 
+   517 ;; Registers used:
+   518 ;;		wreg, status,2
+   519 ;; Tracked objects:
+   520 ;;		On entry : B1F/0
+   521 ;;		On exit  : B1F/3
+   522 ;;		Unchanged: B00/0
+   523 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   524 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   525 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   526 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   527 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   528 ;;Total ram usage:        0 bytes
+   529 ;; Hardware stack levels used:    1
+   530 ;; Hardware stack levels required when called:    1
+   531 ;; This function calls:
+   532 ;;		Nothing
+   533 ;; This function is called by:
+   534 ;;		_main
+   535 ;; This function uses a non-reentrant model
+   536 ;;
+   537                           
+   538                           
+   539                           ;psect for function _POWER_INITIAL
+   540  006E                     _POWER_INITIAL:	
+   541                           
+   542                           ;test_FT62F08X_IIC.C: 36: OSCCON = 0B01110001;
+   543                           
+   544                           ;incstack = 0
+   545                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   546  006E  3071               	movlw	113
+   547  006F  0021               	movlb	1	; select bank1
+   548  0070  0099               	movwf	25	;volatile
+   549                           
+   550                           ;test_FT62F08X_IIC.C: 37: INTCON = 0;
+   551  0071  018B               	clrf	11	;volatile
+   552                           
+   553                           ;test_FT62F08X_IIC.C: 39: PORTA = 0B00000000;
+   554  0072  0020               	movlb	0	; select bank0
+   555  0073  018C               	clrf	12	;volatile
+   556                           
+   557                           ;test_FT62F08X_IIC.C: 40: TRISA = 0B00000000;
+   558  0074  0021               	movlb	1	; select bank1
+   559  0075  018C               	clrf	12	;volatile
+   560                           
+   561                           ;test_FT62F08X_IIC.C: 41: PORTB = 0B00000000;
+   562  0076  0020               	movlb	0	; select bank0
+   563  0077  018D               	clrf	13	;volatile
+   564                           
+   565                           ;test_FT62F08X_IIC.C: 42: TRISB = 0B00000000;
+   566  0078  0021               	movlb	1	; select bank1
+   567  0079  018D               	clrf	13	;volatile
+   568                           
+   569                           ;test_FT62F08X_IIC.C: 43: PORTC = 0B00000000;
+   570  007A  0020               	movlb	0	; select bank0
+   571  007B  018E               	clrf	14	;volatile
+   572                           
+   573                           ;test_FT62F08X_IIC.C: 44: TRISC = 0B00000000;
+   574  007C  0021               	movlb	1	; select bank1
+   575  007D  018E               	clrf	14	;volatile
+   576                           
+   577                           ;test_FT62F08X_IIC.C: 45: PORTD = 0B00000000;
+   578  007E  0020               	movlb	0	; select bank0
+   579  007F  018F               	clrf	15	;volatile
+   580                           
+   581                           ;test_FT62F08X_IIC.C: 46: TRISD = 0B00000000;
+   582  0080  0021               	movlb	1	; select bank1
+   583  0081  018F               	clrf	15	;volatile
+   584                           
+   585                           ;test_FT62F08X_IIC.C: 48: WPUA = 0B00000000;
+   586  0082  0023               	movlb	3	; select bank3
+   587  0083  018C               	clrf	12	;volatile
+   588                           
+   589                           ;test_FT62F08X_IIC.C: 49: WPUB = 0B00001100;
+   590  0084  300C               	movlw	12
+   591  0085  008D               	movwf	13	;volatile
+   592                           
+   593                           ;test_FT62F08X_IIC.C: 50: WPUC = 0B00000000;
+   594  0086  018E               	clrf	14	;volatile
+   595                           
+   596                           ;test_FT62F08X_IIC.C: 51: WPUD = 0B00000000;
+   597  0087  018F               	clrf	15	;volatile
+   598                           
+   599                           ;test_FT62F08X_IIC.C: 53: WPDA = 0B00000000;
+   600  0088  0024               	movlb	4	; select bank4
+   601  0089  018C               	clrf	12	;volatile
+   602                           
+   603                           ;test_FT62F08X_IIC.C: 54: WPDB = 0B00000000;
+   604  008A  018D               	clrf	13	;volatile
+   605                           
+   606                           ;test_FT62F08X_IIC.C: 55: WPDC = 0B00000000;
+   607  008B  018E               	clrf	14	;volatile
+   608                           
+   609                           ;test_FT62F08X_IIC.C: 56: WPDD = 0B00000000;
+   610  008C  018F               	clrf	15	;volatile
+   611                           
+   612                           ;test_FT62F08X_IIC.C: 58: PSRC0 = 0B11111111;
+   613  008D  30FF               	movlw	255
+   614  008E  0022               	movlb	2	; select bank2
+   615  008F  009A               	movwf	26	;volatile
+   616                           
+   617                           ;test_FT62F08X_IIC.C: 59: PSRC1 = 0B11111111;
+   618  0090  009B               	movwf	27	;volatile
+   619                           
+   620                           ;test_FT62F08X_IIC.C: 61: PSINK0 = 0B11111111;
+   621  0091  0023               	movlb	3	; select bank3
+   622  0092  009A               	movwf	26	;volatile
+   623                           
+   624                           ;test_FT62F08X_IIC.C: 62: PSINK1 = 0B11111111;
+   625  0093  009B               	movwf	27	;volatile
+   626                           
+   627                           ;test_FT62F08X_IIC.C: 63: PSINK2 = 0B11111111;
+   628  0094  009C               	movwf	28	;volatile
+   629                           
+   630                           ;test_FT62F08X_IIC.C: 64: PSINK3 = 0B11111111;
+   631  0095  009D               	movwf	29	;volatile
+   632                           
+   633                           ;test_FT62F08X_IIC.C: 66: ANSELA = 0B00000000;
+   634  0096  0197               	clrf	23	;volatile
+   635  0097  0008               	return
+   636  0098                     __end_of_POWER_INITIAL:	
+   637                           
+   638                           	psect	bssCOMMON
+   639  0075                     __pbssCOMMON:	
+   640  0075                     _IICReadData:	
+   641  0075                     	ds	1
+   642                           
+   643                           	psect	cstackCOMMON
+   644  0070                     __pcstackCOMMON:	
+   645  0070                     ?_ISR:	
+   646  0070                     ??_ISR:	
+   647                           ; 1 bytes @ 0x0
+   648                           
+   649  0070                     ?_POWER_INITIAL:	
+   650                           ; 1 bytes @ 0x0
+   651                           
+   652  0070                     ??_POWER_INITIAL:	
+   653                           ; 1 bytes @ 0x0
+   654                           
+   655  0070                     ?_DelayUs:	
+   656                           ; 1 bytes @ 0x0
+   657                           
+   658  0070                     ??_DelayUs:	
+   659                           ; 1 bytes @ 0x0
+   660                           
+   661  0070                     ?_DelayMs:	
+   662                           ; 1 bytes @ 0x0
+   663                           
+   664  0070                     ?_IIC_READ:	
+   665                           ; 1 bytes @ 0x0
+   666                           
+   667  0070                     ??_IIC_READ:	
+   668                           ; 1 bytes @ 0x0
+   669                           
+   670  0070                     ?_IIC_WRITE:	
+   671                           ; 1 bytes @ 0x0
+   672                           
+   673  0070                     ?_IIC_INITIAL:	
+   674                           ; 1 bytes @ 0x0
+   675                           
+   676  0070                     ??_IIC_INITIAL:	
+   677                           ; 1 bytes @ 0x0
+   678                           
+   679  0070                     ?_main:	
+   680                           ; 1 bytes @ 0x0
+   681                           
+   682  0070                     DelayUs@Time:	
+   683                           ; 1 bytes @ 0x0
+   684                           
+   685  0070                     IIC_READ@address:	
+   686                           ; 1 bytes @ 0x0
+   687                           
+   688  0070                     IIC_WRITE@data:	
+   689                           ; 1 bytes @ 0x0
+   690                           
+   691                           
+   692                           ; 1 bytes @ 0x0
+   693  0070                     	ds	1
+   694  0071                     ??_IIC_WRITE:	
+   695  0071                     DelayUs@a:	
+   696                           ; 1 bytes @ 0x1
+   697                           
+   698  0071                     IIC_READ@iicdata:	
+   699                           ; 1 bytes @ 0x1
+   700                           
+   701  0071                     IIC_WRITE@address:	
+   702                           ; 1 bytes @ 0x1
+   703                           
+   704                           
+   705                           ; 1 bytes @ 0x1
+   706  0071                     	ds	1
+   707  0072                     ??_DelayMs:	
+   708  0072                     DelayMs@Time:	
+   709                           ; 1 bytes @ 0x2
+   710                           
+   711                           
+   712                           ; 1 bytes @ 0x2
+   713  0072                     	ds	1
+   714  0073                     DelayMs@a:	
+   715                           
+   716                           ; 1 bytes @ 0x3
+   717  0073                     	ds	1
+   718  0074                     DelayMs@b:	
+   719                           
+   720                           ; 1 bytes @ 0x4
+   721  0074                     	ds	1
+   722  0075                     ??_main:	
+   723                           
+   724                           	psect	intentry
+   725  0004                     __pintentry:	
+   726 ;; *************** function _ISR *****************
+   727 ;; Defined at:
+   728 ;;		line 24 in file "test_FT62F08X_IIC.C"
+   729 ;; Parameters:    Size  Location     Type
+   730 ;;		None
+   731 ;; Auto vars:     Size  Location     Type
+   732 ;;		None
+   733 ;; Return value:  Size  Location     Type
+   734 ;;                  1    wreg      void 
+   735 ;; Registers used:
+   736 ;;		None
+   737 ;; Tracked objects:
+   738 ;;		On entry : 0/0
+   739 ;;		On exit  : 0/0
+   740 ;;		Unchanged: 0/0
+   741 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   742 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   743 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   744 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   745 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   746 ;;Total ram usage:        0 bytes
+   747 ;; Hardware stack levels used:    1
+   748 ;; This function calls:
+   749 ;;		Nothing
+   750 ;; This function is called by:
+   751 ;;		Interrupt level 1
+   752 ;; This function uses a non-reentrant model
+   753 ;;
+   754                           
+   755  0004                     _ISR:	
+   756                           
+   757                           ;incstack = 0
+   758  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+   759                           
+   760                           ; Regs used in _ISR: []
+   761  0005  3180               	pagesel	$
+   762  0006  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   763  0007  0009               	retfie
+   764  0008                     __end_of_ISR:	
+   765  007E                     btemp	set	126	;btemp
+   766  007E                     int$flags	set	126
+   767  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         1
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      5       6
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK2            80      0       0
+    BANK3            80      0       0
+    BANK4            80      0       0
+    BANK5            80      0       0
+    BANK6            80      0       0
+    BANK7            80      0       0
+    BANK8            80      0       0
+    BANK9            80      0       0
+    BANK10           80      0       0
+    BANK11           80      0       0
+    BANK12           48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_DelayMs
+    _DelayMs->_DelayUs
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _ISR in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _ISR in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _ISR in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _ISR in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _ISR in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _ISR in BANK12
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0     207
+                            _DelayMs
+                        _IIC_INITIAL
+                           _IIC_READ
+                          _IIC_WRITE
+                      _POWER_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _IIC_WRITE                                            2     1      1      87
+                                              0 COMMON     2     1      1
+ ---------------------------------------------------------------------------------
+ (1) _IIC_READ                                             2     2      0      30
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ (1) _IIC_INITIAL                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _DelayMs                                              3     3      0      90
+                                              2 COMMON     3     3      0
+                            _DelayUs
+ ---------------------------------------------------------------------------------
+ (2) _DelayUs                                              2     2      0      30
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _ISR                                                  0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _DelayMs
+     _DelayUs
+   _IIC_INITIAL
+   _IIC_READ
+   _IIC_WRITE
+   _POWER_INITIAL
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             3F0      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      5       6       2       42.9%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BITBANK2            50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BANK2               50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BITBANK3            50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BANK3               50      0       0      11        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITBANK4            50      0       0      12        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BANK4               50      0       0      13        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITBANK5            50      0       0      14        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BANK5               50      0       0      15        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITBANK6            50      0       0      16        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BANK6               50      0       0      17        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITBANK7            50      0       0      18        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BANK7               50      0       0      19        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+ABS                  0      0       6      20        0.0%
+BITBANK8            50      0       0      21        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BANK8               50      0       0      22        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITBANK9            50      0       0      23        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BANK9               50      0       0      24        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITBANK10           50      0       0      25        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BANK10              50      0       0      26        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITBANK11           50      0       0      27        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BANK11              50      0       0      28        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITBANK12           30      0       0      29        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BANK12              30      0       0      30        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+DATA                 0      0       6      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Tue Nov 16 09:02:14 2021
+
+                    _ISR 0004                     ?_ISR 0070                     l2381 004F  
+                   l2384 0056                     l2393 0060                     l2387 005A  
+                   l2396 0065                     l2399 006B                     l2905 001E  
+                   l2839 0027                     l2847 0022                     l2793 0033  
+                   _WPDA 020C                     _WPDB 020D                     _WPDC 020E  
+                   _WPDD 020F                     _WPUA 018C                     _WPUB 018D  
+                   _WPUC 018E                     _WPUD 018F           _ad3nop_absaddr 0003  
+     __size_of_IIC_WRITE 000F                     _main 000E                     btemp 007E  
+                   start 0008          __end_of_DelayMs 0031          __end_of_DelayUs 003A  
+                  ??_ISR 0070         __end_of_IIC_READ 005F                    _I2CDR 0412  
+                  ?_main 0070                    _PCKEN 009A                    _PSRC0 011A  
+                  _PSRC1 011B                    _PORTA 000C                    _PORTB 000D  
+                  _PORTC 000E                    _PORTD 000F                    _TRISA 008C  
+                  _TRISB 008D                    _TRISC 008E                    _TRISD 008F  
+          IIC_WRITE@data 0070                    wtemp0 007E          __initialization 000A  
+           __end_of_main 0020                   ??_main 0075        __end_of_IIC_WRITE 006E  
+                 _I2CCR1 040C                   _I2CCR2 040D                   _I2CCR3 040E  
+                 _I2CCMD 0413                   _I2CITR 0416                   _ENABLE 2070  
+                 _ANSELA 0197                   _IICTXE 20BF                   _ODCON0 021F  
+                 _INTCON 000B                ??_DelayMs 0072                ??_DelayUs 0070  
+                 _OSCCON 0099                   _PSINK0 019A                   _PSINK1 019B  
+                 _PSINK2 019C                   _PSINK3 019D     __size_of_IIC_INITIAL 0014  
+                 _ad3nop 0003                ?_IIC_READ 0070    __end_of_POWER_INITIAL 0098  
+__end_of__initialization 000B           __pcstackCOMMON 0070               ??_IIC_READ 0070  
+             __pmaintext 000E                  _I2CCCRH 0415                  _I2CCCRL 0414  
+                _I2CFREQ 0411               __pintentry 0004                  _I2COARH 0410  
+                _I2COARL 040F                  _IICRXNE 20BE                  _DelayMs 0020  
+                _DelayUs 0031                  __ptext1 006E                  __ptext2 005F  
+                __ptext3 004E                  __ptext4 003A                  __ptext5 0020  
+                __ptext6 0031             __size_of_ISR 0004                _IIC_WRITE 005F  
+   end_of_initialization 000B               ?_IIC_WRITE 0070            ??_IIC_INITIAL 0070  
+      __size_of_IIC_READ 0011           __end_of_ad3nop 0004      start_initialization 000A  
+         __p_ad3nop_text 0003              __end_of_ISR 0008      __end_of_IIC_INITIAL 004E  
+ __size_of_POWER_INITIAL 002A              __pbssCOMMON 0075                ___latbits 0002  
+            ??_IIC_WRITE 0071                 ?_DelayMs 0070                 ?_DelayUs 0070  
+            _IIC_INITIAL 003A                 _IIC_READ 004E            _POWER_INITIAL 006E  
+               DelayMs@a 0073                 DelayMs@b 0074                 DelayUs@a 0071  
+            _IICReadData 0075              DelayMs@Time 0072           ?_POWER_INITIAL 0070  
+            DelayUs@Time 0070         __size_of_DelayMs 0011         __size_of_DelayUs 0009  
+          __size_of_main 0012                 int$flags 007E         IIC_WRITE@address 0071  
+        ??_POWER_INITIAL 0070                 intlevel1 0000          IIC_READ@address 0070  
+        IIC_READ@iicdata 0071             ?_IIC_INITIAL 0070  

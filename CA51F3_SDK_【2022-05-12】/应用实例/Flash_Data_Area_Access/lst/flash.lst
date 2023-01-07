@@ -1,0 +1,149 @@
+C51 COMPILER V9.02   FLASH                                                                 05/11/2022 23:25:35 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE FLASH
+OBJECT MODULE PLACED IN .\output\flash.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\flash.c OMF2 BROWSE DEBUG PRINT(.\lst\flash.lst) OBJECT(.\output\fla
+                    -sh.obj)
+
+line level    source
+
+   1          #ifndef _FLASH_C_
+   2          #define _FLASH_C_
+   3          /*********************************************************************************************************
+             -************/
+   4          #include "include/ca51f3sfr.h"
+   5          #include "include/ca51f3xsfr.h"
+   6          #include "include/flash.h"
+   7          #include <intrins.h>
+   8          /*********************************************************************************************************
+             -************/
+   9          
+  10          /***********************************************************************************
+  11          函 数 名：Data_Area_Erase_Sector                                                                                        
+  12          功能描述：擦除数据区空间的一个扇区                                              
+  13          函数说明：                                                              
+  14          输    入：unsigned char SectorNumber    扇区号                                                                  
+  15          返    回：无                                                                                                                                    
+  16          ***********************************************************************************/
+  17          void Data_Area_Sector_Erase(unsigned char SectorNumber)
+  18          {
+  19   1              unsigned int SectorAddress;
+  20   1              FSCMD   =       0;
+  21   1              SectorAddress = 0x80*SectorNumber;
+  22   1              LOCK  = CMD_DATA_AREA_UNLOCK;                                           //数据区解锁
+  23   1              PTSH = (unsigned char)(SectorAddress>>8);                       //填写扇区地址
+  24   1              PTSL = (unsigned char)(SectorAddress);                          //填写扇区地址  
+  25   1              FSCMD = CMD_DATA_AREA_ERASE_SECTOR;                                     //执行擦除扇区操作
+  26   1              LOCK  = CMD_FLASH_LOCK;                                                 //对FLASH加锁
+  27   1      } 
+  28          
+  29          /***********************************************************************************
+  30          函 数 名：Data_Area_Write_Byte                                                                                          
+  31          功能描述：向FLASH数据区写入一个字节数据                                                                                                                                 
+  32          输    入：unsigned int Address  数据区空间写入地址                                                                                      
+  33                                                  unsigned char Data              写入数据                                                                                                
+  34          返    回：无                                                                                                                                    
+  35          ***********************************************************************************/
+  36          void Data_Area_Write_Byte(unsigned int Address,unsigned char Data)
+  37          {
+  38   1              FSCMD   =       0;
+  39   1              LOCK  = CMD_DATA_AREA_UNLOCK;                                           //数据区解锁
+  40   1              PTSH = (unsigned char)(Address>>8);                                     //填写高位地址
+  41   1              PTSL = (unsigned char)Address;                                  //填写低位地址
+  42   1              FSCMD = CMD_DATA_AREA_WIRTE;                                            //执行写操作
+  43   1              FSDAT = Data;                                                                           //装载数据      
+  44   1              FSCMD   =       0;
+  45   1              LOCK  = CMD_FLASH_LOCK;                                                         //对FLASH加锁
+  46   1      } 
+  47          
+  48          /***********************************************************************************
+  49          函 数 名：Data_Area_Mass_Write                                                                                  
+  50          功能描述：向FLASH数据区批量写入数据                                                                                                                                     
+  51          输    入：unsigned int wAddress   数据区空间写入起始地址                                                                                        
+  52                                                  unsigned char *pData            数据指针，指向写入数据缓存数组
+C51 COMPILER V9.02   FLASH                                                                 05/11/2022 23:25:35 PAGE 2   
+
+  53                                                  unsigned char Length            写入数据长度                                                                                            
+  54          返    回：无                                                                                                                                    
+  55          ***********************************************************************************/
+  56          void Data_Area_Mass_Write(unsigned int Address,unsigned char *pData,unsigned int Length)
+  57          {
+  58   1              unsigned int i;
+  59   1              FSCMD   =       0;
+  60   1              LOCK  = CMD_DATA_AREA_UNLOCK;                                           //数据区解锁
+  61   1              PTSH = (unsigned char)(Address>>8);                                     //填写高位地址
+  62   1              PTSL = (unsigned char)Address;                                  //填写低位地址
+  63   1              FSCMD = CMD_DATA_AREA_WIRTE;                                            //执行写操作
+  64   1              for(i = 0; i < Length; i++)
+  65   1              {
+  66   2                      FSDAT = *pData++;                                                               //装载数据      
+  67   2              }
+  68   1              FSCMD   =       0;
+  69   1              LOCK  = CMD_FLASH_LOCK;                                                 //对FLASH加锁
+  70   1      } 
+  71          
+  72          /***********************************************************************************
+  73          函 数 名：Data_Area_Read_Byte                                                                                           
+  74          功能描述：从FLASH数据区读出一字节数据                                                                                                                           
+  75          输    入：unsigned int Address  数据区空间读地址                                                                                                                                                                                        
+  76          返    回：读取的一字节数据                                                                                                                                      
+  77          ***********************************************************************************/
+  78          unsigned char Data_Area_Read_Byte(unsigned int Address)
+  79          {       
+  80   1              unsigned char Data_Temp;
+  81   1              FSCMD   =       0;
+  82   1              PTSH = (unsigned char)(Address>>8);                                     //填写高位地址
+  83   1              PTSL = (unsigned char)Address;                                  //填写低位地址
+  84   1              FSCMD = CMD_DATA_AREA_READ;                                                     //执行读操作
+  85   1              Data_Temp = FSDAT;
+  86   1              FSCMD   =       0;
+  87   1              LOCK  = CMD_FLASH_LOCK;                                                 //对FLASH加锁
+  88   1              return Data_Temp;
+  89   1      } 
+  90          
+  91          
+  92          
+  93          /***********************************************************************************
+  94          函 数 名：Data_Area_Mass_Read                                                                                   
+  95          功能描述：从FLASH数据区批量读出数据                                                                                                                                     
+  96          输    入：unsigned int Address    数据区空间读起始地址                                                                                  
+  97                                                  unsigned char *pData            数据指针，指向读出数据缓存数组
+  98                                                  unsigned char Length            读数据长度                                                                                              
+  99          返    回：无                                                                                                                                    
+ 100          ***********************************************************************************/
+ 101          void Data_Area_Mass_Read(unsigned int Address,unsigned char *pData,unsigned int Length)
+ 102          {
+ 103   1              unsigned int i;
+ 104   1              FSCMD   =       0;
+ 105   1              PTSH = (unsigned char)(Address>>8);                                     //填写高位地址
+ 106   1              PTSL = (unsigned char)Address;                                  //填写低位地址
+ 107   1              FSCMD = CMD_DATA_AREA_READ;                                                     //执行读操作
+ 108   1              for(i = 0; i < Length; i++)
+ 109   1              {                                                                                               
+ 110   2                      *pData++ = FSDAT;
+ 111   2              }
+ 112   1              FSCMD   =       0;
+ 113   1              LOCK  = CMD_FLASH_LOCK;                                                 //对FLASH加锁
+ 114   1      } 
+C51 COMPILER V9.02   FLASH                                                                 05/11/2022 23:25:35 PAGE 3   
+
+ 115          #endif 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    302    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      14
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

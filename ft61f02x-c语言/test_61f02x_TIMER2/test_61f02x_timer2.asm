@@ -1,0 +1,157 @@
+//Deviec:FT61F02X
+//-----------------------Variable---------------------------------
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		LJUMP 	0AH 			//0000 	380A
+		ORG		0004H
+		STR 	7EH 			//0004 	01FE
+		SWAPR 	STATUS,0 		//0005 	0703
+		STR 	70H 			//0006 	01F0
+		LDR 	PCLATH,0 		//0007 	080A
+		STR 	71H 			//0008 	01F1
+		LJUMP 	24H 			//0009 	3824
+		LJUMP 	0BH 			//000A 	380B
+		CLRR 	STATUS 			//000B 	0103
+		ORG		000CH
+		LJUMP 	44H 			//000C 	3844
+
+		//;TEST_61F02x_Timer2.c: 49: OPTION = 0B00001000;
+		LDWI 	8H 			//000D 	2A08
+		BSR 	STATUS,5 		//000E 	1A83
+		STR 	1H 			//000F 	0181
+
+		//;TEST_61F02x_Timer2.c: 50: INTCON = 0;
+		CLRR 	INTCON 			//0010 	010B
+
+		//;TEST_61F02x_Timer2.c: 51: OSCCON = 0B01110001;
+		LDWI 	71H 			//0011 	2A71
+		STR 	FH 			//0012 	018F
+
+		//;TEST_61F02x_Timer2.c: 53: PORTA = 0B00000000;
+		BCR 	STATUS,5 		//0013 	1283
+		ORG		0014H
+		CLRR 	5H 			//0014 	0105
+
+		//;TEST_61F02x_Timer2.c: 54: TRISA = 0B00000000;
+		BSR 	STATUS,5 		//0015 	1A83
+		CLRR 	5H 			//0016 	0105
+
+		//;TEST_61F02x_Timer2.c: 56: PORTC = 0B00000000;
+		BCR 	STATUS,5 		//0017 	1283
+		CLRR 	7H 			//0018 	0107
+
+		//;TEST_61F02x_Timer2.c: 57: TRISC = 0B00001000;
+		LDWI 	8H 			//0019 	2A08
+		BSR 	STATUS,5 		//001A 	1A83
+		STR 	7H 			//001B 	0187
+		ORG		001CH
+
+		//;TEST_61F02x_Timer2.c: 59: WPUA = 0B00000000;
+		CLRR 	15H 			//001C 	0115
+
+		//;TEST_61F02x_Timer2.c: 60: WPUC = 0B00001000;
+		STR 	8H 			//001D 	0188
+
+		//;TEST_61F02x_Timer2.c: 62: OPTION = 0B00001000;
+		STR 	1H 			//001E 	0181
+
+		//;TEST_61F02x_Timer2.c: 63: MSCKCON = 0B00000000;
+		BCR 	STATUS,5 		//001F 	1283
+		CLRR 	1BH 			//0020 	011B
+
+		//;TEST_61F02x_Timer2.c: 68: CMCON0 = 0B00000111;
+		LDWI 	7H 			//0021 	2A07
+		STR 	19H 			//0022 	0199
+		RET		 					//0023 	0004
+		ORG		0024H
+
+		//;TEST_61F02x_Timer2.c: 35: if(TMR2IE && TMR2IF)
+		BSR 	STATUS,5 		//0024 	1A83
+		BCR 	STATUS,6 		//0025 	1303
+		BTSS 	CH,1 			//0026 	1C8C
+		LJUMP 	2EH 			//0027 	382E
+		BCR 	STATUS,5 		//0028 	1283
+		BTSS 	CH,1 			//0029 	1C8C
+		LJUMP 	2EH 			//002A 	382E
+
+		//;TEST_61F02x_Timer2.c: 36: {
+		//;TEST_61F02x_Timer2.c: 37: TMR2IF = 0;
+		BCR 	CH,1 			//002B 	108C
+		ORG		002CH
+
+		//;TEST_61F02x_Timer2.c: 38: PA3 = ~PA3;
+		LDWI 	8H 			//002C 	2A08
+		XORWR 	5H,1 			//002D 	0485
+		LDR 	71H,0 			//002E 	0871
+		STR 	PCLATH 			//002F 	018A
+		SWAPR 	70H,0 			//0030 	0770
+		STR 	STATUS 			//0031 	0183
+		SWAPR 	7EH,1 			//0032 	07FE
+		SWAPR 	7EH,0 			//0033 	077E
+		ORG		0034H
+		RETI		 			//0034 	0009
+
+		//;TEST_61F02x_Timer2.c: 78: T2CON = 0B00000001;
+		LDWI 	1H 			//0035 	2A01
+		STR 	12H 			//0036 	0192
+
+		//;TEST_61F02x_Timer2.c: 82: TMR2 = 0;
+		CLRR 	11H 			//0037 	0111
+
+		//;TEST_61F02x_Timer2.c: 83: PR2 = 200;
+		LDWI 	C8H 			//0038 	2AC8
+		BSR 	STATUS,5 		//0039 	1A83
+		STR 	12H 			//003A 	0192
+
+		//;TEST_61F02x_Timer2.c: 85: TMR2IF = 0;
+		BCR 	STATUS,5 		//003B 	1283
+		ORG		003CH
+		BCR 	CH,1 			//003C 	108C
+
+		//;TEST_61F02x_Timer2.c: 86: TMR2IE = 1;
+		BSR 	STATUS,5 		//003D 	1A83
+		BSR 	CH,1 			//003E 	188C
+
+		//;TEST_61F02x_Timer2.c: 87: TMR2ON = 1;
+		BCR 	STATUS,5 		//003F 	1283
+		BSR 	12H,2 			//0040 	1912
+
+		//;TEST_61F02x_Timer2.c: 88: PEIE = 1;
+		BSR 	INTCON,6 		//0041 	1B0B
+
+		//;TEST_61F02x_Timer2.c: 89: GIE = 1;
+		BSR 	INTCON,7 		//0042 	1B8B
+		RET		 					//0043 	0004
+		ORG		0044H
+
+		//;TEST_61F02x_Timer2.c: 99: POWER_INITIAL();
+		LCALL 	DH 			//0044 	300D
+
+		//;TEST_61F02x_Timer2.c: 100: TIMER2_INITIAL();
+		LCALL 	35H 			//0045 	3035
+		LJUMP 	49H 			//0046 	3849
+
+		//;TEST_61F02x_Timer2.c: 105: {
+		//;TEST_61F02x_Timer2.c: 106: TMR2IE = 1;
+		BSR 	STATUS,5 		//0047 	1A83
+		BSR 	CH,1 			//0048 	188C
+
+		//;TEST_61F02x_Timer2.c: 107: }
+		//;TEST_61F02x_Timer2.c: 103: {
+		//;TEST_61F02x_Timer2.c: 104: if(PC3 == 1)
+		BCR 	STATUS,5 		//0049 	1283
+		BTSC 	7H,3 			//004A 	1587
+		LJUMP 	47H 			//004B 	3847
+		ORG		004CH
+
+		//;TEST_61F02x_Timer2.c: 108: else
+		//;TEST_61F02x_Timer2.c: 109: {
+		//;TEST_61F02x_Timer2.c: 110: TMR2IE = 0;
+		BSR 	STATUS,5 		//004C 	1A83
+		BCR 	CH,1 			//004D 	108C
+
+		//;TEST_61F02x_Timer2.c: 111: PA3 = 1;
+		BCR 	STATUS,5 		//004E 	1283
+		BSR 	5H,3 			//004F 	1985
+		LJUMP 	49H 			//0050 	3849
+			END

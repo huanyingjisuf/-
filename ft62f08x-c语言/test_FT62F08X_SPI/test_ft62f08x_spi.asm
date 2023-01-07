@@ -1,0 +1,384 @@
+//Deviec:FT62F08X
+//-----------------------Variable---------------------------------
+		_SPIReadData		EQU		77H
+		_SPIReadData1		EQU		76H
+//		SPI_Write@addr		EQU		73H
+//		SPI_Write@dat		EQU		75H
+//		SPI_Read@spidata		EQU		75H
+//		SPI_Read@addr		EQU		73H
+//		SPI_ReadStatus@status		EQU		72H
+//		SPI_RW@data		EQU		70H
+//		SPI_RW@spiData		EQU		71H
+//		SPI_RW@data		EQU		C00000H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		MOVLP 	0H 			//0000 	0180
+		LJUMP 	8H 			//0001 	3808
+		ORG		0003H
+		NOP 					//0003 	1000
+		BSR 	7EH, 0H 			//0005 	247E
+		MOVLP 	0H 			//0006 	0180
+		BCR 	7EH, 0H 			//0007 	207E
+		RETI 					//0008 	1009
+		MOVLP 	0H 			//0008 	0180
+		LJUMP 	AH 			//0009 	380A
+		CLRF 	76H 			//000A 	11F6
+		ORG		000BH
+		CLRF 	77H 			//000B 	11F7
+		BCR 	7EH, 0H 			//000C 	207E
+		MOVLB 	0H 			//000D 	1020
+		LJUMP 	FH 			//000E 	380F
+
+		//;test_FT62F08X_SPI.C: 292: SPIReadData=0;
+		CLRF 	77H 			//000F 	11F7
+
+		//;test_FT62F08X_SPI.C: 293: SPIReadData1=0;
+		CLRF 	76H 			//0010 	11F6
+
+		//;test_FT62F08X_SPI.C: 294: POWER_INITIAL();
+		LCALL 	77H 			//0011 	3077
+		MOVLP 	0H 			//0012 	0180
+		ORG		0013H
+
+		//;test_FT62F08X_SPI.C: 295: SPI_INITIAL();
+		LCALL 	A1H 			//0013 	30A1
+		MOVLP 	0H 			//0014 	0180
+
+		//;test_FT62F08X_SPI.C: 297: SPI_Write(0x0013,0x55);
+		LDWI 	13H 			//0015 	0013
+		STR 	73H 			//0016 	10F3
+		LDWI 	55H 			//0017 	0055
+		CLRF 	74H 			//0018 	11F4
+		STR 	75H 			//0019 	10F5
+		LCALL 	46H 			//001A 	3046
+		ORG		001BH
+		MOVLP 	0H 			//001B 	0180
+
+		//;test_FT62F08X_SPI.C: 298: SPI_Write(0x0014,0x88);
+		LDWI 	14H 			//001C 	0014
+		STR 	73H 			//001D 	10F3
+		LDWI 	88H 			//001E 	0088
+		CLRF 	74H 			//001F 	11F4
+		STR 	75H 			//0020 	10F5
+		LCALL 	46H 			//0021 	3046
+		MOVLP 	0H 			//0022 	0180
+		ORG		0023H
+
+		//;test_FT62F08X_SPI.C: 300: SPIReadData = SPI_Read(0x0013);
+		LDWI 	13H 			//0023 	0013
+		STR 	73H 			//0024 	10F3
+		CLRF 	74H 			//0025 	11F4
+		LCALL 	32H 			//0026 	3032
+		MOVLP 	0H 			//0027 	0180
+		STR 	77H 			//0028 	10F7
+
+		//;test_FT62F08X_SPI.C: 301: __nop();
+		NOP 					//0029 	1000
+
+		//;test_FT62F08X_SPI.C: 302: SPIReadData1 = SPI_Read(0x0014);
+		LDWI 	14H 			//002A 	0014
+		ORG		002BH
+		STR 	73H 			//002B 	10F3
+		CLRF 	74H 			//002C 	11F4
+		LCALL 	32H 			//002D 	3032
+		MOVLP 	0H 			//002E 	0180
+		STR 	76H 			//002F 	10F6
+
+		//;test_FT62F08X_SPI.C: 305: {
+		//;test_FT62F08X_SPI.C: 306: __nop();
+		NOP 					//0030 	1000
+		LJUMP 	30H 			//0031 	3830
+
+		//;test_FT62F08X_SPI.C: 140: unsigned char spidata;
+		//;test_FT62F08X_SPI.C: 141: while(SPI_ReadStatus()&0x01);
+		LCALL 	6DH 			//0032 	306D
+		ORG		0033H
+		MOVLP 	0H 			//0033 	0180
+		ANDWI 	1H 			//0034 	0901
+		BTSS 	3H, 2H 			//0035 	2D03
+		LJUMP 	32H 			//0036 	3832
+
+		//;test_FT62F08X_SPI.C: 142: NSSM0=0;
+		BCR 	16H, 2H 			//0037 	2116
+
+		//;test_FT62F08X_SPI.C: 143: SPI_RW(0x03);
+		LDWI 	3H 			//0038 	0003
+		LCALL 	63H 			//0039 	3063
+		MOVLP 	0H 			//003A 	0180
+		ORG		003BH
+
+		//;test_FT62F08X_SPI.C: 144: SPI_RW((unsigned char)((addr)>>8));
+		LDR 	74H, 0H 			//003B 	1874
+		LCALL 	63H 			//003C 	3063
+		MOVLP 	0H 			//003D 	0180
+
+		//;test_FT62F08X_SPI.C: 145: SPI_RW((unsigned char)addr);
+		LDR 	73H, 0H 			//003E 	1873
+		LCALL 	63H 			//003F 	3063
+		MOVLP 	0H 			//0040 	0180
+
+		//;test_FT62F08X_SPI.C: 146: spidata = SPI_RW(0x00);
+		LDWI 	0H 			//0041 	0000
+		LCALL 	63H 			//0042 	3063
+		ORG		0043H
+		STR 	75H 			//0043 	10F5
+
+		//;test_FT62F08X_SPI.C: 147: NSSM0=1;
+		BSR 	16H, 2H 			//0044 	2516
+
+		//;test_FT62F08X_SPI.C: 148: return spidata;
+		RET 					//0045 	1008
+
+		//;test_FT62F08X_SPI.C: 157: while(SPI_ReadStatus()&0x01);
+		LCALL 	6DH 			//0046 	306D
+		MOVLP 	0H 			//0047 	0180
+		ANDWI 	1H 			//0048 	0901
+		BTSS 	3H, 2H 			//0049 	2D03
+		LJUMP 	46H 			//004A 	3846
+		ORG		004BH
+
+		//;test_FT62F08X_SPI.C: 158: WriteEnable();
+		LCALL 	B5H 			//004B 	30B5
+		MOVLP 	0H 			//004C 	0180
+
+		//;test_FT62F08X_SPI.C: 159: NSSM0=0;
+		BCR 	16H, 2H 			//004D 	2116
+
+		//;test_FT62F08X_SPI.C: 160: SPI_RW(0x02);
+		LDWI 	2H 			//004E 	0002
+		LCALL 	63H 			//004F 	3063
+		MOVLP 	0H 			//0050 	0180
+
+		//;test_FT62F08X_SPI.C: 161: SPI_RW((unsigned char)((addr)>>8));
+		LDR 	74H, 0H 			//0051 	1874
+		LCALL 	63H 			//0052 	3063
+		ORG		0053H
+		MOVLP 	0H 			//0053 	0180
+
+		//;test_FT62F08X_SPI.C: 162: SPI_RW((unsigned char)addr);
+		LDR 	73H, 0H 			//0054 	1873
+		LCALL 	63H 			//0055 	3063
+		MOVLP 	0H 			//0056 	0180
+
+		//;test_FT62F08X_SPI.C: 164: SPI_RW(dat);
+		LDR 	75H, 0H 			//0057 	1875
+		LCALL 	63H 			//0058 	3063
+		MOVLP 	0H 			//0059 	0180
+
+		//;test_FT62F08X_SPI.C: 165: NSSM0=1;
+		BSR 	16H, 2H 			//005A 	2516
+		ORG		005BH
+
+		//;test_FT62F08X_SPI.C: 166: WriteDisable();
+		LCALL 	B0H 			//005B 	30B0
+		MOVLP 	0H 			//005C 	0180
+
+		//;test_FT62F08X_SPI.C: 167: while(SPI_ReadStatus()&0x01);
+		LCALL 	6DH 			//005D 	306D
+		MOVLP 	0H 			//005E 	0180
+		ANDWI 	1H 			//005F 	0901
+		BTSC 	3H, 2H 			//0060 	2903
+		RET 					//0061 	1008
+		LJUMP 	5DH 			//0062 	385D
+		ORG		0063H
+		STR 	70H 			//0063 	10F0
+
+		//;test_FT62F08X_SPI.C: 77: unsigned char spiData;
+		//;test_FT62F08X_SPI.C: 79: while(BUSY);
+		BTSC 	17H, 7H 		//0064 	2B97
+		LJUMP 	64H 			//0065 	3864
+
+		//;test_FT62F08X_SPI.C: 80: SPIDATA = data;
+		LDR 	70H, 0H 			//0066 	1870
+		STR 	15H 			//0067 	1095
+
+		//;test_FT62F08X_SPI.C: 81: while(RXBMT);
+		BTSC 	17H, 0H 		//0068 	2817
+		LJUMP 	68H 			//0069 	3868
+
+		//;test_FT62F08X_SPI.C: 82: spiData = SPIDATA;
+		LDR 	15H, 0H 			//006A 	1815
+		ORG		006BH
+		STR 	71H 			//006B 	10F1
+
+		//;test_FT62F08X_SPI.C: 83: return spiData;
+		RET 					//006C 	1008
+
+		//;test_FT62F08X_SPI.C: 113: NSSM0=0;
+		MOVLB 	0H 			//006D 	1020
+		BCR 	16H, 2H 			//006E 	2116
+
+		//;test_FT62F08X_SPI.C: 114: SPI_RW(0x05);
+		LDWI 	5H 			//006F 	0005
+		LCALL 	63H 			//0070 	3063
+		MOVLP 	0H 			//0071 	0180
+
+		//;test_FT62F08X_SPI.C: 115: status = SPI_RW(0x00);
+		LDWI 	0H 			//0072 	0000
+		ORG		0073H
+		LCALL 	63H 			//0073 	3063
+		STR 	72H 			//0074 	10F2
+
+		//;test_FT62F08X_SPI.C: 116: NSSM0=1;
+		BSR 	16H, 2H 			//0075 	2516
+
+		//;test_FT62F08X_SPI.C: 117: return status;
+		RET 					//0076 	1008
+
+		//;test_FT62F08X_SPI.C: 37: OSCCON = 0B01110001;
+		LDWI 	71H 			//0077 	0071
+		MOVLB 	1H 			//0078 	1021
+		STR 	19H 			//0079 	1099
+
+		//;test_FT62F08X_SPI.C: 38: INTCON = 0;
+		CLRF 	BH 			//007A 	118B
+		ORG		007BH
+
+		//;test_FT62F08X_SPI.C: 40: PORTA = 0B00000000;
+		MOVLB 	0H 			//007B 	1020
+		CLRF 	CH 			//007C 	118C
+
+		//;test_FT62F08X_SPI.C: 41: TRISA = 0B00000010;
+		LDWI 	2H 			//007D 	0002
+		MOVLB 	1H 			//007E 	1021
+		STR 	CH 			//007F 	108C
+
+		//;test_FT62F08X_SPI.C: 42: PORTB = 0B00000000;
+		MOVLB 	0H 			//0080 	1020
+		CLRF 	DH 			//0081 	118D
+
+		//;test_FT62F08X_SPI.C: 43: TRISB = 0B00000000;
+		MOVLB 	1H 			//0082 	1021
+		ORG		0083H
+		CLRF 	DH 			//0083 	118D
+
+		//;test_FT62F08X_SPI.C: 44: PORTC = 0B00000000;
+		MOVLB 	0H 			//0084 	1020
+		CLRF 	EH 			//0085 	118E
+
+		//;test_FT62F08X_SPI.C: 45: TRISC = 0B00000000;
+		MOVLB 	1H 			//0086 	1021
+		CLRF 	EH 			//0087 	118E
+
+		//;test_FT62F08X_SPI.C: 46: PORTD = 0B00000000;
+		MOVLB 	0H 			//0088 	1020
+		CLRF 	FH 			//0089 	118F
+
+		//;test_FT62F08X_SPI.C: 47: TRISD = 0B00000000;
+		MOVLB 	1H 			//008A 	1021
+		ORG		008BH
+		CLRF 	FH 			//008B 	118F
+
+		//;test_FT62F08X_SPI.C: 49: WPUA = 0B00000010;
+		MOVLB 	3H 			//008C 	1023
+		STR 	CH 			//008D 	108C
+
+		//;test_FT62F08X_SPI.C: 50: WPUB = 0B00000000;
+		CLRF 	DH 			//008E 	118D
+
+		//;test_FT62F08X_SPI.C: 51: WPUC = 0B00000000;
+		CLRF 	EH 			//008F 	118E
+
+		//;test_FT62F08X_SPI.C: 52: WPUD = 0B00000000;
+		CLRF 	FH 			//0090 	118F
+
+		//;test_FT62F08X_SPI.C: 54: WPDA = 0B00000000;
+		MOVLB 	4H 			//0091 	1024
+		CLRF 	CH 			//0092 	118C
+		ORG		0093H
+
+		//;test_FT62F08X_SPI.C: 55: WPDB = 0B00000000;
+		CLRF 	DH 			//0093 	118D
+
+		//;test_FT62F08X_SPI.C: 56: WPDC = 0B00000000;
+		CLRF 	EH 			//0094 	118E
+
+		//;test_FT62F08X_SPI.C: 57: WPDD = 0B00000000;
+		CLRF 	FH 			//0095 	118F
+
+		//;test_FT62F08X_SPI.C: 59: PSRC0 = 0B11111111;
+		LDWI 	FFH 			//0096 	00FF
+		MOVLB 	2H 			//0097 	1022
+		STR 	1AH 			//0098 	109A
+
+		//;test_FT62F08X_SPI.C: 60: PSRC1 = 0B11111111;
+		STR 	1BH 			//0099 	109B
+
+		//;test_FT62F08X_SPI.C: 62: PSINK0 = 0B11111111;
+		MOVLB 	3H 			//009A 	1023
+		ORG		009BH
+		STR 	1AH 			//009B 	109A
+
+		//;test_FT62F08X_SPI.C: 63: PSINK1 = 0B11111111;
+		STR 	1BH 			//009C 	109B
+
+		//;test_FT62F08X_SPI.C: 64: PSINK2 = 0B11111111;
+		STR 	1CH 			//009D 	109C
+
+		//;test_FT62F08X_SPI.C: 65: PSINK3 = 0B11111111;
+		STR 	1DH 			//009E 	109D
+
+		//;test_FT62F08X_SPI.C: 67: ANSELA = 0B00000000;
+		CLRF 	17H 			//009F 	1197
+		RET 					//00A0 	1008
+
+		//;test_FT62F08X_SPI.C: 177: PCKEN |= 0B00010000;
+		MOVLB 	1H 			//00A1 	1021
+		BSR 	1AH, 4H 			//00A2 	261A
+		ORG		00A3H
+
+		//;test_FT62F08X_SPI.C: 178: SPICTRL = 0B00001000;
+		LDWI 	8H 			//00A3 	0008
+		MOVLB 	0H 			//00A4 	1020
+		STR 	16H 			//00A5 	1096
+
+		//;test_FT62F08X_SPI.C: 210: SPICFG = 0B01000000;
+		LDWI 	40H 			//00A6 	0040
+		STR 	17H 			//00A7 	1097
+
+		//;test_FT62F08X_SPI.C: 243: SPISCR = 0B00000000;
+		CLRF 	18H 			//00A8 	1198
+
+		//;test_FT62F08X_SPI.C: 244: SPIRXCRC = 0B00000000;
+		CLRF 	1AH 			//00A9 	119A
+
+		//;test_FT62F08X_SPI.C: 245: SPITXCRC = 0B00000000;
+		CLRF 	1BH 			//00AA 	119B
+		ORG		00ABH
+
+		//;test_FT62F08X_SPI.C: 246: SPIIER = 0B00000000;
+		CLRF 	1CH 			//00AB 	119C
+
+		//;test_FT62F08X_SPI.C: 247: SPICTRL2 = 0B00000000;
+		CLRF 	1DH 			//00AC 	119D
+
+		//;test_FT62F08X_SPI.C: 280: SPISTAT = 0B00000000;
+		CLRF 	1EH 			//00AD 	119E
+
+		//;test_FT62F08X_SPI.C: 282: SPIEN=1;
+		BSR 	16H, 0H 			//00AE 	2416
+		RET 					//00AF 	1008
+
+		//;test_FT62F08X_SPI.C: 101: NSSM0=0;
+		BCR 	16H, 2H 			//00B0 	2116
+
+		//;test_FT62F08X_SPI.C: 102: SPI_RW(0x04);
+		LDWI 	4H 			//00B1 	0004
+		LCALL 	63H 			//00B2 	3063
+		ORG		00B3H
+
+		//;test_FT62F08X_SPI.C: 103: NSSM0=1;
+		BSR 	16H, 2H 			//00B3 	2516
+		RET 					//00B4 	1008
+
+		//;test_FT62F08X_SPI.C: 91: NSSM0=0;
+		BCR 	16H, 2H 			//00B5 	2116
+
+		//;test_FT62F08X_SPI.C: 92: SPI_RW(0x06);
+		LDWI 	6H 			//00B6 	0006
+		LCALL 	63H 			//00B7 	3063
+
+		//;test_FT62F08X_SPI.C: 93: NSSM0=1;
+		BSR 	16H, 2H 			//00B8 	2516
+		RET 					//00B9 	1008
+			END

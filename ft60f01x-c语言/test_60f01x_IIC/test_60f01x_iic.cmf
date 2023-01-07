@@ -1,0 +1,387 @@
+%CMF
+# %PSECTS Section
+# For each object file, details of its psects are enumerated here.
+# The begining of the section is indicated by %PSECTS.  The first
+# line indicates the name of the first object file, e.g.
+#    $foo.obj
+# Each line that follows describes a psect in that object file, until
+# the next object file.  The lines that describe a psect have the
+# format:
+#    <psect name> <class name> <space> <link address> <load addresses> <length> <delta>
+# All addresses and the length are given in unqualified hexadecimal
+# in delta units.  Any other numeric values are decimal.
+%PSECTS
+$C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+end_init CODE 0 0 0 1 2
+$test_60f01x_iic.obj
+cinit CODE 0 3FE 3FE 2 2
+text1 CODE 0 33E 33E E 2
+text2 CODE 0 379 379 15 2
+text3 CODE 0 3BD 3BD 1A 2
+text4 CODE 0 38E 38E 17 2
+text5 CODE 0 36A 36A F 2
+text6 CODE 0 35B 35B F 2
+text7 CODE 0 3D7 3D7 27 2
+text8 CODE 0 3A5 3A5 18 2
+text9 CODE 0 34C 34C F 2
+nvCOMMON COMMON 1 77 77 1 1
+text10 CODE 0 32B 32B 9 2
+maintext CODE 0 334 334 A 2
+cstackCOMMON COMMON 1 70 70 7 1
+# %UNUSED Section
+# This section enumerates the unused ranges of each CLASS. Each entry
+# is described on a single line as follows:
+#    <class name> <range> <delta>
+# Addresses given in the range are in hexadecimal and units of delta.
+%UNUSED
+RAM 40-6F 1
+BANK0 40-6F 1
+CONST 1-32A 2
+ENTRY 1-32A 2
+IDLOC 2000-2003 2
+STACK 40-6F 1
+CODE 1-32A 2
+SFR0 0-3F 1
+SFR1 80-EF 1
+COMMON 78-7D 1
+CONFIG 2007-2007 2
+EEDATA 2100-21FF 2
+STRCODE 1-32A 2
+STRING 1-32A 2
+# %LINETAB Section
+# This section enumerates the file/line to address mappings.
+# The beginning of the section is indicated by %LINETAB.
+# The first line indicates the name of the first object file, e.g.
+#   $foo.obj
+# Each line that follows describes a single mapping until the next
+# object file.  Mappings have the following format:
+#    <address> <psect name> <class name> ><line number>:<file name>
+# The address is absolute and given given in unqualified hex 
+# in delta units of the psect. All mappings within an object file
+# are in ascending order of addresses.
+# All other numeric values are in decimal.
+%LINETAB
+$test_60f01x_iic.obj
+3FE cinit CODE >78:C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.
+3FE cinit CODE >81:C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.
+3FE cinit CODE >87:C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.
+3FE cinit CODE >89:C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.
+3FF cinit CODE >90:C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.
+32B text10 CODE >58:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+32C text10 CODE >61:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+331 text10 CODE >63:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+332 text10 CODE >61:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+34C text9 CODE >149:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+34C text9 CODE >151:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+34E text9 CODE >152:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+350 text9 CODE >153:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+352 text9 CODE >154:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+354 text9 CODE >155:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+356 text9 CODE >156:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+358 text9 CODE >157:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+35A text9 CODE >158:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A5 text8 CODE >190:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A5 text8 CODE >192:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A6 text8 CODE >193:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A8 text8 CODE >194:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A9 text8 CODE >195:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A9 text8 CODE >196:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3AB text8 CODE >197:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3AD text8 CODE >198:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3AF text8 CODE >199:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3B1 text8 CODE >200:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3B3 text8 CODE >201:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3B5 text8 CODE >194:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3BA text8 CODE >203:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3BB text8 CODE >205:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3BC text8 CODE >206:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3D7 text7 CODE >165:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3D8 text7 CODE >168:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3DA text7 CODE >169:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3DC text7 CODE >170:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3DD text7 CODE >172:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3E7 text7 CODE >173:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3EA text7 CODE >174:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3EA text7 CODE >175:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3EC text7 CODE >177:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3ED text7 CODE >176:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3EF text7 CODE >177:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3F0 text7 CODE >178:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3F2 text7 CODE >179:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3F4 text7 CODE >180:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3F6 text7 CODE >181:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3F8 text7 CODE >170:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+35B text6 CODE >72:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+35B text6 CODE >74:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+35D text6 CODE >75:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+35F text6 CODE >76:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+360 text6 CODE >77:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+362 text6 CODE >78:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+364 text6 CODE >79:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+366 text6 CODE >80:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+368 text6 CODE >81:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+36A text5 CODE >89:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+36A text5 CODE >91:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+36C text5 CODE >92:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+36E text5 CODE >93:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+36F text5 CODE >94:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+371 text5 CODE >95:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+373 text5 CODE >96:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+375 text5 CODE >97:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+377 text5 CODE >98:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+38E text4 CODE >107:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+38E text4 CODE >109:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+38F text4 CODE >110:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+391 text4 CODE >111:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+393 text4 CODE >112:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+395 text4 CODE >113:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+397 text4 CODE >114:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+399 text4 CODE >115:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+399 text4 CODE >123:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+39C text4 CODE >118:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+39D text4 CODE >117:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+39E text4 CODE >118:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A1 text4 CODE >120:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A2 text4 CODE >121:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A3 text4 CODE >115:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A3 text4 CODE >124:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3A4 text4 CODE >125:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3BD text3 CODE >213:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3BE text3 CODE >217:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3BF text3 CODE >218:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3C1 text3 CODE >219:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3C5 text3 CODE >220:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3C7 text3 CODE >221:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3CB text3 CODE >222:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3CC text3 CODE >223:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3CE text3 CODE >224:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3D2 text3 CODE >225:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3D4 text3 CODE >226:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3D5 text3 CODE >227:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+3D6 text3 CODE >228:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+379 text2 CODE >235:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+37A text2 CODE >237:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+37A text2 CODE >238:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+37B text2 CODE >239:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+37D text2 CODE >240:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+381 text2 CODE >242:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+383 text2 CODE >243:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+387 text2 CODE >245:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+389 text2 CODE >246:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+38D text2 CODE >248:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+33E text1 CODE >36:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+33E text1 CODE >38:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+341 text1 CODE >40:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+342 text1 CODE >41:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+344 text1 CODE >43:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+346 text1 CODE >44:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+348 text1 CODE >46:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+349 text1 CODE >47:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+34B text1 CODE >51:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+334 maintext CODE >257:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+334 maintext CODE >259:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+335 maintext CODE >261:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+338 maintext CODE >262:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+33C maintext CODE >265:D:\FMD demo 11-19\C(Word+PDF)\FT60F01x\test_60f01x_IIC\test_60f01x_IIC.C
+# %SYMTAB Section
+# An enumeration of all symbols in the program.
+# The beginning of the section is indicated by %SYMTAB.
+# Each line describes a single symbol as follows:
+#    <label> <value> [-]<load-adj> <class> <space> <psect> <file-name>
+# The value and load-adj are both in unqualified hexadecimal.
+# All other numeric values are in decimal.  The load-adj is the
+# quantity one needs to add to the symbol value in order to obtain the load
+# address of the symbol.  This value may be signed. If the symbol
+# was defined in a psect then <psect> will be "-". File-name
+# is the name of the object file in which the symbol was defined.
+%SYMTAB
+___latbits 0 0 ABS 0 - test_60f01x_iic.obj
+__size_of_DelayUs 0 0 ABS 0 - test_60f01x_iic.obj
+__size_of_IIC_NAck 0 0 ABS 0 - test_60f01x_iic.obj
+__size_of_IIC_READ 0 0 ABS 0 - test_60f01x_iic.obj
+__size_of_IIC_Stop 0 0 ABS 0 - test_60f01x_iic.obj
+__Hspace_0 400 0 ABS 0 - -
+__Hspace_1 78 0 ABS 0 - -
+__Hspace_2 0 0 ABS 0 - -
+__Hspace_3 0 0 ABS 0 - -
+_IIC_Send_Byte 7AE 0 CODE 0 text7 test_60f01x_iic.obj
+_POWER_INITIAL 67C 0 CODE 0 text1 test_60f01x_iic.obj
+__Heeprom_data 0 0 EEDATA 3 eeprom_data -
+__Hstrings 0 0 ABS 0 strings -
+_WPUA 95 0 ABS 0 - test_60f01x_iic.obj
+___sp 0 0 STACK 2 stack C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+_main 668 0 CODE 0 maintext test_60f01x_iic.obj
+btemp 7E 0 ABS 0 - test_60f01x_iic.obj
+start 0 0 CODE 0 init C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+__size_of_main 0 0 ABS 0 - test_60f01x_iic.obj
+IIC_Send_Byte@txd 73 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+_MSCKCON 1B 0 ABS 0 - test_60f01x_iic.obj
+DelayUs@Time 70 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+__Hpowerup 0 0 CODE 0 powerup -
+IIC_WRITE@address 76 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+__LnvCOMMON 0 0 ABS 0 nvCOMMON -
+_IIC_NAck 698 0 CODE 0 text9 test_60f01x_iic.obj
+_IIC_READ 77A 0 CODE 0 text3 test_60f01x_iic.obj
+_IIC_Stop 6D4 0 CODE 0 text5 test_60f01x_iic.obj
+intlevel0 0 0 ENTRY 0 functab C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+intlevel1 0 0 ENTRY 0 functab C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+intlevel2 0 0 ENTRY 0 functab C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+intlevel3 0 0 ENTRY 0 functab C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+intlevel4 0 0 ENTRY 0 functab C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+intlevel5 0 0 ENTRY 0 functab C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+_IICReadData 77 0 COMMON 1 nvCOMMON test_60f01x_iic.obj
+wtemp0 7E 0 ABS 0 - test_60f01x_iic.obj
+__Hfunctab 0 0 ENTRY 0 functab -
+__end_of_IIC_NAck 6B6 0 CODE 0 text9 test_60f01x_iic.obj
+__end_of_IIC_READ 7AE 0 CODE 0 text3 test_60f01x_iic.obj
+__end_of_IIC_Stop 6F2 0 CODE 0 text5 test_60f01x_iic.obj
+__Hclrtext 0 0 ABS 0 clrtext -
+__end_of_DelayUs 668 0 CODE 0 text10 test_60f01x_iic.obj
+__Hpa_nodes0 0 0 ABS 0 pa_nodes0 -
+__size_of_IIC_Send_Byte 0 0 ABS 0 - test_60f01x_iic.obj
+__size_of_POWER_INITIAL 0 0 ABS 0 - test_60f01x_iic.obj
+__Lmaintext 0 0 ABS 0 maintext -
+_INTCON B 0 ABS 0 - test_60f01x_iic.obj
+__end_of_IIC_Start 6D4 0 CODE 0 text6 test_60f01x_iic.obj
+__end_of_IIC_WRITE 71C 0 CODE 0 text2 test_60f01x_iic.obj
+__Lpa_nodes0 0 0 ABS 0 pa_nodes0 -
+__size_of_IIC_Start 0 0 ABS 0 - test_60f01x_iic.obj
+__size_of_IIC_WRITE 0 0 ABS 0 - test_60f01x_iic.obj
+__end_of_IIC_Send_Byte 7FC 0 CODE 0 text7 test_60f01x_iic.obj
+__end_of_POWER_INITIAL 698 0 CODE 0 text1 test_60f01x_iic.obj
+__HnvCOMMON 0 0 ABS 0 nvCOMMON -
+start_initialization 7FC 0 CODE 0 cinit test_60f01x_iic.obj
+_OPTION 81 0 ABS 0 - test_60f01x_iic.obj
+_OSCCON 8F 0 ABS 0 - test_60f01x_iic.obj
+_IIC_Start 6B6 0 CODE 0 text6 test_60f01x_iic.obj
+_IIC_WRITE 6F2 0 CODE 0 text2 test_60f01x_iic.obj
+IIC_Send_Byte@t 74 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+_TRISA2 42A 0 ABS 0 - test_60f01x_iic.obj
+IIC_Read_Byte@receive 72 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+___int_sp 0 0 STACK 2 stack C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+__Hbank0 0 0 ABS 0 bank0 -
+__Hbank1 0 0 BANK1 1 bank1 -
+__Hcinit 800 0 CODE 0 cinit -
+__Hidloc 0 0 IDLOC 0 idloc -
+__Hstack 0 0 STACK 2 stack -
+__Hmaintext 0 0 ABS 0 maintext -
+__Hcommon 0 0 ABS 0 common -
+__Hconfig 0 0 CONFIG 0 config -
+__Lbank0 0 0 ABS 0 bank0 -
+__Lbank1 0 0 BANK1 1 bank1 -
+__Lcinit 7FC 0 CODE 0 cinit -
+__Lidloc 0 0 IDLOC 0 idloc -
+__Lstack 0 0 STACK 2 stack -
+__Habs1 0 0 ABS 0 abs1 -
+__Hcode 0 0 ABS 0 code -
+__Hinit 0 0 CODE 0 init -
+__Hsfr0 0 0 ABS 0 sfr0 -
+__Hsfr1 0 0 ABS 0 sfr1 -
+__Htext 0 0 ABS 0 text -
+__Labs1 0 0 ABS 0 abs1 -
+__Lcode 0 0 ABS 0 code -
+__Linit 0 0 CODE 0 init -
+__Lsfr0 0 0 ABS 0 sfr0 -
+__Lsfr1 0 0 ABS 0 sfr1 -
+__Ltext 0 0 ABS 0 text -
+__HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+_PA2 2A 0 ABS 0 - test_60f01x_iic.obj
+_PA4 2C 0 ABS 0 - test_60f01x_iic.obj
+__S0 400 0 ABS 0 - -
+__S1 78 0 ABS 0 - -
+__S2 0 0 ABS 0 - -
+__S3 0 0 ABS 0 - -
+DelayUs@a 71 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+__pnvCOMMON 77 0 COMMON 1 nvCOMMON test_60f01x_iic.obj
+IIC_READ@address 75 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+_DelayUs 656 0 CODE 0 text10 test_60f01x_iic.obj
+__Lintentry 0 0 CODE 0 intentry -
+reset_vec 0 0 CODE 0 reset_vec C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+_IIC_Wait_Ack 71C 0 CODE 0 text4 test_60f01x_iic.obj
+__ptext10 656 0 CODE 0 text10 test_60f01x_iic.obj
+__pmaintext 668 0 CODE 0 maintext test_60f01x_iic.obj
+__Lcommon 0 0 ABS 0 common -
+__Lconfig 0 0 CONFIG 0 config -
+_IIC_Read_Byte 74A 0 CODE 0 text8 test_60f01x_iic.obj
+stackhi 0 0 ABS 0 - C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+stacklo 0 0 ABS 0 - C:\Users\ALEXAN~1.WAN\AppData\Local\Temp\sfrc.obj
+__size_of_IIC_Wait_Ack 0 0 ABS 0 - test_60f01x_iic.obj
+__Lspace_0 0 0 ABS 0 - -
+__Lspace_1 0 0 ABS 0 - -
+__Lspace_2 0 0 ABS 0 - -
+__Lspace_3 0 0 ABS 0 - -
+__Lend_init 0 0 CODE 0 end_init -
+__LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
+end_of_initialization 7FC 0 CODE 0 cinit test_60f01x_iic.obj
+__Hintentry 0 0 CODE 0 intentry -
+__Lstrings 0 0 ABS 0 strings -
+__Hreset_vec 0 0 CODE 0 reset_vec -
+__end_of_IIC_Wait_Ack 74A 0 CODE 0 text4 test_60f01x_iic.obj
+__ptext1 67C 0 CODE 0 text1 test_60f01x_iic.obj
+__ptext2 6F2 0 CODE 0 text2 test_60f01x_iic.obj
+__ptext3 77A 0 CODE 0 text3 test_60f01x_iic.obj
+__ptext4 71C 0 CODE 0 text4 test_60f01x_iic.obj
+__ptext5 6D4 0 CODE 0 text5 test_60f01x_iic.obj
+__ptext6 6B6 0 CODE 0 text6 test_60f01x_iic.obj
+__ptext7 7AE 0 CODE 0 text7 test_60f01x_iic.obj
+__ptext8 74A 0 CODE 0 text8 test_60f01x_iic.obj
+__ptext9 698 0 CODE 0 text9 test_60f01x_iic.obj
+__Lpowerup 0 0 CODE 0 powerup -
+__Leeprom_data 0 0 EEDATA 3 eeprom_data -
+__Lreset_vec 0 0 CODE 0 reset_vec -
+IIC_WRITE@data 75 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+__end_of__initialization 7FC 0 CODE 0 cinit test_60f01x_iic.obj
+__Lfunctab 0 0 ENTRY 0 functab -
+__size_of_IIC_Read_Byte 0 0 ABS 0 - test_60f01x_iic.obj
+__Lclrtext 0 0 ABS 0 clrtext -
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+__Hend_init 2 0 CODE 0 end_init -
+__end_of_main 67C 0 CODE 0 maintext test_60f01x_iic.obj
+_PORTA 5 0 ABS 0 - test_60f01x_iic.obj
+_TRISA 85 0 ABS 0 - test_60f01x_iic.obj
+__Hram 0 0 ABS 0 ram -
+__Lram 0 0 ABS 0 ram -
+IIC_Read_Byte@i 73 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+__end_of_IIC_Read_Byte 77A 0 CODE 0 text8 test_60f01x_iic.obj
+__initialization 7FC 0 CODE 0 cinit test_60f01x_iic.obj
+IIC_READ@iicdata 76 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+IIC_Wait_Ack@ucErrTime 72 0 COMMON 1 cstackCOMMON test_60f01x_iic.obj
+# %SPLITSTAB Section
+# This section enumerates all the psect splits performed by the assembler.
+# The beginning of the section is indicated by %SPLITSTAB.
+# Each line is a record a particular split, where the parent psect is on
+# the left and the child on the right.  Note that a child psect is always
+# split form the top of the parent psect. All splits from a given parent
+# are listed in the order in which they occurred.
+%SPLITSTAB
+# %DABS Section
+# This section contains a table of all usuage of the assember
+# directive DABS in the program. Each line has the following format:
+#   <name> <space> <address> <size>
+# If the DABS was originally labelled then that shall be <name>,
+# otherwise name will be "-".  The <space> number is in decimal.
+# <address> and <size> are in byte units as unqaulified hexadecimal
+%DABS
+- 1 7E 2
+# %SEGMENTS Section
+# This sections enumerates the segments of the program.  Each segment
+# is described on a single line as follows:
+#    <name> <space> <link address> <file address> <size> <delta>
+# Addresses and size are in unqualified hexadecimal.  The link address
+# and size are in units of delta. The file address is in units of bytes.
+# All other numeric quantities are in decimal.
+%SEGMENTS
+cinit 0 3FE 7FC 2 2
+text1 0 33E 67C E 2
+text2 0 379 6F2 15 2
+text3 0 3BD 77A 1A 2
+text4 0 38E 71C 17 2
+text5 0 36A 6D4 F 2
+text6 0 35B 6B6 F 2
+text7 0 3D7 7AE 27 2
+text8 0 3A5 74A 18 2
+text9 0 34C 698 F 2
+text10 0 32B 656 9 2
+maintext 0 334 668 A 2
+cstackCOMMON 1 70 70 8 1
+reset_vec 0 0 0 1 2

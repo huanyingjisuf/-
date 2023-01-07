@@ -1,0 +1,1030 @@
+
+
+GNU Macro Assembler for 8 bit devices.       
+                                                                                               Wed Nov 17 17:41:17 2021
+
+GNU C Code Generator                                                 
+     1                           	processor	FT62F08X
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	idataCOMMON,global,class=CODE,delta=2
+     5                           	psect	_ad3nop_text,global,class=CODE,delta=2
+     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     7                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	dataCOMMON,global,class=COMMON,space=1,delta=1
+     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    10                           	psect	intentry,global,class=CODE,delta=2
+    11                           	psect	pa_nodes0,global,class=CODE,delta=2
+    12                           	dabs	1,0x7E,2
+    13  0000                     
+    14                           ; Version 1.45
+    15                           ; Generated 16/11/2017 
+    16                           ; 
+    17                           ; SFR Addresses
+    18  0000                     
+    19                           	psect	idataCOMMON
+    20  0000                     __pidataCOMMON:	
+    21  0003                     _ad3nop_absaddr	set	3
+    22  0003                     _ad3nop_absaddr	set	3
+    23                           
+    24                           	psect	_ad3nop_text
+    25  0003                     __p_ad3nop_text:	
+    26  0003                     _ad3nop:	
+    27  0003  3400               	retlw	0
+    28  0004                     __end_of_ad3nop:	
+    29  0014                     _EPIF0	set	20
+    30  000F                     _PORTD	set	15
+    31  000E                     _PORTC	set	14
+    32  000D                     _PORTB	set	13
+    33  000C                     _PORTA	set	12
+    34  000B                     _INTCON	set	11
+    35  0073                     _PC3	set	115
+    36  006B                     _PB3	set	107
+    37  005F                     _GIE	set	95
+    38  009A                     _PCKEN	set	154
+    39  0099                     _OSCCON	set	153
+    40  0094                     _EPIE0	set	148
+    41  008F                     _TRISD	set	143
+    42  008E                     _TRISC	set	142
+    43  008D                     _TRISB	set	141
+    44  008C                     _TRISA	set	140
+    45  011F                     _ITYPE1	set	287
+    46  011E                     _ITYPE0	set	286
+    47  011B                     _PSRC1	set	283
+    48  011A                     _PSRC0	set	282
+    49  0119                     _EPS1	set	281
+    50  0118                     _EPS0	set	280
+    51  0117                     _TIM4ARR	set	279
+    52  0116                     _TIM4PSCR	set	278
+    53  0115                     _TIM4CNTR	set	277
+    54  0114                     _TIM4EGR	set	276
+    55  0113                     _TIM4SR	set	275
+    56  0112                     _TIM4IER	set	274
+    57  0111                     _TIM4CR1	set	273
+    58  0898                     _T4UIF	set	2200
+    59  0890                     _T4UIE	set	2192
+    60  019D                     _PSINK3	set	413
+    61  019C                     _PSINK2	set	412
+    62  019B                     _PSINK1	set	411
+    63  019A                     _PSINK0	set	410
+    64  0197                     _ANSELA	set	407
+    65  018F                     _WPUD	set	399
+    66  018E                     _WPUC	set	398
+    67  018D                     _WPUB	set	397
+    68  018C                     _WPUA	set	396
+    69  020F                     _WPDD	set	527
+    70  020E                     _WPDC	set	526
+    71  020D                     _WPDB	set	525
+    72  020C                     _WPDA	set	524
+    73                           
+    74                           	psect	cinit
+    75  0043                     start_initialization:	
+    76                           ; #config settings
+    77                           
+    78  0043                     __initialization:	
+    79                           
+    80                           ;initializer for _bitdata
+    81  0043  3001               	movlw	1
+    82  0044  00F9               	movwf	__pdataCOMMON& (0+127)
+    83                           
+    84                           ; Clear objects allocated to COMMON
+    85  0045  01F0               	clrf	__pbssCOMMON& (0+127)
+    86  0046  01F1               	clrf	(__pbssCOMMON+1)& (0+127)
+    87  0047  01F2               	clrf	(__pbssCOMMON+2)& (0+127)
+    88  0048  01F3               	clrf	(__pbssCOMMON+3)& (0+127)
+    89  0049  01F4               	clrf	(__pbssCOMMON+4)& (0+127)
+    90  004A  01F5               	clrf	(__pbssCOMMON+5)& (0+127)
+    91  004B  01F6               	clrf	(__pbssCOMMON+6)& (0+127)
+    92  004C  01F7               	clrf	(__pbssCOMMON+7)& (0+127)
+    93  004D  01F8               	clrf	(__pbssCOMMON+8)& (0+127)
+    94  004E                     end_of_initialization:	
+    95                           ;End of C runtime variable initialization code
+    96                           
+    97  004E                     __end_of__initialization:	
+    98  004E  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+    99  004F  0020               	movlb	0
+   100  0050  2851               	ljmp	_main	;jump to C main() function
+   101  0051                     __pmaintext:	
+   102                           ; 1 bytes @ 0x0
+   103 ;;
+   104 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   105 ;;
+   106 ;; *************** function _main *****************
+   107 ;; Defined at:
+   108 ;;		line 224 in file "test_FT62F08X_IR.C"
+   109 ;; Parameters:    Size  Location     Type
+   110 ;;		None
+   111 ;; Auto vars:     Size  Location     Type
+   112 ;;		None
+   113 ;; Return value:  Size  Location     Type
+   114 ;;                  1    wreg      void 
+   115 ;; Registers used:
+   116 ;;		wreg, status,2, status,0, pclath, cstack
+   117 ;; Tracked objects:
+   118 ;;		On entry : B1F/0
+   119 ;;		On exit  : B1F/0
+   120 ;;		Unchanged: B00/0
+   121 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   122 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   123 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   124 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   125 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   126 ;;Total ram usage:        0 bytes
+   127 ;; Hardware stack levels required when called:    2
+   128 ;; This function calls:
+   129 ;;		_POWER_INITIAL
+   130 ;;		_Px_Level_Change_INITIAL
+   131 ;;		_TIMER4_INITIAL
+   132 ;; This function is called by:
+   133 ;;		Startup code after reset
+   134 ;; This function uses a non-reentrant model
+   135 ;;
+   136                           
+   137                           
+   138                           ;psect for function _main
+   139  0051                     _main:	
+   140                           
+   141                           ;test_FT62F08X_IR.C: 226: POWER_INITIAL();
+   142                           
+   143                           ;incstack = 0
+   144                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   145  0051  206B  3180         	fcall	_POWER_INITIAL
+   146                           
+   147                           ;test_FT62F08X_IR.C: 227: TIMER4_INITIAL();
+   148  0053  20A1  3180         	fcall	_TIMER4_INITIAL
+   149                           
+   150                           ;test_FT62F08X_IR.C: 228: Px_Level_Change_INITIAL();
+   151  0055  2095  3180         	fcall	_Px_Level_Change_INITIAL
+   152                           
+   153                           ;test_FT62F08X_IR.C: 229: GIE = 1;
+   154  0057  178B               	bsf	11,7	;volatile
+   155  0058                     l2897:	
+   156                           
+   157                           ;test_FT62F08X_IR.C: 232: {
+   158                           ;test_FT62F08X_IR.C: 233: if(ReceiveFinish==1)
+   159  0058  0B76               	decfsz	_ReceiveFinish,w
+   160  0059  2858               	goto	l2897
+   161                           
+   162                           ;test_FT62F08X_IR.C: 234: {
+   163                           ;test_FT62F08X_IR.C: 235: ReceiveFinish = 0;
+   164  005A  01F6               	clrf	_ReceiveFinish
+   165                           
+   166                           ;test_FT62F08X_IR.C: 236: rdata1 = 0xFF - IRDataTimer[0];
+   167  005B  0970               	comf	_IRDataTimer,w	;volatile
+   168  005C  00F5               	movwf	_rdata1	;volatile
+   169                           
+   170                           ;test_FT62F08X_IR.C: 237: rdata2 = 0xFF - IRDataTimer[2];
+   171  005D  0972               	comf	_IRDataTimer+2,w	;volatile
+   172  005E  00F4               	movwf	_rdata2	;volatile
+   173                           
+   174                           ;test_FT62F08X_IR.C: 238: if((rdata1 == IRDataTimer[1])&&(rdata2 == IRDataTimer[3]))
+   175  005F  0871               	movf	_IRDataTimer+1,w	;volatile
+   176  0060  0675               	xorwf	_rdata1,w	;volatile
+   177  0061  1D03               	skipz
+   178  0062  2858               	goto	l2897
+   179  0063  0873               	movf	_IRDataTimer+3,w	;volatile
+   180  0064  0674               	xorwf	_rdata2,w	;volatile
+   181  0065  1D03               	skipz
+   182  0066  2858               	goto	l2897
+   183                           
+   184                           ;test_FT62F08X_IR.C: 239: {
+   185                           ;test_FT62F08X_IR.C: 240: PB3 = ~PB3;
+   186  0067  3008               	movlw	8
+   187  0068  0020               	movlb	0	; select bank0
+   188  0069  068D               	xorwf	13,f
+   189  006A  2858               	goto	l2897
+   190  006B                     __end_of_main:	
+   191  006B                     __ptext3:	
+   192 ;; *************** function _POWER_INITIAL *****************
+   193 ;; Defined at:
+   194 ;;		line 35 in file "test_FT62F08X_IR.C"
+   195 ;; Parameters:    Size  Location     Type
+   196 ;;		None
+   197 ;; Auto vars:     Size  Location     Type
+   198 ;;		None
+   199 ;; Return value:  Size  Location     Type
+   200 ;;                  1    wreg      void 
+   201 ;; Registers used:
+   202 ;;		wreg, status,2
+   203 ;; Tracked objects:
+   204 ;;		On entry : B1F/0
+   205 ;;		On exit  : B1F/3
+   206 ;;		Unchanged: B00/0
+   207 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   208 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   209 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   210 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   211 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   212 ;;Total ram usage:        0 bytes
+   213 ;; Hardware stack levels used:    1
+   214 ;; Hardware stack levels required when called:    1
+   215 ;; This function calls:
+   216 ;;		Nothing
+   217 ;; This function is called by:
+   218 ;;		_main
+   219 ;; This function uses a non-reentrant model
+   220 ;;
+   221                           
+   222                           
+   223                           ;psect for function _POWER_INITIAL
+   224  006B                     _POWER_INITIAL:	
+   225                           
+   226                           ;test_FT62F08X_IR.C: 37: OSCCON = 0B01110001;
+   227                           
+   228                           ;incstack = 0
+   229                           ; Regs used in _POWER_INITIAL: [wreg+status,2]
+   230  006B  3071               	movlw	113
+   231  006C  0021               	movlb	1	; select bank1
+   232  006D  0099               	movwf	25	;volatile
+   233                           
+   234                           ;test_FT62F08X_IR.C: 38: INTCON = 0;
+   235  006E  018B               	clrf	11	;volatile
+   236                           
+   237                           ;test_FT62F08X_IR.C: 40: PORTA = 0B00000000;
+   238  006F  0020               	movlb	0	; select bank0
+   239  0070  018C               	clrf	12	;volatile
+   240                           
+   241                           ;test_FT62F08X_IR.C: 41: TRISA = 0B00000000;
+   242  0071  0021               	movlb	1	; select bank1
+   243  0072  018C               	clrf	12	;volatile
+   244                           
+   245                           ;test_FT62F08X_IR.C: 42: PORTB = 0B00000000;
+   246  0073  0020               	movlb	0	; select bank0
+   247  0074  018D               	clrf	13	;volatile
+   248                           
+   249                           ;test_FT62F08X_IR.C: 43: TRISB = 0B00000000;
+   250  0075  0021               	movlb	1	; select bank1
+   251  0076  018D               	clrf	13	;volatile
+   252                           
+   253                           ;test_FT62F08X_IR.C: 44: PORTC = 0B00000000;
+   254  0077  0020               	movlb	0	; select bank0
+   255  0078  018E               	clrf	14	;volatile
+   256                           
+   257                           ;test_FT62F08X_IR.C: 45: TRISC = 0B00001000;
+   258  0079  3008               	movlw	8
+   259  007A  0021               	movlb	1	; select bank1
+   260  007B  008E               	movwf	14	;volatile
+   261                           
+   262                           ;test_FT62F08X_IR.C: 46: PORTD = 0B00000000;
+   263  007C  0020               	movlb	0	; select bank0
+   264  007D  018F               	clrf	15	;volatile
+   265                           
+   266                           ;test_FT62F08X_IR.C: 47: TRISD = 0B00000000;
+   267  007E  0021               	movlb	1	; select bank1
+   268  007F  018F               	clrf	15	;volatile
+   269                           
+   270                           ;test_FT62F08X_IR.C: 49: WPUA = 0B00000000;
+   271  0080  0023               	movlb	3	; select bank3
+   272  0081  018C               	clrf	12	;volatile
+   273                           
+   274                           ;test_FT62F08X_IR.C: 50: WPUB = 0B00000000;
+   275  0082  018D               	clrf	13	;volatile
+   276                           
+   277                           ;test_FT62F08X_IR.C: 51: WPUC = 0B00001000;
+   278  0083  008E               	movwf	14	;volatile
+   279                           
+   280                           ;test_FT62F08X_IR.C: 52: WPUD = 0B00000000;
+   281  0084  018F               	clrf	15	;volatile
+   282                           
+   283                           ;test_FT62F08X_IR.C: 54: WPDA = 0B00000000;
+   284  0085  0024               	movlb	4	; select bank4
+   285  0086  018C               	clrf	12	;volatile
+   286                           
+   287                           ;test_FT62F08X_IR.C: 55: WPDB = 0B00000000;
+   288  0087  018D               	clrf	13	;volatile
+   289                           
+   290                           ;test_FT62F08X_IR.C: 56: WPDC = 0B00000000;
+   291  0088  018E               	clrf	14	;volatile
+   292                           
+   293                           ;test_FT62F08X_IR.C: 57: WPDD = 0B00000000;
+   294  0089  018F               	clrf	15	;volatile
+   295                           
+   296                           ;test_FT62F08X_IR.C: 59: PSRC0 = 0B11111111;
+   297  008A  30FF               	movlw	255
+   298  008B  0022               	movlb	2	; select bank2
+   299  008C  009A               	movwf	26	;volatile
+   300                           
+   301                           ;test_FT62F08X_IR.C: 60: PSRC1 = 0B11111111;
+   302  008D  009B               	movwf	27	;volatile
+   303                           
+   304                           ;test_FT62F08X_IR.C: 62: PSINK0 = 0B11111111;
+   305  008E  0023               	movlb	3	; select bank3
+   306  008F  009A               	movwf	26	;volatile
+   307                           
+   308                           ;test_FT62F08X_IR.C: 63: PSINK1 = 0B11111111;
+   309  0090  009B               	movwf	27	;volatile
+   310                           
+   311                           ;test_FT62F08X_IR.C: 64: PSINK2 = 0B11111111;
+   312  0091  009C               	movwf	28	;volatile
+   313                           
+   314                           ;test_FT62F08X_IR.C: 65: PSINK3 = 0B11111111;
+   315  0092  009D               	movwf	29	;volatile
+   316                           
+   317                           ;test_FT62F08X_IR.C: 67: ANSELA = 0B00000000;
+   318  0093  0197               	clrf	23	;volatile
+   319  0094  0008               	return
+   320  0095                     __end_of_POWER_INITIAL:	
+   321  0095                     __ptext2:	
+   322 ;; *************** function _Px_Level_Change_INITIAL *****************
+   323 ;; Defined at:
+   324 ;;		line 145 in file "test_FT62F08X_IR.C"
+   325 ;; Parameters:    Size  Location     Type
+   326 ;;		None
+   327 ;; Auto vars:     Size  Location     Type
+   328 ;;		None
+   329 ;; Return value:  Size  Location     Type
+   330 ;;                  1    wreg      void 
+   331 ;; Registers used:
+   332 ;;		wreg, status,2
+   333 ;; Tracked objects:
+   334 ;;		On entry : B1F/2
+   335 ;;		On exit  : B1F/1
+   336 ;;		Unchanged: B00/0
+   337 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   338 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   339 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   340 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   341 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   342 ;;Total ram usage:        0 bytes
+   343 ;; Hardware stack levels used:    1
+   344 ;; Hardware stack levels required when called:    1
+   345 ;; This function calls:
+   346 ;;		Nothing
+   347 ;; This function is called by:
+   348 ;;		_main
+   349 ;; This function uses a non-reentrant model
+   350 ;;
+   351                           
+   352                           
+   353                           ;psect for function _Px_Level_Change_INITIAL
+   354  0095                     _Px_Level_Change_INITIAL:	
+   355                           
+   356                           ;test_FT62F08X_IR.C: 147: EPS0=0B10000000;
+   357                           
+   358                           ;incstack = 0
+   359                           ; Regs used in _Px_Level_Change_INITIAL: [wreg+status,2]
+   360  0095  3080               	movlw	128
+   361  0096  0098               	movwf	24	;volatile
+   362                           
+   363                           ;test_FT62F08X_IR.C: 149: EPS1=0B00000000;
+   364  0097  0199               	clrf	25	;volatile
+   365                           
+   366                           ;test_FT62F08X_IR.C: 152: ITYPE0 = 0B11000000;
+   367  0098  30C0               	movlw	192
+   368  0099  009E               	movwf	30	;volatile
+   369                           
+   370                           ;test_FT62F08X_IR.C: 153: ITYPE1 = 0B00000000;
+   371  009A  019F               	clrf	31	;volatile
+   372                           
+   373                           ;test_FT62F08X_IR.C: 155: EPIE0 = 0B00001000;
+   374  009B  3008               	movlw	8
+   375  009C  0021               	movlb	1	; select bank1
+   376  009D  0094               	movwf	20	;volatile
+   377                           
+   378                           ;test_FT62F08X_IR.C: 157: INTCON = 0B01000000;
+   379  009E  3040               	movlw	64
+   380  009F  008B               	movwf	11	;volatile
+   381  00A0  0008               	return
+   382  00A1                     __end_of_Px_Level_Change_INITIAL:	
+   383  00A1                     __ptext1:	
+   384 ;; *************** function _TIMER4_INITIAL *****************
+   385 ;; Defined at:
+   386 ;;		line 74 in file "test_FT62F08X_IR.C"
+   387 ;; Parameters:    Size  Location     Type
+   388 ;;		None
+   389 ;; Auto vars:     Size  Location     Type
+   390 ;;		None
+   391 ;; Return value:  Size  Location     Type
+   392 ;;                  1    wreg      void 
+   393 ;; Registers used:
+   394 ;;		wreg, status,2
+   395 ;; Tracked objects:
+   396 ;;		On entry : B1F/3
+   397 ;;		On exit  : B1F/2
+   398 ;;		Unchanged: B00/0
+   399 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   400 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   401 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   402 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   403 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   404 ;;Total ram usage:        0 bytes
+   405 ;; Hardware stack levels used:    1
+   406 ;; Hardware stack levels required when called:    1
+   407 ;; This function calls:
+   408 ;;		Nothing
+   409 ;; This function is called by:
+   410 ;;		_main
+   411 ;; This function uses a non-reentrant model
+   412 ;;
+   413                           
+   414                           
+   415                           ;psect for function _TIMER4_INITIAL
+   416  00A1                     _TIMER4_INITIAL:	
+   417                           
+   418                           ;test_FT62F08X_IR.C: 76: PCKEN |= 0B00001000;
+   419                           
+   420                           ;incstack = 0
+   421                           ; Regs used in _TIMER4_INITIAL: [wreg+status,2]
+   422  00A1  0021               	movlb	1	; select bank1
+   423  00A2  159A               	bsf	26,3	;volatile
+   424                           
+   425                           ;test_FT62F08X_IR.C: 78: TIM4CR1 = 0B00000101;
+   426  00A3  3005               	movlw	5
+   427  00A4  0022               	movlb	2	; select bank2
+   428  00A5  0091               	movwf	17	;volatile
+   429                           
+   430                           ;test_FT62F08X_IR.C: 109: TIM4IER = 0B00000001;
+   431  00A6  3001               	movlw	1
+   432  00A7  0092               	movwf	18	;volatile
+   433                           
+   434                           ;test_FT62F08X_IR.C: 112: TIM4SR = 0B00000000;
+   435  00A8  0193               	clrf	19	;volatile
+   436                           
+   437                           ;test_FT62F08X_IR.C: 121: TIM4EGR =0B00000000;
+   438  00A9  0194               	clrf	20	;volatile
+   439                           
+   440                           ;test_FT62F08X_IR.C: 127: TIM4CNTR=0;
+   441  00AA  0195               	clrf	21	;volatile
+   442                           
+   443                           ;test_FT62F08X_IR.C: 129: TIM4PSCR=0B00000110;
+   444  00AB  3006               	movlw	6
+   445  00AC  0096               	movwf	22	;volatile
+   446                           
+   447                           ;test_FT62F08X_IR.C: 135: TIM4ARR =140;
+   448  00AD  308C               	movlw	140
+   449  00AE  0097               	movwf	23	;volatile
+   450  00AF  0008               	return
+   451  00B0                     __end_of_TIMER4_INITIAL:	
+   452                           
+   453                           	psect	bssCOMMON
+   454  0070                     __pbssCOMMON:	
+   455  0070                     _IRDataTimer:	
+   456  0070                     	ds	4
+   457  0074                     _rdata2:	
+   458  0074                     	ds	1
+   459  0075                     _rdata1:	
+   460  0075                     	ds	1
+   461  0076                     _ReceiveFinish:	
+   462  0076                     	ds	1
+   463  0077                     _IRbitTime:	
+   464  0077                     	ds	1
+   465  0078                     _IRbitNum:	
+   466  0078                     	ds	1
+   467                           
+   468                           	psect	dataCOMMON
+   469  0079                     __pdataCOMMON:	
+   470  0079                     _bitdata:	
+   471  0079                     	ds	1
+   472                           
+   473                           	psect	cstackCOMMON
+   474  0000                     __pcstackCOMMON:	
+   475  0000                     ?_POWER_INITIAL:	
+   476  0000                     ??_POWER_INITIAL:	
+   477                           ; 1 bytes @ 0x0
+   478                           
+   479  0000                     ?_TIMER4_INITIAL:	
+   480                           ; 1 bytes @ 0x0
+   481                           
+   482  0000                     ??_TIMER4_INITIAL:	
+   483                           ; 1 bytes @ 0x0
+   484                           
+   485  0000                     ?_Px_Level_Change_INITIAL:	
+   486                           ; 1 bytes @ 0x0
+   487                           
+   488  0000                     ??_Px_Level_Change_INITIAL:	
+   489                           ; 1 bytes @ 0x0
+   490                           
+   491  0000                     ?_ISR:	
+   492                           ; 1 bytes @ 0x0
+   493                           
+   494  0000                     ??_ISR:	
+   495                           ; 1 bytes @ 0x0
+   496                           
+   497  0000                     ?_main:	
+   498                           ; 1 bytes @ 0x0
+   499                           
+   500  0000                     ??_main:	
+   501                           ; 1 bytes @ 0x0
+   502                           
+   503                           
+   504                           	psect	intentry
+   505  0004                     __pintentry:	
+   506 ;; *************** function _ISR *****************
+   507 ;; Defined at:
+   508 ;;		line 166 in file "test_FT62F08X_IR.C"
+   509 ;; Parameters:    Size  Location     Type
+   510 ;;		None
+   511 ;; Auto vars:     Size  Location     Type
+   512 ;;		None
+   513 ;; Return value:  Size  Location     Type
+   514 ;;                  1    wreg      void 
+   515 ;; Registers used:
+   516 ;;		wreg, fsr1l, fsr1h, status,2, status,0
+   517 ;; Tracked objects:
+   518 ;;		On entry : 0/0
+   519 ;;		On exit  : 1D/0
+   520 ;;		Unchanged: 0/0
+   521 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12
+   522 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   523 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   524 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   525 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0
+   526 ;;Total ram usage:        0 bytes
+   527 ;; Hardware stack levels used:    1
+   528 ;; This function calls:
+   529 ;;		Nothing
+   530 ;; This function is called by:
+   531 ;;		Interrupt level 1
+   532 ;; This function uses a non-reentrant model
+   533 ;;
+   534                           
+   535  0004                     _ISR:	
+   536                           
+   537                           ;incstack = 0
+   538  0004  147E               	bsf	126,0	;set compiler interrupt flag (level 1)
+   539                           
+   540                           ; Regs used in _ISR: [wreg+fsr1l+fsr1h+status,2+status,0]
+   541  0005  3180               	pagesel	$
+   542                           
+   543                           ;test_FT62F08X_IR.C: 169: if(T4UIE && T4UIF)
+   544  0006  0022               	movlb	2	; select bank2
+   545  0007  1812               	btfsc	18,0	;volatile
+   546  0008  1C13               	btfss	19,0	;volatile
+   547  0009  2812               	goto	i1l2861
+   548                           
+   549                           ;test_FT62F08X_IR.C: 170: {
+   550                           ;test_FT62F08X_IR.C: 171: T4UIF = 1;
+   551  000A  1413               	bsf	19,0	;volatile
+   552  000B  3033               	movlw	51
+   553                           
+   554                           ;test_FT62F08X_IR.C: 173: IRbitTime++;
+   555  000C  0AF7               	incf	_IRbitTime,f
+   556                           
+   557                           ;test_FT62F08X_IR.C: 174: if(IRbitTime > 50)
+   558  000D  0277               	subwf	_IRbitTime,w
+   559  000E  1C03               	skipc
+   560  000F  2812               	goto	i1l2861
+   561                           
+   562                           ;test_FT62F08X_IR.C: 175: {
+   563                           ;test_FT62F08X_IR.C: 176: T4UIE = 0;
+   564  0010  1012               	bcf	18,0	;volatile
+   565                           
+   566                           ;test_FT62F08X_IR.C: 177: IRbitTime = 0;
+   567  0011  01F7               	clrf	_IRbitTime
+   568  0012                     i1l2861:	
+   569                           
+   570                           ;test_FT62F08X_IR.C: 178: }
+   571                           ;test_FT62F08X_IR.C: 179: }
+   572                           ;test_FT62F08X_IR.C: 182: if(EPIF0 & 0x08)
+   573  0012  0020               	movlb	0	; select bank0
+   574  0013  1D94               	btfss	20,3	;volatile
+   575  0014  283F               	goto	i1l2391
+   576                           
+   577                           ;test_FT62F08X_IR.C: 183: {
+   578                           ;test_FT62F08X_IR.C: 184: EPIF0 |= 0x08;
+   579  0015  1594               	bsf	20,3	;volatile
+   580                           
+   581                           ;test_FT62F08X_IR.C: 186: if(PC3 == 0)
+   582  0016  198E               	btfsc	14,3	;volatile
+   583  0017  283F               	goto	i1l2391
+   584                           
+   585                           ;test_FT62F08X_IR.C: 187: {
+   586                           ;test_FT62F08X_IR.C: 188: T4UIE = 1;
+   587  0018  0022               	movlb	2	; select bank2
+   588  0019  1412               	bsf	18,0	;volatile
+   589                           
+   590                           ;test_FT62F08X_IR.C: 189: if(IRbitTime > 21)
+   591  001A  3016               	movlw	22
+   592  001B  0277               	subwf	_IRbitTime,w
+   593  001C  1C03               	skipc
+   594  001D  2825               	goto	i1l2871
+   595                           
+   596                           ;test_FT62F08X_IR.C: 190: {
+   597                           ;test_FT62F08X_IR.C: 191: IRDataTimer[0] = 0;
+   598  001E  01F0               	clrf	_IRDataTimer	;volatile
+   599                           
+   600                           ;test_FT62F08X_IR.C: 192: IRDataTimer[1] = 0;
+   601  001F  01F1               	clrf	_IRDataTimer+1	;volatile
+   602                           
+   603                           ;test_FT62F08X_IR.C: 193: IRDataTimer[2] = 0;
+   604  0020  01F2               	clrf	_IRDataTimer+2	;volatile
+   605                           
+   606                           ;test_FT62F08X_IR.C: 194: IRDataTimer[3] = 0;
+   607  0021  01F3               	clrf	_IRDataTimer+3	;volatile
+   608                           
+   609                           ;test_FT62F08X_IR.C: 195: IRbitNum = 0;
+   610  0022  01F8               	clrf	_IRbitNum
+   611                           
+   612                           ;test_FT62F08X_IR.C: 196: bitdata = 0x00;
+   613  0023  01F9               	clrf	_bitdata
+   614                           
+   615                           ;test_FT62F08X_IR.C: 197: }
+   616  0024  282F               	goto	i1l2875
+   617  0025                     i1l2871:	
+   618                           
+   619                           ;test_FT62F08X_IR.C: 198: else if(IRbitTime > 3)
+   620  0025  3004               	movlw	4
+   621  0026  0277               	subwf	_IRbitTime,w
+   622  0027  1C03               	skipc
+   623  0028  282F               	goto	i1l2875
+   624                           
+   625                           ;test_FT62F08X_IR.C: 199: {
+   626                           ;test_FT62F08X_IR.C: 200: IRDataTimer[IRbitNum-1] |= bitdata;
+   627  0029  0878               	movf	_IRbitNum,w
+   628  002A  3E6F               	addlw	(low ((_IRDataTimer| 0+255)))& (0+255)
+   629  002B  0086               	movwf	6
+   630  002C  0187               	clrf	7
+   631  002D  0879               	movf	_bitdata,w
+   632  002E  0481               	iorwf	1,f
+   633  002F                     i1l2875:	
+   634                           
+   635                           ;test_FT62F08X_IR.C: 201: }
+   636                           ;test_FT62F08X_IR.C: 202: IRbitTime = 0;
+   637  002F  01F7               	clrf	_IRbitTime
+   638                           
+   639                           ;test_FT62F08X_IR.C: 203: bitdata<<=1;
+   640  0030  35F9               	lslf	_bitdata,f
+   641                           
+   642                           ;test_FT62F08X_IR.C: 204: if(bitdata == 0)
+   643  0031  0879               	movf	_bitdata,w
+   644  0032  1D03               	btfss	3,2
+   645  0033  2837               	goto	i1l2885
+   646                           
+   647                           ;test_FT62F08X_IR.C: 205: {
+   648                           ;test_FT62F08X_IR.C: 206: bitdata = 0x01;
+   649  0034  01F9               	clrf	_bitdata
+   650  0035  0AF9               	incf	_bitdata,f
+   651                           
+   652                           ;test_FT62F08X_IR.C: 207: IRbitNum++;
+   653  0036  0AF8               	incf	_IRbitNum,f
+   654  0037                     i1l2885:	
+   655                           
+   656                           ;test_FT62F08X_IR.C: 208: }
+   657                           ;test_FT62F08X_IR.C: 209: if(IRbitNum > 4)
+   658  0037  3005               	movlw	5
+   659  0038  0278               	subwf	_IRbitNum,w
+   660  0039  1C03               	skipc
+   661  003A  283F               	goto	i1l2391
+   662                           
+   663                           ;test_FT62F08X_IR.C: 210: {
+   664                           ;test_FT62F08X_IR.C: 211: IRbitNum = 0;
+   665  003B  01F8               	clrf	_IRbitNum
+   666                           
+   667                           ;test_FT62F08X_IR.C: 212: T4UIE = 0;
+   668  003C  1012               	bcf	18,0	;volatile
+   669                           
+   670                           ;test_FT62F08X_IR.C: 213: ReceiveFinish = 1;
+   671  003D  01F6               	clrf	_ReceiveFinish
+   672  003E  0AF6               	incf	_ReceiveFinish,f
+   673  003F                     i1l2391:	
+   674  003F  107E               	bcf	126,0	;clear compiler interrupt flag (level 1)
+   675  0040  0009               	retfie
+   676  0041                     __end_of_ISR:	
+   677  007E                     btemp	set	126	;btemp
+   678  007E                     int$flags	set	126
+   679  007E                     wtemp0	set	126
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        1
+    BSS         9
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      0      10
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK2            80      0       0
+    BANK3            80      0       0
+    BANK4            80      0       0
+    BANK5            80      0       0
+    BANK6            80      0       0
+    BANK7            80      0       0
+    BANK8            80      0       0
+    BANK9            80      0       0
+    BANK10           80      0       0
+    BANK11           80      0       0
+    BANK12           48      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _ISR in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _ISR in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _ISR in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Critical Paths under _ISR in BANK7
+
+    None.
+
+Critical Paths under _main in BANK8
+
+    None.
+
+Critical Paths under _ISR in BANK8
+
+    None.
+
+Critical Paths under _main in BANK9
+
+    None.
+
+Critical Paths under _ISR in BANK9
+
+    None.
+
+Critical Paths under _main in BANK10
+
+    None.
+
+Critical Paths under _ISR in BANK10
+
+    None.
+
+Critical Paths under _main in BANK11
+
+    None.
+
+Critical Paths under _ISR in BANK11
+
+    None.
+
+Critical Paths under _main in BANK12
+
+    None.
+
+Critical Paths under _ISR in BANK12
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0       0
+                      _POWER_INITIAL
+            _Px_Level_Change_INITIAL
+                     _TIMER4_INITIAL
+ ---------------------------------------------------------------------------------
+ (1) _TIMER4_INITIAL                                       0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _Px_Level_Change_INITIAL                              0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _POWER_INITIAL                                        0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _ISR                                                  0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _POWER_INITIAL
+   _Px_Level_Change_INITIAL
+   _TIMER4_INITIAL
+
+ _ISR (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             3F0      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+BITCOMMON            E      0       0       1        0.0%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+COMMON               E      0       A       2       71.4%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+BITSFR2              0      0       0       3        0.0%
+SFR2                 0      0       0       3        0.0%
+STACK                0      0       0       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR4              0      0       0       5        0.0%
+SFR4                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BITSFR5              0      0       0       6        0.0%
+SFR5                 0      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITSFR6              0      0       0       7        0.0%
+SFR6                 0      0       0       7        0.0%
+BITBANK2            50      0       0       8        0.0%
+BITSFR7              0      0       0       8        0.0%
+SFR7                 0      0       0       8        0.0%
+BANK2               50      0       0       9        0.0%
+BITSFR8              0      0       0       9        0.0%
+SFR8                 0      0       0       9        0.0%
+BITBANK3            50      0       0      10        0.0%
+BITSFR9              0      0       0      10        0.0%
+SFR9                 0      0       0      10        0.0%
+BANK3               50      0       0      11        0.0%
+BITSFR10             0      0       0      11        0.0%
+SFR10                0      0       0      11        0.0%
+BITBANK4            50      0       0      12        0.0%
+BITSFR11             0      0       0      12        0.0%
+SFR11                0      0       0      12        0.0%
+BANK4               50      0       0      13        0.0%
+BITSFR12             0      0       0      13        0.0%
+SFR12                0      0       0      13        0.0%
+BITBANK5            50      0       0      14        0.0%
+BITSFR13             0      0       0      14        0.0%
+SFR13                0      0       0      14        0.0%
+BANK5               50      0       0      15        0.0%
+BITSFR14             0      0       0      15        0.0%
+SFR14                0      0       0      15        0.0%
+BITBANK6            50      0       0      16        0.0%
+BITSFR15             0      0       0      16        0.0%
+SFR15                0      0       0      16        0.0%
+BANK6               50      0       0      17        0.0%
+BITSFR16             0      0       0      17        0.0%
+SFR16                0      0       0      17        0.0%
+BITBANK7            50      0       0      18        0.0%
+BITSFR17             0      0       0      18        0.0%
+SFR17                0      0       0      18        0.0%
+BANK7               50      0       0      19        0.0%
+BITSFR18             0      0       0      19        0.0%
+SFR18                0      0       0      19        0.0%
+BITSFR19             0      0       0      20        0.0%
+SFR19                0      0       0      20        0.0%
+ABS                  0      0       A      20        0.0%
+BITBANK8            50      0       0      21        0.0%
+BITSFR20             0      0       0      21        0.0%
+SFR20                0      0       0      21        0.0%
+BANK8               50      0       0      22        0.0%
+BITSFR21             0      0       0      22        0.0%
+SFR21                0      0       0      22        0.0%
+BITBANK9            50      0       0      23        0.0%
+BITSFR22             0      0       0      23        0.0%
+SFR22                0      0       0      23        0.0%
+BANK9               50      0       0      24        0.0%
+BITSFR23             0      0       0      24        0.0%
+SFR23                0      0       0      24        0.0%
+BITBANK10           50      0       0      25        0.0%
+BITSFR24             0      0       0      25        0.0%
+SFR24                0      0       0      25        0.0%
+BANK10              50      0       0      26        0.0%
+BITSFR25             0      0       0      26        0.0%
+SFR25                0      0       0      26        0.0%
+BITBANK11           50      0       0      27        0.0%
+BITSFR26             0      0       0      27        0.0%
+SFR26                0      0       0      27        0.0%
+BANK11              50      0       0      28        0.0%
+BITSFR27             0      0       0      28        0.0%
+SFR27                0      0       0      28        0.0%
+BITBANK12           30      0       0      29        0.0%
+BITSFR28             0      0       0      29        0.0%
+SFR28                0      0       0      29        0.0%
+BANK12              30      0       0      30        0.0%
+BITSFR29             0      0       0      30        0.0%
+SFR29                0      0       0      30        0.0%
+BITSFR30             0      0       0      31        0.0%
+SFR30                0      0       0      31        0.0%
+DATA                 0      0       A      31        0.0%
+BITSFR31             0      0       0      32        0.0%
+SFR31                0      0       0      32        0.0%
+
+
+GNU Macro Assembler for 8 bit devices.     
+Symbol Table                                                                                   Wed Nov 17 17:41:17 2021
+
+                             _GIE 005F                               _PB3 006B                               _PC3 0073  
+                             _ISR 0004                              ?_ISR 0000                              l2897 0058  
+                            _EPS0 0118                              _EPS1 0119                              _WPDA 020C  
+                            _WPDB 020D                              _WPDC 020E                              _WPDD 020F  
+                            _WPUA 018C                              _WPUB 018D                              _WPUC 018E  
+                            _WPUD 018F                    _ad3nop_absaddr 0003                              _main 0051  
+                            fsr1h 0007                              indf1 0001                              fsr1l 0006  
+                            btemp 007E                              start 0041                             ??_ISR 0000  
+                           ?_main 0000                             _EPIE0 0094                             _EPIF0 0014  
+                           _T4UIE 0890                             _T4UIF 0898                             _PCKEN 009A  
+                           _PSRC0 011A                             _PSRC1 011B                             _PORTA 000C  
+                           _PORTB 000D                             _PORTC 000E                             _PORTD 000F  
+                           _TRISA 008C                             _TRISB 008D                             _TRISC 008E  
+                           _TRISD 008F                    _TIMER4_INITIAL 00A1         ??_Px_Level_Change_INITIAL 0000  
+                           status 0003                             wtemp0 007E                   __initialization 0043  
+                    __end_of_main 006B                            ??_main 0000            __end_of_TIMER4_INITIAL 00B0  
+                          _ANSELA 0197                            i1l2391 003F                            i1l2861 0012  
+                          i1l2871 0025                            i1l2875 002F                            i1l2885 0037  
+                          _INTCON 000B                            _OSCCON 0099                            _ITYPE0 011E  
+                          _ITYPE1 011F                            _TIM4SR 0113                            _PSINK0 019A  
+                          _PSINK1 019B                            _PSINK2 019C                            _PSINK3 019D  
+                          _ad3nop 0003                            _rdata1 0075                            _rdata2 0074  
+                 ?_TIMER4_INITIAL 0000                      __pdataCOMMON 0079             __end_of_POWER_INITIAL 0095  
+         __end_of__initialization 004E                     _ReceiveFinish 0076                    __pcstackCOMMON 0000  
+                      __pmaintext 0051                        __pintentry 0004                           _TIM4CR1 0111  
+                         _TIM4EGR 0114                           _TIM4ARR 0117                           _TIM4IER 0112  
+                         _bitdata 0079                           __ptext1 00A1                           __ptext2 0095  
+                         __ptext3 006B                      __size_of_ISR 003D              end_of_initialization 004E  
+                ??_TIMER4_INITIAL 0000                         _IRbitTime 0077          ?_Px_Level_Change_INITIAL 0000  
+                  __end_of_ad3nop 0004                     __pidataCOMMON 0000               start_initialization 0043  
+                  __p_ad3nop_text 0003                       __end_of_ISR 0041            __size_of_POWER_INITIAL 002A  
+ __end_of_Px_Level_Change_INITIAL 00A1                       __pbssCOMMON 0070                         ___latbits 0002  
+                   _POWER_INITIAL 006B                          _TIM4CNTR 0115                          _TIM4PSCR 0116  
+                        _IRbitNum 0078                    ?_POWER_INITIAL 0000  __size_of_Px_Level_Change_INITIAL 000C  
+                   __size_of_main 001A                       _IRDataTimer 0070                          int$flags 007E  
+         __size_of_TIMER4_INITIAL 000F                   ??_POWER_INITIAL 0000                          intlevel1 0000  
+         _Px_Level_Change_INITIAL 0095  

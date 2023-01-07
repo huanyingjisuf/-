@@ -1,0 +1,1 @@
+ test_FT62F08X_MSCK.d  test_FT62F08X_MSCK.obj:  test_FT62F08X_MSCK.C

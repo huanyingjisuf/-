@@ -1,0 +1,202 @@
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:25:34 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 BROWSE DEBUG PRINT(.\lst\main.lst) OBJECT(.\output\main.
+                    -obj)
+
+line level    source
+
+   1          
+   2          #ifndef _MAIN_C_
+   3          #define _MAIN_C_
+   4          /*********************************************************************************************************
+             -************/
+   5          #include "include/ca51f_config.h"               
+   6          #include "include/ca51f3sfr.h"
+   7          #include "include/ca51f3xsfr.h"
+   8          #include "include/gpiodef_f3.h"
+   9          #include "include/system_clock.h"
+  10          
+  11          #include "include/uart.h"
+  12          #include "include/flash.h"
+  13          #include "include/delay.h"
+  14          #include <intrins.h>
+  15          /*********************************************************************************************************
+             -************/
+  16          
+  17          /*********************************************************************************************************
+             -*********
+  18                  ±¾Àý³Ì»®·Ö256×Ö½ÚÎªÊý¾Ý¿Õ¼ä£¬ÊµÏÖ10¸ö×Ö½ÚÊý¾Ýµôµç´æ´¢¹¦ÄÜ£¬³õ´ÎÉÏµç·Ö±ðÉèÖÃ³õÖµÎª0~9£¬ºóÃæÃ¿´ÎÉÏµçÊý¾ÝÀÛ¼
+             -Ó¡£
+  19                  ÎªÁË·ÀÖ¹ÔÚ²Á³ý»òÐ´ÈëFLASH½×¶Î·¢ÉúÐ¾Æ¬µôµç»ò¸´Î»£¬´Ó¶øµ¼ÖÂ³öÏÖÊý¾Ý¶ªÊ§µÄÇé¿ö£¬±¾Àý³Ì²ÉÓÃË«ÉÈÇø´æ´¢µÄÄ£Ê½£¬
+             -¿É±£Ö¤Êý¾Ý´æ´¢µÄ°²È«ÐÔ¡£
+  20          
+  21                  ±¸×¢£ºÓÉÓÚ·ÂÕæÄ£Ê½ÏÂ£¬FLASH µÄ²¿·Ö×ÊÔ´»á±»Õ¼ÓÃ¡£ÔÚ²âÊÔFLASH´æ´¢¹¦ÄÜÊ±£¬Ö»ÄÜÍ¨¹ý´®¿ÚÖúÊÖ¹¤¾ßÀ´´òÓ¡µ÷ÊÔ¡£
+  22                  ±¾Àý³ÌÄ¬ÈÏ´ò¿ªUART0ÓÃÓÚµ÷ÊÔ¡£
+  23          **********************************************************************************************************
+             -*********/
+  24          unsigned char UserDataBuff[10];
+  25          unsigned char BuffTemp[13];
+  26          void main(void)
+  27          {       
+  28   1              unsigned char i;
+  29   1      #ifdef LVD_RST_ENABLE
+  30   1              LVDCON = 0xE1;                                  //ÉèÖÃLVD¸´Î»µçÑ¹Îª2V
+  31   1      #endif
+  32   1      #if (SYSCLK_SRC == PLL)
+                      Sys_Clk_Set_PLL(PLL_Multiple);  //ÉèÖÃÏµÍ³Ê±ÖÓÎªPLL£¬PLL_MultipleÎª±¶Æµ±¶Êý
+              #endif
+  35   1              
+  36   1      #ifdef UART0_EN
+  37   1              Uart0_Initial(UART0_BAUTRATE);  //³õÊ¼»¯UART0
+  38   1      #endif
+  39   1              
+  40   1      #ifdef UART1_EN
+                      Uart1_Initial(UART1_BAUTRATE);  //³õÊ¼»¯UART1
+              #endif
+  43   1      
+  44   1              EA = 1;                                                                                                 //¿ªÈ«¾ÖÖÐ¶Ï
+  45   1      
+  46   1      #ifdef PRINT_EN
+  47   1              uart_printf("Flash Data Area Access Demo Code\n");
+  48   1      #endif
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:25:34 PAGE 2   
+
+  49   1      
+  50   1              PADRD   = FLASH_SIZE*4 - 1;             //»®·ÖFLASH×îºó256×Ö½ÚÎªÊý¾Ý¿Õ¼ä£¬×¢Òâ£º²»Í¬ÐÍºÅÐ¾Æ¬FLASHÈÝÁ¿²»Í¬£¬¶¨ÒåµÄFLASH
+             -_SIZEÒ²²»Í¬£¬Ó¦ÓÃÊ±Òª¸ù¾ÝÊµ¼ÊFLASHÈÝÁ¿¶¨Òå
+  51   1              
+  52   1              Data_Area_Mass_Read(0,BuffTemp,2);                                      //¶ÁÉÈÇø0 16Î»ID£¬16Î»IDÓÃÒÔÊ¶±ðÊÇ·ñ³õ´ÎÉÏµç
+  53   1              if(BuffTemp[0] != 0xAA || BuffTemp[1] != 0x55)          //ÈôID²»Ïà·û£¬
+  54   1              {
+  55   2                      Data_Area_Mass_Read(128,BuffTemp,2);                    //¶ÁÈ¡16Î»ID£¬16Î»IDÓÃÒÔÊ¶±ðÊÇ·ñ³õ´ÎÉÏµç
+  56   2                      if(BuffTemp[0] == 0xAA && BuffTemp[1] == 0x55)  //ÈôÉÈÇø0 ID²»Ïà·û£¬ÔòÅÐ¶ÏÉÈÇø1 ID
+  57   2                      {
+  58   3                              goto READ_SECOND_SECTOR_PARA;                           //ÈôÏà·û£¬Ìø×ª¶ÁÈ¡ÉÈÇø1Êý¾Ý
+  59   3                      }
+  60   2                      
+  61   2                      //ÈôÉÈÇø0¡¢1 ID¶¼²»Ïà·û£¬ ±íÊ¾ÊÇ³õ´ÎÉÏµç
+  62   2      FIRST_POWER_ON:
+  63   2                      //³õ´ÎÉÏµç£¬³õÊ¼»¯ÓÃ»§Êý¾ÝÎª 0 ~ 9
+  64   2                      UserDataBuff[0] = 0x00;                 
+  65   2                      UserDataBuff[1] = 0x01;
+  66   2                      UserDataBuff[2] = 0x02;
+  67   2                      UserDataBuff[3] = 0x03;
+  68   2                      UserDataBuff[4] = 0x04;
+  69   2                      UserDataBuff[5] = 0x05;
+  70   2                      UserDataBuff[6] = 0x06;
+  71   2                      UserDataBuff[7] = 0x07;
+  72   2                      UserDataBuff[8] = 0x08;
+  73   2                      UserDataBuff[9] = 0x09;         
+  74   2                      
+  75   2                      BuffTemp[0] = 0xAA;                                                             //ÉèÖÃIDÎª0xAA55
+  76   2                      BuffTemp[1] = 0x55;
+  77   2                      BuffTemp[12] = 0;
+  78   2                      
+  79   2                      for(i = 0; i < 10; i++)
+  80   2                      {
+  81   3                              BuffTemp[i+2] = UserDataBuff[i];
+  82   3                              BuffTemp[12] += UserDataBuff[i];                        //¼ÆËãÐ£ÑéÂë
+  83   3                      }
+  84   2                      
+  85   2                      //ÔÚ²Á³ýÉÈÇø»òÐ´ÈëÊý¾ÝÊ±£¬Èç¹û³öÏÖÐ¾Æ¬µôµç»ò¸´Î»£¬»áµ¼ÖÂÓÃ»§Êý¾Ý¶ªÊ§£¬ÒÔÏÂ²ÉÓÃË«ÉÈÇø´æ´¢µÄ·½Ê½£¬¿É±ÜÃâÊý
+             -¾Ý¶ªÊ§¡£
+  86   2                      Data_Area_Sector_Erase(0);                                              //²Á³ýÊý¾ÝÉÈÇø
+  87   2                      Data_Area_Mass_Write(0,BuffTemp,13);                    //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä
+  88   2                      
+  89   2                      Data_Area_Sector_Erase(1);                                              //²Á³ýÊý¾ÝÉÈÇø
+  90   2                      Data_Area_Mass_Write(128,BuffTemp,13);                  //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä
+  91   2              }
+  92   1              else
+  93   1              {
+  94   2                      unsigned char CheckSum;
+  95   2                      Data_Area_Mass_Read(0,BuffTemp,13);                             //¶ÁÈ¡ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂë
+  96   2                      CheckSum = 0;
+  97   2                      for(i = 0; i < 10; i++)
+  98   2                      {
+  99   3                              CheckSum += BuffTemp[2+i];                                      //¼ÆËãÐ£ÑéÂë
+ 100   3                      }
+ 101   2                      if(CheckSum != BuffTemp[12])                                    //ÅÐ¶Ï¼ìÑéÂëÊÇ·ñÏà·û
+ 102   2                      {       
+ 103   3      READ_SECOND_SECTOR_PARA:
+ 104   3                              //Èç¹ûÐ£ÑéÂë²»Ïà·û£¬Ôò¶ÁÈ¡µÚ¶þÉÈÇøÊý¾Ý¡£
+ 105   3                              Data_Area_Mass_Read(128,BuffTemp,13);           //¶ÁÈ¡ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂë
+ 106   3                              CheckSum = 0;
+ 107   3                              for(i = 0; i < 10; i++)
+ 108   3                              {
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:25:34 PAGE 3   
+
+ 109   4                                      CheckSum += BuffTemp[2+i];                              //¼ÆËãÐ£ÑéÂë
+ 110   4                              }
+ 111   3                              if(CheckSum != BuffTemp[12])                            //ÅÐ¶Ï¼ìÑéÂëÊÇ·ñÏà·û
+ 112   3                              {
+ 113   4                                      goto FIRST_POWER_ON;
+ 114   4                              }
+ 115   3                      }
+ 116   2                      
+ 117   2                      for(i = 0; i < 10; i++)
+ 118   2                      {
+ 119   3                              UserDataBuff[i] = BuffTemp[i+2];                        //¶Á³öµÄÊý¾Ý×°ÔØµ½ÓÃ»§Êý¾ÝÊý×é
+ 120   3                      }
+ 121   2                      
+ 122   2                      for(i = 0; i < 10; i++)
+ 123   2                      {
+ 124   3                              UserDataBuff[i]++;                                                      //ÓÃ»§Êý¾ÝÀÛ¼Ó
+ 125   3                      }
+ 126   2                      
+ 127   2                      BuffTemp[0] = 0xAA;                                                                     
+ 128   2                      BuffTemp[1] = 0x55;
+ 129   2                      BuffTemp[12] = 0;
+ 130   2                      for(i = 0; i < 10; i++)
+ 131   2                      {
+ 132   3                              BuffTemp[i+2] = UserDataBuff[i];
+ 133   3                              BuffTemp[12] += UserDataBuff[i];
+ 134   3                      }
+ 135   2                      
+ 136   2                      Data_Area_Sector_Erase(0);                                              //²Á³ýÊý¾ÝÉÈÇø
+ 137   2                      Data_Area_Mass_Write(0,BuffTemp,13);                    //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä
+ 138   2                      
+ 139   2                      Data_Area_Sector_Erase(1);                                              //²Á³ýÊý¾ÝÉÈÇø
+ 140   2                      Data_Area_Mass_Write(128,BuffTemp,13);                  //ÓÃ»§Êý¾Ý¡¢ID¡¢Ð£ÑéÂëÐ´ÈëÊý¾Ý¿Õ¼ä
+ 141   2              }
+ 142   1              
+ 143   1              //ÓÃ»§Êý¾Ý´òÓ¡£¬Ã¿´ÎÉÏµç»ò¸´Î»£¬ÓÃ»§Êý¾Ý¼Ó1
+ 144   1      #ifdef PRINT_EN
+ 145   1              uart_printf("UserDataBuff[0] = 0x%x\n", (unsigned int)(UserDataBuff[0]));
+ 146   1              uart_printf("UserDataBuff[1] = 0x%x\n", (unsigned int)(UserDataBuff[1]));
+ 147   1              uart_printf("UserDataBuff[2] = 0x%x\n", (unsigned int)(UserDataBuff[2]));
+ 148   1              uart_printf("UserDataBuff[3] = 0x%x\n", (unsigned int)(UserDataBuff[3]));
+ 149   1              uart_printf("UserDataBuff[4] = 0x%x\n", (unsigned int)(UserDataBuff[4]));
+ 150   1              uart_printf("UserDataBuff[5] = 0x%x\n", (unsigned int)(UserDataBuff[5]));
+ 151   1              uart_printf("UserDataBuff[6] = 0x%x\n", (unsigned int)(UserDataBuff[6]));
+ 152   1              uart_printf("UserDataBuff[7] = 0x%x\n", (unsigned int)(UserDataBuff[7]));
+ 153   1              uart_printf("UserDataBuff[8] = 0x%x\n", (unsigned int)(UserDataBuff[8]));
+ 154   1              uart_printf("UserDataBuff[9] = 0x%x\n", (unsigned int)(UserDataBuff[9]));
+ 155   1      #endif
+ 156   1              while(1)
+ 157   1              {
+ 158   2              }
+ 159   1      }
+ 160          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    541    ----
+   CONSTANT SIZE    =    274    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     23       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.02   MAIN                                                                  05/11/2022 23:25:34 PAGE 4   
+
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

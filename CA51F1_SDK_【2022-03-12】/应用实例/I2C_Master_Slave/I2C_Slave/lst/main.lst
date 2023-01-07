@@ -1,0 +1,150 @@
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:30:17 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\output\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE source\main.c OMF2 OPTIMIZE(9,SPEED) BROWSE DEBUG PRINT(.\lst\main.lst) OBJ
+                    -ECT(.\output\main.obj)
+
+line level    source
+
+   1          #ifndef _MAIN_C_
+   2          #define _MAIN_C_
+   3          /*********************************************************************************************************
+             -************/
+   4          #include "include/ca51f1_config.h"              
+   5          #include "include/ca51f1sfr.h"
+   6          #include "include/ca51f1xsfr.h"
+   7          #include "include/gpiodef_f1.h"
+   8          #include "include/i2c.h"
+   9          #include "include/uart.h"
+  10          #include "include/delay.h"
+  11          #include <intrins.h>
+  12          /*********************************************************************************************************
+             -************/
+  13          //  本例程为I2C主机从机通信的从机程序。
+  14          //   ____________            _____________ 
+  15          //  |            |   SDA    |             |
+  16          //  |            |<-------->|             |
+  17          //  |            |          |             |
+  18          //  |  CA51F1(M) |          | CA51F1(S)   |
+  19          //  |(I2C_Master)|          | (I2C_Slave) |
+  20          //  |            |   SCL    |             |
+  21          //  |            |--------->|             |
+  22          //  |____________|          |_____________|
+  23          //
+  24          /*********************************************************************************************************
+             -************/
+  25          #define I2C_ADDR                0xCA            //定义I2C从机地址
+  26          /*********************************************************************************************************
+             -************/
+  27          unsigned char I2CDataIndex;
+  28          unsigned char regAddr;
+  29          bit iicReadMode;
+  30          unsigned char idata Buffer[20]={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};//设置数据寄存器初值为0
+             -~19
+  31          void I2C_ISR(void) interrupt 6 
+  32          {
+  33   1              unsigned char Sta_Temp;
+  34   1      
+  35   1              if(I2CFLG & I2CF)                                                               //IIC  interrupt
+  36   1              {                                               
+  37   2                      Sta_Temp = I2CSTA;                      
+  38   2                      if(Sta_Temp == 0x60)                                    //接收到从机地址+写位
+  39   2                      {                       
+  40   3                              I2CDataIndex = 0xFF;                                    //设置为0xFF表示后面接收到的第一个字节为地址
+  41   3                              iicReadMode = 0;                                                //设置为从机接收状态
+  42   3                              I2CCON |= AAK(1);                       
+  43   3                      }
+  44   2                      else if(Sta_Temp == 0x80)                                       //发送或接收一字节数据，已检测到应答信号
+  45   2                      {                                       
+  46   3                              if(iicReadMode)                                                 //发送一字节数据
+  47   3                              {
+  48   4                                      I2CDataIndex++;
+  49   4                                      I2CDAT = Buffer[I2CDataIndex + regAddr];                //把数据装载到发送寄存器，等待主机读取
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:30:17 PAGE 2   
+
+  50   4                              }
+  51   3                              else                                                                                            //接收到一字节数据
+  52   3                              {                               
+  53   4                                      if(I2CDataIndex == 0xFF)        //地址
+  54   4                                      {
+  55   5                                              regAddr = I2CDAT;                                                       //接收到的第一个字节认为是地址
+  56   5                                              I2CDataIndex = 0;                                                       //设置索引值为0
+  57   5                                              I2CCON |= AAK(1);
+  58   5                                      }
+  59   4                                      else                                            //数据
+  60   4                                      {
+  61   5                                              Buffer[I2CDataIndex + regAddr] = I2CDAT;        //接收到的数据装载到数据寄存器  
+  62   5                                              I2CDataIndex++;                                                         //索引值累加
+  63   5                                              I2CCON |= AAK(1);               
+  64   5                                      }
+  65   4                              }       
+  66   3                      }
+  67   2                      else if(Sta_Temp==0xA8)                         //接收到从机地址+读位，发送ACK信号
+  68   2                      {                                                               
+  69   3                              I2CDAT = Buffer[I2CDataIndex + regAddr];                //把数据装载到发送寄存器，等待主机读取
+  70   3                              iicReadMode = 1;                                                                //设置为从机发送状态
+  71   3                      }
+  72   2                      else if(Sta_Temp == 0x88)                       //发送或接收一字节数据，已检测到应答信号
+  73   2                      {
+  74   3                      }
+  75   2                      I2CFLG  |= I2CF;                                        //清除中断标志
+  76   2              }       
+  77   1      }                               
+  78          void main(void)
+  79          {       
+  80   1      #ifdef LVD_RST_ENABLE
+  81   1              LVDCON = 0xE0;                                  //设置LVD复位电压为2.7V
+  82   1      #endif
+  83   1      
+  84   1      #ifdef SYSCLK_16MHZ                                     //系统时钟为16MHz,设置CKDIV为0
+                      CKDIV = 0;
+              #endif
+  87   1      
+  88   1      #ifdef UART_EN
+                      Uart_Initial(UART_BAUTRATE);    //初始化UART
+              #endif
+  91   1              
+  92   1              EA = 1;                                                 //开全局中断
+  93   1      
+  94   1      #ifdef PRINT_EN
+                      uart_printf("I2C Slave Demo Code\n");
+              #endif
+  97   1      
+  98   1      /**********选择I2C端口************************************************************/
+  99   1              P30F = P30_I2C_SDA_SETTING | PU_EN;              //设置P30作为I2C_SDA,并打开上位
+ 100   1              P31F = P31_I2C_SCL_SETTING | PU_EN;              //设置P31作为I2C_SCL,并打开上位
+ 101   1      
+ 102   1      /***************************************************************************************/
+ 103   1      
+ 104   1              I2CCON = I2CE(1) | I2CIE(1) | STA(0) | STP(0)| CKHD(1) | AAK(1)| CBSE(0) | STFE(0);             
+ 105   1              I2CADR = GCE(0)|(I2C_ADDR>>1);          //设置I2C从机地址
+ 106   1      //      I2CCR = 0x69;                                           //设置I2C时钟采样时钟
+ 107   1              INT4EN = 1;                                                     //I2C中断开启
+ 108   1      
+ 109   1              while(1)
+ 110   1              {
+ 111   2              }
+C51 COMPILER V9.02   MAIN                                                                  12/26/2021 22:30:17 PAGE 3   
+
+ 112   1      }
+ 113          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    128    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =     20    ----
+   BIT SIZE         =      1    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

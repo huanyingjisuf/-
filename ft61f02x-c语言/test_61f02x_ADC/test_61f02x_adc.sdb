@@ -1,0 +1,119 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT61F02X ]
+[d frameptr 6 ]
+"62 d:\ide3.0.3_6c03\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 d:\ide3.0.3_6c03\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"35 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT61F02x\test_61f02x_ADC\test_61f02x_ADC.C
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+"61
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"75
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+"99
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+"132
+[v _PWM_INITIAL PWM_INITIAL `(v  1 e 1 0 ]
+"158
+[v _main main `(v  1 e 1 0 ]
+"78 d:\ide3.0.3_6c03\data\include\FT61F02X.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"129
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"184
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"449
+[v _CMCON0 CMCON0 `VEuc  1 e 1 @25 ]
+"494
+[v _MSCKCON MSCKCON `VEuc  1 e 1 @27 ]
+"534
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+"538
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @31 ]
+"541
+[v _GO_DONE GO_DONE `VEb  1 e 0 @249 ]
+"574
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"603
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"633
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"639
+[v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
+"660
+[v _WPUC WPUC `VEuc  1 e 1 @136 ]
+"778
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"834
+[v _ANSEL ANSEL `VEuc  1 e 1 @145 ]
+"866
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"1014
+[v _ADRESL ADRESL `VEuc  1 e 1 @158 ]
+"1018
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
+"1100
+[v _TMR3H TMR3H `VEuc  1 e 1 @269 ]
+"1130
+[v _PR3L PR3L `VEuc  1 e 1 @270 ]
+"1134
+[v _PWM3CR0 PWM3CR0 `VEuc  1 e 1 @271 ]
+"1165
+[v _PWM3CR1 PWM3CR1 `VEuc  1 e 1 @272 ]
+"1169
+[v _TMR3ON TMR3ON `VEb  1 e 0 @2178 ]
+"1195
+[v _T3CKDIV T3CKDIV `VEuc  1 e 1 @273 ]
+"28 D:\FMD DEMO CODE(word+pdf)\C ÐÞ¸Ä1008\FT61F02x\test_61f02x_ADC\test_61f02x_ADC.C
+[v _TestADC TestADC `VEui  1 e 2 0 ]
+"158
+[v _main main `(v  1 e 1 0 ]
+{
+"173
+} 0
+"132
+[v _PWM_INITIAL PWM_INITIAL `(v  1 e 1 0 ]
+{
+"151
+} 0
+"35
+[v _POWER_INITIAL POWER_INITIAL `(v  1 e 1 0 ]
+{
+"54
+} 0
+"99
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+{
+[v GET_ADC_DATA@AN_CH AN_CH `uc  1 a 1 wreg ]
+"104
+[v GET_ADC_DATA@ADC_DATA ADC_DATA `ui  1 a 2 8 ]
+"103
+[v GET_ADC_DATA@tBuffer tBuffer `ui  1 a 2 5 ]
+"102
+[v GET_ADC_DATA@ADCON0Buff ADCON0Buff `uc  1 a 1 10 ]
+"99
+[v GET_ADC_DATA@AN_CH AN_CH `uc  1 a 1 wreg ]
+"104
+[v GET_ADC_DATA@AN_CH AN_CH `uc  1 a 1 7 ]
+"121
+} 0
+"61
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"63
+[v DelayUs@a a `uc  1 a 1 1 ]
+"61
+[v DelayUs@Time Time `uc  1 a 1 wreg ]
+"64
+[v DelayUs@Time Time `uc  1 a 1 0 ]
+"68
+} 0
+"75
+[v _ADC_INITIAL ADC_INITIAL `(v  1 e 1 0 ]
+{
+"92
+} 0

@@ -1,0 +1,167 @@
+//Deviec:FT61F02X
+//-----------------------Variable---------------------------------
+//		DelayS@Time		EQU		75H
+//		DelayS@b		EQU		77H
+//		DelayS@a		EQU		76H
+//		DelayS@Time		EQU		C00000H
+//		DelayMs@Time		EQU		72H
+//		DelayMs@b		EQU		74H
+//		DelayMs@a		EQU		73H
+//		DelayMs@Time		EQU		C00000H
+//		DelayUs@Time		EQU		70H
+//		DelayUs@a		EQU		71H
+//		DelayUs@Time		EQU		C00000H
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		LJUMP 	7FEH 			//0000 	3FFE
+		ORG		07B3H
+		STR 	70H 			//07B3 	01F0
+
+		//;TEST_61F02X_SLEEP.C: 61: unsigned char a;
+		//;TEST_61F02X_SLEEP.C: 62: for(a=0;a<Time;a++)
+		CLRR 	71H 			//07B4 	0171
+		LDR 	70H,0 			//07B5 	0870
+		SUBWR 	71H,0 			//07B6 	0C71
+		BTSC 	STATUS,0 		//07B7 	1403
+		RET		 					//07B8 	0004
+
+		//;TEST_61F02X_SLEEP.C: 63: {
+		//;TEST_61F02X_SLEEP.C: 64: __nop();
+		NOP		 					//07B9 	0000
+		INCR	71H,1 			//07BA 	09F1
+		ORG		07BBH
+		LJUMP 	7B5H 			//07BB 	3FB5
+
+		//;TEST_61F02X_SLEEP.C: 109: POWER_INITIAL();
+		LCALL 	7E8H 			//07BC 	37E8
+
+		//;TEST_61F02X_SLEEP.C: 110: RA1 = 1;
+		BSR 	5H,1 			//07BD 	1885
+
+		//;TEST_61F02X_SLEEP.C: 111: RA0 = 1;
+		BSR 	5H,0 			//07BE 	1805
+
+		//;TEST_61F02X_SLEEP.C: 112: DelayS(4);
+		LDWI 	4H 			//07BF 	2A04
+		LCALL 	7D8H 			//07C0 	37D8
+
+		//;TEST_61F02X_SLEEP.C: 113: RA1 = 0;
+		BCR 	STATUS,5 		//07C1 	1283
+		BCR 	STATUS,6 		//07C2 	1303
+		ORG		07C3H
+		BCR 	5H,1 			//07C3 	1085
+
+		//;TEST_61F02X_SLEEP.C: 114: RA0 = 0;
+		BCR 	5H,0 			//07C4 	1005
+
+		//;TEST_61F02X_SLEEP.C: 116: {
+		//;TEST_61F02X_SLEEP.C: 117: __nop();
+		NOP		 					//07C5 	0000
+		SLEEP	 			//07C6 	0002
+		LJUMP 	7C5H 			//07C7 	3FC5
+		STR 	72H 			//07C8 	01F2
+
+		//;TEST_61F02X_SLEEP.C: 75: unsigned char a,b;
+		//;TEST_61F02X_SLEEP.C: 76: for(a=0;a<Time;a++)
+		CLRR 	73H 			//07C9 	0173
+		LDR 	72H,0 			//07CA 	0872
+		ORG		07CBH
+		SUBWR 	73H,0 			//07CB 	0C73
+		BTSC 	STATUS,0 		//07CC 	1403
+		RET		 					//07CD 	0004
+
+		//;TEST_61F02X_SLEEP.C: 77: {
+		//;TEST_61F02X_SLEEP.C: 78: for(b=0;b<5;b++)
+		CLRR 	74H 			//07CE 	0174
+
+		//;TEST_61F02X_SLEEP.C: 79: {
+		//;TEST_61F02X_SLEEP.C: 80: DelayUs(98);
+		LDWI 	62H 			//07CF 	2A62
+		LCALL 	7B3H 			//07D0 	37B3
+		LDWI 	5H 			//07D1 	2A05
+		INCR	74H,1 			//07D2 	09F4
+		ORG		07D3H
+		SUBWR 	74H,0 			//07D3 	0C74
+		BTSS 	STATUS,0 		//07D4 	1C03
+		LJUMP 	7CFH 			//07D5 	3FCF
+		INCR	73H,1 			//07D6 	09F3
+		LJUMP 	7CAH 			//07D7 	3FCA
+		STR 	75H 			//07D8 	01F5
+
+		//;TEST_61F02X_SLEEP.C: 92: unsigned char a,b;
+		//;TEST_61F02X_SLEEP.C: 93: for(a=0;a<Time;a++)
+		CLRR 	76H 			//07D9 	0176
+		LDR 	75H,0 			//07DA 	0875
+		ORG		07DBH
+		SUBWR 	76H,0 			//07DB 	0C76
+		BTSC 	STATUS,0 		//07DC 	1403
+		RET		 					//07DD 	0004
+
+		//;TEST_61F02X_SLEEP.C: 94: {
+		//;TEST_61F02X_SLEEP.C: 95: for(b=0;b<10;b++)
+		CLRR 	77H 			//07DE 	0177
+
+		//;TEST_61F02X_SLEEP.C: 96: {
+		//;TEST_61F02X_SLEEP.C: 97: DelayMs(100);
+		LDWI 	64H 			//07DF 	2A64
+		LCALL 	7C8H 			//07E0 	37C8
+		LDWI 	AH 			//07E1 	2A0A
+		INCR	77H,1 			//07E2 	09F7
+		ORG		07E3H
+		SUBWR 	77H,0 			//07E3 	0C77
+		BTSS 	STATUS,0 		//07E4 	1C03
+		LJUMP 	7DFH 			//07E5 	3FDF
+		INCR	76H,1 			//07E6 	09F6
+		LJUMP 	7DAH 			//07E7 	3FDA
+
+		//;TEST_61F02X_SLEEP.C: 35: OSCCON = 0B01110001;
+		LDWI 	71H 			//07E8 	2A71
+		BSR 	STATUS,5 		//07E9 	1A83
+		STR 	FH 			//07EA 	018F
+		ORG		07EBH
+
+		//;TEST_61F02X_SLEEP.C: 36: INTCON = 0;
+		CLRR 	INTCON 			//07EB 	010B
+
+		//;TEST_61F02X_SLEEP.C: 38: PORTA = 0B00000000;
+		BCR 	STATUS,5 		//07EC 	1283
+		CLRR 	5H 			//07ED 	0105
+
+		//;TEST_61F02X_SLEEP.C: 39: TRISA = 0B00000000;
+		BSR 	STATUS,5 		//07EE 	1A83
+		CLRR 	5H 			//07EF 	0105
+
+		//;TEST_61F02X_SLEEP.C: 40: PORTC = 0B00000000;
+		BCR 	STATUS,5 		//07F0 	1283
+		CLRR 	7H 			//07F1 	0107
+
+		//;TEST_61F02X_SLEEP.C: 41: TRISC = 0B00000000;
+		BSR 	STATUS,5 		//07F2 	1A83
+		ORG		07F3H
+		CLRR 	7H 			//07F3 	0107
+
+		//;TEST_61F02X_SLEEP.C: 42: WPUA = 0B00000000;
+		CLRR 	15H 			//07F4 	0115
+
+		//;TEST_61F02X_SLEEP.C: 43: WPUC = 0B00000000;
+		CLRR 	8H 			//07F5 	0108
+
+		//;TEST_61F02X_SLEEP.C: 45: ANSEL = 0B00000000;
+		CLRR 	11H 			//07F6 	0111
+
+		//;TEST_61F02X_SLEEP.C: 46: OPTION = 0B00001000;
+		LDWI 	8H 			//07F7 	2A08
+		STR 	1H 			//07F8 	0181
+
+		//;TEST_61F02X_SLEEP.C: 47: MSCKCON = 0B00000000;
+		BCR 	STATUS,5 		//07F9 	1283
+		CLRR 	1BH 			//07FA 	011B
+		ORG		07FBH
+
+		//;TEST_61F02X_SLEEP.C: 51: CMCON0 = 0B00000111;
+		LDWI 	7H 			//07FB 	2A07
+		STR 	19H 			//07FC 	0199
+		RET		 					//07FD 	0004
+		CLRR 	STATUS 			//07FE 	0103
+		LJUMP 	7BCH 			//07FF 	3FBC
+			END

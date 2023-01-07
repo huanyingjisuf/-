@@ -1,0 +1,153 @@
+//Deviec:FT61F02X
+//-----------------------Variable---------------------------------
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		LJUMP 	0AH 			//0000 	380A
+		ORG		0004H
+		STR 	7EH 			//0004 	01FE
+		SWAPR 	STATUS,0 		//0005 	0703
+		STR 	70H 			//0006 	01F0
+		LDR 	PCLATH,0 		//0007 	080A
+		STR 	71H 			//0008 	01F1
+		LJUMP 	22H 			//0009 	3822
+		LJUMP 	0BH 			//000A 	380B
+		CLRR 	STATUS 			//000B 	0103
+		ORG		000CH
+		LJUMP 	34H 			//000C 	3834
+
+		//;TEST_61F02x_Timer1.c: 52: OSCCON = 0B01110001;
+		LDWI 	71H 			//000D 	2A71
+		BSR 	STATUS,5 		//000E 	1A83
+		STR 	FH 			//000F 	018F
+
+		//;TEST_61F02x_Timer1.c: 53: INTCON = 0;
+		CLRR 	INTCON 			//0010 	010B
+
+		//;TEST_61F02x_Timer1.c: 54: PORTA = 0B00000000;
+		BCR 	STATUS,5 		//0011 	1283
+		CLRR 	5H 			//0012 	0105
+
+		//;TEST_61F02x_Timer1.c: 55: TRISA = 0B00000000;
+		BSR 	STATUS,5 		//0013 	1A83
+		ORG		0014H
+		CLRR 	5H 			//0014 	0105
+
+		//;TEST_61F02x_Timer1.c: 57: PORTC = 0B00000000;
+		BCR 	STATUS,5 		//0015 	1283
+		CLRR 	7H 			//0016 	0107
+
+		//;TEST_61F02x_Timer1.c: 58: TRISC = 0B00001000;
+		LDWI 	8H 			//0017 	2A08
+		BSR 	STATUS,5 		//0018 	1A83
+		STR 	7H 			//0019 	0187
+
+		//;TEST_61F02x_Timer1.c: 60: WPUA = 0B00000000;
+		CLRR 	15H 			//001A 	0115
+
+		//;TEST_61F02x_Timer1.c: 61: WPUC = 0B00001000;
+		STR 	8H 			//001B 	0188
+		ORG		001CH
+
+		//;TEST_61F02x_Timer1.c: 63: OPTION = 0B00001000;
+		STR 	1H 			//001C 	0181
+
+		//;TEST_61F02x_Timer1.c: 64: MSCKCON = 0B00000000;
+		BCR 	STATUS,5 		//001D 	1283
+		CLRR 	1BH 			//001E 	011B
+
+		//;TEST_61F02x_Timer1.c: 68: CMCON0 = 0B00000111;
+		LDWI 	7H 			//001F 	2A07
+		STR 	19H 			//0020 	0199
+		RET		 					//0021 	0004
+
+		//;TEST_61F02x_Timer1.c: 35: if(TMR1IF)
+		BCR 	STATUS,5 		//0022 	1283
+		BCR 	STATUS,6 		//0023 	1303
+		ORG		0024H
+		BTSS 	CH,0 			//0024 	1C0C
+		LJUMP 	2DH 			//0025 	382D
+
+		//;TEST_61F02x_Timer1.c: 36: {
+		//;TEST_61F02x_Timer1.c: 37: TMR1IF = 0;
+		BCR 	CH,0 			//0026 	100C
+
+		//;TEST_61F02x_Timer1.c: 38: TMR1L = 0X60;
+		LDWI 	60H 			//0027 	2A60
+		STR 	EH 			//0028 	018E
+
+		//;TEST_61F02x_Timer1.c: 40: TMR1H = 0XF0;
+		LDWI 	F0H 			//0029 	2AF0
+		STR 	FH 			//002A 	018F
+
+		//;TEST_61F02x_Timer1.c: 41: PA3 = ~PA3;
+		LDWI 	8H 			//002B 	2A08
+		ORG		002CH
+		XORWR 	5H,1 			//002C 	0485
+		LDR 	71H,0 			//002D 	0871
+		STR 	PCLATH 			//002E 	018A
+		SWAPR 	70H,0 			//002F 	0770
+		STR 	STATUS 			//0030 	0183
+		SWAPR 	7EH,1 			//0031 	07FE
+		SWAPR 	7EH,0 			//0032 	077E
+		RETI		 			//0033 	0009
+		ORG		0034H
+
+		//;TEST_61F02x_Timer1.c: 98: POWER_INITIAL();
+		LCALL 	DH 			//0034 	300D
+
+		//;TEST_61F02x_Timer1.c: 99: TIMER1_INITIAL();
+		LCALL 	41H 			//0035 	3041
+		LJUMP 	39H 			//0036 	3839
+
+		//;TEST_61F02x_Timer1.c: 104: {
+		//;TEST_61F02x_Timer1.c: 105: TMR1IE = 1;
+		BSR 	STATUS,5 		//0037 	1A83
+		BSR 	CH,0 			//0038 	180C
+
+		//;TEST_61F02x_Timer1.c: 106: }
+		//;TEST_61F02x_Timer1.c: 102: {
+		//;TEST_61F02x_Timer1.c: 103: if(PC3 == 1)
+		BCR 	STATUS,5 		//0039 	1283
+		BTSC 	7H,3 			//003A 	1587
+		LJUMP 	37H 			//003B 	3837
+		ORG		003CH
+
+		//;TEST_61F02x_Timer1.c: 107: else
+		//;TEST_61F02x_Timer1.c: 108: {
+		//;TEST_61F02x_Timer1.c: 109: TMR1IE = 0;
+		BSR 	STATUS,5 		//003C 	1A83
+		BCR 	CH,0 			//003D 	100C
+
+		//;TEST_61F02x_Timer1.c: 110: PA3 = 1;
+		BCR 	STATUS,5 		//003E 	1283
+		BSR 	5H,3 			//003F 	1985
+		LJUMP 	39H 			//0040 	3839
+
+		//;TEST_61F02x_Timer1.c: 79: T1CON = 0B00000000;
+		CLRR 	10H 			//0041 	0110
+
+		//;TEST_61F02x_Timer1.c: 82: TMR1L = 0X60;
+		LDWI 	60H 			//0042 	2A60
+		STR 	EH 			//0043 	018E
+		ORG		0044H
+
+		//;TEST_61F02x_Timer1.c: 83: TMR1H = 0XF0;
+		LDWI 	F0H 			//0044 	2AF0
+		STR 	FH 			//0045 	018F
+
+		//;TEST_61F02x_Timer1.c: 85: TMR1IE = 1;
+		BSR 	STATUS,5 		//0046 	1A83
+		BSR 	CH,0 			//0047 	180C
+
+		//;TEST_61F02x_Timer1.c: 86: TMR1ON = 1;
+		BCR 	STATUS,5 		//0048 	1283
+		BSR 	10H,0 			//0049 	1810
+
+		//;TEST_61F02x_Timer1.c: 87: PEIE=1;
+		BSR 	INTCON,6 		//004A 	1B0B
+
+		//;TEST_61F02x_Timer1.c: 88: GIE = 1;
+		BSR 	INTCON,7 		//004B 	1B8B
+		ORG		004CH
+		RET		 					//004C 	0004
+			END

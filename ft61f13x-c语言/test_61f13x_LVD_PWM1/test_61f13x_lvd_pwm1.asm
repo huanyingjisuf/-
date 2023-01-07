@@ -1,0 +1,176 @@
+//Deviec:FT61F13X
+//-----------------------Variable---------------------------------
+//-----------------------Variable END---------------------------------
+		ORG		0000H
+		BCR 	PCLATH,3 		//0000 	118A
+		LJUMP 	7FDH 			//0001 	3FFD
+		ORG		07ABH
+
+		//;test_61f13x_LVD_PWM1.C: 147: POWER_INITIAL();
+		BCR 	PCLATH,3 		//07AB 	118A
+		LCALL 	7B5H 			//07AC 	37B5
+		BCR 	PCLATH,3 		//07AD 	118A
+
+		//;test_61f13x_LVD_PWM1.C: 148: PWM1_INITIAL();
+		BCR 	PCLATH,3 		//07AE 	118A
+		LCALL 	7C7H 			//07AF 	37C7
+		BCR 	PCLATH,3 		//07B0 	118A
+
+		//;test_61f13x_LVD_PWM1.C: 149: PCON |= 0B00001000;
+		BSR 	STATUS,5 		//07B1 	1A83
+		BSR 	EH,3 			//07B2 	198E
+		ORG		07B3H
+
+		//;test_61f13x_LVD_PWM1.C: 151: {
+		//;test_61f13x_LVD_PWM1.C: 152: __nop();
+		NOP		 					//07B3 	0000
+		LJUMP 	7B3H 			//07B4 	3FB3
+
+		//;test_61f13x_LVD_PWM1.C: 38: OSCCON = 0B01110001;
+		LDWI 	71H 			//07B5 	2A71
+		BSR 	STATUS,5 		//07B6 	1A83
+		STR 	FH 			//07B7 	018F
+
+		//;test_61f13x_LVD_PWM1.C: 39: OPTION = 0B00001000;
+		LDWI 	8H 			//07B8 	2A08
+		STR 	1H 			//07B9 	0181
+
+		//;test_61f13x_LVD_PWM1.C: 40: INTCON = 0;
+		CLRR 	INTCON 			//07BA 	010B
+		ORG		07BBH
+
+		//;test_61f13x_LVD_PWM1.C: 42: PORTA = 0B00000000;
+		BCR 	STATUS,5 		//07BB 	1283
+		CLRR 	5H 			//07BC 	0105
+
+		//;test_61f13x_LVD_PWM1.C: 43: TRISA = 0B00000001;
+		LDWI 	1H 			//07BD 	2A01
+		BSR 	STATUS,5 		//07BE 	1A83
+		STR 	5H 			//07BF 	0185
+
+		//;test_61f13x_LVD_PWM1.C: 45: PORTC = 0B00000000;
+		BCR 	STATUS,5 		//07C0 	1283
+		CLRR 	7H 			//07C1 	0107
+
+		//;test_61f13x_LVD_PWM1.C: 46: TRISC = 0B00000000;
+		BSR 	STATUS,5 		//07C2 	1A83
+		ORG		07C3H
+		CLRR 	7H 			//07C3 	0107
+
+		//;test_61f13x_LVD_PWM1.C: 48: WPUA = 0B00000001;
+		STR 	15H 			//07C4 	0195
+
+		//;test_61f13x_LVD_PWM1.C: 50: WPUC = 0B00000000;
+		CLRR 	13H 			//07C5 	0113
+		RET		 					//07C6 	0004
+
+		//;test_61f13x_LVD_PWM1.C: 60: T2CON0=0;
+		BCR 	STATUS,5 		//07C7 	1283
+		CLRR 	12H 			//07C8 	0112
+
+		//;test_61f13x_LVD_PWM1.C: 64: T2CON1=0X02;
+		LDWI 	2H 			//07C9 	2A02
+		BSR 	STATUS,5 		//07CA 	1A83
+		ORG		07CBH
+		STR 	1EH 			//07CB 	019E
+
+		//;test_61f13x_LVD_PWM1.C: 66: PR2H=0;
+		CLRR 	12H 			//07CC 	0112
+
+		//;test_61f13x_LVD_PWM1.C: 67: PR2L=31;
+		LDWI 	1FH 			//07CD 	2A1F
+		STR 	11H 			//07CE 	0191
+
+		//;test_61f13x_LVD_PWM1.C: 69: P1OE2=0B11100110;
+		LDWI 	E6H 			//07CF 	2AE6
+		BCR 	STATUS,5 		//07D0 	1283
+		BSR 	STATUS,6 		//07D1 	1B03
+		STR 	1BH 			//07D2 	019B
+		ORG		07D3H
+
+		//;test_61f13x_LVD_PWM1.C: 75: TMR2H=0;
+		BCR 	STATUS,6 		//07D3 	1303
+		CLRR 	13H 			//07D4 	0113
+
+		//;test_61f13x_LVD_PWM1.C: 76: TMR2L=0;
+		CLRR 	11H 			//07D5 	0111
+
+		//;test_61f13x_LVD_PWM1.C: 78: P1OE=0B11111111;
+		LDWI 	FFH 			//07D6 	2AFF
+		BSR 	STATUS,5 		//07D7 	1A83
+		STR 	10H 			//07D8 	0190
+
+		//;test_61f13x_LVD_PWM1.C: 87: P1CON=0B10000001;
+		LDWI 	81H 			//07D9 	2A81
+		BCR 	STATUS,5 		//07DA 	1283
+		ORG		07DBH
+		STR 	16H 			//07DB 	0196
+
+		//;test_61f13x_LVD_PWM1.C: 90: P1POL=0B00000000;
+		BSR 	STATUS,5 		//07DC 	1A83
+		CLRR 	19H 			//07DD 	0119
+
+		//;test_61f13x_LVD_PWM1.C: 99: P1POL2=0B11100110;
+		LDWI 	E6H 			//07DE 	2AE6
+		BCR 	STATUS,5 		//07DF 	1283
+		BSR 	STATUS,6 		//07E0 	1B03
+		STR 	9H 			//07E1 	0189
+
+		//;test_61f13x_LVD_PWM1.C: 105: P1ADTH=0;
+		BCR 	STATUS,6 		//07E2 	1303
+		ORG		07E3H
+		CLRR 	14H 			//07E3 	0114
+
+		//;test_61f13x_LVD_PWM1.C: 106: P1ADTL =3;
+		LDWI 	3H 			//07E4 	2A03
+		STR 	EH 			//07E5 	018E
+
+		//;test_61f13x_LVD_PWM1.C: 108: P1BDTH=0;
+		CLRR 	15H 			//07E6 	0115
+
+		//;test_61f13x_LVD_PWM1.C: 109: P1BDTL=10;
+		LDWI 	AH 			//07E7 	2A0A
+		STR 	FH 			//07E8 	018F
+
+		//;test_61f13x_LVD_PWM1.C: 111: P1CDTH=0;
+		CLRR 	1AH 			//07E9 	011A
+
+		//;test_61f13x_LVD_PWM1.C: 112: P1CDTL=26;
+		LDWI 	1AH 			//07EA 	2A1A
+		ORG		07EBH
+		STR 	10H 			//07EB 	0190
+
+		//;test_61f13x_LVD_PWM1.C: 114: P1DDTH=0;
+		CLRR 	9H 			//07EC 	0109
+
+		//;test_61f13x_LVD_PWM1.C: 115: P1DDTL =29;
+		LDWI 	1DH 			//07ED 	2A1D
+		STR 	8H 			//07EE 	0188
+
+		//;test_61f13x_LVD_PWM1.C: 117: T2CON0=T2CON0|0x04;
+		LDR 	12H,0 			//07EF 	0812
+		IORWI 	4H 			//07F0 	2504
+		STR 	12H 			//07F1 	0192
+
+		//;test_61f13x_LVD_PWM1.C: 119: PCON = 0B01000011;
+		LDWI 	43H 			//07F2 	2A43
+		ORG		07F3H
+		BSR 	STATUS,5 		//07F3 	1A83
+		STR 	EH 			//07F4 	018E
+
+		//;test_61f13x_LVD_PWM1.C: 126: LVDCON = 0B00001011;
+		LDWI 	BH 			//07F5 	2A0B
+		BCR 	STATUS,5 		//07F6 	1283
+		BSR 	STATUS,6 		//07F7 	1B03
+		STR 	10H 			//07F8 	0190
+
+		//;test_61f13x_LVD_PWM1.C: 131: P1BR0 = 0B00110000;
+		LDWI 	30H 			//07F9 	2A30
+		BCR 	STATUS,6 		//07FA 	1303
+		ORG		07FBH
+		STR 	17H 			//07FB 	0197
+		RET		 					//07FC 	0004
+		CLRR 	STATUS 			//07FD 	0103
+		BCR 	PCLATH,3 		//07FE 	118A
+		LJUMP 	7ABH 			//07FF 	3FAB
+			END
