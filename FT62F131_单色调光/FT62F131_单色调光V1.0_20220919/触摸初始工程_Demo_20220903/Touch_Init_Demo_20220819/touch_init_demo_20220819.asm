@@ -1,0 +1,3630 @@
+//Deviec:FT62F13X
+//-----------------------Variable---------------------------------
+		_Tk_Push		EQU		4AH
+		_Tk_Push_T		EQU		C8H
+		_ADC_Start		EQU		70H
+		_ADC_T		EQU		D1H
+		_Run_Mode		EQU		49H
+		_String_Sort_Tab		EQU		A0H
+		_String_Sort_Warning		EQU		48H
+		_LED_Cur_LV_Num		EQU		47H
+		_LED_Cur_LV_Dat		EQU		32H
+		_LED_Cur_off_Dat		EQU		4FH
+		_strongest		EQU		46H
+		_Sav_strongest		EQU		45H
+		_LED_PWM_H		EQU		4BH
+		_LED_PWN_N		EQU		30H
+		_LED_PWM_H_SV		EQU		2EH
+		_LED_Cur_OK		EQU		44H
+		_LED_adj_SV_dat		EQU		2CH
+		_LED_ADJ_P1ADTH		EQU		2AH
+		_LED_ADJ_P1ADTL		EQU		28H
+		_LED_Cur		EQU		26H
+		_LED_ADJ_Dir		EQU		43H
+		_LED_TH1_OP_Flag		EQU		42H
+		_LED_ADJ_OP		EQU		41H
+		_LED_PWM_AD_Dat		EQU		128H
+		_LED_PWM_AD_Num		EQU		40H
+		_LED_PWM_PJ_Cur		EQU		DCH
+		_LED_PWM_PJ_Cur_Num		EQU		3FH
+		_LED_PWM_PJ_Val		EQU		D2H
+		_LED_PWM_PJ_Val_Num		EQU		3EH
+		_ADC_now		EQU		3DH
+		_stTkData		EQU		120H
+		_uiChargeDataBuffer		EQU		BAH
+		_uiChargeDataBufferD		EQU		B4H
+		_ucDefaultSysclk		EQU		E9H
+		_uiBaseValue		EQU		C6H
+		_uiSampleValue		EQU		C4H
+		_ucKeyPollingOk		EQU		3CH
+		_ucKeyPollingCount		EQU		3BH
+		_ucTKeyOutChangeMax1		EQU		4EH
+		_ucTKeyOutChangeMax2		EQU		4DH
+		_ucTKeyOutStrongest		EQU		3AH
+		_ucTKeyOutSingle		EQU		39H
+		_ucKeyNumber		EQU		D0H
+		_ucFreqChangeCount		EQU		CFH
+		_ucKeyMapNumber		EQU		E8H
+		_ucFreqIndex		EQU		CEH
+		_ucFreqChangeNumber		EQU		CDH
+		_ucSensitivity		EQU		38H
+		_ucCsFlag		EQU		37H
+		_ucAbnormalCount		EQU		CCH
+		_ucNormalCount		EQU		CBH
+		_ucAbnormalOtherFlag		EQU		CAH
+		_uiAbnormalWaitCount		EQU		C2H
+		_uiResonanceCount		EQU		C0H
+		_ucAbnormalFlag		EQU		36H
+		_OriginalData		EQU		73H
+		_ReferenceData		EQU		77H
+		_ResultData		EQU		75H
+		_stTK.uiData		EQU		E4H
+		_stTK.uiBaseValue		EQU		E6H
+		_stTK.ucChangeValue		EQU		E8H
+		_stTK.ucBaseOkCount		EQU		E9H
+		_stTK.ucBaseUpDownCount		EQU		EAH
+		_stTK.ucSingleStrongest		EQU		EBH
+		_stTK		EQU		72H
+		_ucTempMax1		EQU		35H
+		_ucTempMax2		EQU		34H
+		_uiTempMax1		EQU		24H
+		_uiTempMax2		EQU		22H
+//		delay_ms@i		EQU		56H
+//		delay_ms@Time		EQU		54H
+//		___lwmod@counter		EQU		7CH
+//		___lwmod@divisor		EQU		50H
+//		___lwmod@dividend		EQU		52H
+//		DelayUs@a		EQU		50H
+//		DelayUs@Time		EQU		7CH
+//		TSC_DataProcessing@i		EQU		5FH
+//		___wmul@product		EQU		7CH
+//		___wmul@multiplier		EQU		57H
+//		___wmul@multiplicand		EQU		59H
+//		String_Sort@is		EQU		60H
+//		String_Sort@i_1896		EQU		5EH
+//		String_Sort@i_1894		EQU		61H
+//		String_Sort@i_1893		EQU		5DH
+//		String_Sort@i		EQU		5FH
+//		String_Sort@Dat		EQU		62H
+//		String_Sort@s		EQU		57H
+//		String_Sort@l		EQU		59H
+//		___lwdiv@quotient		EQU		55H
+//		___lwdiv@counter		EQU		54H
+//		___lwdiv@divisor		EQU		50H
+//		___lwdiv@dividend		EQU		52H
+//		GET_ADC_DATA@adcChannel		EQU		53H
+//		GET_ADC_DATA@ADC_Dat		EQU		54H
+//		GET_ADC_DATA@adcChannel		EQU		53H
+//		GET_ADC_DATA@adcChannel		EQU		53H
+//		ADC_DelayUs@Time		EQU		7CH
+//		ADC_DelayUs@a		EQU		7DH
+//		ADC_DelayUs@Time		EQU		7CH
+//		ADC_DelayUs@Time		EQU		7CH
+//-----------------------Variable END---------------------------------
+
+		ORG		0000H
+		BCR 	PCLATH,3 		//0000 	118A
+		LJUMP 	0BH 			//0001 	380B
+		ORG		0004H
+		STR 	7EH 			//0004 	01FE
+		SWAPR 	STATUS,0 		//0005 	0703
+		STR 	7AH 			//0006 	01FA
+		LDR 	PCLATH,0 		//0007 	080A
+		STR 	7BH 			//0008 	01FB
+		BCR 	PCLATH,3 		//0009 	118A
+		LJUMP 	771H 			//000A 	3F71
+		BCR 	PCLATH,3 		//000B 	118A
+		LJUMP 	0DH 			//000C 	380D
+		LDWI 	22H 			//000D 	2A22
+		CLRR 	70H 			//000E 	0170
+		BCR 	STATUS,7 		//000F 	1383
+		STR 	FSR 			//0010 	0184
+		LDWI 	50H 			//0011 	2A50
+		BSR 	PCLATH,3 		//0012 	198A
+		LCALL 	108H 			//0013 	3108
+		BCR 	PCLATH,3 		//0014 	118A
+		LDWI 	A0H 			//0015 	2AA0
+		STR 	FSR 			//0016 	0184
+		LDWI 	E9H 			//0017 	2AE9
+		BSR 	PCLATH,3 		//0018 	198A
+		LCALL 	108H 			//0019 	3108
+		BCR 	PCLATH,3 		//001A 	118A
+		LDWI 	28H 			//001B 	2A28
+		BSR 	STATUS,7 		//001C 	1B83
+		STR 	FSR 			//001D 	0184
+		LDWI 	3CH 			//001E 	2A3C
+		BSR 	PCLATH,3 		//001F 	198A
+		LCALL 	108H 			//0020 	3108
+		CLRR 	STATUS 			//0021 	0103
+		BCR 	PCLATH,3 		//0022 	118A
+		LJUMP 	71BH 			//0023 	3F1B
+
+		//;main.c: 640: TSC_Start();
+		BCR 	PCLATH,3 		//0024 	118A
+		LCALL 	44FH 			//0025 	344F
+		BCR 	PCLATH,3 		//0026 	118A
+
+		//;main.c: 641: if(TSC_DataProcessing()==1)
+		LCALL 	134H 			//0027 	3134
+		BCR 	PCLATH,3 		//0028 	118A
+		XORWI 	1H 			//0029 	2601
+		BTSS 	STATUS,2 		//002A 	1D03
+		RET		 					//002B 	0004
+
+		//;main.c: 642: {
+		//;main.c: 643: strongest = TSC_GetStrongest();
+		LCALL 	343H 			//002C 	3343
+		BCR 	PCLATH,3 		//002D 	118A
+		STR 	46H 			//002E 	01C6
+
+		//;main.c: 644: Tk_PushNum = TSC_GetSingle();
+		LCALL 	341H 			//002F 	3341
+		BCR 	PCLATH,3 		//0030 	118A
+
+		//;main.c: 646: if(Run_Mode==0)
+		LDR 	49H,0 			//0031 	0849
+		BTSS 	STATUS,2 		//0032 	1D03
+		LJUMP 	129H 			//0033 	3929
+
+		//;main.c: 647: {
+		//;main.c: 649: if(strongest!=Sav_strongest)
+		LDR 	46H,0 			//0034 	0846
+		XORWR 	45H,0 			//0035 	0445
+		BTSC 	STATUS,2 		//0036 	1503
+		RET		 					//0037 	0004
+		LJUMP 	44H 			//0038 	3844
+
+		//;main.c: 655: if(LED_Cur_LV_Num<3)
+		LDWI 	3H 			//0039 	2A03
+		SUBWR 	47H,0 			//003A 	0C47
+		BTSC 	STATUS,0 		//003B 	1403
+		LJUMP 	3FH 			//003C 	383F
+
+		//;main.c: 656: {
+		//;main.c: 658: LED_Cur_LV_Num++;
+		INCR	47H,1 			//003D 	09C7
+
+		//;main.c: 675: }
+		LJUMP 	65H 			//003E 	3865
+
+		//;main.c: 676: else
+		//;main.c: 677: {
+		//;main.c: 678: LED_Cur_LV_Num =0;
+		CLRR 	47H 			//003F 	0147
+
+		//;main.c: 679: P1ADTH =0;
+		//;main.c: 680: P1ADTL =0;
+		//;main.c: 682: LED_PWM_H =0;
+		//;main.c: 683: LED_PWN_N =0;
+		BCR 	PCLATH,3 		//0040 	118A
+		LCALL 	76AH 			//0041 	376A
+		BCR 	PCLATH,3 		//0042 	118A
+		LJUMP 	65H 			//0043 	3865
+		LDR 	46H,0 			//0044 	0846
+		XORWI 	1H 			//0045 	2601
+		BTSC 	STATUS,2 		//0046 	1503
+		LJUMP 	39H 			//0047 	3839
+		LJUMP 	65H 			//0048 	3865
+
+		//;main.c: 695: LED_Cur_LV_Dat =0;
+		CLRR 	32H 			//0049 	0132
+		CLRR 	33H 			//004A 	0133
+
+		//;main.c: 696: LED_Cur_off_Dat =0;
+		CLRR 	4FH 			//004B 	014F
+
+		//;main.c: 697: break;
+		LJUMP 	126H 			//004C 	3926
+
+		//;main.c: 701: LED_Cur_LV_Dat =100;
+		LDWI 	64H 			//004D 	2A64
+		STR 	32H 			//004E 	01B2
+		LDWI 	5H 			//004F 	2A05
+		CLRR 	33H 			//0050 	0133
+
+		//;main.c: 702: LED_Cur_off_Dat =5;
+		STR 	4FH 			//0051 	01CF
+
+		//;main.c: 703: LED_PWM_H =200;
+		LDWI 	C8H 			//0052 	2AC8
+		STR 	4BH 			//0053 	01CB
+		CLRR 	4CH 			//0054 	014C
+
+		//;main.c: 710: break;
+		LJUMP 	126H 			//0055 	3926
+
+		//;main.c: 712: LED_Cur_LV_Dat =300;
+		LDWI 	2CH 			//0056 	2A2C
+
+		//;main.c: 713: LED_Cur_off_Dat =5;
+		LCALL 	371H 			//0057 	3371
+		BCR 	PCLATH,3 		//0058 	118A
+
+		//;main.c: 714: LED_PWM_H =900;
+		LDWI 	84H 			//0059 	2A84
+		STR 	4BH 			//005A 	01CB
+		LDWI 	3H 			//005B 	2A03
+		LJUMP 	63H 			//005C 	3863
+
+		//;main.c: 715: break;
+		//;main.c: 717: LED_Cur_LV_Dat =500;
+		LDWI 	F4H 			//005D 	2AF4
+
+		//;main.c: 718: LED_Cur_off_Dat =5;
+		LCALL 	371H 			//005E 	3371
+		BCR 	PCLATH,3 		//005F 	118A
+
+		//;main.c: 719: LED_PWM_H =1400;
+		LDWI 	78H 			//0060 	2A78
+		STR 	4BH 			//0061 	01CB
+		LDWI 	5H 			//0062 	2A05
+		STR 	4CH 			//0063 	01CC
+
+		//;main.c: 720: break;
+		LJUMP 	126H 			//0064 	3926
+		LDR 	47H,0 			//0065 	0847
+		XORWI 	0H 			//0066 	2600
+		BTSC 	STATUS,2 		//0067 	1503
+		LJUMP 	49H 			//0068 	3849
+		XORWI 	1H 			//0069 	2601
+		BTSC 	STATUS,2 		//006A 	1503
+		LJUMP 	4DH 			//006B 	384D
+		XORWI 	3H 			//006C 	2603
+		BTSC 	STATUS,2 		//006D 	1503
+		LJUMP 	56H 			//006E 	3856
+		XORWI 	1H 			//006F 	2601
+		BTSC 	STATUS,2 		//0070 	1503
+		LJUMP 	5DH 			//0071 	385D
+		LJUMP 	126H 			//0072 	3926
+		LJUMP 	126H 			//0073 	3926
+
+		//;main.c: 736: if((Tk_Push==1)&&(strongest!=Sav_strongest))
+		DECRSZ 	4AH,0 		//0074 	0E4A
+		LJUMP 	A3H 			//0075 	38A3
+		LDR 	46H,0 			//0076 	0846
+		XORWR 	45H,0 			//0077 	0445
+		BTSC 	STATUS,2 		//0078 	1503
+		LJUMP 	A3H 			//0079 	38A3
+
+		//;main.c: 737: {
+		//;main.c: 738: Tk_Push=0;
+		CLRR 	4AH 			//007A 	014A
+
+		//;main.c: 739: if((LED_ADJ_OP==1)&&(LED_TH1_OP_Flag==0))
+		DECRSZ 	41H,0 		//007B 	0E41
+		LJUMP 	9BH 			//007C 	389B
+		LDR 	42H,0 			//007D 	0842
+		BTSS 	STATUS,2 		//007E 	1D03
+		LJUMP 	9BH 			//007F 	389B
+
+		//;main.c: 740: {
+		//;main.c: 741: LED_ADJ_OP =0;
+		CLRR 	41H 			//0080 	0141
+
+		//;main.c: 742: LED_Cur_LV_Num =0;
+		CLRR 	47H 			//0081 	0147
+
+		//;main.c: 744: LED_ADJ_P1ADTH = P1ADTH;
+		LDR 	14H,0 			//0082 	0814
+		STR 	2AH 			//0083 	01AA
+		CLRR 	2BH 			//0084 	012B
+
+		//;main.c: 745: P1ADTH =0;
+		CLRR 	14H 			//0085 	0114
+
+		//;main.c: 747: LED_ADJ_P1ADTL = P1ADTL;
+		LDR 	EH,0 			//0086 	080E
+		STR 	28H 			//0087 	01A8
+		CLRR 	29H 			//0088 	0129
+
+		//;main.c: 748: P1ADTL =0;
+		CLRR 	EH 			//0089 	010E
+
+		//;main.c: 750: LED_PWM_H_SV = LED_PWM_H;
+		LDR 	4CH,0 			//008A 	084C
+		STR 	2FH 			//008B 	01AF
+		LDR 	4BH,0 			//008C 	084B
+		STR 	2EH 			//008D 	01AE
+
+		//;main.c: 751: LED_PWM_H =0;
+		CLRR 	4BH 			//008E 	014B
+		CLRR 	4CH 			//008F 	014C
+
+		//;main.c: 752: LED_PWN_N =0;
+		CLRR 	30H 			//0090 	0130
+		CLRR 	31H 			//0091 	0131
+
+		//;main.c: 753: LED_adj_SV_dat=LED_Cur_LV_Dat;
+		LDR 	33H,0 			//0092 	0833
+		STR 	2DH 			//0093 	01AD
+		LDR 	32H,0 			//0094 	0832
+		STR 	2CH 			//0095 	01AC
+
+		//;main.c: 754: LED_Cur_LV_Dat =0;
+		CLRR 	32H 			//0096 	0132
+		CLRR 	33H 			//0097 	0133
+
+		//;main.c: 755: LED_ADJ_Dir =0;
+		CLRR 	43H 			//0098 	0143
+
+		//;main.c: 756: PA4 =0;
+		BCR 	5H,4 			//0099 	1205
+
+		//;main.c: 758: }
+		LJUMP 	A3H 			//009A 	38A3
+
+		//;main.c: 759: else
+		//;main.c: 760: if((LED_ADJ_OP==0)&&(LED_TH1_OP_Flag==0))
+		LDR 	41H,0 			//009B 	0841
+		BTSS 	STATUS,2 		//009C 	1D03
+		LJUMP 	A3H 			//009D 	38A3
+		LDR 	42H,0 			//009E 	0842
+		BTSS 	STATUS,2 		//009F 	1D03
+		LJUMP 	A3H 			//00A0 	38A3
+
+		//;main.c: 761: {
+		//;main.c: 763: LED_ADJ_OP =1;
+		//;main.c: 764: LED_Cur_LV_Dat = LED_adj_SV_dat;
+		//;main.c: 765: if(LED_Cur_LV_Dat<50)
+		//;main.c: 766: LED_Cur_LV_Dat =50;
+		//;main.c: 767: P1ADTH = LED_ADJ_P1ADTH;
+		//;main.c: 768: P1ADTL = LED_ADJ_P1ADTL;
+		//;main.c: 769: LED_PWM_H = LED_PWM_H_SV;
+		//;main.c: 770: PA4 =1;
+		//;main.c: 771: LED_Cur_off_Dat =5;
+		LCALL 	346H 			//00A1 	3346
+		BCR 	PCLATH,3 		//00A2 	118A
+
+		//;main.c: 773: }
+		//;main.c: 774: }
+		//;main.c: 776: if((Tk_Push==2)&&(strongest!=Sav_strongest))
+		LDWI 	2H 			//00A3 	2A02
+		XORWR 	4AH,0 			//00A4 	044A
+		BTSS 	STATUS,2 		//00A5 	1D03
+		LJUMP 	126H 			//00A6 	3926
+		LDR 	46H,0 			//00A7 	0846
+		XORWR 	45H,0 			//00A8 	0445
+		BTSC 	STATUS,2 		//00A9 	1503
+		LJUMP 	126H 			//00AA 	3926
+
+		//;main.c: 777: {
+		//;main.c: 778: Tk_Push=0;
+		CLRR 	4AH 			//00AB 	014A
+
+		//;main.c: 779: if(LED_ADJ_Dir==0)
+		LDR 	43H,0 			//00AC 	0843
+		BTSS 	STATUS,2 		//00AD 	1D03
+		LJUMP 	B2H 			//00AE 	38B2
+
+		//;main.c: 780: LED_ADJ_Dir =1;
+		CLRR 	43H 			//00AF 	0143
+		INCR	43H,1 			//00B0 	09C3
+		LJUMP 	126H 			//00B1 	3926
+
+		//;main.c: 781: else
+		//;main.c: 782: LED_ADJ_Dir =0;
+		CLRR 	43H 			//00B2 	0143
+		LJUMP 	126H 			//00B3 	3926
+
+		//;main.c: 791: if(Sav_strongest != strongest)
+		LDR 	45H,0 			//00B4 	0845
+		XORWR 	46H,0 			//00B5 	0446
+		BTSC 	STATUS,2 		//00B6 	1503
+		LJUMP 	C3H 			//00B7 	38C3
+
+		//;main.c: 792: {
+		//;main.c: 793: Tk_Push =1;
+		CLRR 	4AH 			//00B8 	014A
+		INCR	4AH,1 			//00B9 	09CA
+
+		//;main.c: 794: if(LED_ADJ_OP==0)
+		LDR 	41H,0 			//00BA 	0841
+		BTSS 	STATUS,2 		//00BB 	1D03
+		LJUMP 	C2H 			//00BC 	38C2
+
+		//;main.c: 795: {
+		//;main.c: 797: LED_TH1_OP_Flag =1;
+		CLRR 	42H 			//00BD 	0142
+		INCR	42H,1 			//00BE 	09C2
+
+		//;main.c: 798: LED_ADJ_OP =1;
+		//;main.c: 799: LED_Cur_LV_Dat = LED_adj_SV_dat;
+		//;main.c: 800: if(LED_Cur_LV_Dat<50)
+		//;main.c: 801: LED_Cur_LV_Dat =50;
+		//;main.c: 802: P1ADTH = LED_ADJ_P1ADTH;
+		//;main.c: 803: P1ADTL = LED_ADJ_P1ADTL;
+		//;main.c: 804: LED_PWM_H = LED_PWM_H_SV;
+		//;main.c: 805: PA4 =1;
+		//;main.c: 806: LED_Cur_off_Dat =5;
+		LCALL 	346H 			//00BF 	3346
+		BCR 	PCLATH,3 		//00C0 	118A
+
+		//;main.c: 807: }
+		LJUMP 	C3H 			//00C1 	38C3
+
+		//;main.c: 808: else
+		//;main.c: 809: LED_TH1_OP_Flag =0;
+		CLRR 	42H 			//00C2 	0142
+
+		//;main.c: 810: }
+		//;main.c: 812: if((Tk_Push==2)&&(LED_ADJ_OP==1))
+		LDWI 	2H 			//00C3 	2A02
+		XORWR 	4AH,0 			//00C4 	044A
+		BTSS 	STATUS,2 		//00C5 	1D03
+		LJUMP 	126H 			//00C6 	3926
+		DECRSZ 	41H,0 		//00C7 	0E41
+		LJUMP 	126H 			//00C8 	3926
+
+		//;main.c: 813: {
+		//;main.c: 816: if((LED_ADJ_Dir==0)&&(LED_Cur_OK==1))
+		LDR 	43H,0 			//00C9 	0843
+		BTSS 	STATUS,2 		//00CA 	1D03
+		LJUMP 	F4H 			//00CB 	38F4
+		DECRSZ 	44H,0 		//00CC 	0E44
+		LJUMP 	F4H 			//00CD 	38F4
+		LDWI 	1H 			//00CE 	2A01
+
+		//;main.c: 817: {
+		//;main.c: 818: LED_Cur_OK =0;
+		CLRR 	44H 			//00CF 	0144
+
+		//;main.c: 820: if(LED_Cur<500)
+		SUBWR 	27H,0 			//00D0 	0C27
+		LDWI 	F4H 			//00D1 	2AF4
+		BTSC 	STATUS,2 		//00D2 	1503
+		SUBWR 	26H,0 			//00D3 	0C26
+		BTSC 	STATUS,0 		//00D4 	1403
+		LJUMP 	DAH 			//00D5 	38DA
+
+		//;main.c: 821: LED_PWM_H +=20;
+		LDWI 	14H 			//00D6 	2A14
+		ADDWR 	4BH,1 			//00D7 	0BCB
+		BTSC 	STATUS,0 		//00D8 	1403
+		INCR	4CH,1 			//00D9 	09CC
+
+		//;main.c: 823: if(LED_PWM_H>=1600)
+		LDWI 	6H 			//00DA 	2A06
+		SUBWR 	4CH,0 			//00DB 	0C4C
+		LDWI 	40H 			//00DC 	2A40
+		BTSC 	STATUS,2 		//00DD 	1503
+		SUBWR 	4BH,0 			//00DE 	0C4B
+		BTSS 	STATUS,0 		//00DF 	1C03
+		LJUMP 	E4H 			//00E0 	38E4
+
+		//;main.c: 824: LED_PWM_H = 1600;
+		BSR 	PCLATH,3 		//00E1 	198A
+		LCALL 	3FBH 			//00E2 	33FB
+		BCR 	PCLATH,3 		//00E3 	118A
+
+		//;main.c: 826: LED_PWN_N = LED_PWM_H*(0x640/1600);
+		//;main.c: 828: P1ADTH = LED_PWN_N>>8;
+		//;main.c: 829: P1ADTL =LED_PWN_N&0XFF;
+		LCALL 	362H 			//00E4 	3362
+		BCR 	PCLATH,3 		//00E5 	118A
+
+		//;main.c: 830: if(LED_Cur<500)
+		LDWI 	1H 			//00E6 	2A01
+		SUBWR 	27H,0 			//00E7 	0C27
+		LDWI 	F4H 			//00E8 	2AF4
+		BTSC 	STATUS,2 		//00E9 	1503
+		SUBWR 	26H,0 			//00EA 	0C26
+		BTSC 	STATUS,0 		//00EB 	1403
+		LJUMP 	F0H 			//00EC 	38F0
+
+		//;main.c: 831: LED_Cur_LV_Dat =LED_Cur;
+		LCALL 	377H 			//00ED 	3377
+		BCR 	PCLATH,3 		//00EE 	118A
+		LJUMP 	F4H 			//00EF 	38F4
+
+		//;main.c: 832: else
+		//;main.c: 833: LED_Cur_LV_Dat =500;
+		LDWI 	F4H 			//00F0 	2AF4
+		STR 	32H 			//00F1 	01B2
+		LDWI 	1H 			//00F2 	2A01
+		STR 	33H 			//00F3 	01B3
+
+		//;main.c: 834: }
+		//;main.c: 836: if((LED_ADJ_Dir==1)&&(LED_Cur_OK==1))
+		DECRSZ 	43H,0 		//00F4 	0E43
+		LJUMP 	126H 			//00F5 	3926
+		DECRSZ 	44H,0 		//00F6 	0E44
+		LJUMP 	126H 			//00F7 	3926
+		LDWI 	0H 			//00F8 	2A00
+
+		//;main.c: 837: {
+		//;main.c: 838: LED_Cur_OK =0;
+		CLRR 	44H 			//00F9 	0144
+
+		//;main.c: 839: if(LED_Cur>(50+50))
+		SUBWR 	27H,0 			//00FA 	0C27
+		LDWI 	65H 			//00FB 	2A65
+		BTSC 	STATUS,2 		//00FC 	1503
+		SUBWR 	26H,0 			//00FD 	0C26
+		BTSS 	STATUS,0 		//00FE 	1C03
+		LJUMP 	102H 			//00FF 	3902
+
+		//;main.c: 840: LED_PWM_H-=20;
+		LDWI 	14H 			//0100 	2A14
+		LJUMP 	10AH 			//0101 	390A
+
+		//;main.c: 841: else if(LED_Cur>50)
+		LDWI 	0H 			//0102 	2A00
+		SUBWR 	27H,0 			//0103 	0C27
+		LDWI 	33H 			//0104 	2A33
+		BTSC 	STATUS,2 		//0105 	1503
+		SUBWR 	26H,0 			//0106 	0C26
+		BTSS 	STATUS,0 		//0107 	1C03
+		LJUMP 	10DH 			//0108 	390D
+
+		//;main.c: 842: LED_PWM_H-=4;
+		LDWI 	4H 			//0109 	2A04
+		SUBWR 	4BH,1 			//010A 	0CCB
+		BTSS 	STATUS,0 		//010B 	1C03
+		DECR 	4CH,1 			//010C 	0DCC
+
+		//;main.c: 844: if(LED_PWM_H<=50)
+		LDWI 	0H 			//010D 	2A00
+		SUBWR 	4CH,0 			//010E 	0C4C
+		LDWI 	33H 			//010F 	2A33
+		BTSC 	STATUS,2 		//0110 	1503
+		SUBWR 	4BH,0 			//0111 	0C4B
+		BTSC 	STATUS,0 		//0112 	1403
+		LJUMP 	117H 			//0113 	3917
+
+		//;main.c: 845: LED_PWM_H = 50;
+		LDWI 	32H 			//0114 	2A32
+		STR 	4BH 			//0115 	01CB
+		CLRR 	4CH 			//0116 	014C
+
+		//;main.c: 847: LED_PWN_N = LED_PWM_H*(0x640/1600);
+		//;main.c: 848: P1ADTH = LED_PWN_N>>8;
+		//;main.c: 849: P1ADTL =LED_PWN_N&0XFF;
+		LCALL 	362H 			//0117 	3362
+		BCR 	PCLATH,3 		//0118 	118A
+
+		//;main.c: 851: if(LED_Cur>50)
+		LDWI 	0H 			//0119 	2A00
+		SUBWR 	27H,0 			//011A 	0C27
+		LDWI 	33H 			//011B 	2A33
+		BTSC 	STATUS,2 		//011C 	1503
+		SUBWR 	26H,0 			//011D 	0C26
+		BTSS 	STATUS,0 		//011E 	1C03
+		LJUMP 	123H 			//011F 	3923
+
+		//;main.c: 852: LED_Cur_LV_Dat =LED_Cur;
+		LCALL 	377H 			//0120 	3377
+		BCR 	PCLATH,3 		//0121 	118A
+		LJUMP 	126H 			//0122 	3926
+
+		//;main.c: 853: else
+		//;main.c: 854: LED_Cur_LV_Dat =50;
+		LDWI 	32H 			//0123 	2A32
+		STR 	32H 			//0124 	01B2
+		CLRR 	33H 			//0125 	0133
+
+		//;main.c: 726: Sav_strongest = strongest;
+		LDR 	46H,0 			//0126 	0846
+		STR 	45H 			//0127 	01C5
+		RET		 					//0128 	0004
+
+		//;main.c: 729: else if(Run_Mode==1)
+		DECRSZ 	49H,0 		//0129 	0E49
+		RET		 					//012A 	0004
+		LDR 	46H,0 			//012B 	0846
+		XORWI 	0H 			//012C 	2600
+		BTSC 	STATUS,2 		//012D 	1503
+		LJUMP 	74H 			//012E 	3874
+		XORWI 	1H 			//012F 	2601
+		BTSC 	STATUS,2 		//0130 	1503
+		LJUMP 	B4H 			//0131 	38B4
+		LJUMP 	126H 			//0132 	3926
+		RET		 					//0133 	0004
+		BCR 	STATUS,5 		//0134 	1283
+		DECRSZ 	3CH,0 		//0135 	0E3C
+		RETW 	0H 			//0136 	2100
+		LDWI 	15H 			//0137 	2A15
+		CLRR 	3CH 			//0138 	013C
+		INCR	3BH,1 			//0139 	09BB
+		CLRR 	35H 			//013A 	0135
+		CLRR 	34H 			//013B 	0134
+		CLRR 	24H 			//013C 	0124
+		CLRR 	25H 			//013D 	0125
+		CLRR 	22H 			//013E 	0122
+		CLRR 	23H 			//013F 	0123
+		SUBWR 	3BH,0 			//0140 	0C3B
+		BTSS 	STATUS,0 		//0141 	1C03
+		LJUMP 	148H 			//0142 	3948
+		LCALL 	2A8H 			//0143 	32A8
+		BCR 	PCLATH,3 		//0144 	118A
+		XORWI 	1H 			//0145 	2601
+		BTSC 	STATUS,2 		//0146 	1503
+		RETW 	1H 			//0147 	2101
+		BCR 	STATUS,5 		//0148 	1283
+		CLRR 	36H 			//0149 	0136
+		CLRR 	39H 			//014A 	0139
+		CLRR 	3AH 			//014B 	013A
+		CLRR 	21H 			//014C 	0121
+		CLRR 	5FH 			//014D 	015F
+		LCALL 	305H 			//014E 	3305
+		BCR 	PCLATH,3 		//014F 	118A
+		LDWI 	14H 			//0150 	2A14
+		BCR 	STATUS,5 		//0151 	1283
+		BCR 	STATUS,6 		//0152 	1303
+		SUBWR 	3BH,0 			//0153 	0C3B
+		BTSC 	STATUS,0 		//0154 	1403
+		LJUMP 	165H 			//0155 	3965
+		LDR 	73H,0 			//0156 	0873
+		SUBWR 	75H,0 			//0157 	0C75
+		BTSS 	STATUS,2 		//0158 	1D03
+		LJUMP 	15CH 			//0159 	395C
+		LDR 	72H,0 			//015A 	0872
+		SUBWR 	74H,0 			//015B 	0C74
+		BTSC 	STATUS,0 		//015C 	1403
+		LJUMP 	162H 			//015D 	3962
+		LDR 	73H,0 			//015E 	0873
+		STR 	75H 			//015F 	01F5
+		LDR 	72H,0 			//0160 	0872
+		STR 	74H 			//0161 	01F4
+		LDWI 	C0H 			//0162 	2AC0
+		ANDWR 	79H,1 			//0163 	02F9
+		LJUMP 	27AH 			//0164 	3A7A
+		LDWI 	6EH 			//0165 	2A6E
+		STR 	3BH 			//0166 	01BB
+		LDR 	5FH,0 			//0167 	085F
+		ADDWI 	15H 			//0168 	2715
+		STR 	FSR 			//0169 	0184
+		BSR 	PCLATH,3 		//016A 	198A
+		LCALL 	0H 			//016B 	3000
+		BCR 	PCLATH,3 		//016C 	118A
+		STR 	38H 			//016D 	01B8
+		LDR 	76H,0 			//016E 	0876
+		SUBWR 	38H,0 			//016F 	0C38
+		BTSC 	STATUS,0 		//0170 	1403
+		LJUMP 	1DCH 			//0171 	39DC
+		LDWI 	7FH 			//0172 	2A7F
+		CLRR 	77H 			//0173 	0177
+		STR 	78H 			//0174 	01F8
+		LDWI 	8H 			//0175 	2A08
+		ADDWR 	79H,1 			//0176 	0BF9
+		LDWI 	38H 			//0177 	2A38
+		ANDWR 	79H,0 			//0178 	0279
+		STR 	5BH 			//0179 	01DB
+		LDWI 	20H 			//017A 	2A20
+		SUBWR 	5BH,0 			//017B 	0C5B
+		BTSS 	STATUS,0 		//017C 	1C03
+		LJUMP 	183H 			//017D 	3983
+		LDR 	79H,0 			//017E 	0879
+		ANDWI 	C7H 			//017F 	24C7
+		IORWI 	20H 			//0180 	2520
+		STR 	79H 			//0181 	01F9
+		BSR 	79H,6 			//0182 	1B79
+		BTSS 	79H,7 			//0183 	1FF9
+		LJUMP 	18BH 			//0184 	398B
+		LDR 	76H,0 			//0185 	0876
+		XORWR 	4EH,0 			//0186 	044E
+		BTSS 	STATUS,2 		//0187 	1D03
+		LJUMP 	18BH 			//0188 	398B
+		LCALL 	37CH 			//0189 	337C
+		BCR 	PCLATH,3 		//018A 	118A
+		LDR 	76H,0 			//018B 	0876
+		XORWR 	4EH,0 			//018C 	044E
+		BTSS 	STATUS,2 		//018D 	1D03
+		LJUMP 	1D0H 			//018E 	39D0
+		LDR 	4DH,0 			//018F 	084D
+		STR 	57H 			//0190 	01D7
+		LDWI 	1EH 			//0191 	2A1E
+		CLRR 	58H 			//0192 	0158
+		STR 	59H 			//0193 	01D9
+		CLRR 	5AH 			//0194 	015A
+		BSR 	PCLATH,3 		//0195 	198A
+		LCALL 	2A0H 			//0196 	32A0
+		BCR 	PCLATH,3 		//0197 	118A
+		LDR 	57H,0 			//0198 	0857
+		STR 	5BH 			//0199 	01DB
+		LDR 	58H,0 			//019A 	0858
+		STR 	5CH 			//019B 	01DC
+		LDR 	4EH,0 			//019C 	084E
+		STR 	57H 			//019D 	01D7
+		LDWI 	AH 			//019E 	2A0A
+		CLRR 	58H 			//019F 	0158
+		STR 	59H 			//01A0 	01D9
+		CLRR 	5AH 			//01A1 	015A
+		BSR 	PCLATH,3 		//01A2 	198A
+		LCALL 	2A0H 			//01A3 	32A0
+		BCR 	PCLATH,3 		//01A4 	118A
+		LDR 	58H,0 			//01A5 	0858
+		SUBWR 	5CH,0 			//01A6 	0C5C
+		BTSS 	STATUS,2 		//01A7 	1D03
+		LJUMP 	1ABH 			//01A8 	39AB
+		LDR 	57H,0 			//01A9 	0857
+		SUBWR 	5BH,0 			//01AA 	0C5B
+		BTSC 	STATUS,0 		//01AB 	1403
+		LJUMP 	1D0H 			//01AC 	39D0
+		LDR 	4EH,0 			//01AD 	084E
+		STR 	5BH 			//01AE 	01DB
+		CLRR 	5CH 			//01AF 	015C
+		LDR 	5CH,0 			//01B0 	085C
+		STR 	5EH 			//01B1 	01DE
+		LDR 	4DH,0 			//01B2 	084D
+		SUBWR 	5BH,0 			//01B3 	0C5B
+		STR 	5DH 			//01B4 	01DD
+		BTSS 	STATUS,0 		//01B5 	1C03
+		DECR 	5EH,1 			//01B6 	0DDE
+		LDR 	5EH,0 			//01B7 	085E
+		XORWI 	80H 			//01B8 	2680
+		SUBWI 	80H 			//01B9 	2880
+		BTSS 	STATUS,2 		//01BA 	1D03
+		LJUMP 	1BEH 			//01BB 	39BE
+		LDR 	5DH,0 			//01BC 	085D
+		SUBWR 	38H,0 			//01BD 	0C38
+		BTSC 	STATUS,0 		//01BE 	1403
+		LJUMP 	1C3H 			//01BF 	39C3
+		BCR 	STATUS,5 		//01C0 	1283
+		BCR 	STATUS,6 		//01C1 	1303
+		INCR	79H,1 			//01C2 	09F9
+		LDWI 	7H 			//01C3 	2A07
+		BCR 	STATUS,5 		//01C4 	1283
+		BCR 	STATUS,6 		//01C5 	1303
+		ANDWR 	79H,0 			//01C6 	0279
+		STR 	5BH 			//01C7 	01DB
+		LDWI 	4H 			//01C8 	2A04
+		SUBWR 	5BH,0 			//01C9 	0C5B
+		BTSS 	STATUS,0 		//01CA 	1C03
+		LJUMP 	1EDH 			//01CB 	39ED
+		BSR 	79H,7 			//01CC 	1BF9
+		LCALL 	37CH 			//01CD 	337C
+		BCR 	PCLATH,3 		//01CE 	118A
+		LJUMP 	1EDH 			//01CF 	39ED
+		LDR 	79H,0 			//01D0 	0879
+		ANDWI 	7H 			//01D1 	2407
+		BTSC 	STATUS,2 		//01D2 	1503
+		LJUMP 	1DAH 			//01D3 	39DA
+		LDR 	76H,0 			//01D4 	0876
+		XORWR 	4EH,0 			//01D5 	044E
+		BTSC 	STATUS,2 		//01D6 	1503
+		LJUMP 	1EDH 			//01D7 	39ED
+		DECR 	79H,1 			//01D8 	0DF9
+		LJUMP 	1EDH 			//01D9 	39ED
+		BCR 	79H,7 			//01DA 	13F9
+		LJUMP 	1EDH 			//01DB 	39ED
+		LDR 	5FH,0 			//01DC 	085F
+		ADDWI 	14H 			//01DD 	2714
+		STR 	FSR 			//01DE 	0184
+		BSR 	PCLATH,3 		//01DF 	198A
+		LCALL 	0H 			//01E0 	3000
+		BCR 	PCLATH,3 		//01E1 	118A
+		SUBWR 	76H,0 			//01E2 	0C76
+		BTSC 	STATUS,0 		//01E3 	1403
+		LJUMP 	1EDH 			//01E4 	39ED
+		LDR 	79H,0 			//01E5 	0879
+		ANDWI 	38H 			//01E6 	2438
+		BTSC 	STATUS,2 		//01E7 	1503
+		LJUMP 	1ECH 			//01E8 	39EC
+		LDWI 	8H 			//01E9 	2A08
+		SUBWR 	79H,1 			//01EA 	0CF9
+		LJUMP 	1EDH 			//01EB 	39ED
+		CLRR 	79H 			//01EC 	0179
+		LDR 	38H,0 			//01ED 	0838
+		STR 	5BH 			//01EE 	01DB
+		BCR 	STATUS,0 		//01EF 	1003
+		RRR	5BH,1 			//01F0 	06DB
+		LDR 	76H,0 			//01F1 	0876
+		SUBWR 	5BH,0 			//01F2 	0C5B
+		BTSC 	STATUS,0 		//01F3 	1403
+		LJUMP 	1F8H 			//01F4 	39F8
+		INCR	22H,1 			//01F5 	09A2
+		BTSC 	STATUS,2 		//01F6 	1503
+		INCR	23H,1 			//01F7 	09A3
+		CLRR 	76H 			//01F8 	0176
+		LDR 	75H,0 			//01F9 	0875
+		SUBWR 	73H,0 			//01FA 	0C73
+		BTSS 	STATUS,2 		//01FB 	1D03
+		LJUMP 	1FFH 			//01FC 	39FF
+		LDR 	74H,0 			//01FD 	0874
+		SUBWR 	72H,0 			//01FE 	0C72
+		BTSS 	STATUS,0 		//01FF 	1C03
+		LJUMP 	22CH 			//0200 	3A2C
+		LDR 	74H,0 			//0201 	0874
+		SUBWR 	72H,0 			//0202 	0C72
+		STR 	24H 			//0203 	01A4
+		LDR 	75H,0 			//0204 	0875
+		BTSS 	STATUS,0 		//0205 	1C03
+		INCR	75H,0 			//0206 	0975
+		SUBWR 	73H,0 			//0207 	0C73
+		STR 	25H 			//0208 	01A5
+		LDWI 	1H 			//0209 	2A01
+		SUBWR 	25H,0 			//020A 	0C25
+		LDWI 	0H 			//020B 	2A00
+		BTSC 	STATUS,2 		//020C 	1503
+		SUBWR 	24H,0 			//020D 	0C24
+		BTSS 	STATUS,0 		//020E 	1C03
+		LJUMP 	213H 			//020F 	3A13
+		LDWI 	FFH 			//0210 	2AFF
+		STR 	24H 			//0211 	01A4
+		CLRR 	25H 			//0212 	0125
+		LDR 	24H,0 			//0213 	0824
+		STR 	76H 			//0214 	01F6
+		SUBWR 	35H,0 			//0215 	0C35
+		BTSC 	STATUS,0 		//0216 	1403
+		LJUMP 	21DH 			//0217 	3A1D
+		LDR 	35H,0 			//0218 	0835
+		STR 	34H 			//0219 	01B4
+		LDR 	76H,0 			//021A 	0876
+		STR 	35H 			//021B 	01B5
+		LJUMP 	223H 			//021C 	3A23
+		LDR 	76H,0 			//021D 	0876
+		SUBWR 	34H,0 			//021E 	0C34
+		BTSC 	STATUS,0 		//021F 	1403
+		LJUMP 	223H 			//0220 	3A23
+		LDR 	76H,0 			//0221 	0876
+		STR 	34H 			//0222 	01B4
+		LDWI 	80H 			//0223 	2A80
+		SUBWR 	78H,0 			//0224 	0C78
+		BTSC 	STATUS,0 		//0225 	1403
+		LJUMP 	22AH 			//0226 	3A2A
+		LDWI 	80H 			//0227 	2A80
+		STR 	78H 			//0228 	01F8
+		LJUMP 	233H 			//0229 	3A33
+		INCR	78H,1 			//022A 	09F8
+		LJUMP 	233H 			//022B 	3A33
+		LDWI 	81H 			//022C 	2A81
+		SUBWR 	78H,0 			//022D 	0C78
+		BTSC 	STATUS,0 		//022E 	1403
+		LJUMP 	227H 			//022F 	3A27
+		LDR 	78H,0 			//0230 	0878
+		BTSS 	STATUS,2 		//0231 	1D03
+		DECR 	78H,1 			//0232 	0DF8
+		LDWI 	3FH 			//0233 	2A3F
+		SUBWR 	78H,0 			//0234 	0C78
+		BTSC 	STATUS,0 		//0235 	1403
+		LJUMP 	23DH 			//0236 	3A3D
+		LDWI 	1H 			//0237 	2A01
+		SUBWR 	74H,1 			//0238 	0CF4
+		BTSS 	STATUS,0 		//0239 	1C03
+		DECR 	75H,1 			//023A 	0DF5
+		LDWI 	80H 			//023B 	2A80
+		STR 	78H 			//023C 	01F8
+		LDWI 	C2H 			//023D 	2AC2
+		SUBWR 	78H,0 			//023E 	0C78
+		BTSS 	STATUS,0 		//023F 	1C03
+		LJUMP 	246H 			//0240 	3A46
+		INCR	74H,1 			//0241 	09F4
+		BTSC 	STATUS,2 		//0242 	1503
+		INCR	75H,1 			//0243 	09F5
+		LDWI 	80H 			//0244 	2A80
+		STR 	78H 			//0245 	01F8
+		LDR 	75H,0 			//0246 	0875
+		SUBWR 	73H,0 			//0247 	0C73
+		BTSS 	STATUS,2 		//0248 	1D03
+		LJUMP 	24CH 			//0249 	3A4C
+		LDR 	74H,0 			//024A 	0874
+		SUBWR 	72H,0 			//024B 	0C72
+		BTSC 	STATUS,0 		//024C 	1403
+		LJUMP 	252H 			//024D 	3A52
+		LDWI 	65H 			//024E 	2A65
+		SUBWR 	77H,0 			//024F 	0C77
+		BTSC 	STATUS,0 		//0250 	1403
+		LJUMP 	25EH 			//0251 	3A5E
+		LDR 	73H,0 			//0252 	0873
+		SUBWR 	75H,0 			//0253 	0C75
+		BTSS 	STATUS,2 		//0254 	1D03
+		LJUMP 	258H 			//0255 	3A58
+		LDR 	72H,0 			//0256 	0872
+		SUBWR 	74H,0 			//0257 	0C74
+		BTSC 	STATUS,0 		//0258 	1403
+		LJUMP 	263H 			//0259 	3A63
+		LDWI 	C9H 			//025A 	2AC9
+		SUBWR 	77H,0 			//025B 	0C77
+		BTSS 	STATUS,0 		//025C 	1C03
+		LJUMP 	263H 			//025D 	3A63
+		LDR 	73H,0 			//025E 	0873
+		STR 	75H 			//025F 	01F5
+		LDR 	72H,0 			//0260 	0872
+		STR 	74H 			//0261 	01F4
+		CLRR 	77H 			//0262 	0177
+		BTSS 	79H,6 			//0263 	1F79
+		LJUMP 	270H 			//0264 	3A70
+		LDWI 	1H 			//0265 	2A01
+		STR 	5BH 			//0266 	01DB
+		INCR	5FH,0 			//0267 	095F
+		LJUMP 	26BH 			//0268 	3A6B
+		BCR 	STATUS,0 		//0269 	1003
+		RLR 	5BH,1 			//026A 	05DB
+		ADDWI 	FFH 			//026B 	27FF
+		BTSS 	STATUS,2 		//026C 	1D03
+		LJUMP 	269H 			//026D 	3A69
+		LDR 	5BH,0 			//026E 	085B
+		IORWR 	39H,1 			//026F 	03B9
+		BTSS 	79H,7 			//0270 	1FF9
+		LJUMP 	27AH 			//0271 	3A7A
+		NOP		 					//0272 	0000
+		NOP		 					//0273 	0000
+		NOP		 					//0274 	0000
+		BCR 	STATUS,5 		//0275 	1283
+		BCR 	STATUS,6 		//0276 	1303
+		LDR 	5FH,0 			//0277 	085F
+		ADDWI 	1H 			//0278 	2701
+		STR 	3AH 			//0279 	01BA
+		LCALL 	323H 			//027A 	3323
+		BCR 	PCLATH,3 		//027B 	118A
+		LDWI 	8H 			//027C 	2A08
+		BCR 	STATUS,5 		//027D 	1283
+		BCR 	STATUS,6 		//027E 	1303
+		ADDWR 	21H,1 			//027F 	0BA1
+		INCR	5FH,1 			//0280 	09DF
+		BTSC 	STATUS,2 		//0281 	1503
+		LJUMP 	14EH 			//0282 	394E
+		LDR 	35H,0 			//0283 	0835
+		STR 	4EH 			//0284 	01CE
+		LDR 	34H,0 			//0285 	0834
+		STR 	4DH 			//0286 	01CD
+		DECRSZ 	37H,0 		//0287 	0E37
+		LJUMP 	28AH 			//0288 	3A8A
+		CLRR 	39H 			//0289 	0139
+		LDWI 	0H 			//028A 	2A00
+		SUBWR 	23H,0 			//028B 	0C23
+		LDWI 	9H 			//028C 	2A09
+		BTSC 	STATUS,2 		//028D 	1503
+		SUBWR 	22H,0 			//028E 	0C22
+		BTSS 	STATUS,0 		//028F 	1C03
+		LJUMP 	2A5H 			//0290 	3AA5
+		CLRR 	3AH 			//0291 	013A
+		CLRR 	39H 			//0292 	0139
+		CLRR 	4EH 			//0293 	014E
+		CLRR 	5FH 			//0294 	015F
+		LDR 	5FH,0 			//0295 	085F
+		STR 	5BH 			//0296 	01DB
+		BCR 	STATUS,0 		//0297 	1003
+		RLR 	5BH,1 			//0298 	05DB
+		BCR 	STATUS,0 		//0299 	1003
+		RLR 	5BH,1 			//029A 	05DB
+		BCR 	STATUS,0 		//029B 	1003
+		RLR 	5BH,0 			//029C 	055B
+		ADDWI 	22H 			//029D 	2722
+		LCALL 	36BH 			//029E 	336B
+		BCR 	PCLATH,3 		//029F 	118A
+		INCR	5FH,1 			//02A0 	09DF
+		BTSC 	STATUS,2 		//02A1 	1503
+		LJUMP 	295H 			//02A2 	3A95
+		LDWI 	12H 			//02A3 	2A12
+		STR 	3BH 			//02A4 	01BB
+		BCR 	PCLATH,3 		//02A5 	118A
+		LCALL 	40AH 			//02A6 	340A
+		RETW 	1H 			//02A7 	2101
+		LDWI 	3FH 			//02A8 	2A3F
+		BSR 	STATUS,5 		//02A9 	1A83
+		ANDWR 	4AH,0 			//02AA 	024A
+		STR 	7CH 			//02AB 	01FC
+		LDWI 	3H 			//02AC 	2A03
+		SUBWR 	7CH,0 			//02AD 	0C7C
+		BTSC 	STATUS,0 		//02AE 	1403
+		LJUMP 	2C2H 			//02AF 	3AC2
+		CLRR 	4CH 			//02B0 	014C
+		BCR 	STATUS,5 		//02B1 	1283
+		DECRSZ 	37H,0 		//02B2 	0E37
+		LJUMP 	2D1H 			//02B3 	3AD1
+		BSR 	STATUS,5 		//02B4 	1A83
+		LDR 	42H,0 			//02B5 	0842
+		IORWR 	43H,0 			//02B6 	0343
+		BTSS 	STATUS,2 		//02B7 	1D03
+		LJUMP 	2D1H 			//02B8 	3AD1
+		LDWI 	C9H 			//02B9 	2AC9
+		INCR	4BH,1 			//02BA 	09CB
+		SUBWR 	4BH,0 			//02BB 	0C4B
+		BTSS 	STATUS,0 		//02BC 	1C03
+		LJUMP 	2D1H 			//02BD 	3AD1
+		CLRR 	4BH 			//02BE 	014B
+		BCR 	STATUS,5 		//02BF 	1283
+		CLRR 	37H 			//02C0 	0137
+		LJUMP 	2D1H 			//02C1 	3AD1
+		LDWI 	3H 			//02C2 	2A03
+		CLRR 	4BH 			//02C3 	014B
+		INCR	4CH,1 			//02C4 	09CC
+		SUBWR 	4CH,0 			//02C5 	0C4C
+		BTSS 	STATUS,0 		//02C6 	1C03
+		LJUMP 	2D1H 			//02C7 	3AD1
+		CLRR 	4CH 			//02C8 	014C
+		BCR 	STATUS,5 		//02C9 	1283
+		LDWI 	E8H 			//02CA 	2AE8
+		CLRR 	37H 			//02CB 	0137
+		INCR	37H,1 			//02CC 	09B7
+		BSR 	STATUS,5 		//02CD 	1A83
+		STR 	42H 			//02CE 	01C2
+		LDWI 	3H 			//02CF 	2A03
+		STR 	43H 			//02D0 	01C3
+		BSR 	STATUS,5 		//02D1 	1A83
+		LDR 	42H,0 			//02D2 	0842
+		IORWR 	43H,0 			//02D3 	0343
+		BTSC 	STATUS,2 		//02D4 	1503
+		LJUMP 	2DAH 			//02D5 	3ADA
+		LDWI 	1H 			//02D6 	2A01
+		SUBWR 	42H,1 			//02D7 	0CC2
+		BTSS 	STATUS,0 		//02D8 	1C03
+		DECR 	43H,1 			//02D9 	0DC3
+		LDWI 	2H 			//02DA 	2A02
+		CLRR 	4AH 			//02DB 	014A
+		BCR 	STATUS,5 		//02DC 	1283
+		SUBWR 	36H,0 			//02DD 	0C36
+		BTSS 	STATUS,0 		//02DE 	1C03
+		LJUMP 	2F4H 			//02DF 	3AF4
+		BTSC 	20H,1 			//02E0 	14A0
+		LJUMP 	2EFH 			//02E1 	3AEF
+		BSR 	20H,1 			//02E2 	18A0
+		LDWI 	E8H 			//02E3 	2AE8
+		CLRR 	37H 			//02E4 	0137
+		INCR	37H,1 			//02E5 	09B7
+		BSR 	STATUS,5 		//02E6 	1A83
+		STR 	40H 			//02E7 	01C0
+		LDWI 	3H 			//02E8 	2A03
+		STR 	41H 			//02E9 	01C1
+		BCR 	STATUS,5 		//02EA 	1283
+		CLRR 	36H 			//02EB 	0136
+		BCR 	PCLATH,3 		//02EC 	118A
+		LCALL 	40AH 			//02ED 	340A
+		RETW 	1H 			//02EE 	2101
+		LDWI 	E8H 			//02EF 	2AE8
+		BSR 	STATUS,5 		//02F0 	1A83
+		STR 	40H 			//02F1 	01C0
+		LDWI 	3H 			//02F2 	2A03
+		STR 	41H 			//02F3 	01C1
+		BSR 	STATUS,5 		//02F4 	1A83
+		LDR 	40H,0 			//02F5 	0840
+		IORWR 	41H,0 			//02F6 	0341
+		BTSC 	STATUS,2 		//02F7 	1503
+		RETW 	0H 			//02F8 	2100
+		LDWI 	1H 			//02F9 	2A01
+		SUBWR 	40H,1 			//02FA 	0CC0
+		LDWI 	0H 			//02FB 	2A00
+		BTSS 	STATUS,0 		//02FC 	1C03
+		DECR 	41H,1 			//02FD 	0DC1
+		SUBWR 	41H,1 			//02FE 	0CC1
+		LDR 	40H,0 			//02FF 	0840
+		IORWR 	41H,0 			//0300 	0341
+		BCR 	STATUS,5 		//0301 	1283
+		BTSC 	STATUS,2 		//0302 	1503
+		BCR 	20H,1 			//0303 	10A0
+		RETW 	0H 			//0304 	2100
+		BCR 	STATUS,6 		//0305 	1303
+		BCR 	STATUS,5 		//0306 	1283
+		LDR 	21H,0 			//0307 	0821
+		ADDWI 	20H 			//0308 	2720
+		STR 	FSR 			//0309 	0184
+		BSR 	STATUS,7 		//030A 	1B83
+		LDR 	INDF,0 			//030B 	0800
+		STR 	72H 			//030C 	01F2
+		INCR	FSR,1 			//030D 	0984
+		LDR 	INDF,0 			//030E 	0800
+		STR 	73H 			//030F 	01F3
+		INCR	FSR,1 			//0310 	0984
+		LDR 	INDF,0 			//0311 	0800
+		STR 	74H 			//0312 	01F4
+		INCR	FSR,1 			//0313 	0984
+		LDR 	INDF,0 			//0314 	0800
+		STR 	75H 			//0315 	01F5
+		INCR	FSR,1 			//0316 	0984
+		LDR 	INDF,0 			//0317 	0800
+		STR 	76H 			//0318 	01F6
+		INCR	FSR,1 			//0319 	0984
+		LDR 	INDF,0 			//031A 	0800
+		STR 	77H 			//031B 	01F7
+		INCR	FSR,1 			//031C 	0984
+		LDR 	INDF,0 			//031D 	0800
+		STR 	78H 			//031E 	01F8
+		INCR	FSR,1 			//031F 	0984
+		LDR 	INDF,0 			//0320 	0800
+		STR 	79H 			//0321 	01F9
+		RET		 					//0322 	0004
+		BCR 	STATUS,6 		//0323 	1303
+		BCR 	STATUS,5 		//0324 	1283
+		LDR 	21H,0 			//0325 	0821
+		ADDWI 	20H 			//0326 	2720
+		STR 	FSR 			//0327 	0184
+		BSR 	STATUS,7 		//0328 	1B83
+		LDR 	72H,0 			//0329 	0872
+		STR 	INDF 			//032A 	0180
+		INCR	FSR,1 			//032B 	0984
+		LDR 	73H,0 			//032C 	0873
+		STR 	INDF 			//032D 	0180
+		INCR	FSR,1 			//032E 	0984
+		LDR 	74H,0 			//032F 	0874
+		STR 	INDF 			//0330 	0180
+		INCR	FSR,1 			//0331 	0984
+		LDR 	75H,0 			//0332 	0875
+		STR 	INDF 			//0333 	0180
+		INCR	FSR,1 			//0334 	0984
+		LDR 	76H,0 			//0335 	0876
+		STR 	INDF 			//0336 	0180
+		INCR	FSR,1 			//0337 	0984
+		LDR 	77H,0 			//0338 	0877
+		STR 	INDF 			//0339 	0180
+		INCR	FSR,1 			//033A 	0984
+		LDR 	78H,0 			//033B 	0878
+		STR 	INDF 			//033C 	0180
+		INCR	FSR,1 			//033D 	0984
+		LDR 	79H,0 			//033E 	0879
+		STR 	INDF 			//033F 	0180
+		RET		 					//0340 	0004
+		LDR 	39H,0 			//0341 	0839
+		RET		 					//0342 	0004
+		BCR 	STATUS,5 		//0343 	1283
+		LDR 	3AH,0 			//0344 	083A
+		RET		 					//0345 	0004
+		CLRR 	41H 			//0346 	0141
+		INCR	41H,1 			//0347 	09C1
+		LDR 	2DH,0 			//0348 	082D
+		STR 	33H 			//0349 	01B3
+		LDR 	2CH,0 			//034A 	082C
+		STR 	32H 			//034B 	01B2
+		LDWI 	0H 			//034C 	2A00
+		SUBWR 	33H,0 			//034D 	0C33
+		LDWI 	32H 			//034E 	2A32
+		BTSC 	STATUS,2 		//034F 	1503
+		SUBWR 	32H,0 			//0350 	0C32
+		BTSC 	STATUS,0 		//0351 	1403
+		LJUMP 	356H 			//0352 	3B56
+		LDWI 	32H 			//0353 	2A32
+		STR 	32H 			//0354 	01B2
+		CLRR 	33H 			//0355 	0133
+		LDR 	2AH,0 			//0356 	082A
+		STR 	14H 			//0357 	0194
+		LDR 	28H,0 			//0358 	0828
+		STR 	EH 			//0359 	018E
+		LDR 	2FH,0 			//035A 	082F
+		STR 	4CH 			//035B 	01CC
+		LDR 	2EH,0 			//035C 	082E
+		STR 	4BH 			//035D 	01CB
+		BSR 	5H,4 			//035E 	1A05
+		LDWI 	5H 			//035F 	2A05
+		STR 	4FH 			//0360 	01CF
+		RET		 					//0361 	0004
+		LDR 	4CH,0 			//0362 	084C
+		STR 	31H 			//0363 	01B1
+		LDR 	4BH,0 			//0364 	084B
+		STR 	30H 			//0365 	01B0
+		LDR 	31H,0 			//0366 	0831
+		STR 	14H 			//0367 	0194
+		LDR 	30H,0 			//0368 	0830
+		STR 	EH 			//0369 	018E
+		RET		 					//036A 	0004
+		STR 	FSR 			//036B 	0184
+		BSR 	STATUS,7 		//036C 	1B83
+		CLRR 	INDF 			//036D 	0100
+		INCR	FSR,1 			//036E 	0984
+		CLRR 	INDF 			//036F 	0100
+		RET		 					//0370 	0004
+		STR 	32H 			//0371 	01B2
+		LDWI 	1H 			//0372 	2A01
+		STR 	33H 			//0373 	01B3
+		LDWI 	5H 			//0374 	2A05
+		STR 	4FH 			//0375 	01CF
+		RET		 					//0376 	0004
+		LDR 	27H,0 			//0377 	0827
+		STR 	33H 			//0378 	01B3
+		LDR 	26H,0 			//0379 	0826
+		STR 	32H 			//037A 	01B2
+		RET		 					//037B 	0004
+		LDR 	79H,0 			//037C 	0879
+		ANDWI 	F8H 			//037D 	24F8
+		IORWI 	4H 			//037E 	2504
+		STR 	79H 			//037F 	01F9
+		RET		 					//0380 	0004
+		LDWI 	8H 			//0381 	2A08
+		BSR 	STATUS,6 		//0382 	1B03
+		STR 	1CH 			//0383 	019C
+		LDWI 	8BH 			//0384 	2A8B
+		BSR 	STATUS,5 		//0385 	1A83
+		BCR 	STATUS,6 		//0386 	1303
+		STR 	EH 			//0387 	018E
+		LDWI 	17H 			//0388 	2A17
+		BCR 	STATUS,5 		//0389 	1283
+		BSR 	STATUS,6 		//038A 	1B03
+		STR 	10H 			//038B 	0190
+		CLRR 	1AH 			//038C 	011A
+		LDWI 	FH 			//038D 	2A0F
+		STR 	17H 			//038E 	0197
+		LDWI 	FFH 			//038F 	2AFF
+		STR 	16H 			//0390 	0196
+		BCR 	STATUS,6 		//0391 	1303
+		LDR 	DH,0 			//0392 	080D
+		BSR 	STATUS,5 		//0393 	1A83
+		STR 	69H 			//0394 	01E9
+		LDWI 	5H 			//0395 	2A05
+		BCR 	STATUS,5 		//0396 	1283
+		STR 	1FH 			//0397 	019F
+		LDWI 	3H 			//0398 	2A03
+		BSR 	STATUS,5 		//0399 	1A83
+		BSR 	STATUS,6 		//039A 	1B03
+		STR 	DH 			//039B 	018D
+		LDWI 	2H 			//039C 	2A02
+		STR 	CH 			//039D 	018C
+		BCR 	STATUS,5 		//039E 	1283
+		CLRR 	1DH 			//039F 	011D
+		BCR 	STATUS,6 		//03A0 	1303
+		CLRR 	73H 			//03A1 	0173
+		LDR 	73H,0 			//03A2 	0873
+		BTSS 	STATUS,2 		//03A3 	1D03
+		LJUMP 	3C6H 			//03A4 	3BC6
+		LDR 	73H,0 			//03A5 	0873
+		ADDWI 	16H 			//03A6 	2716
+		STR 	FSR 			//03A7 	0184
+		BSR 	PCLATH,3 		//03A8 	198A
+		LCALL 	0H 			//03A9 	3000
+		BCR 	PCLATH,3 		//03AA 	118A
+		STR 	72H 			//03AB 	01F2
+		BCR 	STATUS,0 		//03AC 	1003
+		RLR 	72H,0 			//03AD 	0572
+		ADDWI 	2H 			//03AE 	2702
+		STR 	FSR 			//03AF 	0184
+		BSR 	PCLATH,3 		//03B0 	198A
+		LCALL 	0H 			//03B1 	3000
+		BCR 	PCLATH,3 		//03B2 	118A
+		XORWI 	FFH 			//03B3 	26FF
+		STR 	53H 			//03B4 	01D3
+		BCR 	STATUS,0 		//03B5 	1003
+		RLR 	72H,0 			//03B6 	0572
+		ADDWI 	1H 			//03B7 	2701
+		STR 	FSR 			//03B8 	0184
+		BSR 	PCLATH,3 		//03B9 	198A
+		LCALL 	0H 			//03BA 	3000
+		BCR 	PCLATH,3 		//03BB 	118A
+		STR 	54H 			//03BC 	01D4
+		CLRR 	55H 			//03BD 	0155
+		STR 	FSR 			//03BE 	0184
+		BSR 	STATUS,7 		//03BF 	1B83
+		BTSS 	55H,0 			//03C0 	1C55
+		BCR 	STATUS,7 		//03C1 	1383
+		LDR 	53H,0 			//03C2 	0853
+		ANDWR 	INDF,1 		//03C3 	0280
+		INCR	73H,1 			//03C4 	09F3
+		LJUMP 	3A2H 			//03C5 	3BA2
+		CLRR 	73H 			//03C6 	0173
+		LDR 	73H,0 			//03C7 	0873
+		BTSS 	STATUS,2 		//03C8 	1D03
+		LJUMP 	3E5H 			//03C9 	3BE5
+		CLRR 	72H 			//03CA 	0172
+		LDWI 	4H 			//03CB 	2A04
+		SUBWR 	72H,0 			//03CC 	0C72
+		BTSC 	STATUS,0 		//03CD 	1403
+		LJUMP 	3E3H 			//03CE 	3BE3
+		LDR 	73H,0 			//03CF 	0873
+		STR 	53H 			//03D0 	01D3
+		LDWI 	20H 			//03D1 	2A20
+		BCR 	STATUS,0 		//03D2 	1003
+		RLR 	53H,1 			//03D3 	05D3
+		BCR 	STATUS,0 		//03D4 	1003
+		RLR 	53H,1 			//03D5 	05D3
+		BCR 	STATUS,0 		//03D6 	1003
+		RLR 	53H,1 			//03D7 	05D3
+		ADDWR 	53H,0 			//03D8 	0B53
+		STR 	54H 			//03D9 	01D4
+		BCR 	STATUS,0 		//03DA 	1003
+		RLR 	72H,0 			//03DB 	0572
+		ADDWR 	54H,0 			//03DC 	0B54
+		STR 	55H 			//03DD 	01D5
+		BCR 	PCLATH,3 		//03DE 	118A
+		LCALL 	36BH 			//03DF 	336B
+		BCR 	PCLATH,3 		//03E0 	118A
+		INCR	72H,1 			//03E1 	09F2
+		LJUMP 	3CBH 			//03E2 	3BCB
+		INCR	73H,1 			//03E3 	09F3
+		LJUMP 	3C7H 			//03E4 	3BC7
+		CLRR 	73H 			//03E5 	0173
+		LDWI 	3H 			//03E6 	2A03
+		SUBWR 	73H,0 			//03E7 	0C73
+		BTSC 	STATUS,0 		//03E8 	1403
+		LJUMP 	3F0H 			//03E9 	3BF0
+		LCALL 	6B1H 			//03EA 	36B1
+		BCR 	PCLATH,3 		//03EB 	118A
+		BCR 	STATUS,7 		//03EC 	1383
+		LCALL 	6BBH 			//03ED 	36BB
+		BCR 	PCLATH,3 		//03EE 	118A
+		LJUMP 	3E6H 			//03EF 	3BE6
+		BSR 	STATUS,5 		//03F0 	1A83
+		LDWI 	9H 			//03F1 	2A09
+		CLRR 	4FH 			//03F2 	014F
+		CLRR 	4EH 			//03F3 	014E
+		CLRR 	44H 			//03F4 	0144
+		CLRR 	45H 			//03F5 	0145
+		STR 	4DH 			//03F6 	01CD
+		BCR 	STATUS,5 		//03F7 	1283
+		CLRR 	39H 			//03F8 	0139
+		CLRR 	3AH 			//03F9 	013A
+		CLRR 	3BH 			//03FA 	013B
+		BSR 	STATUS,5 		//03FB 	1A83
+		CLRR 	50H 			//03FC 	0150
+		BCR 	STATUS,5 		//03FD 	1283
+		CLRR 	20H 			//03FE 	0120
+		BSR 	STATUS,5 		//03FF 	1A83
+		CLRR 	4CH 			//0400 	014C
+		CLRR 	4BH 			//0401 	014B
+		CLRR 	4AH 			//0402 	014A
+		CLRR 	42H 			//0403 	0142
+		CLRR 	43H 			//0404 	0143
+		CLRR 	40H 			//0405 	0140
+		CLRR 	41H 			//0406 	0141
+		BCR 	STATUS,5 		//0407 	1283
+		CLRR 	36H 			//0408 	0136
+		LJUMP 	40AH 			//0409 	3C0A
+		LCALL 	688H 			//040A 	3688
+		BSR 	PCLATH,3 		//040B 	198A
+		LCALL 	0H 			//040C 	3000
+		BCR 	PCLATH,3 		//040D 	118A
+		LCALL 	6A0H 			//040E 	36A0
+		BSR 	PCLATH,3 		//040F 	198A
+		LCALL 	0H 			//0410 	3000
+		BCR 	PCLATH,3 		//0411 	118A
+		BCR 	STATUS,5 		//0412 	1283
+		STR 	50H 			//0413 	01D0
+		BSR 	STATUS,5 		//0414 	1A83
+		BCR 	STATUS,0 		//0415 	1003
+		RLR 	68H,0 			//0416 	0568
+		ADDWI 	1H 			//0417 	2701
+		STR 	FSR 			//0418 	0184
+		BSR 	PCLATH,3 		//0419 	198A
+		LCALL 	0H 			//041A 	3000
+		BCR 	PCLATH,3 		//041B 	118A
+		BCR 	STATUS,5 		//041C 	1283
+		STR 	51H 			//041D 	01D1
+		CLRR 	52H 			//041E 	0152
+		STR 	FSR 			//041F 	0184
+		BSR 	STATUS,7 		//0420 	1B83
+		BTSS 	52H,0 			//0421 	1C52
+		BCR 	STATUS,7 		//0422 	1383
+		LDR 	50H,0 			//0423 	0850
+		LCALL 	69AH 			//0424 	369A
+		BCR 	PCLATH,3 		//0425 	118A
+		STR 	50H 			//0426 	01D0
+		BSR 	STATUS,5 		//0427 	1A83
+		INCR	68H,0 			//0428 	0968
+		BCR 	STATUS,5 		//0429 	1283
+		LJUMP 	42DH 			//042A 	3C2D
+		BCR 	STATUS,0 		//042B 	1003
+		RLR 	50H,1 			//042C 	05D0
+		ADDWI 	FFH 			//042D 	27FF
+		BTSS 	STATUS,2 		//042E 	1D03
+		LJUMP 	42BH 			//042F 	3C2B
+		LDR 	50H,0 			//0430 	0850
+		BSR 	STATUS,6 		//0431 	1B03
+		STR 	1DH 			//0432 	019D
+		LCALL 	67AH 			//0433 	367A
+		BCR 	PCLATH,3 		//0434 	118A
+		LDWI 	8BH 			//0435 	2A8B
+		BSR 	STATUS,5 		//0436 	1A83
+		STR 	EH 			//0437 	018E
+		BCR 	STATUS,5 		//0438 	1283
+		BTSC 	20H,1 			//0439 	14A0
+		LJUMP 	442H 			//043A 	3C42
+		LDWI 	12H 			//043B 	2A12
+		STR 	FSR 			//043C 	0184
+		BSR 	PCLATH,3 		//043D 	198A
+		LCALL 	0H 			//043E 	3000
+		BCR 	PCLATH,3 		//043F 	118A
+		BSR 	STATUS,5 		//0440 	1A83
+		LJUMP 	446H 			//0441 	3C46
+		LCALL 	6B6H 			//0442 	36B6
+		BSR 	PCLATH,3 		//0443 	198A
+		LCALL 	0H 			//0444 	3000
+		BCR 	PCLATH,3 		//0445 	118A
+		LCALL 	66BH 			//0446 	366B
+		BCR 	PCLATH,3 		//0447 	118A
+		STR 	17H 			//0448 	0197
+		NOP		 					//0449 	0000
+		LCALL 	68FH 			//044A 	368F
+		BCR 	PCLATH,3 		//044B 	118A
+		STR 	17H 			//044C 	0197
+		NOP		 					//044D 	0000
+		LJUMP 	642H 			//044E 	3E42
+		BCR 	STATUS,5 		//044F 	1283
+		BCR 	STATUS,6 		//0450 	1303
+		BTSS 	CH,5 			//0451 	1E8C
+		RET		 					//0452 	0004
+		BSR 	STATUS,6 		//0453 	1B03
+		BCR 	1AH,2 			//0454 	111A
+		LCALL 	67AH 			//0455 	367A
+		BCR 	PCLATH,3 		//0456 	118A
+		BSR 	STATUS,6 		//0457 	1B03
+		LDR 	18H,0 			//0458 	0818
+		BCR 	STATUS,6 		//0459 	1303
+		STR 	24H 			//045A 	01A4
+		CLRR 	25H 			//045B 	0125
+		BSR 	STATUS,6 		//045C 	1B03
+		LDR 	19H,0 			//045D 	0819
+		BCR 	STATUS,6 		//045E 	1303
+		STR 	50H 			//045F 	01D0
+		CLRR 	51H 			//0460 	0151
+		STR 	51H 			//0461 	01D1
+		CLRR 	50H 			//0462 	0150
+		LDR 	50H,0 			//0463 	0850
+		ADDWR 	24H,1 			//0464 	0BA4
+		BTSC 	STATUS,0 		//0465 	1403
+		INCR	25H,1 			//0466 	09A5
+		LDR 	51H,0 			//0467 	0851
+		ADDWR 	25H,1 			//0468 	0BA5
+		LDR 	24H,0 			//0469 	0824
+		BSR 	STATUS,5 		//046A 	1A83
+		ADDWR 	44H,1 			//046B 	0BC4
+		BTSC 	STATUS,0 		//046C 	1403
+		INCR	45H,1 			//046D 	09C5
+		BCR 	STATUS,5 		//046E 	1283
+		LDR 	25H,0 			//046F 	0825
+		BSR 	STATUS,5 		//0470 	1A83
+		ADDWR 	45H,1 			//0471 	0BC5
+		BCR 	STATUS,5 		//0472 	1283
+		LDR 	25H,0 			//0473 	0825
+		BSR 	STATUS,5 		//0474 	1A83
+		SUBWR 	47H,0 			//0475 	0C47
+		BTSS 	STATUS,2 		//0476 	1D03
+		LJUMP 	47CH 			//0477 	3C7C
+		BCR 	STATUS,5 		//0478 	1283
+		LDR 	24H,0 			//0479 	0824
+		BSR 	STATUS,5 		//047A 	1A83
+		SUBWR 	46H,0 			//047B 	0C46
+		BTSC 	STATUS,0 		//047C 	1403
+		LJUMP 	499H 			//047D 	3C99
+		BCR 	STATUS,5 		//047E 	1283
+		LDR 	25H,0 			//047F 	0825
+		STR 	23H 			//0480 	01A3
+		LDR 	24H,0 			//0481 	0824
+		STR 	22H 			//0482 	01A2
+		BSR 	STATUS,5 		//0483 	1A83
+		LDR 	46H,0 			//0484 	0846
+		BCR 	STATUS,5 		//0485 	1283
+		SUBWR 	22H,1 			//0486 	0CA2
+		BSR 	STATUS,5 		//0487 	1A83
+		LDR 	47H,0 			//0488 	0847
+		BCR 	STATUS,5 		//0489 	1283
+		LCALL 	694H 			//048A 	3694
+		BCR 	PCLATH,3 		//048B 	118A
+		LDWI 	14H 			//048C 	2A14
+		BTSC 	STATUS,2 		//048D 	1503
+		SUBWR 	22H,0 			//048E 	0C22
+		BTSC 	STATUS,0 		//048F 	1403
+		INCR	36H,1 			//0490 	09B6
+		LDWI 	0H 			//0491 	2A00
+		SUBWR 	23H,0 			//0492 	0C23
+		LDWI 	6H 			//0493 	2A06
+		BTSC 	STATUS,2 		//0494 	1503
+		SUBWR 	22H,0 			//0495 	0C22
+		BTSC 	STATUS,0 		//0496 	1403
+		LJUMP 	4B1H 			//0497 	3CB1
+		LJUMP 	4B3H 			//0498 	3CB3
+		LDR 	47H,0 			//0499 	0847
+		BCR 	STATUS,5 		//049A 	1283
+		STR 	23H 			//049B 	01A3
+		BSR 	STATUS,5 		//049C 	1A83
+		LDR 	46H,0 			//049D 	0846
+		BCR 	STATUS,5 		//049E 	1283
+		STR 	22H 			//049F 	01A2
+		LDR 	24H,0 			//04A0 	0824
+		SUBWR 	22H,1 			//04A1 	0CA2
+		LDR 	25H,0 			//04A2 	0825
+		LCALL 	694H 			//04A3 	3694
+		BCR 	PCLATH,3 		//04A4 	118A
+		LDWI 	6H 			//04A5 	2A06
+		BTSC 	STATUS,2 		//04A6 	1503
+		SUBWR 	22H,0 			//04A7 	0C22
+		BTSS 	STATUS,0 		//04A8 	1C03
+		LJUMP 	4B3H 			//04A9 	3CB3
+		LDWI 	0H 			//04AA 	2A00
+		SUBWR 	23H,0 			//04AB 	0C23
+		LDWI 	13H 			//04AC 	2A13
+		BTSC 	STATUS,2 		//04AD 	1503
+		SUBWR 	22H,0 			//04AE 	0C22
+		BTSC 	STATUS,0 		//04AF 	1403
+		LJUMP 	4B3H 			//04B0 	3CB3
+		BSR 	STATUS,5 		//04B1 	1A83
+		BSR 	4AH,6 			//04B2 	1B4A
+		LCALL 	6ABH 			//04B3 	36AB
+		BCR 	PCLATH,3 		//04B4 	118A
+		BCR 	STATUS,7 		//04B5 	1383
+		LDR 	INDF,0 			//04B6 	0800
+		BCR 	STATUS,5 		//04B7 	1283
+		LCALL 	661H 			//04B8 	3661
+		BCR 	PCLATH,3 		//04B9 	118A
+		BTSC 	STATUS,0 		//04BA 	1403
+		LJUMP 	4CFH 			//04BB 	3CCF
+		LCALL 	6ABH 			//04BC 	36AB
+		BCR 	PCLATH,3 		//04BD 	118A
+		BCR 	STATUS,5 		//04BE 	1283
+		LDR 	22H,0 			//04BF 	0822
+		STR 	INDF 			//04C0 	0180
+		INCR	FSR,1 			//04C1 	0984
+		LDR 	23H,0 			//04C2 	0823
+		STR 	INDF 			//04C3 	0180
+		BSR 	STATUS,5 		//04C4 	1A83
+		BCR 	STATUS,0 		//04C5 	1003
+		RLR 	4EH,0 			//04C6 	054E
+		ADDWI 	BAH 			//04C7 	27BA
+		STR 	FSR 			//04C8 	0184
+		BCR 	STATUS,5 		//04C9 	1283
+		LDR 	24H,0 			//04CA 	0824
+		STR 	INDF 			//04CB 	0180
+		INCR	FSR,1 			//04CC 	0984
+		LDR 	25H,0 			//04CD 	0825
+		STR 	INDF 			//04CE 	0180
+		BSR 	STATUS,5 		//04CF 	1A83
+		LDWI 	3H 			//04D0 	2A03
+		INCR	4EH,1 			//04D1 	09CE
+		SUBWR 	4EH,0 			//04D2 	0C4E
+		BTSC 	STATUS,0 		//04D3 	1403
+		CLRR 	4EH 			//04D4 	014E
+		INCR	4FH,1 			//04D5 	09CF
+		LDR 	4DH,0 			//04D6 	084D
+		SUBWR 	4FH,0 			//04D7 	0C4F
+		BTSS 	STATUS,0 		//04D8 	1C03
+		LJUMP 	5EAH 			//04D9 	3DEA
+		LDWI 	BH 			//04DA 	2A0B
+		SUBWR 	45H,0 			//04DB 	0C45
+		LDWI 	F4H 			//04DC 	2AF4
+		BTSC 	STATUS,2 		//04DD 	1503
+		SUBWR 	44H,0 			//04DE 	0C44
+		BTSC 	STATUS,0 		//04DF 	1403
+		LJUMP 	4E8H 			//04E0 	3CE8
+		LDWI 	27H 			//04E1 	2A27
+		SUBWR 	4DH,0 			//04E2 	0C4D
+		BTSC 	STATUS,0 		//04E3 	1403
+		LJUMP 	4E8H 			//04E4 	3CE8
+		LDWI 	3H 			//04E5 	2A03
+		ADDWR 	4DH,1 			//04E6 	0BCD
+		LJUMP 	5EAH 			//04E7 	3DEA
+		CLRR 	4FH 			//04E8 	014F
+		LDR 	3BH,0 			//04E9 	083B
+		BCR 	STATUS,5 		//04EA 	1283
+		STR 	25H 			//04EB 	01A5
+		BSR 	STATUS,5 		//04EC 	1A83
+		LDR 	3AH,0 			//04ED 	083A
+		BCR 	STATUS,5 		//04EE 	1283
+		STR 	24H 			//04EF 	01A4
+		LDWI 	3H 			//04F0 	2A03
+		CLRR 	22H 			//04F1 	0122
+		CLRR 	23H 			//04F2 	0123
+		CLRR 	73H 			//04F3 	0173
+		INCR	73H,1 			//04F4 	09F3
+		SUBWR 	73H,0 			//04F5 	0C73
+		BTSC 	STATUS,0 		//04F6 	1403
+		LJUMP 	523H 			//04F7 	3D23
+		BCR 	STATUS,0 		//04F8 	1003
+		LCALL 	675H 			//04F9 	3675
+		BCR 	PCLATH,3 		//04FA 	118A
+		STR 	50H 			//04FB 	01D0
+		INCR	FSR,1 			//04FC 	0984
+		LDR 	INDF,0 			//04FD 	0800
+		STR 	51H 			//04FE 	01D1
+		SUBWR 	25H,0 			//04FF 	0C25
+		BTSS 	STATUS,2 		//0500 	1D03
+		LJUMP 	504H 			//0501 	3D04
+		LDR 	50H,0 			//0502 	0850
+		SUBWR 	24H,0 			//0503 	0C24
+		BTSC 	STATUS,0 		//0504 	1403
+		LJUMP 	511H 			//0505 	3D11
+		LDR 	25H,0 			//0506 	0825
+		STR 	23H 			//0507 	01A3
+		LDR 	24H,0 			//0508 	0824
+		STR 	22H 			//0509 	01A2
+		LCALL 	682H 			//050A 	3682
+		BCR 	PCLATH,3 		//050B 	118A
+		STR 	24H 			//050C 	01A4
+		INCR	FSR,1 			//050D 	0984
+		LDR 	INDF,0 			//050E 	0800
+		STR 	25H 			//050F 	01A5
+		LJUMP 	51EH 			//0510 	3D1E
+		BCR 	STATUS,0 		//0511 	1003
+		LCALL 	675H 			//0512 	3675
+		BCR 	PCLATH,3 		//0513 	118A
+		LCALL 	661H 			//0514 	3661
+		BCR 	PCLATH,3 		//0515 	118A
+		BTSC 	STATUS,0 		//0516 	1403
+		LJUMP 	51EH 			//0517 	3D1E
+		LCALL 	682H 			//0518 	3682
+		BCR 	PCLATH,3 		//0519 	118A
+		STR 	22H 			//051A 	01A2
+		INCR	FSR,1 			//051B 	0984
+		LDR 	INDF,0 			//051C 	0800
+		STR 	23H 			//051D 	01A3
+		LDWI 	3H 			//051E 	2A03
+		INCR	73H,1 			//051F 	09F3
+		SUBWR 	73H,0 			//0520 	0C73
+		BTSS 	STATUS,0 		//0521 	1C03
+		LJUMP 	4F9H 			//0522 	3CF9
+		BSR 	STATUS,5 		//0523 	1A83
+		CLRR 	44H 			//0524 	0144
+		CLRR 	45H 			//0525 	0145
+		BCR 	STATUS,5 		//0526 	1283
+		CLRR 	73H 			//0527 	0173
+		LDWI 	3H 			//0528 	2A03
+		SUBWR 	73H,0 			//0529 	0C73
+		BTSC 	STATUS,0 		//052A 	1403
+		LJUMP 	531H 			//052B 	3D31
+		LCALL 	6B1H 			//052C 	36B1
+		BCR 	PCLATH,3 		//052D 	118A
+		LCALL 	6BBH 			//052E 	36BB
+		BCR 	PCLATH,3 		//052F 	118A
+		LJUMP 	528H 			//0530 	3D28
+		BSR 	STATUS,5 		//0531 	1A83
+		BTSC 	4AH,6 			//0532 	174A
+		INCR	4AH,1 			//0533 	09CA
+		BCR 	4AH,6 			//0534 	134A
+		LCALL 	638H 			//0535 	3638
+		BCR 	PCLATH,3 		//0536 	118A
+		ADDWI 	20H 			//0537 	2720
+		STR 	FSR 			//0538 	0184
+		BSR 	STATUS,7 		//0539 	1B83
+		LDR 	INDF,0 			//053A 	0800
+		STR 	24H 			//053B 	01A4
+		INCR	FSR,1 			//053C 	0984
+		LDR 	INDF,0 			//053D 	0800
+		STR 	25H 			//053E 	01A5
+		LDWI 	50H 			//053F 	2A50
+		STR 	73H 			//0540 	01F3
+		CLRR 	74H 			//0541 	0174
+		LDR 	23H,0 			//0542 	0823
+		STR 	78H 			//0543 	01F8
+		LDR 	22H,0 			//0544 	0822
+		STR 	77H 			//0545 	01F7
+		LCALL 	601H 			//0546 	3601
+		BCR 	PCLATH,3 		//0547 	118A
+		BSR 	STATUS,5 		//0548 	1A83
+		BCR 	STATUS,6 		//0549 	1303
+		LCALL 	638H 			//054A 	3638
+		BCR 	PCLATH,3 		//054B 	118A
+		ADDWI 	20H 			//054C 	2720
+		STR 	FSR 			//054D 	0184
+		LDR 	75H,0 			//054E 	0875
+		BSR 	STATUS,7 		//054F 	1B83
+		STR 	INDF 			//0550 	0180
+		INCR	FSR,1 			//0551 	0984
+		LDR 	76H,0 			//0552 	0876
+		STR 	INDF 			//0553 	0180
+		BSR 	STATUS,5 		//0554 	1A83
+		LCALL 	638H 			//0555 	3638
+		BCR 	PCLATH,3 		//0556 	118A
+		ADDWI 	20H 			//0557 	2720
+		STR 	FSR 			//0558 	0184
+		LDR 	INDF,0 			//0559 	0800
+		STR 	22H 			//055A 	01A2
+		INCR	FSR,1 			//055B 	0984
+		LDR 	INDF,0 			//055C 	0800
+		STR 	23H 			//055D 	01A3
+		LDR 	25H,0 			//055E 	0825
+		SUBWR 	23H,0 			//055F 	0C23
+		BTSS 	STATUS,2 		//0560 	1D03
+		LJUMP 	564H 			//0561 	3D64
+		LDR 	24H,0 			//0562 	0824
+		SUBWR 	22H,0 			//0563 	0C22
+		BTSC 	STATUS,0 		//0564 	1403
+		LJUMP 	569H 			//0565 	3D69
+		LDR 	22H,0 			//0566 	0822
+		SUBWR 	24H,0 			//0567 	0C24
+		LJUMP 	56BH 			//0568 	3D6B
+		LDR 	24H,0 			//0569 	0824
+		SUBWR 	22H,0 			//056A 	0C22
+		STR 	73H 			//056B 	01F3
+		LDWI 	7H 			//056C 	2A07
+		BCR 	STATUS,0 		//056D 	1003
+		RRR	25H,1 			//056E 	06A5
+		RRR	24H,1 			//056F 	06A4
+		ADDWI 	FFH 			//0570 	27FF
+		BTSS 	STATUS,2 		//0571 	1D03
+		LJUMP 	56DH 			//0572 	3D6D
+		LDR 	73H,0 			//0573 	0873
+		SUBWR 	24H,0 			//0574 	0C24
+		BTSC 	STATUS,0 		//0575 	1403
+		LJUMP 	57BH 			//0576 	3D7B
+		LDWI 	3H 			//0577 	2A03
+		SUBWR 	73H,0 			//0578 	0C73
+		BTSC 	STATUS,0 		//0579 	1403
+		LJUMP 	582H 			//057A 	3D82
+		BSR 	STATUS,5 		//057B 	1A83
+		LCALL 	638H 			//057C 	3638
+		BCR 	PCLATH,3 		//057D 	118A
+		ADDWI 	25H 			//057E 	2725
+		STR 	FSR 			//057F 	0184
+		INCR	INDF,1 			//0580 	0980
+		LJUMP 	588H 			//0581 	3D88
+		BSR 	STATUS,5 		//0582 	1A83
+		LCALL 	638H 			//0583 	3638
+		BCR 	PCLATH,3 		//0584 	118A
+		ADDWI 	25H 			//0585 	2725
+		STR 	FSR 			//0586 	0184
+		CLRR 	INDF 			//0587 	0100
+		BSR 	STATUS,5 		//0588 	1A83
+		LCALL 	6A6H 			//0589 	36A6
+		BSR 	PCLATH,3 		//058A 	198A
+		LCALL 	0H 			//058B 	3000
+		BCR 	PCLATH,3 		//058C 	118A
+		XORWI 	FFH 			//058D 	26FF
+		LCALL 	659H 			//058E 	3659
+		BSR 	PCLATH,3 		//058F 	198A
+		LCALL 	0H 			//0590 	3000
+		BCR 	PCLATH,3 		//0591 	118A
+		ANDWI 	7FH 			//0592 	247F
+		LCALL 	650H 			//0593 	3650
+		BCR 	PCLATH,3 		//0594 	118A
+		ANDWR 	INDF,1 		//0595 	0280
+		BSR 	STATUS,5 		//0596 	1A83
+		LCALL 	6A6H 			//0597 	36A6
+		BSR 	PCLATH,3 		//0598 	198A
+		LCALL 	0H 			//0599 	3000
+		BCR 	PCLATH,3 		//059A 	118A
+		XORWI 	FFH 			//059B 	26FF
+		LCALL 	659H 			//059C 	3659
+		BSR 	PCLATH,3 		//059D 	198A
+		LCALL 	0H 			//059E 	3000
+		BCR 	PCLATH,3 		//059F 	118A
+		LCALL 	650H 			//05A0 	3650
+		BCR 	PCLATH,3 		//05A1 	118A
+		ANDWR 	INDF,1 		//05A2 	0280
+		BSR 	STATUS,5 		//05A3 	1A83
+		INCR	50H,1 			//05A4 	09D0
+		BTSC 	STATUS,2 		//05A5 	1503
+		LJUMP 	5ABH 			//05A6 	3DAB
+		CLRR 	50H 			//05A7 	0150
+		BCR 	STATUS,5 		//05A8 	1283
+		CLRR 	3CH 			//05A9 	013C
+		INCR	3CH,1 			//05AA 	09BC
+		BSR 	STATUS,5 		//05AB 	1A83
+		LCALL 	638H 			//05AC 	3638
+		BCR 	PCLATH,3 		//05AD 	118A
+		ADDWI 	22H 			//05AE 	2722
+		STR 	FSR 			//05AF 	0184
+		BSR 	STATUS,7 		//05B0 	1B83
+		LDR 	INDF,0 			//05B1 	0800
+		STR 	77H 			//05B2 	01F7
+		INCR	FSR,1 			//05B3 	0984
+		LDR 	INDF,0 			//05B4 	0800
+		STR 	78H 			//05B5 	01F8
+		LDWI 	50H 			//05B6 	2A50
+		STR 	73H 			//05B7 	01F3
+		CLRR 	74H 			//05B8 	0174
+		LCALL 	601H 			//05B9 	3601
+		BCR 	PCLATH,3 		//05BA 	118A
+		BCR 	STATUS,5 		//05BB 	1283
+		BCR 	STATUS,6 		//05BC 	1303
+		LDR 	76H,0 			//05BD 	0876
+		BSR 	STATUS,5 		//05BE 	1A83
+		STR 	47H 			//05BF 	01C7
+		BCR 	STATUS,5 		//05C0 	1283
+		LDR 	75H,0 			//05C1 	0875
+		BSR 	STATUS,5 		//05C2 	1A83
+		STR 	46H 			//05C3 	01C6
+		BCR 	STATUS,5 		//05C4 	1283
+		DECRSZ 	3CH,0 		//05C5 	0E3C
+		LJUMP 	5CDH 			//05C6 	3DCD
+		BCR 	CH,5 			//05C7 	128C
+		BSR 	STATUS,5 		//05C8 	1A83
+		BCR 	CH,5 			//05C9 	128C
+		BCR 	STATUS,5 		//05CA 	1283
+		BCR 	1FH,3 			//05CB 	119F
+		RET		 					//05CC 	0004
+		LCALL 	688H 			//05CD 	3688
+		BSR 	PCLATH,3 		//05CE 	198A
+		LCALL 	0H 			//05CF 	3000
+		BCR 	PCLATH,3 		//05D0 	118A
+		LCALL 	6A0H 			//05D1 	36A0
+		BSR 	PCLATH,3 		//05D2 	198A
+		LCALL 	0H 			//05D3 	3000
+		BCR 	PCLATH,3 		//05D4 	118A
+		LCALL 	659H 			//05D5 	3659
+		BSR 	PCLATH,3 		//05D6 	198A
+		LCALL 	0H 			//05D7 	3000
+		BCR 	PCLATH,3 		//05D8 	118A
+		LCALL 	650H 			//05D9 	3650
+		BCR 	PCLATH,3 		//05DA 	118A
+		LCALL 	69AH 			//05DB 	369A
+		BCR 	PCLATH,3 		//05DC 	118A
+		STR 	50H 			//05DD 	01D0
+		BSR 	STATUS,5 		//05DE 	1A83
+		INCR	68H,0 			//05DF 	0968
+		BCR 	STATUS,5 		//05E0 	1283
+		LJUMP 	5E4H 			//05E1 	3DE4
+		BCR 	STATUS,0 		//05E2 	1003
+		RLR 	50H,1 			//05E3 	05D0
+		ADDWI 	FFH 			//05E4 	27FF
+		BTSS 	STATUS,2 		//05E5 	1D03
+		LJUMP 	5E2H 			//05E6 	3DE2
+		LDR 	50H,0 			//05E7 	0850
+		BSR 	STATUS,6 		//05E8 	1B03
+		STR 	1DH 			//05E9 	019D
+		BCR 	STATUS,5 		//05EA 	1283
+		BCR 	STATUS,6 		//05EB 	1303
+		BTSC 	20H,1 			//05EC 	14A0
+		LJUMP 	5F5H 			//05ED 	3DF5
+		LDWI 	12H 			//05EE 	2A12
+		STR 	FSR 			//05EF 	0184
+		BSR 	PCLATH,3 		//05F0 	198A
+		LCALL 	0H 			//05F1 	3000
+		BCR 	PCLATH,3 		//05F2 	118A
+		BSR 	STATUS,5 		//05F3 	1A83
+		LJUMP 	5F9H 			//05F4 	3DF9
+		LCALL 	6B6H 			//05F5 	36B6
+		BSR 	PCLATH,3 		//05F6 	198A
+		LCALL 	0H 			//05F7 	3000
+		BCR 	PCLATH,3 		//05F8 	118A
+		LCALL 	66BH 			//05F9 	366B
+		BCR 	PCLATH,3 		//05FA 	118A
+		STR 	17H 			//05FB 	0197
+		NOP		 					//05FC 	0000
+		LCALL 	68FH 			//05FD 	368F
+		BCR 	PCLATH,3 		//05FE 	118A
+		STR 	17H 			//05FF 	0197
+		LJUMP 	642H 			//0600 	3E42
+		BCR 	STATUS,6 		//0601 	1303
+		BCR 	STATUS,5 		//0602 	1283
+		LDWI 	FH 			//0603 	2A0F
+		ANDWR 	78H,1 			//0604 	02F8
+		CLRR 	75H 			//0605 	0175
+		CLRR 	76H 			//0606 	0176
+		BCR 	STATUS,0 		//0607 	1003
+		RLR 	73H,1 			//0608 	05F3
+		RLR 	74H,1 			//0609 	05F4
+		BCR 	STATUS,0 		//060A 	1003
+		RLR 	73H,1 			//060B 	05F3
+		RLR 	74H,1 			//060C 	05F4
+		BCR 	STATUS,0 		//060D 	1003
+		RLR 	73H,1 			//060E 	05F3
+		RLR 	74H,1 			//060F 	05F4
+		BCR 	STATUS,0 		//0610 	1003
+		RLR 	73H,1 			//0611 	05F3
+		RLR 	74H,1 			//0612 	05F4
+		LDR 	77H,0 			//0613 	0877
+		IORWR 	78H,0 			//0614 	0378
+		BTSC 	STATUS,2 		//0615 	1503
+		LJUMP 	637H 			//0616 	3E37
+		LDWI 	8H 			//0617 	2A08
+		STR 	72H 			//0618 	01F2
+		INCR	72H,1 			//0619 	09F2
+		BTSC 	78H,3 			//061A 	15F8
+		LJUMP 	620H 			//061B 	3E20
+		BCR 	STATUS,0 		//061C 	1003
+		RLR 	77H,1 			//061D 	05F7
+		RLR 	78H,1 			//061E 	05F8
+		LJUMP 	619H 			//061F 	3E19
+		BCR 	STATUS,0 		//0620 	1003
+		RLR 	75H,1 			//0621 	05F5
+		RLR 	76H,1 			//0622 	05F6
+		LDR 	78H,0 			//0623 	0878
+		SUBWR 	74H,0 			//0624 	0C74
+		BTSS 	STATUS,2 		//0625 	1D03
+		LJUMP 	629H 			//0626 	3E29
+		LDR 	77H,0 			//0627 	0877
+		SUBWR 	73H,0 			//0628 	0C73
+		BTSS 	STATUS,0 		//0629 	1C03
+		LJUMP 	632H 			//062A 	3E32
+		LDR 	77H,0 			//062B 	0877
+		SUBWR 	73H,1 			//062C 	0CF3
+		LDR 	78H,0 			//062D 	0878
+		BTSS 	STATUS,0 		//062E 	1C03
+		INCRSZ 	78H,0 		//062F 	0A78
+		SUBWR 	74H,1 			//0630 	0CF4
+		BSR 	75H,0 			//0631 	1875
+		BCR 	STATUS,0 		//0632 	1003
+		RLR 	73H,1 			//0633 	05F3
+		RLR 	74H,1 			//0634 	05F4
+		DECRSZ 	72H,1 		//0635 	0EF2
+		LJUMP 	620H 			//0636 	3E20
+		RET		 					//0637 	0004
+		LDR 	50H,0 			//0638 	0850
+		BCR 	STATUS,5 		//0639 	1283
+		STR 	50H 			//063A 	01D0
+		BCR 	STATUS,0 		//063B 	1003
+		RLR 	50H,1 			//063C 	05D0
+		BCR 	STATUS,0 		//063D 	1003
+		RLR 	50H,1 			//063E 	05D0
+		BCR 	STATUS,0 		//063F 	1003
+		RLR 	50H,0 			//0640 	0550
+		RET		 					//0641 	0004
+		BSR 	STATUS,5 		//0642 	1A83
+		BCR 	STATUS,6 		//0643 	1303
+		BSR 	5H,2 			//0644 	1905
+		LDWI 	39H 			//0645 	2A39
+		BCR 	STATUS,5 		//0646 	1283
+		BSR 	STATUS,6 		//0647 	1B03
+		STR 	1CH 			//0648 	019C
+		BSR 	1AH,2 			//0649 	191A
+		BCR 	STATUS,6 		//064A 	1303
+		BSR 	1FH,3 			//064B 	199F
+		BCR 	CH,5 			//064C 	128C
+		BSR 	STATUS,5 		//064D 	1A83
+		BCR 	CH,5 			//064E 	128C
+		RET		 					//064F 	0004
+		BCR 	STATUS,5 		//0650 	1283
+		STR 	51H 			//0651 	01D1
+		CLRR 	52H 			//0652 	0152
+		STR 	FSR 			//0653 	0184
+		BSR 	STATUS,7 		//0654 	1B83
+		BTSS 	52H,0 			//0655 	1C52
+		BCR 	STATUS,7 		//0656 	1383
+		LDR 	50H,0 			//0657 	0850
+		RET		 					//0658 	0004
+		BCR 	STATUS,5 		//0659 	1283
+		STR 	50H 			//065A 	01D0
+		BSR 	STATUS,5 		//065B 	1A83
+		BCR 	STATUS,0 		//065C 	1003
+		RLR 	68H,0 			//065D 	0568
+		ADDWI 	1H 			//065E 	2701
+		STR 	FSR 			//065F 	0184
+		RET		 					//0660 	0004
+		STR 	50H 			//0661 	01D0
+		INCR	FSR,1 			//0662 	0984
+		LDR 	INDF,0 			//0663 	0800
+		STR 	51H 			//0664 	01D1
+		SUBWR 	23H,0 			//0665 	0C23
+		BTSS 	STATUS,2 		//0666 	1D03
+		RET		 					//0667 	0004
+		LDR 	50H,0 			//0668 	0850
+		SUBWR 	22H,0 			//0669 	0C22
+		RET		 					//066A 	0004
+		ADDWR 	69H,0 			//066B 	0B69
+		BCR 	STATUS,5 		//066C 	1283
+		STR 	DH 			//066D 	018D
+		BCR 	1FH,3 			//066E 	119F
+		CLRR 	1H 			//066F 	0101
+		BSR 	STATUS,6 		//0670 	1B03
+		LDR 	18H,0 			//0671 	0818
+		STR 	16H 			//0672 	0196
+		LDR 	19H,0 			//0673 	0819
+		RET		 					//0674 	0004
+		RLR 	73H,0 			//0675 	0573
+		ADDWI 	BAH 			//0676 	27BA
+		STR 	FSR 			//0677 	0184
+		LDR 	INDF,0 			//0678 	0800
+		RET		 					//0679 	0004
+		LDWI 	1H 			//067A 	2A01
+		STR 	1CH 			//067B 	019C
+		BSR 	STATUS,5 		//067C 	1A83
+		BCR 	STATUS,6 		//067D 	1303
+		BCR 	5H,2 			//067E 	1105
+		BCR 	STATUS,5 		//067F 	1283
+		BCR 	5H,2 			//0680 	1105
+		RET		 					//0681 	0004
+		BCR 	STATUS,0 		//0682 	1003
+		RLR 	73H,0 			//0683 	0573
+		ADDWI 	BAH 			//0684 	27BA
+		STR 	FSR 			//0685 	0184
+		LDR 	INDF,0 			//0686 	0800
+		RET		 					//0687 	0004
+		LDWI 	9H 			//0688 	2A09
+		BSR 	STATUS,5 		//0689 	1A83
+		STR 	4DH 			//068A 	01CD
+		LDR 	50H,0 			//068B 	0850
+		ADDWI 	16H 			//068C 	2716
+		STR 	FSR 			//068D 	0184
+		RET		 					//068E 	0004
+		LDWI 	FFH 			//068F 	2AFF
+		BCR 	STATUS,5 		//0690 	1283
+		BSR 	STATUS,6 		//0691 	1B03
+		STR 	16H 			//0692 	0196
+		RETW 	FH 			//0693 	210F
+		BTSS 	STATUS,0 		//0694 	1C03
+		DECR 	23H,1 			//0695 	0DA3
+		SUBWR 	23H,1 			//0696 	0CA3
+		LDWI 	0H 			//0697 	2A00
+		SUBWR 	23H,0 			//0698 	0C23
+		RET		 					//0699 	0004
+		IORWR 	INDF,1 		//069A 	0380
+		BSR 	STATUS,6 		//069B 	1B03
+		CLRR 	1DH 			//069C 	011D
+		LDWI 	1H 			//069D 	2A01
+		BCR 	STATUS,6 		//069E 	1303
+		RET		 					//069F 	0004
+		STR 	68H 			//06A0 	01E8
+		BCR 	STATUS,0 		//06A1 	1003
+		RLR 	68H,0 			//06A2 	0568
+		ADDWI 	2H 			//06A3 	2702
+		STR 	FSR 			//06A4 	0184
+		RET		 					//06A5 	0004
+		BCR 	STATUS,0 		//06A6 	1003
+		RLR 	68H,0 			//06A7 	0568
+		ADDWI 	2H 			//06A8 	2702
+		STR 	FSR 			//06A9 	0184
+		RET		 					//06AA 	0004
+		BSR 	STATUS,5 		//06AB 	1A83
+		BCR 	STATUS,0 		//06AC 	1003
+		RLR 	4EH,0 			//06AD 	054E
+		ADDWI 	B4H 			//06AE 	27B4
+		STR 	FSR 			//06AF 	0184
+		RET		 					//06B0 	0004
+		BCR 	STATUS,0 		//06B1 	1003
+		RLR 	73H,0 			//06B2 	0573
+		ADDWI 	B4H 			//06B3 	27B4
+		STR 	FSR 			//06B4 	0184
+		RETW 	FFH 			//06B5 	21FF
+		BSR 	STATUS,5 		//06B6 	1A83
+		LDR 	4EH,0 			//06B7 	084E
+		ADDWI 	11H 			//06B8 	2711
+		STR 	FSR 			//06B9 	0184
+		RET		 					//06BA 	0004
+		STR 	INDF 			//06BB 	0180
+		INCR	FSR,1 			//06BC 	0984
+		STR 	INDF 			//06BD 	0180
+		INCR	73H,1 			//06BE 	09F3
+		RET		 					//06BF 	0004
+
+		//;main.c: 35: unsigned int i;
+		//;main.c: 37: for(i =0;i<Time;i++)
+		CLRR 	56H 			//06C0 	0156
+		CLRR 	57H 			//06C1 	0157
+		LDR 	55H,0 			//06C2 	0855
+		SUBWR 	57H,0 			//06C3 	0C57
+		BTSS 	STATUS,2 		//06C4 	1D03
+		LJUMP 	6C8H 			//06C5 	3EC8
+		LDR 	54H,0 			//06C6 	0854
+		SUBWR 	56H,0 			//06C7 	0C56
+		BTSC 	STATUS,0 		//06C8 	1403
+		RET		 					//06C9 	0004
+
+		//;main.c: 38: {
+		//;main.c: 39: DelayUs(50);
+		LDWI 	32H 			//06CA 	2A32
+		STR 	7CH 			//06CB 	01FC
+		CLRR 	7DH 			//06CC 	017D
+		LCALL 	6E6H 			//06CD 	36E6
+		BCR 	PCLATH,3 		//06CE 	118A
+
+		//;main.c: 40: if((i!=0)&&(i%50==0))
+		LDR 	56H,0 			//06CF 	0856
+		IORWR 	57H,0 			//06D0 	0357
+		BTSC 	STATUS,2 		//06D1 	1503
+		LJUMP 	6E0H 			//06D2 	3EE0
+		LDWI 	32H 			//06D3 	2A32
+		STR 	50H 			//06D4 	01D0
+		CLRR 	51H 			//06D5 	0151
+		LDR 	57H,0 			//06D6 	0857
+		STR 	53H 			//06D7 	01D3
+		LDR 	56H,0 			//06D8 	0856
+		STR 	52H 			//06D9 	01D2
+		LCALL 	6F7H 			//06DA 	36F7
+		BCR 	PCLATH,3 		//06DB 	118A
+		LDR 	50H,0 			//06DC 	0850
+		IORWR 	51H,0 			//06DD 	0351
+		BTSC 	STATUS,2 		//06DE 	1503
+		CLRWDT	 			//06DF 	0001
+		BCR 	STATUS,5 		//06E0 	1283
+		BCR 	STATUS,6 		//06E1 	1303
+		INCR	56H,1 			//06E2 	09D6
+		BTSC 	STATUS,2 		//06E3 	1503
+		INCR	57H,1 			//06E4 	09D7
+		LJUMP 	6C2H 			//06E5 	3EC2
+
+		//;main.c: 25: unsigned int a;
+		//;main.c: 26: for(a=0;a<Time;a++)
+		CLRR 	50H 			//06E6 	0150
+		CLRR 	51H 			//06E7 	0151
+		LDR 	7DH,0 			//06E8 	087D
+		SUBWR 	51H,0 			//06E9 	0C51
+		BTSS 	STATUS,2 		//06EA 	1D03
+		LJUMP 	6EEH 			//06EB 	3EEE
+		LDR 	7CH,0 			//06EC 	087C
+		SUBWR 	50H,0 			//06ED 	0C50
+		BTSC 	STATUS,0 		//06EE 	1403
+		RET		 					//06EF 	0004
+
+		//;main.c: 27: {
+		//;main.c: 28: __nop();
+		NOP		 					//06F0 	0000
+		BCR 	STATUS,5 		//06F1 	1283
+		BCR 	STATUS,6 		//06F2 	1303
+		INCR	50H,1 			//06F3 	09D0
+		BTSC 	STATUS,2 		//06F4 	1503
+		INCR	51H,1 			//06F5 	09D1
+		LJUMP 	6E8H 			//06F6 	3EE8
+		LDR 	50H,0 			//06F7 	0850
+		IORWR 	51H,0 			//06F8 	0351
+		BTSC 	STATUS,2 		//06F9 	1503
+		LJUMP 	716H 			//06FA 	3F16
+		CLRR 	7CH 			//06FB 	017C
+		INCR	7CH,1 			//06FC 	09FC
+		BTSC 	51H,7 			//06FD 	17D1
+		LJUMP 	703H 			//06FE 	3F03
+		BCR 	STATUS,0 		//06FF 	1003
+		RLR 	50H,1 			//0700 	05D0
+		RLR 	51H,1 			//0701 	05D1
+		LJUMP 	6FCH 			//0702 	3EFC
+		LDR 	51H,0 			//0703 	0851
+		SUBWR 	53H,0 			//0704 	0C53
+		BTSS 	STATUS,2 		//0705 	1D03
+		LJUMP 	709H 			//0706 	3F09
+		LDR 	50H,0 			//0707 	0850
+		SUBWR 	52H,0 			//0708 	0C52
+		BTSS 	STATUS,0 		//0709 	1C03
+		LJUMP 	712H 			//070A 	3F12
+		LDR 	50H,0 			//070B 	0850
+		SUBWR 	52H,1 			//070C 	0CD2
+		LDR 	51H,0 			//070D 	0851
+		BTSS 	STATUS,0 		//070E 	1C03
+		DECR 	53H,1 			//070F 	0DD3
+		SUBWR 	53H,1 			//0710 	0CD3
+		BCR 	STATUS,0 		//0711 	1003
+		RRR	51H,1 			//0712 	06D1
+		RRR	50H,1 			//0713 	06D0
+		DECRSZ 	7CH,1 		//0714 	0EFC
+		LJUMP 	703H 			//0715 	3F03
+		LDR 	53H,0 			//0716 	0853
+		STR 	51H 			//0717 	01D1
+		LDR 	52H,0 			//0718 	0852
+		STR 	50H 			//0719 	01D0
+		RET		 					//071A 	0004
+
+		//;main.c: 1202: SYS_INITIAL();
+		BCR 	PCLATH,3 		//071B 	118A
+		LCALL 	7AAH 			//071C 	37AA
+		BCR 	PCLATH,3 		//071D 	118A
+
+		//;main.c: 1203: T2CON0=0;
+		CLRR 	12H 			//071E 	0112
+
+		//;main.c: 1204: TOUCH_INITIAL();
+		BCR 	PCLATH,3 		//071F 	118A
+		LCALL 	381H 			//0720 	3381
+		BCR 	PCLATH,3 		//0721 	118A
+
+		//;main.c: 1205: WDT_INITIAL();
+		BCR 	PCLATH,3 		//0722 	118A
+		LCALL 	7FAH 			//0723 	37FA
+		BCR 	PCLATH,3 		//0724 	118A
+
+		//;main.c: 1206: PEIE = 1;
+		BSR 	INTCON,6 		//0725 	1B0B
+
+		//;main.c: 1207: GIE = 1;
+		BSR 	INTCON,7 		//0726 	1B8B
+
+		//;main.c: 1209: TRISA&=0xfD;
+		BSR 	STATUS,5 		//0727 	1A83
+		BCR 	5H,1 			//0728 	1085
+
+		//;main.c: 1210: TRISA&=0xEF;
+		BCR 	5H,4 			//0729 	1205
+
+		//;main.c: 1214: ADC_AN3_Init();
+		BSR 	PCLATH,3 		//072A 	198A
+		LCALL 	110H 			//072B 	3110
+		BCR 	PCLATH,3 		//072C 	118A
+
+		//;main.c: 1216: PA1 =0;
+		BCR 	STATUS,5 		//072D 	1283
+		BCR 	STATUS,6 		//072E 	1303
+		BCR 	5H,1 			//072F 	1085
+
+		//;main.c: 1219: PWM_Init();
+		BCR 	PCLATH,3 		//0730 	118A
+		LCALL 	7CFH 			//0731 	37CF
+		BCR 	PCLATH,3 		//0732 	118A
+
+		//;main.c: 1221: delay_ms(5000);
+		LDWI 	88H 			//0733 	2A88
+		BCR 	STATUS,5 		//0734 	1283
+		STR 	54H 			//0735 	01D4
+		LDWI 	13H 			//0736 	2A13
+		STR 	55H 			//0737 	01D5
+		BCR 	PCLATH,3 		//0738 	118A
+		LCALL 	6C0H 			//0739 	36C0
+		BCR 	PCLATH,3 		//073A 	118A
+
+		//;main.c: 1224: {
+		//;main.c: 1225: if(LED_Cur_LV_Num==0)
+		BCR 	STATUS,5 		//073B 	1283
+		LDR 	47H,0 			//073C 	0847
+		BTSS 	STATUS,2 		//073D 	1D03
+		LJUMP 	753H 			//073E 	3F53
+
+		//;main.c: 1226: {
+		//;main.c: 1227: if(PC0==1)
+		BTSS 	7H,0 			//073F 	1C07
+		LJUMP 	74AH 			//0740 	3F4A
+
+		//;main.c: 1228: {
+		//;main.c: 1229: if(Run_Mode==1)
+		DECRSZ 	49H,0 		//0741 	0E49
+		LJUMP 	748H 			//0742 	3F48
+
+		//;main.c: 1230: {
+		//;main.c: 1231: LED_Cur_LV_Num =0;
+		CLRR 	47H 			//0743 	0147
+
+		//;main.c: 1232: LED_Cur_LV_Dat =0;
+		CLRR 	32H 			//0744 	0132
+		CLRR 	33H 			//0745 	0133
+
+		//;main.c: 1233: P1ADTH =0;
+		//;main.c: 1234: P1ADTL =0;
+		//;main.c: 1235: LED_PWM_H =0;
+		//;main.c: 1236: LED_PWN_N =0;
+		LCALL 	76AH 			//0746 	376A
+		BCR 	PCLATH,3 		//0747 	118A
+
+		//;main.c: 1237: }
+		//;main.c: 1239: Run_Mode =0;
+		CLRR 	49H 			//0748 	0149
+
+		//;main.c: 1240: }
+		LJUMP 	753H 			//0749 	3F53
+
+		//;main.c: 1241: else if((PC0==0)&&(Run_Mode==0))
+		BTSC 	7H,0 			//074A 	1407
+		LJUMP 	753H 			//074B 	3F53
+		LDR 	49H,0 			//074C 	0849
+		BTSS 	STATUS,2 		//074D 	1D03
+		LJUMP 	753H 			//074E 	3F53
+
+		//;main.c: 1242: {
+		//;main.c: 1243: LED_ADJ_OP =0;
+		CLRR 	41H 			//074F 	0141
+
+		//;main.c: 1244: PA4 =0;
+		BCR 	5H,4 			//0750 	1205
+
+		//;main.c: 1245: Run_Mode =1;
+		CLRR 	49H 			//0751 	0149
+		INCR	49H,1 			//0752 	09C9
+
+		//;main.c: 1246: }
+		//;main.c: 1247: }
+		//;main.c: 1249: if((LED_Cur_LV_Num==0)&&(Run_Mode==0))
+		LDR 	47H,0 			//0753 	0847
+		BTSS 	STATUS,2 		//0754 	1D03
+		LJUMP 	75BH 			//0755 	3F5B
+		LDR 	49H,0 			//0756 	0849
+		BTSS 	STATUS,2 		//0757 	1D03
+		LJUMP 	75BH 			//0758 	3F5B
+
+		//;main.c: 1250: {
+		//;main.c: 1251: PA4 =0;
+		BCR 	5H,4 			//0759 	1205
+
+		//;main.c: 1252: }
+		LJUMP 	762H 			//075A 	3F62
+
+		//;main.c: 1253: else if((LED_Cur_LV_Num!=0)&&(Run_Mode==0))
+		LDR 	47H,0 			//075B 	0847
+		BTSC 	STATUS,2 		//075C 	1503
+		LJUMP 	762H 			//075D 	3F62
+		LDR 	49H,0 			//075E 	0849
+		BTSS 	STATUS,2 		//075F 	1D03
+		LJUMP 	762H 			//0760 	3F62
+
+		//;main.c: 1254: {
+		//;main.c: 1255: PA4 =1;
+		BSR 	5H,4 			//0761 	1A05
+
+		//;main.c: 1256: }
+		//;main.c: 1259: ADC_Run();
+		BSR 	PCLATH,3 		//0762 	198A
+		LCALL 	122H 			//0763 	3122
+		BCR 	PCLATH,3 		//0764 	118A
+		CLRWDT	 			//0765 	0001
+
+		//;main.c: 1263: TK_TG_Run();
+		BCR 	PCLATH,3 		//0766 	118A
+		LCALL 	24H 			//0767 	3024
+		BCR 	PCLATH,3 		//0768 	118A
+		LJUMP 	73BH 			//0769 	3F3B
+		CLRR 	14H 			//076A 	0114
+		CLRR 	EH 			//076B 	010E
+		CLRR 	4BH 			//076C 	014B
+		CLRR 	4CH 			//076D 	014C
+		CLRR 	30H 			//076E 	0130
+		CLRR 	31H 			//076F 	0131
+		RET		 					//0770 	0004
+
+		//;main.c: 77: if(TMR2IE && TMR2IF)
+		BSR 	STATUS,5 		//0771 	1A83
+		BCR 	STATUS,6 		//0772 	1303
+		BTSS 	CH,1 			//0773 	1C8C
+		LJUMP 	79CH 			//0774 	3F9C
+		BCR 	STATUS,5 		//0775 	1283
+		BTSS 	CH,1 			//0776 	1C8C
+		LJUMP 	79CH 			//0777 	3F9C
+
+		//;main.c: 78: {
+		//;main.c: 79: TMR2IF = 0;
+		BCR 	CH,1 			//0778 	108C
+
+		//;main.c: 81: if(Tk_Push==1)
+		DECRSZ 	4AH,0 		//0779 	0E4A
+		LJUMP 	78CH 			//077A 	3F8C
+
+		//;main.c: 82: {
+		//;main.c: 83: Tk_Push_T++;
+		BSR 	STATUS,5 		//077B 	1A83
+		INCR	48H,1 			//077C 	09C8
+		BTSC 	STATUS,2 		//077D 	1503
+		INCR	49H,1 			//077E 	09C9
+
+		//;main.c: 84: if(Tk_Push_T>=15000)
+		LDWI 	3AH 			//077F 	2A3A
+		SUBWR 	49H,0 			//0780 	0C49
+		LDWI 	98H 			//0781 	2A98
+		BTSC 	STATUS,2 		//0782 	1503
+		SUBWR 	48H,0 			//0783 	0C48
+		BTSS 	STATUS,0 		//0784 	1C03
+		LJUMP 	78FH 			//0785 	3F8F
+		LDWI 	2H 			//0786 	2A02
+
+		//;main.c: 85: {
+		//;main.c: 86: Tk_Push_T =0;
+		CLRR 	48H 			//0787 	0148
+		CLRR 	49H 			//0788 	0149
+
+		//;main.c: 87: Tk_Push =2;
+		BCR 	STATUS,5 		//0789 	1283
+		STR 	4AH 			//078A 	01CA
+		LJUMP 	78FH 			//078B 	3F8F
+
+		//;main.c: 97: else
+		//;main.c: 98: {
+		//;main.c: 99: Tk_Push_T =0;
+		BSR 	STATUS,5 		//078C 	1A83
+		CLRR 	48H 			//078D 	0148
+		CLRR 	49H 			//078E 	0149
+
+		//;main.c: 101: }
+		//;main.c: 103: if((ADC_T<1)&&(ADC_Start==0))
+		BSR 	STATUS,5 		//078F 	1A83
+		LDR 	51H,0 			//0790 	0851
+		BTSC 	STATUS,2 		//0791 	1503
+		BTSC 	70H,0 			//0792 	1470
+		LJUMP 	796H 			//0793 	3F96
+
+		//;main.c: 104: {
+		//;main.c: 105: ADC_T++;
+		INCR	51H,1 			//0794 	09D1
+
+		//;main.c: 106: }
+		LJUMP 	79CH 			//0795 	3F9C
+
+		//;main.c: 107: else if(ADC_Start==0)
+		BTSC 	70H,0 			//0796 	1470
+		LJUMP 	79BH 			//0797 	3F9B
+
+		//;main.c: 108: {
+		//;main.c: 109: ADC_T =0;
+		CLRR 	51H 			//0798 	0151
+
+		//;main.c: 110: ADC_Start=1;
+		BSR 	70H,0 			//0799 	1870
+
+		//;main.c: 111: }
+		LJUMP 	79CH 			//079A 	3F9C
+
+		//;main.c: 112: else
+		//;main.c: 113: ADC_T =0;
+		CLRR 	51H 			//079B 	0151
+
+		//;main.c: 131: }
+		//;main.c: 134: if(ADCIE&&ADCIF)
+		BSR 	STATUS,5 		//079C 	1A83
+		BTSS 	CH,0 			//079D 	1C0C
+		LJUMP 	7A3H 			//079E 	3FA3
+		BCR 	STATUS,5 		//079F 	1283
+		BTSS 	CH,0 			//07A0 	1C0C
+		LJUMP 	7A3H 			//07A1 	3FA3
+
+		//;main.c: 137: ADC_OK =1;
+		BCR 	CH,0 			//07A2 	100C
+		LDR 	7BH,0 			//07A3 	087B
+		STR 	PCLATH 			//07A4 	018A
+		SWAPR 	7AH,0 			//07A5 	077A
+		STR 	STATUS 			//07A6 	0183
+		SWAPR 	7EH,1 			//07A7 	07FE
+		SWAPR 	7EH,0 			//07A8 	077E
+		RETI		 			//07A9 	0009
+
+		//;main.c: 152: OSCCON = 0B01110001;
+		LDWI 	71H 			//07AA 	2A71
+		BSR 	STATUS,5 		//07AB 	1A83
+		STR 	FH 			//07AC 	018F
+
+		//;main.c: 156: OPTION = 0B00001000;
+		LDWI 	8H 			//07AD 	2A08
+		STR 	1H 			//07AE 	0181
+
+		//;main.c: 159: INTCON = 0;
+		CLRR 	INTCON 			//07AF 	010B
+
+		//;main.c: 161: PORTA = 0B00010000;
+		LDWI 	10H 			//07B0 	2A10
+		BCR 	STATUS,5 		//07B1 	1283
+		STR 	5H 			//07B2 	0185
+
+		//;main.c: 162: PORTC = 0B00000001;
+		LDWI 	1H 			//07B3 	2A01
+		STR 	7H 			//07B4 	0187
+
+		//;main.c: 163: PORTB = 0B00000000;
+		CLRR 	6H 			//07B5 	0106
+
+		//;main.c: 165: TRISA = 0B00000101;
+		LDWI 	5H 			//07B6 	2A05
+		BSR 	STATUS,5 		//07B7 	1A83
+		STR 	5H 			//07B8 	0185
+
+		//;main.c: 166: TRISB = 0B00000000;
+		CLRR 	6H 			//07B9 	0106
+
+		//;main.c: 167: TRISC = 0B00000001;
+		LDWI 	1H 			//07BA 	2A01
+		STR 	7H 			//07BB 	0187
+
+		//;main.c: 169: WPUA = 0B00000000;
+		CLRR 	15H 			//07BC 	0115
+
+		//;main.c: 170: WPUB = 0B00000000;
+		BCR 	STATUS,5 		//07BD 	1283
+		BSR 	STATUS,6 		//07BE 	1B03
+		CLRR 	DH 			//07BF 	010D
+
+		//;main.c: 171: WPUC = 0B00000001;
+		BSR 	STATUS,5 		//07C0 	1A83
+		BCR 	STATUS,6 		//07C1 	1303
+		STR 	13H 			//07C2 	0193
+
+		//;main.c: 173: ANSEL0 = 0B00000101;
+		LDWI 	5H 			//07C3 	2A05
+		BCR 	STATUS,5 		//07C4 	1283
+		BSR 	STATUS,6 		//07C5 	1B03
+		STR 	1EH 			//07C6 	019E
+
+		//;main.c: 185: TRISA3 = 0;
+		BSR 	STATUS,5 		//07C7 	1A83
+		BCR 	STATUS,6 		//07C8 	1303
+		BCR 	5H,3 			//07C9 	1185
+
+		//;main.c: 186: TRISA5 = 0;
+		BCR 	5H,5 			//07CA 	1285
+
+		//;main.c: 192: PA3 = 0;
+		BCR 	STATUS,5 		//07CB 	1283
+		BCR 	5H,3 			//07CC 	1185
+
+		//;main.c: 193: PA5 = 0;
+		BCR 	5H,5 			//07CD 	1285
+		RET		 					//07CE 	0004
+
+		//;main.c: 242: T2CON0=0X00;
+		CLRR 	12H 			//07CF 	0112
+
+		//;main.c: 247: T2CON1 = 0X02;
+		LDWI 	2H 			//07D0 	2A02
+		BSR 	STATUS,5 		//07D1 	1A83
+		STR 	1EH 			//07D2 	019E
+
+		//;main.c: 252: PR2H =0x06;
+		LDWI 	6H 			//07D3 	2A06
+		STR 	12H 			//07D4 	0192
+
+		//;main.c: 253: PR2L =0x40;
+		LDWI 	40H 			//07D5 	2A40
+		STR 	11H 			//07D6 	0191
+
+		//;main.c: 258: TMR2H =0;
+		BCR 	STATUS,5 		//07D7 	1283
+		CLRR 	13H 			//07D8 	0113
+
+		//;main.c: 259: TMR2L =0;
+		CLRR 	11H 			//07D9 	0111
+
+		//;main.c: 261: P1OE2 =0;
+		BSR 	STATUS,6 		//07DA 	1B03
+		CLRR 	1BH 			//07DB 	011B
+
+		//;main.c: 263: P1OE = 0X10;
+		LDWI 	10H 			//07DC 	2A10
+		BSR 	STATUS,5 		//07DD 	1A83
+		BCR 	STATUS,6 		//07DE 	1303
+		STR 	10H 			//07DF 	0190
+
+		//;main.c: 265: P1CON = 0X00;
+		BCR 	STATUS,5 		//07E0 	1283
+		CLRR 	16H 			//07E1 	0116
+
+		//;main.c: 267: P1POL = 0X00;
+		BSR 	STATUS,5 		//07E2 	1A83
+		CLRR 	19H 			//07E3 	0119
+
+		//;main.c: 269: P1ADTH =0;
+		BCR 	STATUS,5 		//07E4 	1283
+		CLRR 	14H 			//07E5 	0114
+
+		//;main.c: 270: P1ADTL = 0;
+		CLRR 	EH 			//07E6 	010E
+
+		//;main.c: 273: T2CON0 = T2CON0|0X04;
+		LDR 	12H,0 			//07E7 	0812
+		IORWI 	4H 			//07E8 	2504
+		STR 	12H 			//07E9 	0192
+
+		//;main.c: 275: TMR2IE =1;
+		BSR 	STATUS,5 		//07EA 	1A83
+		BSR 	CH,1 			//07EB 	188C
+
+		//;main.c: 277: GIE =1;
+		BSR 	INTCON,7 		//07EC 	1B8B
+		RET		 					//07ED 	0004
+		BSR 	PCLATH,3 		//07EE 	198A
+		LJUMP 	12DH 			//07EF 	392D
+		BSR 	PCLATH,3 		//07F0 	198A
+		LJUMP 	133H 			//07F1 	3933
+		BSR 	PCLATH,3 		//07F2 	198A
+		LJUMP 	14DH 			//07F3 	394D
+		BSR 	PCLATH,3 		//07F4 	198A
+		LJUMP 	1ABH 			//07F5 	39AB
+		BSR 	PCLATH,3 		//07F6 	198A
+		LJUMP 	1CBH 			//07F7 	39CB
+		BSR 	PCLATH,3 		//07F8 	198A
+		LJUMP 	1D5H 			//07F9 	39D5
+		CLRWDT	 			//07FA 	0001
+
+		//;main.c: 210: WDTCON = 0B00001101;
+		LDWI 	DH 			//07FB 	2A0D
+		BCR 	STATUS,5 		//07FC 	1283
+		BCR 	STATUS,6 		//07FD 	1303
+		STR 	18H 			//07FE 	0198
+		RET		 					//07FF 	0004
+		LDWI 	8H 			//0800 	2A08
+		STR 	PCLATH 			//0801 	018A
+		LDR 	FSR,0 			//0802 	0804
+		INCR	FSR,1 			//0803 	0984
+		ADDWR 	PCL,1 			//0804 	0B82
+		RETW 	0H 			//0805 	2100
+		RETW 	87H 			//0806 	2187
+		RETW 	2H 			//0807 	2102
+		RETW 	87H 			//0808 	2187
+		RETW 	1H 			//0809 	2101
+		RETW 	86H 			//080A 	2186
+		RETW 	80H 			//080B 	2180
+		RETW 	86H 			//080C 	2186
+		RETW 	40H 			//080D 	2140
+		RETW 	86H 			//080E 	2186
+		RETW 	20H 			//080F 	2120
+		RETW 	86H 			//0810 	2186
+		RETW 	10H 			//0811 	2110
+		RETW 	86H 			//0812 	2186
+		RETW 	8H 			//0813 	2108
+		RETW 	86H 			//0814 	2186
+		RETW 	4H 			//0815 	2104
+		RETW 	E0H 			//0816 	21E0
+		RETW 	20H 			//0817 	2120
+		RETW 	0H 			//0818 	2100
+		RETW 	11H 			//0819 	2111
+		RETW 	1BH 			//081A 	211B
+		RETW 	0H 			//081B 	2100
+		ORG		081CH
+		RETW 	50H 			//081C 	2150
+		ORG		0908H
+		CLRWDT	 			//0908 	0001
+		CLRR 	INDF 			//0909 	0100
+		INCR	FSR,1 			//090A 	0984
+		XORWR 	FSR,0 			//090B 	0404
+		BTSC 	STATUS,2 		//090C 	1503
+		RETW 	0H 			//090D 	2100
+		XORWR 	FSR,0 			//090E 	0404
+		LJUMP 	109H 			//090F 	3909
+
+		//;main.c: 453: ADCON1 = 0B11100100;
+		LDWI 	E4H 			//0910 	2AE4
+		BCR 	STATUS,5 		//0911 	1283
+		BSR 	STATUS,6 		//0912 	1B03
+		STR 	14H 			//0913 	0194
+
+		//;main.c: 454: ADCON0 = 0B00000000;
+		CLRR 	13H 			//0914 	0113
+
+		//;main.c: 456: ADC_DelayUs(200);
+		LDWI 	C8H 			//0915 	2AC8
+		LCALL 	2E5H 			//0916 	32E5
+		BSR 	PCLATH,3 		//0917 	198A
+
+		//;main.c: 457: ADC_DelayUs(250);
+		LDWI 	FAH 			//0918 	2AFA
+		LCALL 	2E5H 			//0919 	32E5
+
+		//;main.c: 459: ADCON2 = 0B01000000;
+		LDWI 	40H 			//091A 	2A40
+		BCR 	STATUS,5 		//091B 	1283
+		BSR 	STATUS,6 		//091C 	1B03
+		STR 	15H 			//091D 	0195
+
+		//;main.c: 460: ADCON3 = 0B00000000;
+		BSR 	STATUS,5 		//091E 	1A83
+		CLRR 	6H 			//091F 	0106
+
+		//;main.c: 461: ADCMPH = 0B00000000;
+		CLRR 	7H 			//0920 	0107
+		RET		 					//0921 	0004
+
+		//;main.c: 913: if(((ADC_Start==1)&&(LED_Cur_LV_Num))||((Run_Mode==1)&&(LED_ADJ_OP==1)))
+		BTSS 	70H,0 			//0922 	1C70
+		LJUMP 	127H 			//0923 	3927
+		LDR 	47H,0 			//0924 	0847
+		BTSS 	STATUS,2 		//0925 	1D03
+		LJUMP 	12BH 			//0926 	392B
+		DECRSZ 	49H,0 		//0927 	0E49
+		RET		 					//0928 	0004
+		DECRSZ 	41H,0 		//0929 	0E41
+		RET		 					//092A 	0004
+
+		//;main.c: 914: {
+		//;main.c: 915: ADC_Start =0;
+		BCR 	70H,0 			//092B 	1070
+
+		//;main.c: 916: switch(ADC_now)
+		LJUMP 	269H 			//092C 	3A69
+
+		//;main.c: 920: LED_PWM_AD_Num =0;
+		CLRR 	40H 			//092D 	0140
+
+		//;main.c: 921: LED_PWM_PJ_Val_Num =0;
+		CLRR 	3EH 			//092E 	013E
+
+		//;main.c: 922: LED_PWM_PJ_Cur_Num =0;
+		CLRR 	3FH 			//092F 	013F
+
+		//;main.c: 924: ADC_now=1;
+		CLRR 	3DH 			//0930 	013D
+		INCR	3DH,1 			//0931 	09BD
+
+		//;main.c: 925: break;
+		RET		 					//0932 	0004
+
+		//;main.c: 929: LED_PWM_AD_Dat[LED_PWM_AD_Num++] = GET_ADC_DATA(0x00);
+		LDWI 	0H 			//0933 	2A00
+		LCALL 	2B9H 			//0934 	32B9
+		BSR 	PCLATH,3 		//0935 	198A
+		BCR 	STATUS,0 		//0936 	1003
+		RLR 	40H,0 			//0937 	0540
+		ADDWI 	28H 			//0938 	2728
+		STR 	FSR 			//0939 	0184
+		LDR 	50H,0 			//093A 	0850
+		BSR 	STATUS,7 		//093B 	1B83
+		STR 	INDF 			//093C 	0180
+		INCR	FSR,1 			//093D 	0984
+		LDR 	51H,0 			//093E 	0851
+		STR 	INDF 			//093F 	0180
+		LDWI 	AH 			//0940 	2A0A
+		INCR	40H,1 			//0941 	09C0
+
+		//;main.c: 932: if(LED_PWM_AD_Num<10)
+		SUBWR 	40H,0 			//0942 	0C40
+		BTSS 	STATUS,0 		//0943 	1C03
+		LJUMP 	130H 			//0944 	3930
+
+		//;main.c: 934: else if(LED_PWM_AD_Num>=10)
+		LDWI 	AH 			//0945 	2A0A
+		SUBWR 	40H,0 			//0946 	0C40
+		BTSS 	STATUS,0 		//0947 	1C03
+		RET		 					//0948 	0004
+		LDWI 	2H 			//0949 	2A02
+
+		//;main.c: 935: {
+		//;main.c: 936: LED_PWM_AD_Num =0;
+		CLRR 	40H 			//094A 	0140
+
+		//;main.c: 937: ADC_now=2;
+		STR 	3DH 			//094B 	01BD
+		RET		 					//094C 	0004
+
+		//;main.c: 945: LED_PWM_PJ_Val[LED_PWM_PJ_Val_Num++] = (String_Sort(LED_PWM_AD_Dat,10))/2;
+		LDWI 	28H 			//094D 	2A28
+		STR 	57H 			//094E 	01D7
+		LDWI 	1H 			//094F 	2A01
+		STR 	58H 			//0950 	01D8
+		LDWI 	AH 			//0951 	2A0A
+		STR 	59H 			//0952 	01D9
+		LCALL 	2EEH 			//0953 	32EE
+		BSR 	PCLATH,3 		//0954 	198A
+		LDR 	57H,0 			//0955 	0857
+		STR 	64H 			//0956 	01E4
+		LDR 	58H,0 			//0957 	0858
+		STR 	65H 			//0958 	01E5
+		BCR 	STATUS,0 		//0959 	1003
+		RRR	65H,1 			//095A 	06E5
+		RRR	64H,1 			//095B 	06E4
+		BCR 	STATUS,0 		//095C 	1003
+		RLR 	3EH,0 			//095D 	053E
+		ADDWI 	D2H 			//095E 	27D2
+		STR 	FSR 			//095F 	0184
+		LDR 	64H,0 			//0960 	0864
+		BCR 	STATUS,7 		//0961 	1383
+		STR 	INDF 			//0962 	0180
+		INCR	FSR,1 			//0963 	0984
+		LDR 	65H,0 			//0964 	0865
+		STR 	INDF 			//0965 	0180
+		LDWI 	32H 			//0966 	2A32
+		INCR	3EH,1 			//0967 	09BE
+
+		//;main.c: 947: LED_PWM_PJ_Val[LED_PWM_PJ_Val_Num]+=(LED_PWM_PJ_Val[LED_PWM_PJ_Val_Num]/50
+		//+                          )*12/10;
+		STR 	50H 			//0968 	01D0
+		CLRR 	51H 			//0969 	0151
+		BCR 	STATUS,0 		//096A 	1003
+		RLR 	3EH,0 			//096B 	053E
+		ADDWI 	D2H 			//096C 	27D2
+		STR 	FSR 			//096D 	0184
+		LDR 	INDF,0 			//096E 	0800
+		STR 	52H 			//096F 	01D2
+		INCR	FSR,1 			//0970 	0984
+		LDR 	INDF,0 			//0971 	0800
+		STR 	53H 			//0972 	01D3
+		LCALL 	276H 			//0973 	3276
+		BSR 	PCLATH,3 		//0974 	198A
+		LDR 	51H,0 			//0975 	0851
+		STR 	58H 			//0976 	01D8
+		LDR 	50H,0 			//0977 	0850
+		STR 	57H 			//0978 	01D7
+		LDWI 	CH 			//0979 	2A0C
+		STR 	59H 			//097A 	01D9
+		CLRR 	5AH 			//097B 	015A
+		LCALL 	2A0H 			//097C 	32A0
+		BSR 	PCLATH,3 		//097D 	198A
+		LDR 	58H,0 			//097E 	0858
+		STR 	69H 			//097F 	01E9
+		LDR 	57H,0 			//0980 	0857
+		STR 	68H 			//0981 	01E8
+
+		//;main.c: 947: LED_PWM_PJ_Val[LED_PWM_PJ_Val_Num]+=(LED_PWM_PJ_Val[LED_PWM_PJ_Val_Num]/50
+		//+                          )*12/10;
+		LDWI 	AH 			//0982 	2A0A
+		STR 	50H 			//0983 	01D0
+		CLRR 	51H 			//0984 	0151
+		LDR 	69H,0 			//0985 	0869
+		STR 	53H 			//0986 	01D3
+		LDR 	68H,0 			//0987 	0868
+		STR 	52H 			//0988 	01D2
+		LCALL 	276H 			//0989 	3276
+		BSR 	PCLATH,3 		//098A 	198A
+		BCR 	STATUS,0 		//098B 	1003
+		RLR 	3EH,0 			//098C 	053E
+		ADDWI 	D2H 			//098D 	27D2
+		STR 	FSR 			//098E 	0184
+		LDR 	50H,0 			//098F 	0850
+		BCR 	STATUS,7 		//0990 	1383
+		ADDWR 	INDF,1 		//0991 	0B80
+		INCRSZ 	FSR,1 		//0992 	0A84
+		LDR 	INDF,0 			//0993 	0800
+		BTSC 	STATUS,0 		//0994 	1403
+		INCR	INDF,0 			//0995 	0900
+		STR 	7FH 			//0996 	01FF
+		LDR 	51H,0 			//0997 	0851
+		ADDWR 	7FH,0 			//0998 	0B7F
+		STR 	INDF 			//0999 	0180
+		DECR 	FSR,1 			//099A 	0D84
+
+		//;main.c: 950: if(String_Sort_Warning==1)
+		DECRSZ 	48H,0 		//099B 	0E48
+		LJUMP 	19FH 			//099C 	399F
+
+		//;main.c: 951: {
+		//;main.c: 952: LED_PWM_PJ_Val_Num-=1;
+		DECR 	3EH,1 			//099D 	0DBE
+
+		//;main.c: 953: String_Sort_Warning =0;
+		CLRR 	48H 			//099E 	0148
+
+		//;main.c: 954: }
+		//;main.c: 956: if(LED_PWM_PJ_Val_Num<5)
+		LDWI 	5H 			//099F 	2A05
+		SUBWR 	3EH,0 			//09A0 	0C3E
+		BTSS 	STATUS,0 		//09A1 	1C03
+		LJUMP 	130H 			//09A2 	3930
+
+		//;main.c: 958: else if(LED_PWM_PJ_Val_Num>=5)
+		LDWI 	5H 			//09A3 	2A05
+		SUBWR 	3EH,0 			//09A4 	0C3E
+		BTSS 	STATUS,0 		//09A5 	1C03
+		RET		 					//09A6 	0004
+		LDWI 	3H 			//09A7 	2A03
+
+		//;main.c: 959: {
+		//;main.c: 960: LED_PWM_PJ_Val_Num =0;
+		CLRR 	3EH 			//09A8 	013E
+
+		//;main.c: 961: ADC_now=3;
+		STR 	3DH 			//09A9 	01BD
+		RET		 					//09AA 	0004
+
+		//;main.c: 967: LED_PWM_PJ_Cur[LED_PWM_PJ_Cur_Num++] = String_Sort(LED_PWM_PJ_Val,5);
+		LDWI 	D2H 			//09AB 	2AD2
+		LCALL 	3F6H 			//09AC 	33F6
+		BSR 	PCLATH,3 		//09AD 	198A
+		LCALL 	2EEH 			//09AE 	32EE
+		BSR 	PCLATH,3 		//09AF 	198A
+		BCR 	STATUS,0 		//09B0 	1003
+		RLR 	3FH,0 			//09B1 	053F
+		ADDWI 	DCH 			//09B2 	27DC
+		STR 	FSR 			//09B3 	0184
+		LDR 	57H,0 			//09B4 	0857
+		BCR 	STATUS,7 		//09B5 	1383
+		STR 	INDF 			//09B6 	0180
+		INCR	FSR,1 			//09B7 	0984
+		LDR 	58H,0 			//09B8 	0858
+		STR 	INDF 			//09B9 	0180
+		INCR	3FH,1 			//09BA 	09BF
+
+		//;main.c: 969: if(String_Sort_Warning==1)
+		DECRSZ 	48H,0 		//09BB 	0E48
+		LJUMP 	1BFH 			//09BC 	39BF
+
+		//;main.c: 970: {
+		//;main.c: 972: LED_PWM_PJ_Val_Num-=1;
+		DECR 	3EH,1 			//09BD 	0DBE
+
+		//;main.c: 973: String_Sort_Warning =0;
+		CLRR 	48H 			//09BE 	0148
+
+		//;main.c: 975: }
+		//;main.c: 977: if(LED_PWM_PJ_Cur_Num<5)
+		LDWI 	5H 			//09BF 	2A05
+		SUBWR 	3FH,0 			//09C0 	0C3F
+		BTSS 	STATUS,0 		//09C1 	1C03
+		LJUMP 	130H 			//09C2 	3930
+
+		//;main.c: 979: else if(LED_PWM_PJ_Cur_Num>=5)
+		LDWI 	5H 			//09C3 	2A05
+		SUBWR 	3FH,0 			//09C4 	0C3F
+		BTSS 	STATUS,0 		//09C5 	1C03
+		RET		 					//09C6 	0004
+		LDWI 	4H 			//09C7 	2A04
+
+		//;main.c: 980: {
+		//;main.c: 981: LED_PWM_PJ_Cur_Num =0;
+		CLRR 	3FH 			//09C8 	013F
+
+		//;main.c: 982: ADC_now=4;
+		STR 	3DH 			//09C9 	01BD
+		RET		 					//09CA 	0004
+
+		//;main.c: 988: LED_Cur = String_Sort(LED_PWM_PJ_Cur,5);
+		LDWI 	DCH 			//09CB 	2ADC
+		LCALL 	3F6H 			//09CC 	33F6
+		BSR 	PCLATH,3 		//09CD 	198A
+		LCALL 	2EEH 			//09CE 	32EE
+		LDR 	58H,0 			//09CF 	0858
+		STR 	27H 			//09D0 	01A7
+		LDR 	57H,0 			//09D1 	0857
+		STR 	26H 			//09D2 	01A6
+
+		//;main.c: 992: ADC_now ++;
+		INCR	3DH,1 			//09D3 	09BD
+
+		//;main.c: 994: break;
+		RET		 					//09D4 	0004
+
+		//;main.c: 998: if(LED_Cur_LV_Num||((Run_Mode==1)&&(LED_ADJ_OP==1)&&(Tk_Push==0)))
+		LDR 	47H,0 			//09D5 	0847
+		BTSS 	STATUS,2 		//09D6 	1D03
+		LJUMP 	1DFH 			//09D7 	39DF
+		DECRSZ 	49H,0 		//09D8 	0E49
+		LJUMP 	261H 			//09D9 	3A61
+		DECRSZ 	41H,0 		//09DA 	0E41
+		LJUMP 	261H 			//09DB 	3A61
+		LDR 	4AH,0 			//09DC 	084A
+		BTSS 	STATUS,2 		//09DD 	1D03
+		LJUMP 	261H 			//09DE 	3A61
+
+		//;main.c: 999: {
+		//;main.c: 1001: if(LED_Cur>LED_Cur_LV_Dat)
+		LDR 	27H,0 			//09DF 	0827
+		SUBWR 	33H,0 			//09E0 	0C33
+		BTSS 	STATUS,2 		//09E1 	1D03
+		LJUMP 	1E5H 			//09E2 	39E5
+		LDR 	26H,0 			//09E3 	0826
+		SUBWR 	32H,0 			//09E4 	0C32
+		BTSC 	STATUS,0 		//09E5 	1403
+		LJUMP 	21FH 			//09E6 	3A1F
+
+		//;main.c: 1002: {
+		//;main.c: 1003: if((LED_Cur-LED_Cur_LV_Dat)>LED_Cur_off_Dat)
+		LCALL 	3E7H 			//09E7 	33E7
+		BSR 	PCLATH,3 		//09E8 	198A
+
+		//;main.c: 1004: {
+		//;main.c: 1014: LED_Cur_OK =0;
+		LCALL 	3C9H 			//09E9 	33C9
+		BSR 	PCLATH,3 		//09EA 	198A
+		BTSC 	STATUS,0 		//09EB 	1403
+		LJUMP 	266H 			//09EC 	3A66
+
+		//;main.c: 1015: if((LED_Cur-LED_Cur_LV_Dat)>(LED_Cur_off_Dat*5)&&(LED_PWM_H>5))
+		LCALL 	3E7H 			//09ED 	33E7
+		BSR 	PCLATH,3 		//09EE 	198A
+		STR 	65H 			//09EF 	01E5
+		LDR 	4FH,0 			//09F0 	084F
+		STR 	57H 			//09F1 	01D7
+		LDWI 	5H 			//09F2 	2A05
+		CLRR 	58H 			//09F3 	0158
+		STR 	59H 			//09F4 	01D9
+		CLRR 	5AH 			//09F5 	015A
+		LCALL 	2A0H 			//09F6 	32A0
+		BSR 	PCLATH,3 		//09F7 	198A
+		LDR 	65H,0 			//09F8 	0865
+		SUBWR 	58H,0 			//09F9 	0C58
+		BTSS 	STATUS,2 		//09FA 	1D03
+		LJUMP 	1FEH 			//09FB 	39FE
+		LDR 	64H,0 			//09FC 	0864
+		SUBWR 	57H,0 			//09FD 	0C57
+		LDWI 	0H 			//09FE 	2A00
+		BTSC 	STATUS,0 		//09FF 	1403
+		LJUMP 	212H 			//0A00 	3A12
+		SUBWR 	4CH,0 			//0A01 	0C4C
+		LDWI 	6H 			//0A02 	2A06
+		BTSC 	STATUS,2 		//0A03 	1503
+		SUBWR 	4BH,0 			//0A04 	0C4B
+
+		//;main.c: 1016: {
+		//;main.c: 1017: if(LED_PWM_H>5)
+		LDWI 	0H 			//0A05 	2A00
+		BTSS 	STATUS,0 		//0A06 	1C03
+		LJUMP 	212H 			//0A07 	3A12
+		SUBWR 	4CH,0 			//0A08 	0C4C
+		LDWI 	6H 			//0A09 	2A06
+		BTSC 	STATUS,2 		//0A0A 	1503
+		SUBWR 	4BH,0 			//0A0B 	0C4B
+		BTSS 	STATUS,0 		//0A0C 	1C03
+		LJUMP 	210H 			//0A0D 	3A10
+
+		//;main.c: 1018: LED_PWM_H-=5;
+		LDWI 	5H 			//0A0E 	2A05
+		LJUMP 	219H 			//0A0F 	3A19
+
+		//;main.c: 1019: else
+		//;main.c: 1020: LED_PWM_H =0;
+		CLRR 	4BH 			//0A10 	014B
+		LJUMP 	23BH 			//0A11 	3A3B
+
+		//;main.c: 1023: else
+		//;main.c: 1024: {
+		//;main.c: 1026: if(LED_PWM_H>1)
+		SUBWR 	4CH,0 			//0A12 	0C4C
+		LDWI 	2H 			//0A13 	2A02
+		BTSC 	STATUS,2 		//0A14 	1503
+		SUBWR 	4BH,0 			//0A15 	0C4B
+		BTSS 	STATUS,0 		//0A16 	1C03
+		LJUMP 	210H 			//0A17 	3A10
+
+		//;main.c: 1027: LED_PWM_H-=1;
+		LDWI 	1H 			//0A18 	2A01
+		SUBWR 	4BH,1 			//0A19 	0CCB
+		LDWI 	0H 			//0A1A 	2A00
+		BTSS 	STATUS,0 		//0A1B 	1C03
+		DECR 	4CH,1 			//0A1C 	0DCC
+		SUBWR 	4CH,1 			//0A1D 	0CCC
+		LJUMP 	25DH 			//0A1E 	3A5D
+
+		//;main.c: 1047: else if(LED_Cur<LED_Cur_LV_Dat)
+		LDR 	33H,0 			//0A1F 	0833
+		SUBWR 	27H,0 			//0A20 	0C27
+		BTSS 	STATUS,2 		//0A21 	1D03
+		LJUMP 	225H 			//0A22 	3A25
+		LDR 	32H,0 			//0A23 	0832
+		SUBWR 	26H,0 			//0A24 	0C26
+		BTSC 	STATUS,0 		//0A25 	1403
+		LJUMP 	265H 			//0A26 	3A65
+
+		//;main.c: 1048: {
+		//;main.c: 1049: if((LED_Cur_LV_Dat-LED_Cur)>LED_Cur_off_Dat)
+		LDR 	26H,0 			//0A27 	0826
+		SUBWR 	32H,0 			//0A28 	0C32
+		STR 	64H 			//0A29 	01E4
+		LDR 	27H,0 			//0A2A 	0827
+		BTSS 	STATUS,0 		//0A2B 	1C03
+		INCR	27H,0 			//0A2C 	0927
+		SUBWR 	33H,0 			//0A2D 	0C33
+
+		//;main.c: 1050: {
+		//;main.c: 1051: LED_Cur_OK =0;
+		LCALL 	3C9H 			//0A2E 	33C9
+		BSR 	PCLATH,3 		//0A2F 	198A
+		BTSC 	STATUS,0 		//0A30 	1403
+		LJUMP 	25CH 			//0A31 	3A5C
+
+		//;main.c: 1052: if(LED_PWM_H<50)
+		LDWI 	0H 			//0A32 	2A00
+		SUBWR 	4CH,0 			//0A33 	0C4C
+		LDWI 	32H 			//0A34 	2A32
+		BTSC 	STATUS,2 		//0A35 	1503
+		SUBWR 	4BH,0 			//0A36 	0C4B
+		BTSC 	STATUS,0 		//0A37 	1403
+		LJUMP 	23DH 			//0A38 	3A3D
+
+		//;main.c: 1053: {
+		//;main.c: 1054: LED_PWM_H =50;
+		LDWI 	32H 			//0A39 	2A32
+		STR 	4BH 			//0A3A 	01CB
+		CLRR 	4CH 			//0A3B 	014C
+
+		//;main.c: 1055: }
+		LJUMP 	25DH 			//0A3C 	3A5D
+
+		//;main.c: 1056: else if (LED_PWM_H<100)
+		LDWI 	0H 			//0A3D 	2A00
+		SUBWR 	4CH,0 			//0A3E 	0C4C
+		LDWI 	64H 			//0A3F 	2A64
+		BTSC 	STATUS,2 		//0A40 	1503
+		SUBWR 	4BH,0 			//0A41 	0C4B
+		BTSC 	STATUS,0 		//0A42 	1403
+		LJUMP 	246H 			//0A43 	3A46
+
+		//;main.c: 1057: {
+		//;main.c: 1058: LED_PWM_H+=4;
+		LDWI 	4H 			//0A44 	2A04
+		LJUMP 	24EH 			//0A45 	3A4E
+
+		//;main.c: 1059: }
+		//;main.c: 1060: else if(LED_PWM_H<500)
+		LDWI 	1H 			//0A46 	2A01
+		SUBWR 	4CH,0 			//0A47 	0C4C
+		LDWI 	F4H 			//0A48 	2AF4
+		BTSC 	STATUS,2 		//0A49 	1503
+		SUBWR 	4BH,0 			//0A4A 	0C4B
+		BTSC 	STATUS,0 		//0A4B 	1403
+		LJUMP 	252H 			//0A4C 	3A52
+
+		//;main.c: 1061: {
+		//;main.c: 1062: LED_PWM_H+=10;
+		LDWI 	AH 			//0A4D 	2A0A
+		ADDWR 	4BH,1 			//0A4E 	0BCB
+		BTSC 	STATUS,0 		//0A4F 	1403
+		INCR	4CH,1 			//0A50 	09CC
+
+		//;main.c: 1063: }
+		LJUMP 	25DH 			//0A51 	3A5D
+
+		//;main.c: 1064: else if(LED_PWM_H<(1600-10))
+		LDWI 	6H 			//0A52 	2A06
+		SUBWR 	4CH,0 			//0A53 	0C4C
+		LDWI 	36H 			//0A54 	2A36
+		BTSC 	STATUS,2 		//0A55 	1503
+		SUBWR 	4BH,0 			//0A56 	0C4B
+		BTSS 	STATUS,0 		//0A57 	1C03
+		LJUMP 	24DH 			//0A58 	3A4D
+
+		//;main.c: 1066: else
+		//;main.c: 1067: LED_PWM_H =1600;
+		LCALL 	3FBH 			//0A59 	33FB
+		BSR 	PCLATH,3 		//0A5A 	198A
+		LJUMP 	25DH 			//0A5B 	3A5D
+
+		//;main.c: 1069: else
+		//;main.c: 1070: {
+		//;main.c: 1071: LED_Cur_OK =1;
+		INCR	44H,1 			//0A5C 	09C4
+
+		//;main.c: 1072: }
+		//;main.c: 1075: LED_PWN_N = LED_PWM_H*(0x640/1600);
+		//;main.c: 1077: P1ADTH = LED_PWN_N>>8;
+		//;main.c: 1078: P1ADTL =LED_PWN_N&0XFF;
+		BCR 	PCLATH,3 		//0A5D 	118A
+		LCALL 	362H 			//0A5E 	3362
+		BSR 	PCLATH,3 		//0A5F 	198A
+
+		//;main.c: 1080: }
+		LJUMP 	267H 			//0A60 	3A67
+
+		//;main.c: 1085: else if(Tk_Push==2)
+		LDWI 	2H 			//0A61 	2A02
+		XORWR 	4AH,0 			//0A62 	044A
+		BTSS 	STATUS,2 		//0A63 	1D03
+		LJUMP 	267H 			//0A64 	3A67
+
+		//;main.c: 1042: }
+		//;main.c: 1040: P1ADTL =LED_PWN_N&0XFF;
+		//;main.c: 1039: P1ADTH = LED_PWN_N>>8;
+		//;main.c: 1030: }
+		//;main.c: 1032: LED_PWN_N = LED_PWM_H*(0x640/1600);
+		//;main.c: 1043: else
+		//;main.c: 1044: LED_Cur_OK =1;
+		CLRR 	44H 			//0A65 	0144
+		INCR	44H,1 			//0A66 	09C4
+
+		//;main.c: 1089: }
+		//;main.c: 1173: ADC_now =0;
+		CLRR 	3DH 			//0A67 	013D
+
+		//;main.c: 1174: break;
+		RET		 					//0A68 	0004
+		LDR 	3DH,0 			//0A69 	083D
+		STR 	FSR 			//0A6A 	0184
+		LDWI 	6H 			//0A6B 	2A06
+		SUBWR 	FSR,0 			//0A6C 	0C04
+		BTSC 	STATUS,0 		//0A6D 	1403
+		LJUMP 	267H 			//0A6E 	3A67
+		LDWI 	7H 			//0A6F 	2A07
+		STR 	PCLATH 			//0A70 	018A
+		BCR 	STATUS,0 		//0A71 	1003
+		RLR 	FSR,0 			//0A72 	0504
+		ADDWI 	EEH 			//0A73 	27EE
+		STR 	PCL 			//0A74 	0182
+		RET		 					//0A75 	0004
+		CLRR 	55H 			//0A76 	0155
+		CLRR 	56H 			//0A77 	0156
+		LDR 	50H,0 			//0A78 	0850
+		IORWR 	51H,0 			//0A79 	0351
+		BTSC 	STATUS,2 		//0A7A 	1503
+		LJUMP 	29BH 			//0A7B 	3A9B
+		CLRR 	54H 			//0A7C 	0154
+		INCR	54H,1 			//0A7D 	09D4
+		BTSC 	51H,7 			//0A7E 	17D1
+		LJUMP 	284H 			//0A7F 	3A84
+		BCR 	STATUS,0 		//0A80 	1003
+		RLR 	50H,1 			//0A81 	05D0
+		RLR 	51H,1 			//0A82 	05D1
+		LJUMP 	27DH 			//0A83 	3A7D
+		BCR 	STATUS,0 		//0A84 	1003
+		RLR 	55H,1 			//0A85 	05D5
+		RLR 	56H,1 			//0A86 	05D6
+		LDR 	51H,0 			//0A87 	0851
+		SUBWR 	53H,0 			//0A88 	0C53
+		BTSS 	STATUS,2 		//0A89 	1D03
+		LJUMP 	28DH 			//0A8A 	3A8D
+		LDR 	50H,0 			//0A8B 	0850
+		SUBWR 	52H,0 			//0A8C 	0C52
+		BTSS 	STATUS,0 		//0A8D 	1C03
+		LJUMP 	297H 			//0A8E 	3A97
+		LDR 	50H,0 			//0A8F 	0850
+		SUBWR 	52H,1 			//0A90 	0CD2
+		LDR 	51H,0 			//0A91 	0851
+		BTSS 	STATUS,0 		//0A92 	1C03
+		DECR 	53H,1 			//0A93 	0DD3
+		SUBWR 	53H,1 			//0A94 	0CD3
+		BSR 	55H,0 			//0A95 	1855
+		BCR 	STATUS,0 		//0A96 	1003
+		RRR	51H,1 			//0A97 	06D1
+		RRR	50H,1 			//0A98 	06D0
+		DECRSZ 	54H,1 		//0A99 	0ED4
+		LJUMP 	284H 			//0A9A 	3A84
+		LDR 	56H,0 			//0A9B 	0856
+		STR 	51H 			//0A9C 	01D1
+		LDR 	55H,0 			//0A9D 	0855
+		STR 	50H 			//0A9E 	01D0
+		RET		 					//0A9F 	0004
+		CLRR 	7CH 			//0AA0 	017C
+		CLRR 	7DH 			//0AA1 	017D
+		BTSS 	57H,0 			//0AA2 	1C57
+		LJUMP 	2AAH 			//0AA3 	3AAA
+		LDR 	59H,0 			//0AA4 	0859
+		ADDWR 	7CH,1 			//0AA5 	0BFC
+		BTSC 	STATUS,0 		//0AA6 	1403
+		INCR	7DH,1 			//0AA7 	09FD
+		LDR 	5AH,0 			//0AA8 	085A
+		ADDWR 	7DH,1 			//0AA9 	0BFD
+		BCR 	STATUS,0 		//0AAA 	1003
+		RLR 	59H,1 			//0AAB 	05D9
+		RLR 	5AH,1 			//0AAC 	05DA
+		BCR 	STATUS,0 		//0AAD 	1003
+		RRR	58H,1 			//0AAE 	06D8
+		RRR	57H,1 			//0AAF 	06D7
+		LDR 	57H,0 			//0AB0 	0857
+		IORWR 	58H,0 			//0AB1 	0358
+		BTSS 	STATUS,2 		//0AB2 	1D03
+		LJUMP 	2A2H 			//0AB3 	3AA2
+		LDR 	7DH,0 			//0AB4 	087D
+		STR 	58H 			//0AB5 	01D8
+		LDR 	7CH,0 			//0AB6 	087C
+		STR 	57H 			//0AB7 	01D7
+		RET		 					//0AB8 	0004
+		STR 	53H 			//0AB9 	01D3
+
+		//;main.c: 415: unsigned int ADC_Dat;
+		//;main.c: 419: ADON =1;
+		BSR 	STATUS,6 		//0ABA 	1B03
+		BSR 	13H,0 			//0ABB 	1813
+
+		//;main.c: 420: ADCON0 &= 0B00000011;
+		LDWI 	3H 			//0ABC 	2A03
+		ANDWR 	13H,1 			//0ABD 	0293
+
+		//;main.c: 421: ADCON0 |= adcChannel>>1;
+		BCR 	STATUS,6 		//0ABE 	1303
+		BCR 	STATUS,0 		//0ABF 	1003
+		RRR	53H,0 			//0AC0 	0653
+		BSR 	STATUS,6 		//0AC1 	1B03
+		IORWR 	13H,1 			//0AC2 	0393
+
+		//;main.c: 422: ADC_DelayUs(80);
+		LDWI 	50H 			//0AC3 	2A50
+		LCALL 	2E5H 			//0AC4 	32E5
+		BSR 	PCLATH,3 		//0AC5 	198A
+
+		//;main.c: 427: ADCON0 = ADCON0|0x02;
+		BCR 	STATUS,5 		//0AC6 	1283
+		BSR 	STATUS,6 		//0AC7 	1B03
+		LDR 	13H,0 			//0AC8 	0813
+		IORWI 	2H 			//0AC9 	2502
+		STR 	13H 			//0ACA 	0193
+
+		//;main.c: 428: __nop();
+		NOP		 					//0ACB 	0000
+
+		//;main.c: 429: __nop();
+		NOP		 					//0ACC 	0000
+
+		//;main.c: 431: while(ADCON0&0x02);
+		BCR 	STATUS,5 		//0ACD 	1283
+		BSR 	STATUS,6 		//0ACE 	1B03
+		BTSC 	13H,1 			//0ACF 	1493
+		LJUMP 	2CDH 			//0AD0 	3ACD
+
+		//;main.c: 436: ADC_Dat=ADRESH;
+		LDR 	12H,0 			//0AD1 	0812
+		BCR 	STATUS,6 		//0AD2 	1303
+		STR 	54H 			//0AD3 	01D4
+		CLRR 	55H 			//0AD4 	0155
+
+		//;main.c: 437: ADC_Dat<<=8;
+		STR 	55H 			//0AD5 	01D5
+		CLRR 	54H 			//0AD6 	0154
+
+		//;main.c: 438: ADC_Dat+=ADRESL;
+		BSR 	STATUS,6 		//0AD7 	1B03
+		LDR 	11H,0 			//0AD8 	0811
+		BCR 	STATUS,6 		//0AD9 	1303
+		ADDWR 	54H,1 			//0ADA 	0BD4
+		BTSC 	STATUS,0 		//0ADB 	1403
+		INCR	55H,1 			//0ADC 	09D5
+
+		//;main.c: 439: ADON =0;
+		BSR 	STATUS,6 		//0ADD 	1B03
+		BCR 	13H,0 			//0ADE 	1013
+
+		//;main.c: 440: return ADC_Dat;
+		BCR 	STATUS,6 		//0ADF 	1303
+		LDR 	55H,0 			//0AE0 	0855
+		STR 	51H 			//0AE1 	01D1
+		LDR 	54H,0 			//0AE2 	0854
+		STR 	50H 			//0AE3 	01D0
+		RET		 					//0AE4 	0004
+		STR 	7CH 			//0AE5 	01FC
+
+		//;main.c: 290: unsigned char a;
+		//;main.c: 291: for(a=0;a<Time;a++)
+		CLRR 	7DH 			//0AE6 	017D
+		LDR 	7CH,0 			//0AE7 	087C
+		SUBWR 	7DH,0 			//0AE8 	0C7D
+		BTSC 	STATUS,0 		//0AE9 	1403
+		RET		 					//0AEA 	0004
+
+		//;main.c: 292: {
+		//;main.c: 293: __nop();
+		NOP		 					//0AEB 	0000
+		INCR	7DH,1 			//0AEC 	09FD
+		LJUMP 	2E7H 			//0AED 	3AE7
+
+		//;main.c: 499: unsigned int Dat;
+		//;main.c: 501: String_Sort_Warning =0;
+		CLRR 	48H 			//0AEE 	0148
+
+		//;main.c: 502: for(unsigned char i =0;i<10;i++)
+		CLRR 	5FH 			//0AEF 	015F
+
+		//;main.c: 503: String_Sort_Tab[i] =0;
+		BCR 	STATUS,0 		//0AF0 	1003
+		RLR 	5FH,0 			//0AF1 	055F
+		ADDWI 	A0H 			//0AF2 	27A0
+		STR 	FSR 			//0AF3 	0184
+		LDWI 	AH 			//0AF4 	2A0A
+		BCR 	STATUS,7 		//0AF5 	1383
+		CLRR 	INDF 			//0AF6 	0100
+		INCR	FSR,1 			//0AF7 	0984
+		CLRR 	INDF 			//0AF8 	0100
+		INCR	5FH,1 			//0AF9 	09DF
+		SUBWR 	5FH,0 			//0AFA 	0C5F
+		BTSS 	STATUS,0 		//0AFB 	1C03
+		LJUMP 	2F1H 			//0AFC 	3AF1
+
+		//;main.c: 504: for(unsigned char i =0;i<l;i++)
+		CLRR 	5DH 			//0AFD 	015D
+		LDR 	59H,0 			//0AFE 	0859
+		SUBWR 	5DH,0 			//0AFF 	0C5D
+		BTSC 	STATUS,0 		//0B00 	1403
+		LJUMP 	31CH 			//0B01 	3B1C
+
+		//;main.c: 505: {
+		//;main.c: 506: String_Sort_Tab[i] =*s;
+		LDR 	57H,0 			//0B02 	0857
+		STR 	FSR 			//0B03 	0184
+		BSR 	STATUS,7 		//0B04 	1B83
+		BTSS 	58H,0 			//0B05 	1C58
+		BCR 	STATUS,7 		//0B06 	1383
+		LDR 	INDF,0 			//0B07 	0800
+		STR 	5AH 			//0B08 	01DA
+		INCR	FSR,1 			//0B09 	0984
+		LDR 	INDF,0 			//0B0A 	0800
+		STR 	5BH 			//0B0B 	01DB
+		BCR 	STATUS,0 		//0B0C 	1003
+		RLR 	5DH,0 			//0B0D 	055D
+		ADDWI 	A0H 			//0B0E 	27A0
+		STR 	FSR 			//0B0F 	0184
+		LDR 	5AH,0 			//0B10 	085A
+		BCR 	STATUS,7 		//0B11 	1383
+		STR 	INDF 			//0B12 	0180
+		INCR	FSR,1 			//0B13 	0984
+		LDR 	5BH,0 			//0B14 	085B
+		STR 	INDF 			//0B15 	0180
+
+		//;main.c: 507: s++;
+		LDWI 	2H 			//0B16 	2A02
+		ADDWR 	57H,1 			//0B17 	0BD7
+		BTSC 	STATUS,0 		//0B18 	1403
+		INCR	58H,1 			//0B19 	09D8
+		INCR	5DH,1 			//0B1A 	09DD
+		LJUMP 	2FEH 			//0B1B 	3AFE
+
+		//;main.c: 508: }
+		//;main.c: 510: for(unsigned char i =0;i<l;i++)
+		CLRR 	61H 			//0B1C 	0161
+		LDR 	59H,0 			//0B1D 	0859
+		SUBWR 	61H,0 			//0B1E 	0C61
+		BTSC 	STATUS,0 		//0B1F 	1403
+		LJUMP 	350H 			//0B20 	3B50
+
+		//;main.c: 511: {
+		//;main.c: 512: Dat =String_Sort_Tab[i];
+		LCALL 	3DDH 			//0B21 	33DD
+		BSR 	PCLATH,3 		//0B22 	198A
+
+		//;main.c: 514: for(unsigned char is =i;is<l;is++)
+		LDR 	61H,0 			//0B23 	0861
+		STR 	60H 			//0B24 	01E0
+		LDR 	59H,0 			//0B25 	0859
+		SUBWR 	60H,0 			//0B26 	0C60
+		BTSC 	STATUS,0 		//0B27 	1403
+		LJUMP 	34EH 			//0B28 	3B4E
+
+		//;main.c: 515: {
+		//;main.c: 516: if(Dat>=String_Sort_Tab[is]);
+		BCR 	STATUS,0 		//0B29 	1003
+		RLR 	60H,0 			//0B2A 	0560
+		LCALL 	3D5H 			//0B2B 	33D5
+		BSR 	PCLATH,3 		//0B2C 	198A
+		SUBWR 	63H,0 			//0B2D 	0C63
+		BTSS 	STATUS,2 		//0B2E 	1D03
+		LJUMP 	332H 			//0B2F 	3B32
+		LDR 	5AH,0 			//0B30 	085A
+		SUBWR 	62H,0 			//0B31 	0C62
+		BTSC 	STATUS,0 		//0B32 	1403
+		LJUMP 	34CH 			//0B33 	3B4C
+
+		//;main.c: 517: else
+		//;main.c: 518: {
+		//;main.c: 519: String_Sort_Tab[i] =String_Sort_Tab[is];
+		BCR 	STATUS,0 		//0B34 	1003
+		RLR 	60H,0 			//0B35 	0560
+		LCALL 	3D5H 			//0B36 	33D5
+		BSR 	PCLATH,3 		//0B37 	198A
+		BCR 	STATUS,0 		//0B38 	1003
+		RLR 	61H,0 			//0B39 	0561
+		ADDWI 	A0H 			//0B3A 	27A0
+		STR 	FSR 			//0B3B 	0184
+		LDR 	5AH,0 			//0B3C 	085A
+		STR 	INDF 			//0B3D 	0180
+		INCR	FSR,1 			//0B3E 	0984
+		LDR 	5BH,0 			//0B3F 	085B
+		STR 	INDF 			//0B40 	0180
+
+		//;main.c: 520: String_Sort_Tab[is]=Dat;
+		BCR 	STATUS,0 		//0B41 	1003
+		RLR 	60H,0 			//0B42 	0560
+		ADDWI 	A0H 			//0B43 	27A0
+		STR 	FSR 			//0B44 	0184
+		LDR 	62H,0 			//0B45 	0862
+		STR 	INDF 			//0B46 	0180
+		INCR	FSR,1 			//0B47 	0984
+		LDR 	63H,0 			//0B48 	0863
+		STR 	INDF 			//0B49 	0180
+
+		//;main.c: 521: Dat = String_Sort_Tab[i];
+		LCALL 	3DDH 			//0B4A 	33DD
+		BSR 	PCLATH,3 		//0B4B 	198A
+		INCR	60H,1 			//0B4C 	09E0
+		LJUMP 	325H 			//0B4D 	3B25
+		INCR	61H,1 			//0B4E 	09E1
+		LJUMP 	31DH 			//0B4F 	3B1D
+
+		//;main.c: 522: }
+		//;main.c: 523: }
+		//;main.c: 525: }
+		//;main.c: 526: Dat =0;
+		CLRR 	62H 			//0B50 	0162
+		CLRR 	63H 			//0B51 	0163
+
+		//;main.c: 527: for(unsigned char i =0;i<l;i++)
+		CLRR 	5EH 			//0B52 	015E
+		LDR 	59H,0 			//0B53 	0859
+		SUBWR 	5EH,0 			//0B54 	0C5E
+		BTSC 	STATUS,0 		//0B55 	1403
+		LJUMP 	363H 			//0B56 	3B63
+
+		//;main.c: 528: Dat+=String_Sort_Tab[i];
+		BCR 	STATUS,0 		//0B57 	1003
+		RLR 	5EH,0 			//0B58 	055E
+		LCALL 	3D5H 			//0B59 	33D5
+		BSR 	PCLATH,3 		//0B5A 	198A
+		LDR 	5AH,0 			//0B5B 	085A
+		ADDWR 	62H,1 			//0B5C 	0BE2
+		BTSC 	STATUS,0 		//0B5D 	1403
+		INCR	63H,1 			//0B5E 	09E3
+		LDR 	5BH,0 			//0B5F 	085B
+		ADDWR 	63H,1 			//0B60 	0BE3
+		INCR	5EH,1 			//0B61 	09DE
+		LJUMP 	353H 			//0B62 	3B53
+
+		//;main.c: 530: Dat/=l;
+		LDR 	59H,0 			//0B63 	0859
+		LCALL 	3EFH 			//0B64 	33EF
+		BSR 	PCLATH,3 		//0B65 	198A
+		LCALL 	276H 			//0B66 	3276
+		BSR 	PCLATH,3 		//0B67 	198A
+		LDR 	51H,0 			//0B68 	0851
+		STR 	63H 			//0B69 	01E3
+		LDR 	50H,0 			//0B6A 	0850
+		STR 	62H 			//0B6B 	01E2
+
+		//;main.c: 532: if(String_Sort_Tab[0]>150)
+		LDWI 	0H 			//0B6C 	2A00
+		BSR 	STATUS,5 		//0B6D 	1A83
+		SUBWR 	21H,0 			//0B6E 	0C21
+		LDWI 	97H 			//0B6F 	2A97
+		BTSC 	STATUS,2 		//0B70 	1503
+		SUBWR 	20H,0 			//0B71 	0C20
+		BTSS 	STATUS,0 		//0B72 	1C03
+		LJUMP 	3B7H 			//0B73 	3BB7
+
+		//;main.c: 533: {
+		//;main.c: 534: if((String_Sort_Tab[0]-String_Sort_Tab[9])>(String_Sort_Tab[0]/5))
+		LDR 	32H,0 			//0B74 	0832
+		SUBWR 	20H,0 			//0B75 	0C20
+		BCR 	STATUS,5 		//0B76 	1283
+		STR 	5AH 			//0B77 	01DA
+		BSR 	STATUS,5 		//0B78 	1A83
+		LDR 	33H,0 			//0B79 	0833
+		BTSS 	STATUS,0 		//0B7A 	1C03
+		INCR	33H,0 			//0B7B 	0933
+		SUBWR 	21H,0 			//0B7C 	0C21
+		BCR 	STATUS,5 		//0B7D 	1283
+		STR 	5BH 			//0B7E 	01DB
+		LDWI 	5H 			//0B7F 	2A05
+		STR 	50H 			//0B80 	01D0
+		CLRR 	51H 			//0B81 	0151
+		BSR 	STATUS,5 		//0B82 	1A83
+		LDR 	21H,0 			//0B83 	0821
+		BCR 	STATUS,5 		//0B84 	1283
+		STR 	53H 			//0B85 	01D3
+		BSR 	STATUS,5 		//0B86 	1A83
+		LDR 	20H,0 			//0B87 	0820
+		BCR 	STATUS,5 		//0B88 	1283
+		STR 	52H 			//0B89 	01D2
+		LCALL 	276H 			//0B8A 	3276
+		BSR 	PCLATH,3 		//0B8B 	198A
+		LDR 	5BH,0 			//0B8C 	085B
+		SUBWR 	51H,0 			//0B8D 	0C51
+		BTSS 	STATUS,2 		//0B8E 	1D03
+		LJUMP 	392H 			//0B8F 	3B92
+		LDR 	5AH,0 			//0B90 	085A
+		SUBWR 	50H,0 			//0B91 	0C50
+		BTSC 	STATUS,0 		//0B92 	1403
+		LJUMP 	3B7H 			//0B93 	3BB7
+
+		//;main.c: 535: {
+		//;main.c: 536: Dat =0;
+		CLRR 	62H 			//0B94 	0162
+		CLRR 	63H 			//0B95 	0163
+
+		//;main.c: 538: Dat+=String_Sort_Tab[l/2];
+		BCR 	STATUS,0 		//0B96 	1003
+		RRR	59H,0 			//0B97 	0659
+		STR 	5AH 			//0B98 	01DA
+		ADDWR 	5AH,0 			//0B99 	0B5A
+		ADDWI 	A0H 			//0B9A 	27A0
+		STR 	FSR 			//0B9B 	0184
+		BCR 	STATUS,7 		//0B9C 	1383
+		LCALL 	3BDH 			//0B9D 	33BD
+		BSR 	PCLATH,3 		//0B9E 	198A
+
+		//;main.c: 539: Dat+=String_Sort_Tab[l/2+1];
+		BCR 	STATUS,0 		//0B9F 	1003
+		RRR	59H,0 			//0BA0 	0659
+		STR 	5AH 			//0BA1 	01DA
+		ADDWR 	5AH,0 			//0BA2 	0B5A
+		ADDWI 	A2H 			//0BA3 	27A2
+		STR 	FSR 			//0BA4 	0184
+		LCALL 	3BDH 			//0BA5 	33BD
+		BSR 	PCLATH,3 		//0BA6 	198A
+
+		//;main.c: 540: Dat+=String_Sort_Tab[l/2+2];
+		BCR 	STATUS,0 		//0BA7 	1003
+		RRR	59H,0 			//0BA8 	0659
+		STR 	5AH 			//0BA9 	01DA
+		ADDWR 	5AH,0 			//0BAA 	0B5A
+		ADDWI 	A4H 			//0BAB 	27A4
+		STR 	FSR 			//0BAC 	0184
+		LCALL 	3BDH 			//0BAD 	33BD
+		BSR 	PCLATH,3 		//0BAE 	198A
+
+		//;main.c: 542: Dat/=3;
+		LDWI 	3H 			//0BAF 	2A03
+		LCALL 	3EFH 			//0BB0 	33EF
+		BSR 	PCLATH,3 		//0BB1 	198A
+		LCALL 	276H 			//0BB2 	3276
+		LDR 	51H,0 			//0BB3 	0851
+		STR 	63H 			//0BB4 	01E3
+		LDR 	50H,0 			//0BB5 	0850
+		STR 	62H 			//0BB6 	01E2
+
+		//;main.c: 544: }
+		//;main.c: 545: }
+		//;main.c: 546: return Dat;
+		BCR 	STATUS,5 		//0BB7 	1283
+		LDR 	63H,0 			//0BB8 	0863
+		STR 	58H 			//0BB9 	01D8
+		LDR 	62H,0 			//0BBA 	0862
+		STR 	57H 			//0BBB 	01D7
+		RET		 					//0BBC 	0004
+		LDR 	INDF,0 			//0BBD 	0800
+		STR 	5BH 			//0BBE 	01DB
+		INCR	FSR,1 			//0BBF 	0984
+		LDR 	INDF,0 			//0BC0 	0800
+		STR 	5CH 			//0BC1 	01DC
+		LDR 	5BH,0 			//0BC2 	085B
+		ADDWR 	62H,1 			//0BC3 	0BE2
+		BTSC 	STATUS,0 		//0BC4 	1403
+		INCR	63H,1 			//0BC5 	09E3
+		LDR 	5CH,0 			//0BC6 	085C
+		ADDWR 	63H,1 			//0BC7 	0BE3
+		RET		 					//0BC8 	0004
+		STR 	65H 			//0BC9 	01E5
+		LDR 	4FH,0 			//0BCA 	084F
+		STR 	66H 			//0BCB 	01E6
+		CLRR 	67H 			//0BCC 	0167
+		LDR 	65H,0 			//0BCD 	0865
+		SUBWR 	67H,0 			//0BCE 	0C67
+		BTSS 	STATUS,2 		//0BCF 	1D03
+		LJUMP 	3D3H 			//0BD0 	3BD3
+		LDR 	64H,0 			//0BD1 	0864
+		SUBWR 	66H,0 			//0BD2 	0C66
+		CLRR 	44H 			//0BD3 	0144
+		RET		 					//0BD4 	0004
+		ADDWI 	A0H 			//0BD5 	27A0
+		STR 	FSR 			//0BD6 	0184
+		LDR 	INDF,0 			//0BD7 	0800
+		STR 	5AH 			//0BD8 	01DA
+		INCR	FSR,1 			//0BD9 	0984
+		LDR 	INDF,0 			//0BDA 	0800
+		STR 	5BH 			//0BDB 	01DB
+		RET		 					//0BDC 	0004
+		BCR 	STATUS,0 		//0BDD 	1003
+		RLR 	61H,0 			//0BDE 	0561
+		ADDWI 	A0H 			//0BDF 	27A0
+		STR 	FSR 			//0BE0 	0184
+		LDR 	INDF,0 			//0BE1 	0800
+		STR 	62H 			//0BE2 	01E2
+		INCR	FSR,1 			//0BE3 	0984
+		LDR 	INDF,0 			//0BE4 	0800
+		STR 	63H 			//0BE5 	01E3
+		RET		 					//0BE6 	0004
+		LDR 	32H,0 			//0BE7 	0832
+		SUBWR 	26H,0 			//0BE8 	0C26
+		STR 	64H 			//0BE9 	01E4
+		LDR 	33H,0 			//0BEA 	0833
+		BTSS 	STATUS,0 		//0BEB 	1C03
+		INCR	33H,0 			//0BEC 	0933
+		SUBWR 	27H,0 			//0BED 	0C27
+		RET		 					//0BEE 	0004
+		STR 	50H 			//0BEF 	01D0
+		CLRR 	51H 			//0BF0 	0151
+		LDR 	63H,0 			//0BF1 	0863
+		STR 	53H 			//0BF2 	01D3
+		LDR 	62H,0 			//0BF3 	0862
+		STR 	52H 			//0BF4 	01D2
+		RET		 					//0BF5 	0004
+		STR 	57H 			//0BF6 	01D7
+		LDWI 	5H 			//0BF7 	2A05
+		CLRR 	58H 			//0BF8 	0158
+		STR 	59H 			//0BF9 	01D9
+		RET		 					//0BFA 	0004
+		LDWI 	40H 			//0BFB 	2A40
+		STR 	4BH 			//0BFC 	01CB
+		LDWI 	6H 			//0BFD 	2A06
+		STR 	4CH 			//0BFE 	01CC
+		RET		 					//0BFF 	0004
+			END

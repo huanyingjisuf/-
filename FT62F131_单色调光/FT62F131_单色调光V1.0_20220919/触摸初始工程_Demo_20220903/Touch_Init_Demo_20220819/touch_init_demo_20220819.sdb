@@ -1,0 +1,547 @@
+[p PRO_MODE GLOBOPT AUTOSTATIC RSC14 PICREGULAR PICMID SPACEOPT ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip FT62F13X ]
+[d frameptr 6 ]
+"6 D:\IDE3.0.8Beta\data\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"62 D:\IDE3.0.8Beta\data\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 D:\IDE3.0.8Beta\data\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"6 D:\IDE3.0.8Beta\data\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"6 D:\IDE3.0.8Beta\data\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+"15 D:\IDE3.0.8Beta\data\sources\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"23 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+"32
+[v _delay_ms delay_ms `(v  1 e 1 0 ]
+"75
+[v _ISR ISR `II(v  1 e 1 0 ]
+"150
+[v _SYS_INITIAL SYS_INITIAL `(v  1 e 1 0 ]
+"207
+[v _WDT_INITIAL WDT_INITIAL `(v  1 e 1 0 ]
+"240
+[v _PWM_Init PWM_Init `(v  1 e 1 0 ]
+"288
+[v _ADC_DelayUs ADC_DelayUs `(v  1 e 1 0 ]
+"413
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+"450
+[v _ADC_AN3_Init ADC_AN3_Init `(v  1 e 1 0 ]
+"496
+[v _String_Sort String_Sort `(ui  1 e 2 0 ]
+"638
+[v _TK_TG_Run TK_TG_Run `(v  1 e 1 0 ]
+"910
+[v _ADC_Run ADC_Run `(v  1 e 1 0 ]
+"1200
+[v _main main `(i  1 e 2 0 ]
+"329 touch_cs_uac.c
+[v _DIV DIV `(v  1 e 1 0 ]
+"562
+[v _ReadCap ReadCap `(v  1 e 1 0 ]
+"646
+[v _AbNormalProcess AbNormalProcess `(uc  1 e 1 0 ]
+"751
+[v _TOUCH_INITIAL TOUCH_INITIAL `(v  1 e 1 0 ]
+"850
+[v _TSC_Start TSC_Start `(v  1 e 1 0 ]
+"1120
+[v _GetKeyData GetKeyData `(v  1 e 1 0 ]
+"1170
+[v _SavKeyData SavKeyData `(v  1 e 1 0 ]
+"1220
+[v _TSC_DataProcessing TSC_DataProcessing `(uc  1 e 1 0 ]
+"1872
+[v _TSC_GetStrongest TSC_GetStrongest `(uc  1 e 1 0 ]
+"1887
+[v _TSC_GetSingle TSC_GetSingle `(uc  1 e 1 0 ]
+"10 C:\Users\nana.huang\Desktop\IDE\IDE3.0.7B\data\include\FT62F13X.h
+[v _INDF INDF `VEuc  1 e 1 @0 ]
+"14
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"22
+[v _STATUS STATUS `VEuc  1 e 1 @3 ]
+"74
+[v _FSR FSR `VEuc  1 e 1 @4 ]
+"78
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"90
+[v _PA1 PA1 `VEb  1 e 0 @41 ]
+"92
+[v _PA3 PA3 `VEb  1 e 0 @43 ]
+"93
+[v _PA4 PA4 `VEb  1 e 0 @44 ]
+"94
+[v _PA5 PA5 `VEb  1 e 0 @45 ]
+"129
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"179
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"184
+[v _PC0 PC0 `VEb  1 e 0 @56 ]
+"247
+[v _INTCON INTCON `VEuc  1 e 1 @11 ]
+"255
+[v _PEIE PEIE `VEb  1 e 0 @94 ]
+"256
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"275
+[v _ADCIF ADCIF `VEb  1 e 0 @96 ]
+"276
+[v _TMR2IF TMR2IF `VEb  1 e 0 @97 ]
+"280
+[v _LVDIF LVDIF `VEb  1 e 0 @101 ]
+"300
+[v _FOSCCAL FOSCCAL `VEuc  1 e 1 @13 ]
+"302
+[v _P1ADTL P1ADTL `VEuc  1 e 1 @14 ]
+"313
+[v _TMR2L TMR2L `VEuc  1 e 1 @17 ]
+"317
+[v _T2CON0 T2CON0 `VEuc  1 e 1 @18 ]
+"349
+[v _TMR2H TMR2H `VEuc  1 e 1 @19 ]
+"353
+[v _P1ADTH P1ADTH `VEuc  1 e 1 @20 ]
+"361
+[v _P1CON P1CON `VEuc  1 e 1 @22 ]
+"422
+[v _WDTCON WDTCON `VEuc  1 e 1 @24 ]
+"546
+[v _T0CON0 T0CON0 `VEuc  1 e 1 @31 ]
+"551
+[v _T0ON T0ON `VEb  1 e 0 @251 ]
+"568
+[v _OPTION OPTION `VEuc  1 e 1 @129 ]
+"597
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"602
+[v _TRISA3 TRISA3 `VEb  1 e 0 @1067 ]
+"604
+[v _TRISA5 TRISA5 `VEb  1 e 0 @1069 ]
+"626
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"655
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"704
+[v _ADCIE ADCIE `VEb  1 e 0 @1120 ]
+"705
+[v _TMR2IE TMR2IE `VEb  1 e 0 @1121 ]
+"709
+[v _LVDIE LVDIE `VEb  1 e 0 @1125 ]
+"743
+[v _PCON PCON `VEuc  1 e 1 @142 ]
+"774
+[v _OSCCON OSCCON `VEuc  1 e 1 @143 ]
+"804
+[v _P1OE P1OE `VEuc  1 e 1 @144 ]
+"830
+[v _PR2L PR2L `VEuc  1 e 1 @145 ]
+"834
+[v _PR2H PR2H `VEuc  1 e 1 @146 ]
+"838
+[v _WPUC WPUC `VEuc  1 e 1 @147 ]
+"876
+[v _WPUA WPUA `VEuc  1 e 1 @149 ]
+"940
+[v _P1POL P1POL `VEuc  1 e 1 @153 ]
+"1010
+[v _T2CON1 T2CON1 `VEuc  1 e 1 @158 ]
+"1146
+[v _WPUB WPUB `VEuc  1 e 1 @269 ]
+"1227
+[v _LVDCON LVDCON `VEuc  1 e 1 @272 ]
+"1250
+[v _ADRESL ADRESL `VEuc  1 e 1 @273 ]
+"1255
+[v _ADRESH ADRESH `VEuc  1 e 1 @274 ]
+"1259
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @275 ]
+"1261
+[v _ADON ADON `VEb  1 e 0 @2200 ]
+"1287
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @276 ]
+"1318
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @277 ]
+"1350
+[v _PR1L PR1L `VEuc  1 e 1 @278 ]
+"1354
+[v _PR1H PR1H `VEuc  1 e 1 @279 ]
+"1358
+[v _TMR1L TMR1L `VEuc  1 e 1 @280 ]
+"1362
+[v _TMR1H TMR1H `VEuc  1 e 1 @281 ]
+"1373
+[v _T1CON0 T1CON0 `VEuc  1 e 1 @282 ]
+"1377
+[v _T1ON T1ON `VEb  1 e 0 @2258 ]
+"1396
+[v _P1OE2 P1OE2 `VEuc  1 e 1 @283 ]
+"1418
+[v _TKCON0 TKCON0 `VEuc  1 e 1 @284 ]
+"1451
+[v _TKCON1 TKCON1 `VEuc  1 e 1 @285 ]
+"1480
+[v _ANSEL0 ANSEL0 `VEuc  1 e 1 @286 ]
+"1520
+[v _ADCON3 ADCON3 `VEuc  1 e 1 @390 ]
+"1540
+[v _ADCMPH ADCMPH `VEuc  1 e 1 @391 ]
+"1595
+[v _T0DUTY T0DUTY `VEuc  1 e 1 @396 ]
+"1598
+[v _PR0 PR0 `VEuc  1 e 1 @397 ]
+"59 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _Tk_Push Tk_Push `uc  1 e 1 0 ]
+"60
+[v _Tk_Push_T Tk_Push_T `ui  1 e 2 0 ]
+"64
+[v _ADC_Start ADC_Start `b  1 e 0 0 ]
+"65
+[v _ADC_T ADC_T `uc  1 e 1 0 ]
+"68
+[v _Run_Mode Run_Mode `uc  1 e 1 0 ]
+"494
+[v _String_Sort_Tab String_Sort_Tab `[10]ui  1 e 20 0 ]
+"495
+[v _String_Sort_Warning String_Sort_Warning `uc  1 e 1 0 ]
+"598
+[v _LED_Cur_LV_Num LED_Cur_LV_Num `uc  1 e 1 0 ]
+"599
+[v _LED_Cur_LV_Dat LED_Cur_LV_Dat `ui  1 e 2 0 ]
+"600
+[v _LED_Cur_off_Dat LED_Cur_off_Dat `uc  1 e 1 0 ]
+"605
+[v _strongest strongest `uc  1 e 1 0 ]
+"606
+[v _Sav_strongest Sav_strongest `uc  1 e 1 0 ]
+"609
+[v _LED_PWM_H LED_PWM_H `ui  1 e 2 0 ]
+"610
+[v _LED_PWN_N LED_PWN_N `ui  1 e 2 0 ]
+"614
+[v _LED_PWM_H_SV LED_PWM_H_SV `ui  1 e 2 0 ]
+"616
+[v _LED_Cur_OK LED_Cur_OK `uc  1 e 1 0 ]
+"620
+[v _LED_adj_SV_dat LED_adj_SV_dat `ui  1 e 2 0 ]
+"622
+[v _LED_ADJ_P1ADTH LED_ADJ_P1ADTH `ui  1 e 2 0 ]
+"623
+[v _LED_ADJ_P1ADTL LED_ADJ_P1ADTL `ui  1 e 2 0 ]
+"624
+[v _LED_Cur LED_Cur `ui  1 e 2 0 ]
+"628
+[v _LED_ADJ_Dir LED_ADJ_Dir `uc  1 e 1 0 ]
+"629
+[v _LED_TH1_OP_Flag LED_TH1_OP_Flag `uc  1 e 1 0 ]
+"631
+[v _LED_ADJ_OP LED_ADJ_OP `uc  1 e 1 0 ]
+"891
+[v _LED_PWM_AD_Dat LED_PWM_AD_Dat `[10]ui  1 e 20 0 ]
+"892
+[v _LED_PWM_AD_Num LED_PWM_AD_Num `uc  1 e 1 0 ]
+"898
+[v _LED_PWM_PJ_Cur LED_PWM_PJ_Cur `[5]ui  1 e 10 0 ]
+"899
+[v _LED_PWM_PJ_Cur_Num LED_PWM_PJ_Cur_Num `uc  1 e 1 0 ]
+"901
+[v _LED_PWM_PJ_Val LED_PWM_PJ_Val `[5]ui  1 e 10 0 ]
+"902
+[v _LED_PWM_PJ_Val_Num LED_PWM_PJ_Val_Num `uc  1 e 1 0 ]
+"908
+[v _ADC_now ADC_now `uc  1 e 1 0 ]
+"100 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\touch.h
+[v _stTkData stTkData `[1][4]ui  1 e 8 @288 ]
+"104
+[v _ucKeyIndexMapArray ucKeyIndexMapArray `DC[1]uc  1 e 1 0 ]
+"112
+[v _ucActiveSensorDeltaArray ucActiveSensorDeltaArray `DC[1]uc  1 e 1 0 ]
+"120
+[v _ucInActiveSensorDeltaArray ucInActiveSensorDeltaArray `DC[1]uc  1 e 1 0 ]
+"172
+[v _ucFreachooseArray ucFreachooseArray `DC[3]uc  1 e 3 0 ]
+[s S2649 . 2 `uc 1 tr 1 0 `uc 1 b 1 1 ]
+"95 touch_cs_uac.c
+[v _stTouchIoMapArray stTouchIoMapArray `DC[8]S2649  1 e 16 0 ]
+"122
+[v _uiChargeDataBuffer uiChargeDataBuffer `[3]ui  1 e 6 0 ]
+"123
+[v _uiChargeDataBufferD uiChargeDataBufferD `[3]ui  1 e 6 0 ]
+"126
+[v _ucDefaultSysclk ucDefaultSysclk `VEuc  1 e 1 0 ]
+"127
+[v _uiBaseValue uiBaseValue `ui  1 e 2 0 ]
+"128
+[v _uiSampleValue uiSampleValue `ui  1 e 2 0 ]
+"129
+[v _ucKeyPollingOk ucKeyPollingOk `uc  1 e 1 0 ]
+"130
+[v _ucKeyPollingCount ucKeyPollingCount `uc  1 e 1 0 ]
+"131
+[v _ucTKeyOutChangeMax1 ucTKeyOutChangeMax1 `uc  1 e 1 0 ]
+"132
+[v _ucTKeyOutChangeMax2 ucTKeyOutChangeMax2 `uc  1 e 1 0 ]
+"133
+[v _ucTKeyOutStrongest ucTKeyOutStrongest `uc  1 e 1 0 ]
+"134
+[v _ucTKeyOutSingle ucTKeyOutSingle `uc  1 e 1 0 ]
+"135
+[v _ucKeyNumber ucKeyNumber `uc  1 e 1 0 ]
+"136
+[v _ucFreqChangeCount ucFreqChangeCount `uc  1 e 1 0 ]
+"137
+[v _ucKeyMapNumber ucKeyMapNumber `uc  1 e 1 0 ]
+"138
+[v _ucFreqIndex ucFreqIndex `uc  1 e 1 0 ]
+"139
+[v _ucFreqChangeNumber ucFreqChangeNumber `uc  1 e 1 0 ]
+"140
+[v _ucSensitivity ucSensitivity `uc  1 e 1 0 ]
+"143
+[v _ucCsFlag ucCsFlag `uc  1 e 1 0 ]
+"144
+[v _ucAbnormalCount ucAbnormalCount `uc  1 e 1 0 ]
+"145
+[v _ucNormalCount ucNormalCount `uc  1 e 1 0 ]
+"146
+[v _ucAbnormalOtherFlag ucAbnormalOtherFlag `uc  1 e 1 0 ]
+"147
+[v _uiAbnormalWaitCount uiAbnormalWaitCount `ui  1 e 2 0 ]
+"150
+[v _uiResonanceCount uiResonanceCount `ui  1 e 2 0 ]
+"151
+[v _ucAbnormalFlag ucAbnormalFlag `uc  1 e 1 0 ]
+"187
+[v _OriginalData OriginalData `ui  1 s 2 OriginalData ]
+"188
+[v _ReferenceData ReferenceData `ui  1 s 2 ReferenceData ]
+"189
+[v _ResultData ResultData `ui  1 s 2 ResultData ]
+[s S2652 . 8 `ui 1 uiData 2 0 `ui 1 uiBaseValue 2 2 `uc 1 ucChangeValue 1 4 `uc 1 ucBaseOkCount 1 5 `uc 1 ucBaseUpDownCount 1 6 `uc 1 ucSingleStrongest 1 7 ]
+"206
+[v _stTK stTK `S2652  1 e 8 @114 ]
+"209
+[v _ucTempIndex ucTempIndex `uc  1 e 1 @114 ]
+"210
+[v _ucTempCount ucTempCount `uc  1 e 1 @115 ]
+"213
+[v _cidx cidx `uc  1 e 1 @33 ]
+"216
+[v _ucTKFlag ucTKFlag `VEuc  1 e 1 @32 ]
+"217
+[v _bRserve bRserve `VEb  1 e 0 @256 ]
+"218
+[v _bResonanceFlag bResonanceFlag `VEb  1 e 0 @257 ]
+"219
+[v _bSleepUserWakeFlag bSleepUserWakeFlag `VEb  1 e 0 @258 ]
+"220
+[v _bSleepScanEnable bSleepScanEnable `VEb  1 e 0 @259 ]
+"221
+[v _bSleepMode bSleepMode `VEb  1 e 0 @260 ]
+"222
+[v _bSleepUserFlag bSleepUserFlag `VEb  1 e 0 @261 ]
+"223
+[v _bSleepUpdataFlag bSleepUpdataFlag `VEb  1 e 0 @262 ]
+"224
+[v _bIEBackupsFlag bIEBackupsFlag `VEb  1 e 0 @263 ]
+"227
+[v _ucTempMax1 ucTempMax1 `uc  1 e 1 0 ]
+"228
+[v _ucTempMax2 ucTempMax2 `uc  1 e 1 0 ]
+"229
+[v _uiTempMax1 uiTempMax1 `ui  1 e 2 0 ]
+"230
+[v _uiTempMax2 uiTempMax2 `ui  1 e 2 0 ]
+"1200 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _main main `(i  1 e 2 0 ]
+{
+"1276
+} 0
+"32
+[v _delay_ms delay_ms `(v  1 e 1 0 ]
+{
+"35
+[v delay_ms@i i `ui  1 a 2 6 ]
+"32
+[v delay_ms@Time Time `ui  1 p 2 4 ]
+"44
+} 0
+"6 D:\IDE3.0.8Beta\data\sources\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwmod@counter counter `uc  1 a 1 0 ]
+"6
+[v ___lwmod@divisor divisor `ui  1 p 2 0 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 2 ]
+"26
+} 0
+"23 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _DelayUs DelayUs `(v  1 e 1 0 ]
+{
+"25
+[v DelayUs@a a `ui  1 a 2 0 ]
+"23
+[v DelayUs@Time Time `ui  1 p 2 0 ]
+"30
+} 0
+"207
+[v _WDT_INITIAL WDT_INITIAL `(v  1 e 1 0 ]
+{
+"214
+} 0
+"751 touch_cs_uac.c
+[v _TOUCH_INITIAL TOUCH_INITIAL `(v  1 e 1 0 ]
+{
+"838
+} 0
+"638 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _TK_TG_Run TK_TG_Run `(v  1 e 1 0 ]
+{
+"870
+} 0
+"850 touch_cs_uac.c
+[v _TSC_Start TSC_Start `(v  1 e 1 0 ]
+{
+"1109
+} 0
+"329
+[v _DIV DIV `(v  1 e 1 0 ]
+{
+"423
+} 0
+"1872
+[v _TSC_GetStrongest TSC_GetStrongest `(uc  1 e 1 0 ]
+{
+"1875
+} 0
+"1887
+[v _TSC_GetSingle TSC_GetSingle `(uc  1 e 1 0 ]
+{
+"1890
+} 0
+"1220
+[v _TSC_DataProcessing TSC_DataProcessing `(uc  1 e 1 0 ]
+{
+"1222
+[v TSC_DataProcessing@i i `uc  1 a 1 15 ]
+"1546
+} 0
+"1170
+[v _SavKeyData SavKeyData `(v  1 e 1 0 ]
+{
+"1208
+} 0
+"1120
+[v _GetKeyData GetKeyData `(v  1 e 1 0 ]
+{
+"1159
+} 0
+"646
+[v _AbNormalProcess AbNormalProcess `(uc  1 e 1 0 ]
+{
+"738
+} 0
+"562
+[v _ReadCap ReadCap `(v  1 e 1 0 ]
+{
+"632
+} 0
+"150 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _SYS_INITIAL SYS_INITIAL `(v  1 e 1 0 ]
+{
+"195
+} 0
+"240
+[v _PWM_Init PWM_Init `(v  1 e 1 0 ]
+{
+"279
+} 0
+"910
+[v _ADC_Run ADC_Run `(v  1 e 1 0 ]
+{
+"1185
+} 0
+"15 D:\IDE3.0.8Beta\data\sources\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 0 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 7 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 9 ]
+"53
+} 0
+"496 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _String_Sort String_Sort `(ui  1 e 2 0 ]
+{
+"514
+[v String_Sort@is is `uc  1 a 1 16 ]
+"527
+[v String_Sort@i_1896 i `uc  1 a 1 14 ]
+"510
+[v String_Sort@i_1894 i `uc  1 a 1 17 ]
+"504
+[v String_Sort@i_1893 i `uc  1 a 1 13 ]
+"502
+[v String_Sort@i i `uc  1 a 1 15 ]
+"499
+[v String_Sort@Dat Dat `ui  1 a 2 18 ]
+"496
+[v String_Sort@s s `*.39ui  1 p 2 7 ]
+[v String_Sort@l l `uc  1 p 1 9 ]
+"547
+} 0
+"6 D:\IDE3.0.8Beta\data\sources\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"11
+[v ___lwdiv@quotient quotient `ui  1 a 2 5 ]
+"12
+[v ___lwdiv@counter counter `uc  1 a 1 4 ]
+"6
+[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
+"31
+} 0
+"413 D:\辉芒微开发资料\触摸初始工程_Demo_20220903\Touch_Init_Demo_20220819\main.c
+[v _GET_ADC_DATA GET_ADC_DATA `(ui  1 e 2 0 ]
+{
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+"415
+[v GET_ADC_DATA@ADC_Dat ADC_Dat `ui  1 a 2 4 ]
+"413
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 wreg ]
+"419
+[v GET_ADC_DATA@adcChannel adcChannel `uc  1 a 1 3 ]
+"441
+} 0
+"450
+[v _ADC_AN3_Init ADC_AN3_Init `(v  1 e 1 0 ]
+{
+"467
+} 0
+"288
+[v _ADC_DelayUs ADC_DelayUs `(v  1 e 1 0 ]
+{
+[v ADC_DelayUs@Time Time `uc  1 a 1 wreg ]
+"290
+[v ADC_DelayUs@a a `uc  1 a 1 1 ]
+"288
+[v ADC_DelayUs@Time Time `uc  1 a 1 wreg ]
+"291
+[v ADC_DelayUs@Time Time `uc  1 a 1 0 ]
+"295
+} 0
+"75
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"139
+} 0
